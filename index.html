@@ -46,8 +46,6 @@
       display: block;
     }
 
-    /* Layout */
-
     .page {
       min-height: 100vh;
       display: flex;
@@ -186,8 +184,6 @@
       max-width: 1080px;
       margin: 0 auto;
     }
-
-    /* Hero */
 
     #home {
       display: grid;
@@ -425,8 +421,6 @@
       color: #e5e7eb;
     }
 
-    /* Sections */
-
     section {
       scroll-margin-top: 80px;
     }
@@ -455,8 +449,6 @@
       color: var(--muted);
       max-width: 26rem;
     }
-
-    /* Projects */
 
     .projects-grid {
       display: grid;
@@ -542,8 +534,6 @@
       background: #f97316;
     }
 
-    /* Skills */
-
     .skills-wrap {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -581,8 +571,6 @@
       border: 1px solid rgba(55, 65, 81, 0.9);
       color: #e5e7eb;
     }
-
-    /* Experience & Activities */
 
     .experience-grid {
       display: grid;
@@ -629,8 +617,6 @@
       color: #22c55e;
       margin-right: 0.35rem;
     }
-
-    /* Education & Awards */
 
     .edu-grid {
       display: grid;
@@ -686,8 +672,6 @@
       margin-right: 0.35rem;
     }
 
-    /* Contact */
-
     .contact-card {
       border-radius: var(--radius-lg);
       padding: 1.1rem 1.2rem 1.2rem;
@@ -735,8 +719,6 @@
       padding-top: 1rem;
     }
 
-    /* Responsive */
-
     @media (max-width: 880px) {
       #home {
         grid-template-columns: minmax(0, 1fr);
@@ -778,14 +760,13 @@
 </head>
 <body>
   <div class="page">
-    <!-- NAVBAR -->
     <header class="nav-wrap">
       <div class="nav">
         <div class="nav-left">
           <div class="logo-orb"></div>
           <div class="nav-title">
             <div class="nav-title-main">Anshul Raman</div>
-            <div class="nav-title-sub">CS · Cybersecurity · AI Hardware</div>
+            <div class="nav-title-sub">Computer Science · UC</div>
           </div>
         </div>
         <nav class="nav-links">
@@ -805,17 +786,16 @@
 
     <main>
       <div class="shell">
-        <!-- HERO -->
         <section id="home">
           <div>
             <div class="hero-kicker">
               <div class="hero-kicker-pill">Computer Science · University of Cincinnati</div>
             </div>
             <h1 class="hero-title">
-              Hi, I’m <span>Anshul Raman</span> — building secure systems and AI‑driven hardware.
+              Hi, I’m <span>Anshul Raman</span> — a Computer Science student building secure systems and AI‑driven hardware.
             </h1>
             <p class="hero-sub">
-              I’m a Computer Science student focused on cybersecurity, penetration testing,
+              I’m a CS undergrad focused on cybersecurity‑inspired projects, penetration testing labs,
               and assistive tech that actually protects people in the real world.
             </p>
             <div class="hero-meta">
@@ -855,7 +835,7 @@
           <div class="hero-avatar-wrap">
             <article class="hero-card" aria-label="Snapshot of Anshul">
               <div class="hero-card-orb" aria-hidden="true"></div>
-              <div class="hero-card-tag">Undergrad Cyber · CS</div>
+              <div class="hero-card-tag">CS Undergrad · UC</div>
               <h2 class="hero-card-title">Security‑minded builder</h2>
               <p class="hero-card-role">Pen‑testing labs · Wi‑Fi auditing · Phishing simulation</p>
               <p class="hero-card-body">
@@ -880,18 +860,16 @@
           </div>
         </section>
 
-        <!-- PROJECTS -->
         <section id="projects" class="section">
           <div class="section-head">
             <h2 class="section-title">Projects</h2>
             <p class="section-sub">
-              A mix of AI‑assisted hardware and offensive security labs in controlled environments,
+              A mix of AI‑assisted hardware and offensive security‑inspired labs in controlled environments,
               designed to push my understanding of how attackers think and how defenders should react.
             </p>
           </div>
 
           <div class="projects-grid">
-            <!-- AI Medicine Dispenser -->
             <article class="card">
               <div class="card-kicker">ENED Project · Sept – Dec 2025</div>
               <h3 class="card-title">AI‑Integrated Medicine Dispensing Machine</h3>
@@ -917,7 +895,6 @@
               </div>
             </article>
 
-            <!-- RAT Development -->
             <article class="card">
               <div class="card-kicker">Lab · June – July 2025</div>
               <h3 class="card-title">RAT Development & Penetration Testing</h3>
@@ -942,7 +919,6 @@
               </div>
             </article>
 
-            <!-- Wi-Fi Pentest -->
             <article class="card">
               <div class="card-kicker">Lab · July – Aug 2025</div>
               <h3 class="card-title">Wi‑Fi Penetration Testing Device</h3>
@@ -967,7 +943,6 @@
               </div>
             </article>
 
-            <!-- Phishing Simulation -->
             <article class="card">
               <div class="card-kicker">Lab · July – Aug 2025</div>
               <h3 class="card-title">Phishing Website Simulation</h3>
@@ -994,7 +969,6 @@
           </div>
         </section>
 
-        <!-- EXPERIENCE & ACTIVITIES -->
         <section id="experience" class="section">
           <div class="section-head">
             <h2 class="section-title">Experience & Activities</h2>
@@ -1005,7 +979,6 @@
           </div>
 
           <div class="experience-grid">
-            <!-- Clubs -->
             <div class="xp-block">
               <div class="xp-header">
                 <div>
@@ -1020,7 +993,6 @@
               </ul>
             </div>
 
-            <!-- Volunteering -->
             <div class="xp-block">
               <div class="xp-header">
                 <div>
@@ -1038,13 +1010,12 @@
           </div>
         </section>
 
-        <!-- SKILLS -->
         <section id="skills" class="section">
           <div class="section-head">
             <h2 class="section-title">Skills</h2>
             <p class="section-sub">
-              I blend software, security, and creative tooling to move quickly from ideas to prototypes,
-              especially in cyber and AI‑assisted projects.
+              I blend software, security‑inspired labs, and creative tooling to move quickly from ideas
+              to prototypes, especially in cyber and AI‑assisted projects.
             </p>
           </div>
 
@@ -1083,7 +1054,6 @@
           </div>
         </section>
 
-        <!-- EDUCATION & AWARDS -->
         <section id="education" class="section">
           <div class="section-head">
             <h2 class="section-title">Education & Honors</h2>
@@ -1122,13 +1092,12 @@
           </div>
         </section>
 
-        <!-- CONTACT -->
         <section id="contact" class="section">
           <div class="section-head">
             <h2 class="section-title">Contact</h2>
             <p class="section-sub">
-              I’m actively looking for Fall 2026 co‑op roles in cybersecurity, software, or AI‑driven systems.
-              If my work aligns with what you’re building, let’s talk.
+              I’m actively looking for Fall 2026 co‑op roles in cybersecurity‑related projects, software,
+              or AI‑driven systems. If my work aligns with what you’re building, let’s talk.
             </p>
           </div>
 
@@ -1138,12 +1107,6 @@
                 <div class="contact-row-label">Email</div>
                 <div class="contact-row-value">
                   <a href="mailto:ramanal@mail.uc.edu">ramanal@mail.uc.edu</a>
-                </div>
-              </div>
-              <div>
-                <div class="contact-row-label">Phone</div>
-                <div class="contact-row-value">
-                  <a href="tel:+15133832008">(+1) 513‑383‑2008</a>
                 </div>
               </div>
               <div>
@@ -1160,7 +1123,7 @@
               </div>
             </div>
             <p style="font-size:0.8rem;color:#9ca3af;">
-              Open to internships, co‑ops, and collaboration on security research, penetration testing labs,
+              Open to internships, co‑ops, and collaboration on security‑inspired research, penetration testing labs,
               and AI‑powered tools that solve real problems.
             </p>
           </div>
