@@ -1202,7 +1202,7 @@
 
       <footer class="footer">
         <span>© <span id="year"></span> Anshul Raman</span>
-        <span>Built with HTML & CSS · Deployed by you</span>
+        <span>Built with HTML & CSS</span>
       </footer>
     </main>
   </div>
@@ -1212,4 +1212,5 @@
   </script>
 </body>
 </html>
+
 
