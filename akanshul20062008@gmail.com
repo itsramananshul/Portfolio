@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>Anshul Raman | Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Portfolio of Anshul Raman, Computer Science student focused on cybersecurity-inspired projects, penetration testing labs, and AI-driven hardware." />
+  <meta name="description" content="Portfolio of Anshul Raman, Computer Science student focused on AI-driven hardware, software systems, and security-focused lab work." />
   <style>
     :root {
       --bg: #050816;
@@ -22,11 +22,7 @@
         "Segoe UI", sans-serif;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: var(--font-main);
@@ -36,21 +32,10 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
 
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    .page {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+    .page { min-height: 100vh; display: flex; flex-direction: column; }
 
     .nav-wrap {
       position: sticky;
@@ -71,16 +56,10 @@
       gap: 1.5rem;
     }
 
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-    }
+    .nav-left { display: flex; align-items: center; gap: 0.8rem; }
 
     .logo-orb {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
+      width: 34px; height: 34px; border-radius: 50%;
       background: conic-gradient(from 180deg, #3b82f6, #22c55e, #a855f7, #3b82f6);
       position: relative;
       box-shadow: 0 0 36px rgba(59, 130, 246, 0.8);
@@ -94,23 +73,14 @@
       background: radial-gradient(circle at 30% 20%, #eff6ff, #0b1120);
     }
 
-    .nav-title {
-      display: flex;
-      flex-direction: column;
-      gap: 0.1rem;
-    }
-
+    .nav-title { display: flex; flex-direction: column; gap: 0.1rem; }
     .nav-title-main {
       font-size: 0.98rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: #f9fafb;
     }
-
-    .nav-title-sub {
-      font-size: 0.76rem;
-      color: var(--muted);
-    }
+    .nav-title-sub { font-size: 0.76rem; color: var(--muted); }
 
     .nav-links {
       display: flex;
@@ -129,22 +99,15 @@
     .nav-links a::after {
       content: "";
       position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 0;
-      height: 2px;
+      left: 0; bottom: 0;
+      width: 0; height: 2px;
       border-radius: 999px;
       background: linear-gradient(90deg, #3b82f6, #a855f7);
       transition: width 0.2s ease;
     }
 
-    .nav-links a:hover {
-      color: #e5e7eb;
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
+    .nav-links a:hover { color: #e5e7eb; }
+    .nav-links a:hover::after { width: 100%; }
 
     .nav-cta {
       display: inline-flex;
@@ -168,22 +131,14 @@
     }
 
     .nav-cta-dot {
-      width: 5px;
-      height: 5px;
+      width: 5px; height: 5px;
       border-radius: 999px;
       background: #22c55e;
       box-shadow: 0 0 18px rgba(34, 197, 94, 0.9);
     }
 
-    main {
-      flex: 1;
-      padding: 1.8rem 1.25rem 3rem;
-    }
-
-    .shell {
-      max-width: 1080px;
-      margin: 0 auto;
-    }
+    main { flex: 1; padding: 1.8rem 1.25rem 3rem; }
+    .shell { max-width: 1080px; margin: 0 auto; }
 
     #home {
       display: grid;
@@ -242,22 +197,14 @@
       color: #9ca3af;
     }
 
-    .hero-meta-item {
-      display: flex;
-      flex-direction: column;
-      gap: 0.1rem;
-    }
-
+    .hero-meta-item { display: flex; flex-direction: column; gap: 0.1rem; }
     .hero-meta-label {
       font-size: 0.72rem;
       text-transform: uppercase;
       letter-spacing: 0.16em;
       color: #6b7280;
     }
-
-    .hero-meta-value {
-      color: #e5e7eb;
-    }
+    .hero-meta-value { color: #e5e7eb; }
 
     .hero-actions {
       display: flex;
@@ -319,18 +266,13 @@
     }
 
     .hero-links-dot {
-      width: 6px;
-      height: 6px;
+      width: 6px; height: 6px;
       border-radius: 999px;
       background: #22c55e;
       box-shadow: 0 0 16px rgba(34, 197, 94, 0.9);
     }
 
-    .hero-avatar-wrap {
-      position: relative;
-      display: flex;
-      justify-content: center;
-    }
+    .hero-avatar-wrap { position: relative; display: flex; justify-content: center; }
 
     .hero-card {
       width: 100%;
@@ -348,8 +290,7 @@
 
     .hero-card-tag {
       position: absolute;
-      top: 1rem;
-      right: 1.1rem;
+      top: 1rem; right: 1.1rem;
       padding: 0.14rem 0.6rem;
       border-radius: 999px;
       font-size: 0.63rem;
@@ -363,12 +304,10 @@
     .hero-card-orb {
       position: absolute;
       inset: 40% auto auto -40%;
-      width: 180px;
-      height: 180px;
+      width: 180px; height: 180px;
       background: radial-gradient(circle at 30% 20%, rgba(248, 250, 252, 0.8), transparent),
         radial-gradient(circle at 80% 90%, #4f46e5, transparent);
-      opacity: 0.38;
-      filter: blur(6px);
+      opacity: 0.38; filter: blur(6px);
     }
 
     .hero-card-title {
@@ -376,11 +315,7 @@
       margin-bottom: 0.4rem;
     }
 
-    .hero-card-role {
-      font-size: 0.85rem;
-      color: #a5b4fc;
-      margin-bottom: 0.7rem;
-    }
+    .hero-card-role { font-size: 0.85rem; color: #a5b4fc; margin-bottom: 0.7rem; }
 
     .hero-card-body {
       font-size: 0.82rem;
@@ -417,17 +352,11 @@
       color: #6b7280;
     }
 
-    .hero-stat-value {
-      color: #e5e7eb;
-    }
+    .hero-stat-value { color: #e5e7eb; }
 
-    section {
-      scroll-margin-top: 80px;
-    }
+    section { scroll-margin-top: 80px; }
 
-    .section {
-      padding: 2.5rem 0 0;
-    }
+    .section { padding: 2.5rem 0 0; }
 
     .section-head {
       display: flex;
@@ -444,19 +373,17 @@
       color: #9ca3af;
     }
 
-    .section-sub {
-      font-size: 0.88rem;
-      color: var(--muted);
-      max-width: 26rem;
-    }
+    .section-sub { font-size: 0.88rem; color: var(--muted); max-width: 26rem; }
 
-    .projects-grid {
+    .projects-grid,
+    .experience-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 1.3rem;
     }
 
-    .card {
+    .card,
+    .xp-block {
       border-radius: var(--radius-lg);
       background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.16), transparent),
         radial-gradient(circle at 100% 100%, rgba(129, 140, 248, 0.16), transparent),
@@ -464,20 +391,24 @@
       border: 1px solid var(--border);
       padding: 1.1rem 1.15rem 1.1rem;
       box-shadow: 0 18px 40px rgba(15, 23, 42, 0.85);
+      font-size: 0.82rem;
+      color: #d1d5db;
     }
 
-    .card-kicker {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
+    .xp-block-alt {
+      background: radial-gradient(circle at 0 0, rgba(45, 212, 191, 0.18), transparent),
+        var(--bg-alt);
+    }
+
+    .card-kicker,
+    .xp-time {
+      font-size: 0.8rem;
       color: #9ca3af;
       margin-bottom: 0.3rem;
     }
 
-    .card-title {
-      font-size: 0.98rem;
-      margin-bottom: 0.25rem;
-    }
+    .card-title,
+    .xp-title { font-size: 0.98rem; margin-bottom: 0.25rem; }
 
     .card-tagline {
       font-size: 0.8rem;
@@ -491,16 +422,18 @@
       margin-bottom: 0.55rem;
     }
 
-    .card-list {
+    .card-list,
+    .xp-list {
       list-style: none;
       font-size: 0.8rem;
       color: #9ca3af;
       display: grid;
       gap: 0.25rem;
-      margin-bottom: 0.6rem;
+      margin-top: 0.3rem;
     }
 
-    .card-list li::before {
+    .card-list li::before,
+    .xp-list li::before {
       content: "▹";
       color: #60a5fa;
       margin-right: 0.35rem;
@@ -513,6 +446,7 @@
       gap: 0.5rem;
       font-size: 0.76rem;
       color: #9ca3af;
+      flex-wrap: wrap;
     }
 
     .pill {
@@ -528,10 +462,24 @@
     }
 
     .pill-dot {
-      width: 6px;
-      height: 6px;
+      width: 6px; height: 6px;
       border-radius: 999px;
       background: #f97316;
+    }
+
+    .card-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      font-size: 0.76rem;
+    }
+
+    .card-link {
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.85);
+      color: #bfdbfe;
     }
 
     .skills-wrap {
@@ -572,52 +520,6 @@
       color: #e5e7eb;
     }
 
-    .experience-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2.3fr);
-      gap: 1.3rem;
-    }
-
-    .xp-block {
-      border-radius: var(--radius-lg);
-      padding: 1.05rem 1.1rem 1.05rem;
-      background: radial-gradient(circle at 0 0, rgba(45, 212, 191, 0.16), transparent),
-        var(--bg-alt);
-      border: 1px solid var(--border);
-      box-shadow: 0 16px 36px rgba(15, 23, 42, 0.9);
-      font-size: 0.82rem;
-      color: #d1d5db;
-    }
-
-    .xp-header {
-      display: flex;
-      justify-content: space-between;
-      gap: 0.75rem;
-      margin-bottom: 0.5rem;
-      font-size: 0.8rem;
-    }
-
-    .xp-title {
-      font-weight: 500;
-    }
-
-    .xp-time {
-      color: #9ca3af;
-    }
-
-    .xp-list {
-      list-style: none;
-      display: grid;
-      gap: 0.18rem;
-      margin-top: 0.3rem;
-    }
-
-    .xp-list li::before {
-      content: "▹";
-      color: #22c55e;
-      margin-right: 0.35rem;
-    }
-
     .edu-grid {
       display: grid;
       grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
@@ -634,16 +536,8 @@
       font-size: 0.82rem;
     }
 
-    .edu-title {
-      font-size: 0.98rem;
-      margin-bottom: 0.2rem;
-    }
-
-    .edu-meta {
-      font-size: 0.8rem;
-      color: #9ca3af;
-      margin-bottom: 0.6rem;
-    }
+    .edu-title { font-size: 0.98rem; margin-bottom: 0.2rem; }
+    .edu-meta { font-size: 0.8rem; color: #9ca3af; margin-bottom: 0.6rem; }
 
     .edu-list {
       list-style: none;
@@ -697,13 +591,8 @@
       color: #9ca3af;
     }
 
-    .contact-row-value a {
-      color: #bfdbfe;
-    }
-
-    .contact-row-value a:hover {
-      text-decoration: underline;
-    }
+    .contact-row-value a { color: #bfdbfe; }
+    .contact-row-value a:hover { text-decoration: underline; }
 
     .footer {
       max-width: 1080px;
@@ -720,41 +609,19 @@
     }
 
     @media (max-width: 880px) {
-      #home {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .hero-card {
-        max-width: 100%;
-      }
-
+      #home { grid-template-columns: minmax(0, 1fr); }
+      .hero-card { max-width: 100%; }
+      .projects-grid,
       .experience-grid,
-      .edu-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .nav {
-        padding-inline: 1rem;
-      }
-
-      .nav-links {
-        display: none;
-      }
+      .edu-grid { grid-template-columns: minmax(0, 1fr); }
+      .nav { padding-inline: 1rem; }
+      .nav-links { display: none; }
     }
 
     @media (max-width: 640px) {
-      main {
-        padding-inline: 1rem;
-      }
-
-      .section {
-        padding-top: 2rem;
-      }
-
-      .section-head {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+      main { padding-inline: 1rem; }
+      .section { padding-top: 2rem; }
+      .section-head { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
@@ -773,6 +640,7 @@
           <a href="#home">Home</a>
           <a href="#projects">Projects</a>
           <a href="#experience">Experience</a>
+          <a href="#volunteering">Volunteering & Activities</a>
           <a href="#skills">Skills</a>
           <a href="#education">Education</a>
           <a href="#contact">Contact</a>
@@ -796,9 +664,8 @@
               Hi, I’m <span>Anshul Raman</span> — a Computer Science student building secure systems and AI‑driven hardware.
             </h1>
             <p class="hero-sub">
-              As a Computer Science undergraduate, I’m exploring multiple areas of CS, with a particular
-              interest in cybersecurity and ethical hacking as tools to better understand system design,
-              reliability, and security.
+              As a Computer Science undergraduate, I explore multiple areas of computing including software engineering,
+              systems design, AI technologies, and cybersecurity.
             </p>
             <div class="hero-meta">
               <div class="hero-meta-item">
@@ -842,10 +709,12 @@
               <div class="hero-card-orb" aria-hidden="true"></div>
               <div class="hero-card-tag">CS Undergrad · UC</div>
               <h2 class="hero-card-title">Security‑minded builder</h2>
-              <p class="hero-card-role">Pen‑testing labs · Wi‑Fi auditing · Phishing simulation</p>
+              <p class="hero-card-role">
+                I build software with an adversarial mindset, considering how systems can be misused or fail.
+              </p>
               <p class="hero-card-body">
-                I prototype offensive security scenarios in controlled labs to better understand
-                how to defend real systems and the people who rely on them.
+                Through controlled lab environments, I explore offensive security techniques to better understand
+                real‑world vulnerabilities and inform defensive system design.
               </p>
               <div class="hero-pill">
                 <span class="pill-dot"></span>
@@ -857,8 +726,12 @@
                   <div class="hero-stat-value">Tech clubs · Tennis & more</div>
                 </div>
                 <div>
-                  <div class="hero-stat-label">Scholarships</div>
-                  <div class="hero-stat-value">International Global & Outreach</div>
+                  <div class="hero-stat-label">Awards & Scholarships</div>
+                  <div class="hero-stat-value">
+                    Dean’s List (Fall 2025)<br />
+                    International Global Scholarship<br />
+                    International Outreach Scholarship
+                  </div>
                 </div>
               </div>
             </article>
@@ -870,12 +743,73 @@
           <div class="section-head">
             <h2 class="section-title">Projects</h2>
             <p class="section-sub">
-              AI‑assisted hardware and cybersecurity‑inspired lab work, all built in controlled environments
-              to explore attacker workflows and defense strategies.
+              AI‑driven hardware, software systems, and security‑focused lab work built in controlled environments.
             </p>
           </div>
 
           <div class="projects-grid">
+            <!-- Python Banking & ATM System -->
+            <article class="card">
+              <div class="card-kicker">Personal Project · Jan – Feb 2026</div>
+              <h3 class="card-title">Python Banking & ATM System</h3>
+              <p class="card-tagline">
+                Full console‑based banking system with persistent storage, security checks, and an admin panel.
+              </p>
+              <p class="card-body">
+                Built an end‑to‑end ATM and banking system that lets users open accounts, receive debit cards,
+                deposit, withdraw, check balances, and includes an admin interface for managing and unlocking accounts.
+              </p>
+              <ul class="card-list">
+                <li>Generated unique account IDs and PINs by creating random numbers and checking for duplicates to avoid collisions.</li>
+                <li>Maintained accurate balances, PINs, and lock status by storing all accounts in a list and updating it on every operation.</li>
+                <li>Implemented persistent storage using a <code>save_accounts()</code> function that rewrites the <code>accounts.txt</code> file after each change.</li>
+                <li>Added PIN security with 3 attempts, automatically locking cards and updating the file when limits were exceeded, and resetting attempts on success.</li>
+                <li>Designed an admin panel to view all accounts and unlock cards, plus robust input validation to handle invalid choices and edge cases without crashing.</li>
+              </ul>
+              <div class="card-footer">
+                <div class="pill">
+                  <span class="pill-dot"></span>
+                  Python · Files · ATM logic
+                </div>
+                <div class="card-links">
+                  <a class="card-link" href="https://lnkd.in/guAEjBxF" target="_blank" rel="noopener">
+                    View code on GitHub
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Python Bus Booking System -->
+            <article class="card">
+              <div class="card-kicker">Personal Project · Jan – Feb 2026</div>
+              <h3 class="card-title">Python Bus Booking System</h3>
+              <p class="card-tagline">
+                File‑backed bus booking and cancellation system with seat tracking and resilient menus.
+              </p>
+              <p class="card-body">
+                Developed a Python system that manages bus bookings with unique booking IDs, accurate seat availability,
+                and persistent storage to simulate how real services track users and trips.
+              </p>
+              <ul class="card-list">
+                <li>Ensured every booking had a unique ID by generating random values and checking against existing IDs.</li>
+                <li>Kept seat availability synced per bus by updating booked seats on every booking and cancellation.</li>
+                <li>Used file storage to persist bookings, rebuilding booked seat counts at startup by parsing existing records.</li>
+                <li>Implemented a continuous menu loop for smooth user experience until explicit exit.</li>
+                <li>Handled invalid input (bus numbers, menu options, booking IDs) gracefully and rebuilt the bookings file after cancellations to keep data clean.</li>
+              </ul>
+              <div class="card-footer">
+                <div class="pill">
+                  <span class="pill-dot"></span>
+                  Python · Files · Booking logic
+                </div>
+                <div class="card-links">
+                  <a class="card-link" href="https://lnkd.in/gRP3uMNJ" target="_blank" rel="noopener">
+                    View code on GitHub
+                  </a>
+                </div>
+              </div>
+            </article>
+
             <!-- AI Medicine Dispenser -->
             <article class="card">
               <div class="card-kicker">ENED Project · Sept – Dec 2025</div>
@@ -898,7 +832,9 @@
                   <span class="pill-dot"></span>
                   AI hardware · Assistive tech
                 </div>
-                <span>Team of 4 · University of Cincinnati</span>
+                <div class="card-links">
+                  <!-- Add repo link when code is public -->
+                </div>
               </div>
             </article>
 
@@ -910,20 +846,21 @@
                 Controlled Remote Access Trojan development to study full‑device compromise and defensive responses.
               </p>
               <p class="card-body">
-                Built RATs in a controlled lab environment to simulate complete device takeover, including
-                camera and microphone access, with a focus on ethics and mitigation.
+                Built RATs in a controlled lab environment to simulate complete device takeover with an ethics‑first focus on mitigation and defense.
               </p>
               <ul class="card-list">
-                <li>Developed RATs to explore attacker capabilities for remote surveillance and control.</li>
-                <li>Conducted vulnerability assessments to identify security weaknesses and recommend mitigation strategies.</li>
-                <li>Documented ethical implications and defensive countermeasures for responsible security research.</li>
+                <li>Engineered a cross‑platform RAT in a Metasploit lab to simulate full‑device compromise, implementing 12+ remote functions including real‑time surveillance, GPS tracking, and SMS exfiltration. [web:90][web:94]</li>
+                <li>Conducted post‑exploitation research on both Android and Windows, documenting weaknesses in system permissions and user access controls and how defenders can harden them. [web:88][web:92]</li>
+                <li>Summarized findings into ethical‑use guidelines and mitigation steps to help translate offensive techniques into practical defensive controls. [web:88][web:94]</li>
               </ul>
               <div class="card-footer">
                 <div class="pill">
                   <span class="pill-dot"></span>
                   Offensive labs · Ethics‑first
                 </div>
-                <span>Controlled lab environment</span>
+                <div class="card-links">
+                  <!-- Add repo link if code is published -->
+                </div>
               </div>
             </article>
 
@@ -939,16 +876,18 @@
                 flows and provide actionable recommendations for network security.
               </p>
               <ul class="card-list">
-                <li>Used ESP8266MOD to execute de‑authentication attacks in a secure lab environment.</li>
-                <li>Analyzed wireless vulnerabilities discovered during simulated real‑world attack scenarios.</li>
-                <li>Recommended network hardening measures such as stronger authentication, segmentation, and monitoring.</li>
+                <li>Engineered a portable hardware‑security tool using an ESP8266MOD microcontroller to evaluate 802.11 vulnerabilities and test network resilience against unauthorized deauthentication in a sandboxed lab. [web:93][web:97]</li>
+                <li>Simulated “Evil Twin” access points to audit 20+ device connection attempts, highlighting how rogue networks enable credential harvesting and session hijacking. [web:93][web:95]</li>
+                <li>Generated 50+ simultaneous beacon signals to study wireless congestion, analyzing how aggressive SSID broadcasting impacts network discovery and device management. [web:93]</li>
               </ul>
               <div class="card-footer">
                 <div class="pill">
                   <span class="pill-dot"></span>
                   ESP8266 · Wireless security
                 </div>
-                <span>Network security lab</span>
+                <div class="card-links">
+                  <!-- Add repo link if code is published -->
+                </div>
               </div>
             </article>
 
@@ -973,79 +912,141 @@
                   <span class="pill-dot"></span>
                   Social engineering · User defense
                 </div>
-                <span>Security awareness lab</span>
+                <div class="card-links">
+                  <!-- Add repo link if code is published -->
+                </div>
               </div>
             </article>
           </div>
         </section>
 
-        <!-- EXPERIENCE & ACTIVITIES -->
+        <!-- EXPERIENCE -->
         <section id="experience" class="section">
           <div class="section-head">
-            <h2 class="section-title">Experience & Activities</h2>
+            <h2 class="section-title">Experience</h2>
             <p class="section-sub">
-              From rehabilitation centers and school science clubs to tech organizations and sports,
-              I care about both people and performance.
+              Roles where I worked with diverse learners and organized STEM initiatives.
             </p>
           </div>
 
           <div class="experience-grid">
             <!-- Event Coordinator -->
-            <div class="xp-block">
-              <div class="xp-header">
-                <div>
-                  <div class="xp-title">Event Coordinator · Tapan Rehabilitation Center</div>
-                  <div class="xp-time">April 2023 – March 2024 · Karnal, Haryana, India</div>
-                </div>
-              </div>
+            <div class="xp-block xp-block-alt">
+              <div class="xp-title">Event Coordinator · Tapan Rehabilitation Center</div>
+              <div class="xp-time">Dec 2022 – Jan 2023 · Karnal, Haryana, India</div>
               <ul class="xp-list">
-                <li>Supported children with special needs through individualized teaching strategies and developmental assistance, focusing on hearing and speech impairments.</li>
-                <li>Coordinated an inclusion‑awareness event at Pratap Public School, engaging students, faculty, and community members around accessibility and sensitivity.</li>
+                <li>Worked closely with children requiring special care, assisting with their diagnosis, treatment, and development.</li>
+                <li>Used specialized teaching techniques for children with hearing or speech impairment.</li>
+                <li>Organized a function at Pratap Public School to raise awareness and foster social integration for children with special needs.</li>
+                <li>Collaborated with faculty and staff to ensure meaningful interaction with students.</li>
               </ul>
             </div>
 
             <!-- Science Club Coordinator -->
-            <div class="xp-block">
-              <div class="xp-header">
-                <div>
-                  <div class="xp-title">Coordinator · Science Club</div>
-                  <div class="xp-time">June 2023 – June 2024 · Sant Gyaneshwar Model School, Delhi, India</div>
-                </div>
-              </div>
+            <div class="xp-block xp-block-alt">
+              <div class="xp-title">Coordinator · Science Club</div>
+              <div class="xp-time">June 2023 – June 2024 · Sant Gyaneshwar Model School, Delhi, India</div>
               <ul class="xp-list">
                 <li>Led and organized school‑wide science activities and events, promoting hands‑on learning and innovation.</li>
                 <li>Represented the club in inter‑school science debates and competitions, building a culture of curiosity and academic excellence.</li>
               </ul>
             </div>
           </div>
+        </section>
 
-          <div class="section" style="padding-top:1.8rem;">
-            <div class="experience-grid">
-              <!-- Clubs & Sports -->
-              <div class="xp-block">
-                <div class="xp-header">
-                  <div>
-                    <div class="xp-title">Clubs & Student Communities</div>
-                    <div class="xp-time">Sept 2025 – Present · University of Cincinnati</div>
-                  </div>
-                </div>
-                <ul class="xp-list">
-                  <li>Tennis Club, Bearcat Tech Innovators, IEEE, AAEO, UC Robotics, AI Society.</li>
-                </ul>
-              </div>
+        <!-- VOLUNTEERING & ACTIVITIES -->
+        <section id="volunteering" class="section">
+          <div class="section-head">
+            <h2 class="section-title">Volunteering & Activities</h2>
+            <p class="section-sub">
+              Community work, campus organizations, and sports that shaped how I collaborate and lead.
+            </p>
+          </div>
 
-              <div class="xp-block">
-                <div class="xp-header">
-                  <div>
-                    <div class="xp-title">Sports & Competition</div>
-                    <div class="xp-time">Ongoing</div>
-                  </div>
-                </div>
-                <ul class="xp-list">
-                  <li>Tennis, Badminton, Cricket, Soccer, Volleyball, Pickleball, Padel.</li>
-                  <li>First Position – District U‑19 Tennis Championship 2022; ranked among the Top 150 AITA players in 2022.</li>
-                </ul>
-              </div>
+          <div class="experience-grid">
+            <!-- Clubs & Student Communities -->
+            <div class="xp-block">
+              <div class="xp-title">Clubs & Student Communities</div>
+              <div class="xp-time">Sept 2025 – Present · University of Cincinnati</div>
+              <ul class="xp-list">
+                <li>Tennis Club, Bearcat Tech Innovators, IEEE, AAEO, UC Robotics, AI Society.</li>
+              </ul>
+            </div>
+
+            <!-- Sports & Competition -->
+            <div class="xp-block">
+              <div class="xp-title">Sports & Competition</div>
+              <div class="xp-time">Ongoing</div>
+              <ul class="xp-list">
+                <li>Tennis, Badminton, Cricket, Soccer, Volleyball, Pickleball, Padel.</li>
+                <li>First Position – District U‑19 Tennis Championship 2022; ranked among the Top 150 AITA players in 2022.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="experience-grid" style="margin-top:1.2rem;">
+            <!-- Thrift With Purpose -->
+            <div class="xp-block">
+              <div class="xp-title">Volunteer · Thrift With Purpose</div>
+              <div class="xp-time">Dec 2025 · 1 month · Cincinnati, Ohio</div>
+              <ul class="xp-list">
+                <li>Participated in sourcing essential, high‑quality clothing for neighbors in need.</li>
+              </ul>
+            </div>
+
+            <!-- Bearcat Recycling -->
+            <div class="xp-block">
+              <div class="xp-title">Volunteer · Bearcat Recycling</div>
+              <div class="xp-time">Dec 2025 · 1 month · Cincinnati, Ohio</div>
+              <ul class="xp-list">
+                <li>Supported waste sorting and sustainable disposal at 5/3 Arena following athletic events.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="experience-grid" style="margin-top:1.2rem;">
+            <!-- Epic House Service -->
+            <div class="xp-block">
+              <div class="xp-title">Volunteer · Epic House Service</div>
+              <div class="xp-time">Dec 2025 · 1 month · Cincinnati, Ohio</div>
+              <ul class="xp-list">
+                <li>Hand‑painted and delivered mini canvases to provide art for elderly residents.</li>
+              </ul>
+            </div>
+
+            <!-- Mary Magdalen House -->
+            <div class="xp-block">
+              <div class="xp-title">Volunteer · Mary Magdalen House</div>
+              <div class="xp-time">Dec 2025 · 1 month · Cincinnati, Ohio</div>
+              <ul class="xp-list">
+                <li>Managed intake, sorted donations, and supported clothing distribution for unhoused individuals in the Over‑the‑Rhine community.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="experience-grid" style="margin-top:1.2rem;">
+            <!-- Falah Handicraft Society (Dec 2023 – Jul 2024) -->
+            <div class="xp-block">
+              <div class="xp-title">Volunteer · Falah Handicraft Society</div>
+              <div class="xp-time">Dec 2023 – Jul 2024 · New Delhi, India</div>
+              <ul class="xp-list">
+                <li>Mobilized and facilitated health camps sponsored by the Ministry of Petroleum, delivering outreach on hygiene and care.</li>
+                <li>Organized training sessions to help artisans develop design and technical skills for economic development.</li>
+                <li>Supported clean‑up drives and awareness campaigns for improved community health and hygiene standards.</li>
+              </ul>
+            </div>
+
+            <!-- Falah Handicraft Society (Jun – Aug 2023) -->
+            <div class="xp-block">
+              <div class="xp-title">Volunteer · Falah Handicraft Society</div>
+              <div class="xp-time">Jun 2023 – Aug 2023 · New Delhi, India</div>
+              <ul class="xp-list">
+                <li>Contributed to the Swachhata Pakhwada Cleanliness and Hygiene Awareness program with the Ministry of Petroleum.</li>
+                <li>Organized humanitarian camps providing medical check‑ups, food distribution, and outreach to marginalized communities.</li>
+                <li>Participated in outreach programs supporting access to essential services and resources.</li>
+                <li>Collaborated with team members to address issues around hygiene, sanitation, and well‑being.</li>
+                <li>Helped facilitate clean‑up drives and awareness campaigns on hygiene and environmental responsibility.</li>
+              </ul>
             </div>
           </div>
         </section>
@@ -1055,7 +1056,7 @@
           <div class="section-head">
             <h2 class="section-title">Skills</h2>
             <p class="section-sub">
-              Security tooling, operating systems, and soft skills that help me contribute quickly to
+              Security tooling, operating systems, and software engineering fundamentals that help me contribute quickly to
               real projects and teams.
             </p>
           </div>
@@ -1075,6 +1076,17 @@
                 <span class="chip">Social Engineering Toolkit (SET)</span>
                 <span class="chip">Hashcat</span>
                 <span class="chip">Hydra</span>
+              </div>
+            </div>
+
+            <div class="skills-group">
+              <div class="skills-label">Software & CS Skills</div>
+              <div class="skills-chips">
+                <span class="chip">Object‑oriented programming</span>
+                <span class="chip">Data structures and algorithms</span>
+                <span class="chip">System design fundamentals</span>
+                <span class="chip">Debugging and testing</span>
+                <span class="chip">Version control (Git)</span>
               </div>
             </div>
 
@@ -1162,8 +1174,9 @@
           <div class="section-head">
             <h2 class="section-title">Contact</h2>
             <p class="section-sub">
-              I’m actively looking for Fall 2026 co‑op roles in cybersecurity‑related projects, software,
-              or AI‑driven systems. If my work aligns with what you’re building, let’s talk.
+              I’m actively seeking Fall 2026 co‑op roles in software engineering, systems development,
+              or AI‑driven applications, with an interest in building secure and reliable systems.
+              If my work aligns with what you’re building, let’s connect.
             </p>
           </div>
 
@@ -1193,8 +1206,8 @@
               </div>
             </div>
             <p style="font-size:0.8rem;color:#9ca3af;">
-              Open to internships, co‑ops, and collaboration on security‑inspired research, penetration testing labs,
-              and AI‑powered tools that solve real problems.
+              Open to internships, co‑ops, and collaboration on software, systems, and research projects involving
+              secure design, lab‑based experimentation, and AI‑driven tools that solve real problems.
             </p>
           </div>
         </section>
@@ -1202,7 +1215,6 @@
 
       <footer class="footer">
         <span>© <span id="year"></span> Anshul Raman</span>
-        <span>Built with HTML & CSS</span>
       </footer>
     </main>
   </div>
@@ -1212,5 +1224,3 @@
   </script>
 </body>
 </html>
-
-
