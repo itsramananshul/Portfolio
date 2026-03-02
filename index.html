@@ -23,85 +23,6 @@
     body { font-family: var(--sans); background: var(--black); color: var(--white); overflow-x: hidden; cursor: none; }
     a { color: inherit; text-decoration: none; }
 
-    /* ══ INTRO ══ */
-    #intro {
-      position: fixed; inset: 0; z-index: 99999;
-      background: #02030b;
-      display: flex; align-items: center; justify-content: center;
-      transition: opacity 1.2s var(--ease), visibility 1.2s;
-    }
-    #intro.done { opacity: 0; visibility: hidden; pointer-events: none; }
-    #intro-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
-
-    .intro-ui {
-      position: relative; z-index: 2;
-      display: flex; flex-direction: column; align-items: center; gap: 1.6rem;
-      opacity: 0; animation: fadeInUI 0.8s 0.4s var(--ease) forwards;
-    }
-    @keyframes fadeInUI { to { opacity: 1; } }
-
-    .intro-corner {
-      position: absolute; width: 22px; height: 22px;
-    }
-    .intro-corner svg { width: 100%; height: 100%; }
-    .intro-corner.tl { top: -18px; left: -18px; }
-    .intro-corner.tr { top: -18px; right: -18px; transform: scaleX(-1); }
-    .intro-corner.bl { bottom: -18px; left: -18px; transform: scaleY(-1); }
-    .intro-corner.br { bottom: -18px; right: -18px; transform: scale(-1); }
-
-    .intro-box {
-      position: relative;
-      border: 1px solid rgba(0,212,255,0.18);
-      padding: 3rem 4rem;
-      text-align: center;
-      background: rgba(2,3,11,0.6);
-      backdrop-filter: blur(12px);
-    }
-
-    .intro-tag {
-      font-size: 0.62rem; letter-spacing: 0.38em; text-transform: uppercase;
-      color: var(--blue); opacity: 0.7; margin-bottom: 1rem;
-      font-family: 'Courier New', monospace;
-    }
-    .intro-name {
-      font-family: var(--serif);
-      font-size: clamp(3rem, 7vw, 6.5rem);
-      font-weight: 400; line-height: 0.95; letter-spacing: -0.02em;
-      color: var(--white);
-    }
-    .intro-name em { font-style: italic; color: var(--accent); }
-
-    .intro-progress-wrap {
-      width: 100%; max-width: 340px;
-      display: flex; flex-direction: column; gap: 0.5rem;
-    }
-    .intro-progress-track {
-      width: 100%; height: 1px; background: rgba(0,212,255,0.12);
-      position: relative; overflow: hidden;
-    }
-    .intro-progress-fill {
-      position: absolute; left: 0; top: 0; height: 100%;
-      background: linear-gradient(90deg, var(--blue), var(--accent));
-      width: 0; transition: width 0.3s var(--ease);
-      box-shadow: 0 0 8px rgba(0,212,255,0.6);
-    }
-    .intro-status {
-      font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase;
-      color: rgba(0,212,255,0.45); font-family: 'Courier New', monospace;
-      display: flex; justify-content: space-between;
-    }
-
-    #intro-skip {
-      position: absolute; bottom: 2rem; right: 2.4rem; z-index: 3;
-      font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase;
-      color: rgba(0,212,255,0.3); cursor: pointer;
-      border: 1px solid rgba(0,212,255,0.12);
-      padding: 0.32rem 0.8rem; border-radius: 999px;
-      transition: color 0.2s, border-color 0.2s;
-      font-family: 'Courier New', monospace;
-    }
-    #intro-skip:hover { color: var(--blue); border-color: var(--blue); }
-
     /* ══ CURSOR ══ */
     #cursor {
       position: fixed; width: 7px; height: 7px;
@@ -431,32 +352,9 @@
     .hack-panel { animation: floatY 6s ease-in-out infinite; }
     .about-stop:nth-child(2) .hack-panel { animation-delay: -2.1s; }
     .about-stop:nth-child(3) .hack-panel { animation-delay: -4s; }
-
-
   </style>
 </head>
 <body>
-
-<!-- ════ INTRO ════ -->
-<div id="intro">
-  <canvas id="intro-canvas"></canvas>
-  <div class="intro-ui">
-    <div class="intro-box">
-      <div class="intro-corner tl"><svg viewBox="0 0 22 22" fill="none"><path d="M1 21V1H21" stroke="rgba(0,212,255,0.5)" stroke-width="1"/></svg></div>
-      <div class="intro-corner tr"><svg viewBox="0 0 22 22" fill="none"><path d="M1 21V1H21" stroke="rgba(0,212,255,0.5)" stroke-width="1"/></svg></div>
-      <div class="intro-corner bl"><svg viewBox="0 0 22 22" fill="none"><path d="M1 21V1H21" stroke="rgba(0,212,255,0.5)" stroke-width="1"/></svg></div>
-      <div class="intro-corner br"><svg viewBox="0 0 22 22" fill="none"><path d="M1 21V1H21" stroke="rgba(0,212,255,0.5)" stroke-width="1"/></svg></div>
-      <div class="intro-tag" id="itag">ESTABLISHING CONNECTION...</div>
-      <div class="intro-name">Anshul<br /><em>Raman</em></div>
-      <div style="height:1.4rem"></div>
-      <div class="intro-progress-wrap">
-        <div class="intro-progress-track"><div class="intro-progress-fill" id="ibar"></div></div>
-        <div class="intro-status"><span id="istatus">INIT</span><span id="ipct">0%</span></div>
-      </div>
-    </div>
-  </div>
-  <div id="intro-skip">SKIP</div>
-</div>
 
 <canvas id="bg"></canvas>
 <div id="cursor"></div>
@@ -805,189 +703,6 @@
 </footer>
 
 <script>
-/* ══════════ INTRO ══════════ */
-(function(){
-  var overlay=document.getElementById('intro');
-  var canvas=document.getElementById('intro-canvas');
-  var bar=document.getElementById('ibar');
-  var statusEl=document.getElementById('istatus');
-  var pctEl=document.getElementById('ipct');
-  var tagEl=document.getElementById('itag');
-  var skip=document.getElementById('intro-skip');
-  var ctx=canvas.getContext('2d');
-  var W=0,H=0,done=false,raf;
-
-  function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
-  resize(); window.addEventListener('resize',resize);
-
-  /* ── Typing code lines for background ── */
-  var CODE_LINES = [
-    'import socket, sys, os, hashlib',
-    'from scapy.all import sniff, IP, TCP',
-    'from cryptography.fernet import Fernet',
-    '',
-    'def port_scan(target, start, end):',
-    '  open_ports = []',
-    '  for port in range(start, end):',
-    '    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)',
-    '    s.settimeout(0.3)',
-    '    if s.connect_ex((target, port)) == 0:',
-    '      open_ports.append(port)',
-    '      print(f"[OPEN]  {target}:{port}")',
-    '    s.close()',
-    '  return open_ports',
-    '',
-    'def generate_key():',
-    '  return Fernet.generate_key()',
-    '',
-    'def encrypt_file(path, key):',
-    '  f = Fernet(key)',
-    '  with open(path,"rb") as fh:',
-    '    data = fh.read()',
-    '  return f.encrypt(data)',
-    '',
-    'target = "192.168.1.1"',
-    'key = generate_key()',
-    'results = port_scan(target, 1, 1025)',
-    '# [*] scan complete — 0 hosts up',
-    'nmap -sV -O 192.168.0.0/24',
-    'hashcat -m 0 hash.txt rockyou.txt --force',
-    'msfconsole -q',
-    'use exploit/multi/handler',
-    'set payload windows/meterpreter/reverse_tcp',
-    'set LHOST 0.0.0.0',
-    'exploit -j -z',
-    '# [+] Session 1 opened (0.0.0.0:4444)',
-    'sessions -i 1',
-    'sysinfo && getuid',
-    'airmon-ng start wlan0',
-    'airodump-ng wlan0mon',
-    'aireplay-ng --deauth 100 -a <BSSID> wlan0mon',
-    'wireshark -i eth0 -k -Y "http"',
-    'tcpdump -i any -w capture.pcap',
-    'ssh -L 8080:localhost:80 user@pivot',
-    'python3 -m http.server 8000',
-  ];
-
-  /* columns of falling typed code */
-  var FS = 13;
-  var cols, colState;
-
-  function initCols(){
-    cols = Math.floor(W / (FS * 7));
-    colState = [];
-    for(var i=0;i<cols;i++){
-      colState.push({
-        lineIdx: Math.floor(Math.random()*CODE_LINES.length),
-        charIdx: 0,
-        y: Math.random() * H * 0.8,
-        speed: 0.18 + Math.random()*0.22,
-        opacity: 0.08 + Math.random()*0.18,
-        charTimer: 0,
-        charDelay: 0.03 + Math.random()*0.05,
-        displayText: '',
-        fullLines: [],
-        maxLines: 4 + Math.floor(Math.random()*4),
-      });
-    }
-  }
-  initCols();
-
-  var t=0;
-  function frame(){
-    if(done)return;
-    t+=0.016;
-
-    ctx.fillStyle='rgba(2,3,11,0.06)';
-    ctx.fillRect(0,0,W,H);
-
-    ctx.font=FS+'px "Courier New",monospace';
-
-    for(var i=0;i<cols;i++){
-      var col=colState[i];
-      col.charTimer+=0.016;
-      var x=i*(FS*7)+8;
-
-      /* advance typing */
-      if(col.charTimer>=col.charDelay){
-        col.charTimer=0;
-        var targetLine=CODE_LINES[col.lineIdx % CODE_LINES.length];
-        if(col.charIdx < targetLine.length){
-          col.displayText = targetLine.slice(0,col.charIdx+1);
-          col.charIdx++;
-        } else {
-          col.fullLines.push(col.displayText);
-          if(col.fullLines.length > col.maxLines){
-            col.fullLines.shift();
-            col.y += 14;
-          }
-          col.lineIdx++;
-          col.charIdx=0;
-          col.displayText='';
-          if(col.y > H + 60){
-            col.y = -20;
-            col.fullLines=[];
-            col.opacity = 0.07+Math.random()*0.18;
-          }
-        }
-      }
-
-      /* draw completed lines */
-      for(var l=0;l<col.fullLines.length;l++){
-        var line=col.fullLines[l];
-        var fade=((l+1)/col.fullLines.length);
-        var a=col.opacity*fade*0.7;
-        /* syntax tint */
-        if(line.indexOf('def ')==0||line.indexOf('import')==0||line.indexOf('from')==0){
-          ctx.fillStyle='rgba(180,100,255,'+a+')';
-        } else if(line.indexOf('#')==0||line.indexOf('//')==0){
-          ctx.fillStyle='rgba(80,200,80,'+a+')';
-        } else if(line.indexOf('  ')==0){
-          ctx.fillStyle='rgba(120,190,255,'+a+')';
-        } else if(/^[a-z]+(mon|cap|dump|crack)/.test(line)||line.indexOf('nmap')==0||line.indexOf('hashcat')==0||line.indexOf('air')==0||line.indexOf('msf')==0||line.indexOf('use ')==0||line.indexOf('set ')==0||line.indexOf('exploit')==0){
-          ctx.fillStyle='rgba(255,190,60,'+a+')';
-        } else {
-          ctx.fillStyle='rgba(0,220,80,'+a+')';
-        }
-        ctx.fillText(line, x, col.y + l*14);
-      }
-      /* active typing line */
-      if(col.displayText){
-        var a2=col.opacity*0.95;
-        ctx.fillStyle='rgba(0,255,80,'+a2+')';
-        var cur=Math.floor(t*3)%2===0?'█':'';
-        ctx.fillText(col.displayText+cur, x, col.y+col.fullLines.length*14);
-      }
-    }
-
-    raf=requestAnimationFrame(frame);
-  }
-
-  function close(){
-    if(done)return; done=true;
-    cancelAnimationFrame(raf);
-    overlay.classList.add('done');
-    setTimeout(function(){if(overlay.parentNode)overlay.parentNode.removeChild(overlay);},1300);
-  }
-  skip.addEventListener('click',close);
-
-  var phrases=['ESTABLISHING CONNECTION','SCANNING NODES','LOADING IDENTITY','ENCRYPTING TALENT','BYPASSING FIREWALL','SYSTEM READY'];
-  var pct=0;
-  var iv=setInterval(function(){
-    pct+=Math.random()*16+3;
-    if(pct>100)pct=100;
-    bar.style.width=pct+'%';
-    var idx=Math.min(phrases.length-1,Math.floor((pct/100)*phrases.length));
-    statusEl.textContent=phrases[idx];
-    pctEl.textContent=Math.floor(pct)+'%';
-    tagEl.textContent=phrases[idx]+'...';
-    if(pct>=100){clearInterval(iv);setTimeout(close,600);}
-  },280);
-
-  frame();
-  setTimeout(close,7000);
-})();
-
 /* ══════════ BACKGROUND ══════════ */
 (function(){
   var c=document.getElementById('bg');
@@ -1028,7 +743,6 @@
   setInterval(()=>sc(document.getElementById(Math.random()>.5?'s0':'s1')),8000);
 })();
 
-/* ══════════ HACKER PANELS (about visuals) ══════════ */
 /* ══════════ HACK PANELS ══════════ */
 (function(){
   function makePanel(id, type){
@@ -1044,7 +758,6 @@
     }
     resize();
 
-    /* ─── PANEL 0: Live terminal code stream ─── */
     if(type===0){
       var lines=[
         'import socket, sys, os',
@@ -1054,8 +767,8 @@
         '  s.settimeout(0.5)',
         '  result = s.connect_ex((target,port))',
         '  if result == 0:',
-        '    print(f"[OPEN] {port}")',
-        'target = "192.168.1.1"',
+        '    print(f\"[OPEN] {port}\")',
+        'target = \"192.168.1.1\"',
         'for p in range(1,1025):',
         '  port_scan(target, p)',
         '# [+] Scanning complete',
@@ -1063,7 +776,7 @@
         'nmap -sV -O 192.168.0.0/24',
         '[*] Session opened on :4444',
         'whoami && id && uname -a',
-        'msfconsole -q -x "use exploit/multi"',
+        'msfconsole -q -x \"use exploit/multi\"',
         'wireshark -i eth0 -k',
         'airmon-ng start wlan0',
         'airodump-ng wlan0mon',
@@ -1082,16 +795,14 @@
         ctx.fillStyle='rgba(0,8,18,0.18)';
         ctx.fillRect(0,0,W,H);
 
-        /* glow bg */
         var bg=ctx.createRadialGradient(W*0.5,H*0.5,0,W*0.5,H*0.5,W*0.6);
         bg.addColorStop(0,'rgba(0,30,10,0.12)');
         bg.addColorStop(1,'transparent');
         ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
 
-        ctx.font='11px "Courier New",monospace';
+        ctx.font='11px \"Courier New\",monospace';
         var lineH=16, startY=20, maxLines=Math.floor((H-40)/lineH);
 
-        /* add new char to typing line */
         if(addTimer>0.045){
           addTimer=0;
           var targetLine=lines[lineIdx % lines.length];
@@ -1105,11 +816,9 @@
           }
         }
 
-        /* draw completed lines */
         for(var i=0;i<displayLines.length;i++){
           var line=displayLines[i];
           var alpha=0.25+0.55*(i/displayLines.length);
-          /* syntax color */
           if(line.indexOf('def ')==0||line.indexOf('import')==0||line.indexOf('from')==0){
             ctx.fillStyle='rgba(200,100,255,'+alpha+')';
           } else if(line.indexOf('#')==0||line.indexOf('//')==0||line.indexOf('[*]')==0||line.indexOf('[+]')==0){
@@ -1124,21 +833,18 @@
           ctx.fillText(line, 14, startY+i*lineH);
         }
 
-        /* typing line with cursor */
         if(currentTyping!==undefined){
           ctx.fillStyle='rgba(0,255,65,0.92)';
           var cur=cursor&&Math.floor(t*2)%2===0?'█':'';
           ctx.fillText(currentTyping+cur, 14, startY+displayLines.length*lineH);
         }
 
-        /* corner brackets */
         ctx.strokeStyle='rgba(0,212,255,0.25)';ctx.lineWidth=1;
         [[0,0,1,1],[W,0,-1,1],[0,H,1,-1],[W,H,-1,-1]].forEach(function(a){
           var bx=a[0],by=a[1],sx=a[2],sy=a[3],s=14;
           ctx.beginPath();ctx.moveTo(bx+sx*s,by);ctx.lineTo(bx,by);ctx.lineTo(bx,by+sy*s);ctx.stroke();
         });
 
-        /* scan line */
         var sc=((t*35)%H);
         ctx.fillStyle='rgba(0,212,255,0.035)';ctx.fillRect(0,sc,W,1.5);
 
@@ -1147,7 +853,6 @@
       loop();
     }
 
-    /* ─── PANEL 1: Network scanner HUD ─── */
     else if(type===1){
       var hosts=[
         {ip:'192.168.1.1',  name:'ROUTER',   status:'ONLINE', ports:[80,443,22], risk:'LOW'},
@@ -1168,36 +873,31 @@
         ctx.fillStyle='rgba(0,6,16,0.2)';
         ctx.fillRect(0,0,W,H);
 
-        /* header */
         ctx.fillStyle='rgba(0,212,255,0.7)';
-        ctx.font='bold 10px "Courier New",monospace';
+        ctx.font='bold 10px \"Courier New\",monospace';
         ctx.fillText('NETWORK SCANNER v2.1', 14, 22);
         ctx.fillStyle='rgba(0,212,255,0.3)';
-        ctx.font='9px "Courier New",monospace';
+        ctx.font='9px \"Courier New\",monospace';
         ctx.fillText('TARGET: 192.168.1.0/24', 14, 36);
 
-        /* scan progress bar */
         ctx.fillStyle='rgba(0,212,255,0.12)';
         ctx.fillRect(14,44,W-28,4);
         ctx.fillStyle='rgba(0,212,255,0.7)';
         ctx.fillRect(14,44,(W-28)*scanProg,4);
         ctx.fillStyle='rgba(0,212,255,0.5)';
-        ctx.font='8px "Courier New",monospace';
+        ctx.font='8px \"Courier New\",monospace';
         ctx.fillText('SCANNING... '+Math.floor(scanProg*100)+'%', W-70, 42);
 
-        /* hosts list */
         var rowH=28, startY=62;
         hosts.forEach(function(h,i){
           var y=startY+i*rowH;
           var flash=Math.sin(t*3+i)>0.6;
 
-          /* row bg */
           if(h.risk==='HIGH'){
             ctx.fillStyle='rgba(255,60,60,0.04)';
             ctx.fillRect(10,y-14,W-20,rowH);
           }
 
-          /* status dot */
           if(h.status==='ONLINE'){
             ctx.fillStyle=flash?'rgba(0,255,65,0.9)':'rgba(0,255,65,0.5)';
           } else if(h.status==='PROBE'){
@@ -1207,29 +907,25 @@
           }
           ctx.beginPath();ctx.arc(20,y-5,3,0,Math.PI*2);ctx.fill();
 
-          /* ip + name */
           ctx.fillStyle=h.status==='OFFLINE'?'rgba(100,100,100,0.4)':'rgba(0,212,255,0.75)';
-          ctx.font='9px "Courier New",monospace';
+          ctx.font='9px \"Courier New\",monospace';
           ctx.fillText(h.ip, 30, y-3);
           ctx.fillStyle='rgba(240,244,240,0.5)';
           ctx.fillText(h.name, 110, y-3);
 
-          /* risk badge */
           if(h.risk==='HIGH') ctx.fillStyle='rgba(255,60,60,0.8)';
           else if(h.risk==='MED') ctx.fillStyle='rgba(255,180,0,0.7)';
           else if(h.risk==='LOW') ctx.fillStyle='rgba(0,255,65,0.6)';
           else ctx.fillStyle='rgba(150,150,150,0.5)';
           ctx.fillText('['+h.risk+']', W-52, y-3);
 
-          /* open ports */
           if(h.ports.length>0){
             ctx.fillStyle='rgba(200,255,0,0.45)';
-            ctx.font='8px "Courier New",monospace';
+            ctx.font='8px \"Courier New\",monospace';
             ctx.fillText('ports:'+h.ports.join(','), 30, y+8);
           }
         });
 
-        /* floating packets */
         for(var pi=0;pi<packetY.length;pi++){
           packetY[pi]-=0.6+pi*0.1;
           if(packetY[pi]<0) packetY[pi]=H;
@@ -1238,7 +934,6 @@
           ctx.fillRect(W-22+px2,packetY[pi],6,2);
         }
 
-        /* corner brackets */
         ctx.strokeStyle='rgba(0,212,255,0.22)';ctx.lineWidth=1;
         [[0,0,1,1],[W,0,-1,1],[0,H,1,-1],[W,H,-1,-1]].forEach(function(a){
           var bx=a[0],by=a[1],sx=a[2],sy=a[3],s=14;
@@ -1252,7 +947,6 @@
       loop();
     }
 
-    /* ─── PANEL 2: Identity / Sports HUD ─── */
     else {
       var rings=[
         {label:'TENNIS',  val:0.95, color:'rgba(200,255,0,',   r:80},
@@ -1273,7 +967,6 @@
 
         var cx=W/2, cy=H/2-10;
 
-        /* floating particles */
         particles.forEach(function(p){
           p.x+=p.vx; p.y+=p.vy;
           if(p.x<0||p.x>W) p.vx*=-1;
@@ -1282,19 +975,16 @@
           ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fill();
         });
 
-        /* rings */
         rings.forEach(function(ring,i){
           var r=ring.r;
           var prog=ring.val;
           var startAngle=-Math.PI/2;
           var wobble=Math.sin(t*1.2+i)*0.01;
 
-          /* track */
           ctx.strokeStyle=ring.color+'0.1)';
           ctx.lineWidth=5;
           ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.stroke();
 
-          /* fill */
           ctx.strokeStyle=ring.color+'0.75)';
           ctx.lineWidth=5;
           ctx.lineCap='round';
@@ -1302,46 +992,41 @@
           ctx.arc(cx,cy,r,startAngle,startAngle+(Math.PI*2)*(prog+wobble));
           ctx.stroke();
 
-          /* glow */
           ctx.strokeStyle=ring.color+'0.2)';
           ctx.lineWidth=11;
           ctx.beginPath();
           ctx.arc(cx,cy,r,startAngle,startAngle+(Math.PI*2)*(prog+wobble));
           ctx.stroke();
 
-          /* label */
           var lx=cx+Math.cos(startAngle+(Math.PI*2)*prog)*r;
           var ly=cy+Math.sin(startAngle+(Math.PI*2)*prog)*r;
           ctx.fillStyle=ring.color+'0.9)';
-          ctx.font='bold 8px "Courier New",monospace';
+          ctx.font='bold 8px \"Courier New\",monospace';
           ctx.fillText(ring.label, lx+6, ly+3);
         });
 
-        /* center stats */
         ctx.textAlign='center';
         ctx.fillStyle='rgba(240,244,240,0.85)';
-        ctx.font='bold 13px "Courier New",monospace';
+        ctx.font='bold 13px \"Courier New\",monospace';
         ctx.fillText('ANSHUL', cx, cy-10);
         ctx.fillStyle='rgba(200,255,0,0.7)';
-        ctx.font='9px "Courier New",monospace';
+        ctx.font='9px \"Courier New\",monospace';
         ctx.fillText('RAMAN', cx, cy+4);
         ctx.fillStyle='rgba(0,212,255,0.45)';
-        ctx.font='8px "Courier New",monospace';
+        ctx.font='8px \"Courier New\",monospace';
         ctx.fillText('UC · CS · CYBER', cx, cy+18);
 
-        /* bottom stats row */
         ctx.textAlign='left';
         var stats=[['3.68','GPA',W*0.12],['#1','DISTRICT',W*0.38],['TOP150','AITA',W*0.65]];
         stats.forEach(function(s){
           ctx.fillStyle='rgba(200,255,0,0.8)';
-          ctx.font='bold 11px "Courier New",monospace';
+          ctx.font='bold 11px \"Courier New\",monospace';
           ctx.fillText(s[0],s[2],H-30);
           ctx.fillStyle='rgba(0,212,255,0.4)';
-          ctx.font='8px "Courier New",monospace';
+          ctx.font='8px \"Courier New\",monospace';
           ctx.fillText(s[1],s[2],H-18);
         });
 
-        /* corner brackets */
         ctx.strokeStyle='rgba(0,212,255,0.22)';ctx.lineWidth=1;
         ctx.textAlign='left';
         [[0,0,1,1],[W,0,-1,1],[0,H,1,-1],[W,H,-1,-1]].forEach(function(a){
@@ -1388,8 +1073,6 @@
     });
   });
 })();
-
-
 
 /* ══════════ ABOUT STOPS REVEAL ══════════ */
 (function(){
@@ -1448,12 +1131,6 @@
     setTimeout(()=>{busy=false;},900);
   });
 })();
-
-
-
-
 </script>
-
-
 </body>
 </html>
