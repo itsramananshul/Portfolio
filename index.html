@@ -2,1534 +2,1091 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Anshul Raman | Portfolio</title>
+    <title>Anshul Raman</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="Portfolio of Anshul Raman, Computer Science student focused on AI-driven hardware, software systems, and security-focused lab work."
-    />
+    <meta name="description" content="Anshul Raman — CS student, security-minded builder at University of Cincinnati." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
     <style>
+      /* ── RESET & BASE ── */
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
       :root {
-        --bg: #050816;
-        --bg-alt: #0b1020;
-        --accent: #3b82f6;
-        --accent-soft: rgba(59, 130, 246, 0.12);
-        --text: #e5e7eb;
-        --muted: #9ca3af;
-        --card: #0f172a;
-        --border: #1e293b;
-        --shadow: 0 18px 45px rgba(15, 23, 42, 0.9);
-        --radius-lg: 18px;
-        --radius-pill: 999px;
-        --font-main: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-          "Segoe UI", sans-serif;
+        --white: #f5f4f0;
+        --black: #0a0a0a;
+        --ink: #111;
+        --muted: #888;
+        --accent: #c8ff00; /* igloo neon lime */
+        --accent2: #ff4d1c;
+        --serif: 'Instrument Serif', Georgia, serif;
+        --sans: 'Inter', system-ui, sans-serif;
+        --ease: cubic-bezier(0.16, 1, 0.3, 1);
       }
 
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
+      html { scroll-behavior: smooth; }
 
       body {
-        font-family: var(--font-main);
-        background: radial-gradient(
-          circle at top,
-          #111827 0,
-          #020617 40%,
-          #000 100%
-        );
-        color: var(--text);
-        line-height: 1.7;
-        -webkit-font-smoothing: antialiased;
+        font-family: var(--sans);
+        background: var(--black);
+        color: var(--white);
+        overflow-x: hidden;
+        cursor: none;
       }
 
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-      img {
-        max-width: 100%;
-        display: block;
-      }
+      a { color: inherit; text-decoration: none; }
+      img { max-width: 100%; display: block; }
 
-      .page {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-      }
-
-      .nav-wrap {
-        position: sticky;
-        top: 0;
-        z-index: 20;
-        backdrop-filter: blur(18px);
-        background: linear-gradient(
-          to bottom,
-          rgba(2, 6, 23, 0.92),
-          transparent
-        );
-        border-bottom: 1px solid rgba(15, 23, 42, 0.8);
-      }
-
-      .nav {
-        max-width: 1080px;
-        margin: 0 auto;
-        padding: 0.9rem 1.25rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1.5rem;
-      }
-
-      .nav-left {
-        display: flex;
-        align-items: center;
-        gap: 0.8rem;
-      }
-
-      .logo-orb {
-        width: 34px;
-        height: 34px;
+      /* ── CUSTOM CURSOR (dault-lafon inspired) ── */
+      #cursor {
+        position: fixed;
+        width: 12px; height: 12px;
+        background: var(--accent);
         border-radius: 50%;
-        background: conic-gradient(
-          from 180deg,
-          #3b82f6,
-          #22c55e,
-          #a855f7,
-          #3b82f6
-        );
-        position: relative;
-        box-shadow: 0 0 36px rgba(59, 130, 246, 0.8);
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition: transform 0.08s var(--ease), width 0.3s var(--ease), height 0.3s var(--ease), background 0.3s;
+        mix-blend-mode: difference;
       }
+      #cursor-follower {
+        position: fixed;
+        width: 38px; height: 38px;
+        border: 1px solid rgba(200,255,0,0.4);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9998;
+        transform: translate(-50%, -50%);
+        transition: left 0.14s var(--ease), top 0.14s var(--ease), width 0.4s var(--ease), height 0.4s var(--ease), opacity 0.3s;
+      }
+      body:hover #cursor-follower { opacity: 1; }
 
-      .logo-orb::after {
-        content: "";
-        position: absolute;
-        inset: 4px;
-        border-radius: inherit;
-        background: radial-gradient(
-          circle at 30% 20%,
-          #eff6ff,
-          #0b1120
-        );
+      /* ── NAV ── */
+      nav {
+        position: fixed; top: 0; left: 0; right: 0;
+        z-index: 100;
+        padding: 1.4rem 2.8rem;
+        display: flex; justify-content: space-between; align-items: center;
+        mix-blend-mode: difference;
       }
-
-      .nav-title {
-        display: flex;
-        flex-direction: column;
-        gap: 0.1rem;
+      .nav-logo {
+        font-family: var(--serif);
+        font-size: 1.1rem;
+        font-style: italic;
+        letter-spacing: 0.01em;
+        color: var(--white);
       }
-      .nav-title-main {
-        font-size: 0.98rem;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: #f9fafb;
-      }
-      .nav-title-sub {
-        font-size: 0.76rem;
-        color: var(--muted);
-      }
-
       .nav-links {
-        display: flex;
-        align-items: center;
-        gap: 1.4rem;
-        font-size: 0.88rem;
-        color: var(--muted);
+        display: flex; gap: 2.2rem;
+        font-size: 0.75rem; letter-spacing: 0.16em;
+        text-transform: uppercase; color: var(--white);
+        list-style: none;
       }
-
       .nav-links a {
         position: relative;
-        padding-bottom: 0.15rem;
-        transition: color 0.18s ease;
+        transition: opacity 0.2s;
+      }
+      .nav-links a:hover { opacity: 0.5; }
+
+      /* ── NOISE TEXTURE OVERLAY ── */
+      body::before {
+        content: '';
+        position: fixed; inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+        pointer-events: none; z-index: 1000;
+        opacity: 0.35;
       }
 
-      .nav-links a::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 0;
-        height: 2px;
-        border-radius: 999px;
-        background: linear-gradient(90deg, #3b82f6, #a855f7);
-        transition: width 0.2s ease;
-      }
-
-      .nav-links a:hover {
-        color: #e5e7eb;
-      }
-      .nav-links a:hover::after {
-        width: 100%;
-      }
-
-      .nav-cta {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.4rem;
-        padding: 0.48rem 0.95rem;
-        border-radius: var(--radius-pill);
-        background: radial-gradient(
-            circle at 0 0,
-            rgba(59, 130, 246, 0.36),
-            transparent
-          ),
-          rgba(15, 23, 42, 0.96);
-        border: 1px solid rgba(59, 130, 246, 0.7);
-        font-size: 0.78rem;
-        color: #e5edff;
-        box-shadow: 0 0 20px rgba(37, 99, 235, 0.6);
-      }
-
-      .nav-cta span {
-        font-size: 0.74rem;
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        color: #bfdbfe;
-      }
-
-      .nav-cta-dot {
-        width: 5px;
-        height: 5px;
-        border-radius: 999px;
-        background: #22c55e;
-        box-shadow: 0 0 18px rgba(34, 197, 94, 0.9);
-      }
-
-      main {
-        flex: 1;
-        padding: 1.8rem 1.25rem 3rem;
-      }
-      .shell {
-        max-width: 1080px;
-        margin: 0 auto;
-      }
-
+      /* ── HERO ── */
       #home {
-        display: grid;
-        grid-template-columns: minmax(0, 3fr) minmax(0, 2.7fr);
-        gap: 2.8rem;
-        align-items: center;
-        padding: 2.2rem 0 3.2rem;
-      }
-
-      .hero-kicker {
-        font-size: 0.78rem;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        color: #a5b4fc;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        margin-bottom: 1rem;
-      }
-
-      .hero-kicker-pill {
-        padding: 0.2rem 0.7rem;
-        border-radius: 999px;
-        border: 1px solid rgba(129, 140, 248, 0.7);
-        background: linear-gradient(
-          90deg,
-          rgba(15, 23, 42, 0.9),
-          rgba(30, 64, 175, 0.5)
-        );
-        font-size: 0.7rem;
-      }
-
-      .hero-title {
-        font-size: clamp(2.2rem, 4vw, 2.8rem);
-        line-height: 1.08;
-        letter-spacing: 0.04em;
-        margin-bottom: 1.1rem;
-      }
-
-      .hero-title span {
-        display: inline-block;
-        background: linear-gradient(120deg, #60a5fa, #c4b5fd, #f97316);
-        -webkit-background-clip: text;
-        color: transparent;
-      }
-
-      .hero-sub {
-        font-size: 0.98rem;
-        color: var(--muted);
-        max-width: 32rem;
-        margin-bottom: 1.4rem;
-      }
-
-      .hero-meta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.8rem 1.8rem;
-        margin-bottom: 1.6rem;
-        font-size: 0.83rem;
-        color: #9ca3af;
-      }
-
-      .hero-meta-item {
-        display: flex;
-        flex-direction: column;
-        gap: 0.1rem;
-      }
-      .hero-meta-label {
-        font-size: 0.72rem;
-        text-transform: uppercase;
-        letter-spacing: 0.16em;
-        color: #6b7280;
-      }
-      .hero-meta-value {
-        color: #e5e7eb;
-      }
-
-      .hero-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.75rem;
-        margin-bottom: 1.2rem;
-      }
-
-      .btn-main {
-        padding: 0.7rem 1.3rem;
-        border-radius: var(--radius-pill);
-        border: none;
-        cursor: pointer;
-        background: radial-gradient(circle at 0 0, #60a5fa, #1d4ed8);
-        color: white;
-        font-size: 0.86rem;
-        font-weight: 500;
-        box-shadow: 0 18px 40px rgba(37, 99, 235, 0.7);
-        display: inline-flex;
-        align-items: center;
-        gap: 0.4rem;
-      }
-
-      .btn-ghost {
-        padding: 0.7rem 1.15rem;
-        border-radius: var(--radius-pill);
-        border: 1px solid rgba(148, 163, 184, 0.7);
-        background: rgba(15, 23, 42, 0.9);
-        color: #e5e7eb;
-        font-size: 0.84rem;
-        cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.4rem;
-      }
-
-      .btn-main:hover,
-      .btn-ghost:hover {
-        transform: translateY(-1px);
-        filter: brightness(1.05);
-      }
-
-      .hero-links {
-        display: flex;
-        gap: 0.75rem;
-        font-size: 0.82rem;
-        color: #9ca3af;
-        align-items: center;
-      }
-
-      .hero-links a {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.3rem;
-        padding: 0.22rem 0.65rem;
-        border-radius: 999px;
-        border: 1px solid rgba(55, 65, 81, 0.9);
-        background: rgba(15, 23, 42, 0.85);
-      }
-
-      .hero-links-dot {
-        width: 6px;
-        height: 6px;
-        border-radius: 999px;
-        background: #22c55e;
-        box-shadow: 0 0 16px rgba(34, 197, 94, 0.9);
-      }
-
-      .hero-avatar-wrap {
-        position: relative;
-        display: flex;
-        justify-content: center;
-      }
-
-      .hero-card {
-        width: 100%;
-        max-width: 360px;
-        border-radius: 1.5rem;
-        padding: 1.4rem 1.5rem 1.5rem;
-        background: radial-gradient(
-            circle at 0 0,
-            rgba(56, 189, 248, 0.2),
-            transparent
-          ),
-          radial-gradient(
-            circle at 100% 100%,
-            rgba(129, 140, 248, 0.18),
-            transparent
-          ),
-          #020617;
-        box-shadow: var(--shadow);
-        border: 1px solid rgba(37, 99, 235, 0.6);
+        min-height: 100vh;
+        display: flex; flex-direction: column;
+        justify-content: flex-end;
+        padding: 0 2.8rem 3.5rem;
         position: relative;
         overflow: hidden;
       }
 
-      .hero-card-tag {
-        position: absolute;
-        top: 1rem;
-        right: 1.1rem;
-        padding: 0.14rem 0.6rem;
-        border-radius: 999px;
-        font-size: 0.63rem;
-        text-transform: uppercase;
-        letter-spacing: 0.18em;
-        background: rgba(15, 23, 42, 0.9);
-        border: 1px solid rgba(148, 163, 184, 0.8);
-        color: #9ca3af;
-      }
-
-      .hero-card-orb {
-        position: absolute;
-        inset: 40% auto auto -40%;
-        width: 180px;
-        height: 180px;
-        background: radial-gradient(
-            circle at 30% 20%,
-            rgba(248, 250, 252, 0.8),
-            transparent
-          ),
-          radial-gradient(circle at 80% 90%, #4f46e5, transparent);
-        opacity: 0.38;
-        filter: blur(6px);
-      }
-
-      .hero-card-title {
-        font-size: 1.08rem;
-        margin-bottom: 0.4rem;
-      }
-
-      .hero-card-role {
-        font-size: 0.85rem;
-        color: #a5b4fc;
-        margin-bottom: 0.7rem;
-      }
-
-      .hero-card-body {
-        font-size: 0.82rem;
-        color: #d1d5db;
-        margin-bottom: 0.9rem;
-      }
-
-      .hero-pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.35rem;
-        padding: 0.32rem 0.7rem;
+      .hero-eyebrow {
         font-size: 0.72rem;
-        border-radius: 999px;
-        background: rgba(15, 23, 42, 0.85);
-        border: 1px solid rgba(96, 165, 250, 0.7);
-        color: #bfdbfe;
-      }
-
-      .hero-stats {
-        display: flex;
-        justify-content: space-between;
-        gap: 0.75rem;
-        margin-top: 1.1rem;
-        font-size: 0.72rem;
-        color: #9ca3af;
-      }
-
-      .hero-stat-label {
+        letter-spacing: 0.22em;
         text-transform: uppercase;
-        letter-spacing: 0.14em;
-        font-size: 0.68rem;
-        margin-bottom: 0.1rem;
-        color: #6b7280;
+        color: var(--muted);
+        margin-bottom: 1.2rem;
+        display: flex; align-items: center; gap: 0.8rem;
+      }
+      .hero-eyebrow::before {
+        content: '';
+        display: inline-block;
+        width: 28px; height: 1px;
+        background: var(--muted);
       }
 
-      .hero-stat-value {
-        color: #e5e7eb;
+      .hero-name {
+        font-family: var(--serif);
+        font-size: clamp(5rem, 13vw, 13rem);
+        line-height: 0.9;
+        letter-spacing: -0.02em;
+        font-weight: 400;
+        color: var(--white);
+        margin-bottom: 0.15em;
+      }
+      .hero-name em {
+        font-style: italic;
+        color: var(--accent);
       }
 
-      section {
-        scroll-margin-top: 80px;
-      }
-
-      .section {
-        padding: 2.5rem 0 0;
-      }
-
-      .section-head {
+      .hero-bottom {
         display: flex;
         justify-content: space-between;
         align-items: flex-end;
-        gap: 1rem;
-        margin-bottom: 1.4rem;
+        margin-top: 2rem;
+        gap: 2rem;
+        flex-wrap: wrap;
       }
+      .hero-desc {
+        max-width: 32rem;
+        font-size: 0.95rem;
+        color: #aaa;
+        line-height: 1.75;
+        font-weight: 300;
+      }
+      .hero-desc strong { color: var(--white); font-weight: 500; }
 
-      .section-title {
-        font-size: 1.15rem;
-        letter-spacing: 0.12em;
+      .hero-meta-row {
+        display: flex; gap: 2.5rem;
+        font-size: 0.72rem;
+        letter-spacing: 0.14em;
         text-transform: uppercase;
-        color: #9ca3af;
-      }
-
-      .section-sub {
-        font-size: 0.88rem;
         color: var(--muted);
-        max-width: 26rem;
+      }
+      .hero-meta-row span { display: flex; flex-direction: column; gap: 0.2rem; }
+      .hero-meta-row b { color: var(--white); font-weight: 500; letter-spacing: 0; text-transform: none; font-size: 0.82rem; }
+
+      .hero-scroll-hint {
+        position: absolute;
+        right: 2.8rem; bottom: 3.5rem;
+        font-size: 0.68rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--muted);
+        writing-mode: vertical-rl;
+        display: flex; align-items: center; gap: 0.6rem;
+      }
+      .hero-scroll-hint::after {
+        content: '';
+        width: 1px; height: 48px;
+        background: linear-gradient(to bottom, var(--muted), transparent);
       }
 
-      .projects-grid,
-      .experience-grid {
+      /* BIG background number (igloo inspired) */
+      .hero-bg-num {
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -52%);
+        font-family: var(--serif);
+        font-size: clamp(18rem, 38vw, 42rem);
+        font-style: italic;
+        color: rgba(255,255,255,0.025);
+        pointer-events: none;
+        user-select: none;
+        letter-spacing: -0.04em;
+        line-height: 1;
+        white-space: nowrap;
+      }
+
+      /* ── MARQUEE (buttermax inspired) ── */
+      .marquee-wrap {
+        border-top: 1px solid #1e1e1e;
+        border-bottom: 1px solid #1e1e1e;
+        overflow: hidden;
+        padding: 1rem 0;
+        background: #0d0d0d;
+      }
+      .marquee-track {
+        display: flex;
+        white-space: nowrap;
+        animation: marquee 18s linear infinite;
+        gap: 0;
+      }
+      .marquee-track span {
+        font-family: var(--serif);
+        font-style: italic;
+        font-size: 1.15rem;
+        color: var(--muted);
+        padding: 0 2.5rem;
+      }
+      .marquee-track span.hi {
+        color: var(--accent);
+        font-style: normal;
+        font-family: var(--sans);
+        font-size: 0.72rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+      @keyframes marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+
+      /* ── SECTION SHARED ── */
+      .section {
+        padding: 6rem 2.8rem;
+        border-bottom: 1px solid #1a1a1a;
+        position: relative;
+      }
+      .section-label {
+        font-size: 0.68rem;
+        letter-spacing: 0.26em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 3.5rem;
+        display: flex; align-items: center; gap: 1rem;
+      }
+      .section-label::after {
+        content: '';
+        flex: 1; height: 1px;
+        background: #1e1e1e;
+      }
+
+      /* ── ABOUT ── */
+      #about .about-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 1.3rem;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+        align-items: start;
       }
-
-      .card,
-      .xp-block {
-        border-radius: var(--radius-lg);
-        background: radial-gradient(
-            circle at 0 0,
-            rgba(56, 189, 248, 0.16),
-            transparent
-          ),
-          radial-gradient(
-            circle at 100% 100%,
-            rgba(129, 140, 248, 0.16),
-            transparent
-          ),
-          var(--card);
-        border: 1px solid var(--border);
-        padding: 1.1rem 1.15rem 1.1rem;
-        box-shadow: 0 18px 40px rgba(15, 23, 42, 0.85);
-        font-size: 0.82rem;
-        color: #d1d5db;
+      .about-headline {
+        font-family: var(--serif);
+        font-size: clamp(2.2rem, 4vw, 3.8rem);
+        line-height: 1.12;
+        font-weight: 400;
+        color: var(--white);
       }
-
-      .xp-block-alt {
-        background: radial-gradient(
-            circle at 0 0,
-            rgba(45, 212, 191, 0.18),
-            transparent
-          ),
-          var(--bg-alt);
+      .about-headline em { font-style: italic; color: var(--accent); }
+      .about-body {
+        font-size: 0.92rem;
+        color: #999;
+        line-height: 1.9;
+        font-weight: 300;
+        margin-bottom: 1.5rem;
       }
-
-      .card-kicker,
-      .xp-time {
-        font-size: 0.8rem;
-        color: #9ca3af;
-        margin-bottom: 0.3rem;
+      .about-body strong { color: var(--white); font-weight: 500; }
+      .about-pills {
+        display: flex; flex-wrap: wrap; gap: 0.5rem;
+        margin-top: 1.2rem;
       }
-
-      .card-title,
-      .xp-title {
-        font-size: 0.98rem;
-        margin-bottom: 0.25rem;
+      .pill {
+        padding: 0.38rem 0.9rem;
+        border-radius: 999px;
+        border: 1px solid #2a2a2a;
+        font-size: 0.72rem;
+        letter-spacing: 0.08em;
+        color: #aaa;
+        background: #111;
+        transition: border-color 0.2s, color 0.2s;
       }
+      .pill:hover { border-color: var(--accent); color: var(--accent); }
 
-      .card-tagline {
-        font-size: 0.8rem;
-        color: #a5b4fc;
-        margin-bottom: 0.5rem;
+      .about-stats {
+        display: grid; grid-template-columns: 1fr 1fr;
+        gap: 1.5rem; margin-top: 2rem;
       }
-
-      .card-body {
-        font-size: 0.82rem;
-        color: #d1d5db;
-        margin-bottom: 0.55rem;
+      .stat-block {
+        border-top: 1px solid #1e1e1e;
+        padding-top: 1rem;
       }
-
-      .card-list,
-      .xp-list {
-        list-style: none;
-        font-size: 0.8rem;
-        color: #9ca3af;
-        display: grid;
-        gap: 0.25rem;
+      .stat-num {
+        font-family: var(--serif);
+        font-size: 3rem;
+        font-style: italic;
+        color: var(--white);
+        line-height: 1;
+      }
+      .stat-label {
+        font-size: 0.7rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--muted);
         margin-top: 0.3rem;
       }
 
-      .card-list li::before,
-      .xp-list li::before {
-        content: "▹";
-        color: #60a5fa;
-        margin-right: 0.35rem;
+      /* ── PROJECTS ── */
+      #projects .projects-list {
+        display: grid;
+        gap: 0;
       }
-
-      .card-footer {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 0.76rem;
-        color: #9ca3af;
-        flex-wrap: wrap;
+      .project-row {
+        display: grid;
+        grid-template-columns: 3rem 1fr auto;
+        gap: 2rem;
+        align-items: start;
+        padding: 2rem 0;
+        border-top: 1px solid #1a1a1a;
+        position: relative;
+        transition: background 0.3s;
       }
-
-      .pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.35rem;
-        padding: 0.28rem 0.7rem;
-        border-radius: 999px;
-        border: 1px solid rgba(148, 163, 184, 0.8);
-        background: rgba(15, 23, 42, 0.9);
+      .project-row:hover { background: rgba(255,255,255,0.015); }
+      .project-num {
         font-size: 0.72rem;
-        color: #e5e7eb;
+        letter-spacing: 0.16em;
+        color: var(--muted);
+        padding-top: 0.25rem;
+        font-family: var(--serif);
+        font-style: italic;
       }
-
-      .pill-dot {
-        width: 6px;
-        height: 6px;
+      .project-main { }
+      .project-title {
+        font-family: var(--serif);
+        font-size: clamp(1.4rem, 2.8vw, 2.2rem);
+        font-weight: 400;
+        color: var(--white);
+        margin-bottom: 0.4rem;
+        transition: color 0.2s;
+      }
+      .project-row:hover .project-title { color: var(--accent); }
+      .project-tagline {
+        font-size: 0.83rem;
+        color: var(--muted);
+        margin-bottom: 0.6rem;
+        max-width: 44rem;
+        line-height: 1.65;
+        font-weight: 300;
+      }
+      .project-tags {
+        display: flex; flex-wrap: wrap; gap: 0.4rem;
+      }
+      .tag {
+        padding: 0.2rem 0.65rem;
+        border: 1px solid #2a2a2a;
         border-radius: 999px;
-        background: #f97316;
+        font-size: 0.67rem;
+        color: #666;
+        letter-spacing: 0.1em;
+      }
+      .project-cta {
+        padding-top: 0.2rem;
+        font-size: 0.72rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        white-space: nowrap;
+        opacity: 0;
+        transform: translateX(-8px);
+        transition: opacity 0.25s var(--ease), transform 0.25s var(--ease), color 0.2s;
+      }
+      .project-row:hover .project-cta { opacity: 1; transform: translateX(0); color: var(--accent); }
+
+      /* ── EXPERIENCE ── */
+      #experience .xp-list {
+        display: grid;
+        gap: 0;
+      }
+      .xp-row {
+        display: grid;
+        grid-template-columns: 14rem 1fr;
+        gap: 3rem;
+        padding: 2.5rem 0;
+        border-top: 1px solid #1a1a1a;
+        align-items: start;
+      }
+      .xp-time {
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        padding-top: 0.3rem;
+        line-height: 1.6;
+      }
+      .xp-role {
+        font-family: var(--serif);
+        font-size: 1.4rem;
+        font-weight: 400;
+        color: var(--white);
+        margin-bottom: 0.3rem;
+      }
+      .xp-org {
+        font-size: 0.8rem;
+        color: var(--accent);
+        letter-spacing: 0.08em;
+        margin-bottom: 0.8rem;
+      }
+      .xp-body {
+        font-size: 0.83rem;
+        color: #888;
+        line-height: 1.8;
+        font-weight: 300;
+      }
+      .xp-body li {
+        list-style: none;
+        padding-left: 1.2rem;
+        position: relative;
+        margin-bottom: 0.3rem;
+      }
+      .xp-body li::before {
+        content: '—';
+        position: absolute; left: 0;
+        color: #333;
       }
 
-      .card-links {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.35rem;
-        font-size: 0.76rem;
-      }
-
-      .card-link {
-        padding: 0.18rem 0.55rem;
-        border-radius: 999px;
-        border: 1px solid rgba(55, 65, 81, 0.9);
-        background: rgba(15, 23, 42, 0.85);
-        color: #bfdbfe;
-      }
-
-      .skills-wrap {
+      /* ── SKILLS ── */
+      #skills .skills-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 1.1rem;
+        gap: 1px;
+        background: #1a1a1a;
+        border: 1px solid #1a1a1a;
       }
-
-      .skills-group {
-        border-radius: var(--radius-lg);
-        padding: 1.05rem 1.15rem;
-        background: radial-gradient(
-            circle at 0 0,
-            rgba(59, 130, 246, 0.18),
-            transparent
-          ),
-          var(--bg-alt);
-        border: 1px solid var(--border);
-        box-shadow: 0 16px 36px rgba(15, 23, 42, 0.9);
+      .skill-cell {
+        background: var(--black);
+        padding: 2rem 1.8rem;
+        transition: background 0.2s;
       }
-
-      .skills-label {
-        font-size: 0.8rem;
+      .skill-cell:hover { background: #0f0f0f; }
+      .skill-cat {
+        font-size: 0.65rem;
+        letter-spacing: 0.22em;
         text-transform: uppercase;
-        letter-spacing: 0.16em;
-        color: #9ca3af;
-        margin-bottom: 0.55rem;
+        color: var(--muted);
+        margin-bottom: 1rem;
       }
-
-      .skills-chips {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.4rem;
-        font-size: 0.78rem;
+      .skill-chips {
+        display: flex; flex-wrap: wrap; gap: 0.4rem;
       }
-
       .chip {
-        padding: 0.25rem 0.6rem;
+        padding: 0.25rem 0.65rem;
+        border: 1px solid #222;
         border-radius: 999px;
-        background: rgba(15, 23, 42, 0.95);
-        border: 1px solid rgba(55, 65, 81, 0.9);
-        color: #e5e7eb;
+        font-size: 0.7rem;
+        color: #bbb;
+        background: #111;
+        transition: border-color 0.2s, color 0.2s;
       }
+      .chip:hover { border-color: var(--accent); color: var(--accent); }
 
-      .edu-grid {
+      /* ── EDUCATION ── */
+      #education .edu-grid {
         display: grid;
-        grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
-        gap: 1.3rem;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
       }
-
-      .edu-card {
-        border-radius: var(--radius-lg);
-        padding: 1.05rem 1.1rem 1.1rem;
-        background: radial-gradient(
-            circle at 0 0,
-            rgba(56, 189, 248, 0.18),
-            transparent
-          ),
-          var(--bg-alt);
-        border: 1px solid var(--border);
-        box-shadow: 0 16px 36px rgba(15, 23, 42, 0.9);
-        font-size: 0.82rem;
+      .edu-block {
+        border-top: 1px solid #1e1e1e;
+        padding-top: 1.5rem;
       }
-
-      .edu-title {
-        font-size: 0.98rem;
-        margin-bottom: 0.2rem;
+      .edu-school {
+        font-family: var(--serif);
+        font-size: 1.8rem;
+        font-weight: 400;
+        color: var(--white);
+        margin-bottom: 0.3rem;
       }
-      .edu-meta {
+      .edu-degree {
         font-size: 0.8rem;
-        color: #9ca3af;
+        color: var(--accent);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
         margin-bottom: 0.6rem;
       }
-
-      .edu-list {
-        list-style: none;
-        display: grid;
-        gap: 0.18rem;
-        color: #d1d5db;
+      .edu-detail {
+        font-size: 0.82rem;
+        color: #777;
+        line-height: 1.75;
       }
+      .edu-detail li { list-style: none; padding-left: 1rem; position: relative; margin-bottom: 0.25rem; }
+      .edu-detail li::before { content: '—'; position: absolute; left: 0; color: #333; }
 
-      .edu-list li::before {
-        content: "▹";
-        color: #60a5fa;
-        margin-right: 0.35rem;
+      .awards-block {
+        border-top: 1px solid #1e1e1e;
+        padding-top: 1.5rem;
       }
-
-      .awards-list {
-        list-style: none;
-        display: grid;
-        gap: 0.2rem;
-        font-size: 0.8rem;
-        color: #d1d5db;
+      .awards-title {
+        font-family: var(--serif);
+        font-size: 1.8rem;
+        font-weight: 400;
+        color: var(--white);
+        margin-bottom: 1.2rem;
       }
-
-      .awards-list li::before {
-        content: "★";
-        color: #fbbf24;
-        margin-right: 0.35rem;
-      }
-
-      .contact-card {
-        border-radius: var(--radius-lg);
-        padding: 1.1rem 1.2rem 1.2rem;
-        background: radial-gradient(
-            circle at 0 0,
-            rgba(59, 130, 246, 0.22),
-            transparent
-          ),
-          var(--bg-alt);
-        border: 1px solid var(--border);
-        box-shadow: 0 18px 42px rgba(15, 23, 42, 0.95);
-        font-size: 0.83rem;
-        display: grid;
-        gap: 0.8rem;
-      }
-
-      .contact-rows {
-        display: grid;
-        gap: 0.45rem;
+      .award-item {
+        display: flex; align-items: flex-start; gap: 0.8rem;
+        margin-bottom: 1rem;
         font-size: 0.82rem;
       }
+      .award-star {
+        font-size: 0.6rem;
+        color: var(--accent);
+        padding-top: 0.35rem;
+        flex-shrink: 0;
+      }
+      .award-text { color: #999; line-height: 1.6; }
+      .award-text strong { color: var(--white); font-weight: 500; display: block; margin-bottom: 0.1rem; }
 
-      .contact-row-label {
-        font-size: 0.72rem;
+      /* ── CONTACT ── */
+      #contact {
+        padding: 7rem 2.8rem;
+        background: var(--black);
+      }
+      .contact-big {
+        font-family: var(--serif);
+        font-size: clamp(3.5rem, 9vw, 9rem);
+        font-style: italic;
+        line-height: 0.95;
+        color: var(--white);
+        margin-bottom: 2.5rem;
+      }
+      .contact-big span { color: var(--accent); }
+      .contact-links {
+        display: flex; flex-wrap: wrap; gap: 1.2rem;
+        margin-bottom: 3rem;
+      }
+      .contact-link {
+        display: inline-flex; align-items: center; gap: 0.6rem;
+        padding: 0.75rem 1.6rem;
+        border: 1px solid #2a2a2a;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
+        color: var(--white);
+        background: #111;
+        transition: background 0.25s, border-color 0.25s, color 0.25s, transform 0.2s var(--ease);
+      }
+      .contact-link:hover {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: var(--black);
+        transform: translateY(-2px);
+      }
+      .contact-link-dot {
+        width: 6px; height: 6px;
+        border-radius: 50%;
+        background: currentColor;
+      }
+      .contact-avail {
+        font-size: 0.72rem;
         letter-spacing: 0.18em;
-        color: #9ca3af;
+        text-transform: uppercase;
+        color: var(--muted);
+        display: flex; align-items: center; gap: 0.6rem;
+      }
+      .avail-dot {
+        width: 7px; height: 7px;
+        border-radius: 50%;
+        background: #22c55e;
+        box-shadow: 0 0 12px rgba(34,197,94,0.8);
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.4; }
       }
 
-      .contact-row-value a {
-        color: #bfdbfe;
-      }
-      .contact-row-value a:hover {
-        text-decoration: underline;
-      }
-
-      .footer {
-        max-width: 1080px;
-        margin: 1.8rem auto 0;
-        padding: 0 1.25rem 1.4rem;
-        font-size: 0.76rem;
-        color: #6b7280;
+      /* ── FOOTER ── */
+      footer {
+        padding: 1.8rem 2.8rem;
+        border-top: 1px solid #1a1a1a;
         display: flex;
         justify-content: space-between;
-        gap: 1rem;
+        align-items: center;
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #444;
         flex-wrap: wrap;
-        border-top: 1px solid rgba(15, 23, 42, 0.9);
-        padding-top: 1rem;
+        gap: 1rem;
       }
 
-      @media (max-width: 880px) {
-        #home {
-          grid-template-columns: minmax(0, 1fr);
-        }
-        .hero-card {
-          max-width: 100%;
-        }
-        .projects-grid,
-        .experience-grid,
-        .edu-grid {
-          grid-template-columns: minmax(0, 1fr);
-        }
-        .nav {
-          padding-inline: 1rem;
-        }
-        .nav-links {
-          display: none;
-        }
+      /* ── REVEAL ANIMATIONS ── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
       }
 
-      @media (max-width: 640px) {
-        main {
-          padding-inline: 1rem;
-        }
-        .section {
-          padding-top: 2rem;
-        }
-        .section-head {
-          flex-direction: column;
-          align-items: flex-start;
-        }
+      /* ── RESPONSIVE ── */
+      @media (max-width: 860px) {
+        nav { padding: 1.2rem 1.5rem; }
+        #home { padding: 0 1.5rem 3rem; }
+        .section { padding: 4rem 1.5rem; }
+        #contact { padding: 5rem 1.5rem; }
+        footer { padding: 1.5rem; }
+        #about .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+        .xp-row { grid-template-columns: 1fr; gap: 0.8rem; }
+        #education .edu-grid { grid-template-columns: 1fr; }
+        .project-row { grid-template-columns: 2rem 1fr; }
+        .project-cta { display: none; }
+        .nav-links { display: none; }
+        .hero-bg-num { display: none; }
+        .hero-scroll-hint { display: none; }
+      }
+
+      @media (max-width: 540px) {
+        .hero-name { font-size: clamp(3.8rem, 16vw, 6rem); }
+        .about-stats { grid-template-columns: 1fr 1fr; }
+        .contact-big { font-size: clamp(2.8rem, 13vw, 5rem); }
       }
     </style>
   </head>
   <body>
-    <div class="page">
-      <header class="nav-wrap">
-        <div class="nav">
-          <div class="nav-left">
-            <div class="logo-orb"></div>
-            <div class="nav-title">
-              <div class="nav-title-main">Anshul Raman</div>
-              <div class="nav-title-sub">Computer Science · UC</div>
-            </div>
-          </div>
-          <nav class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#projects">Projects</a>
-            <a href="#experience">Experience</a>
-            <a href="#volunteering">Clubs & Activities</a>
-            <a href="#skills">Skills</a>
-            <a href="#education">Education</a>
-            <a href="#contact">Contact</a>
-          </nav>
-          <a href="#contact" class="nav-cta">
-            <span>Available Fall 2026</span>
-            <div class="nav-cta-dot"></div>
-          </a>
+
+    <!-- CURSOR -->
+    <div id="cursor"></div>
+    <div id="cursor-follower"></div>
+
+    <!-- NAV -->
+    <nav>
+      <div class="nav-logo">Anshul Raman</div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Work</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section id="home">
+      <div class="hero-bg-num" aria-hidden="true">AR</div>
+      <div class="hero-eyebrow">
+        CS Student · University of Cincinnati · Co-op Fall 2026
+      </div>
+      <h1 class="hero-name">
+        Anshul<br /><em>Raman</em>
+      </h1>
+      <div class="hero-bottom">
+        <p class="hero-desc">
+          <strong>Security-minded builder.</strong> I write software with an adversarial lens —
+          studying how systems break so I can build ones that don't.
+          Python · C++ · Wireshark · Metasploit · Kali Linux.
+        </p>
+        <div class="hero-meta-row">
+          <span>
+            <b>Cincinnati, OH</b>
+            Location
+          </span>
+          <span>
+            <b>3.68 GPA</b>
+            Academic Standing
+          </span>
+          <span>
+            <b>Fall 2026</b>
+            Co-op Ready
+          </span>
         </div>
-      </header>
+      </div>
+      <div class="hero-scroll-hint" aria-hidden="true">Scroll</div>
+    </section>
 
-      <main>
-        <div class="shell">
-          <!-- HERO -->
-          <section id="home">
-            <div>
-              <div class="hero-kicker">
-                <div class="hero-kicker-pill">
-                  Computer Science · University of Cincinnati
-                </div>
-              </div>
-              <h1 class="hero-title">
-                Hi, I’m <span>Anshul Raman</span> — a Computer Science student
-                building secure systems and AI-driven hardware.
-              </h1>
-              <p class="hero-sub">
-                As a Computer Science undergraduate, I explore multiple areas of
-                computing including software engineering, systems design, AI
-                technologies, and cybersecurity.
-              </p>
-              <div class="hero-meta">
-                <div class="hero-meta-item">
-                  <div class="hero-meta-label">Location</div>
-                  <div class="hero-meta-value">Cincinnati, Ohio, USA</div>
-                </div>
-                <div class="hero-meta-item">
-                  <div class="hero-meta-label">Program</div>
-                  <div class="hero-meta-value">
-                    B.S. in Computer science · GPA 3.68
-                  </div>
-                </div>
-                <div class="hero-meta-item">
-                  <div class="hero-meta-label">Availability</div>
-                  <div class="hero-meta-value">Co-op · Fall 2026</div>
-                </div>
-              </div>
-              <div class="hero-actions">
-                <a href="#projects" class="btn-main"> View projects </a>
-                <a href="#contact" class="btn-ghost"> Let’s talk </a>
-              </div>
-              <div class="hero-links">
-                <span>Find me on</span>
-                <a
-                  href="https://www.linkedin.com/in/anshulraman06"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <span class="hero-links-dot"></span>
-                  LinkedIn
-                </a>
-                <a
-                  href="https://github.com/itsramananshul"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  GitHub
-                </a>
-                <a
-                  href="https://anshulraman.com"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  Personal site
-                </a>
-              </div>
-            </div>
-
-            <div class="hero-avatar-wrap">
-              <article class="hero-card" aria-label="Snapshot of Anshul">
-                <div class="hero-card-orb" aria-hidden="true"></div>
-                <div class="hero-card-tag">CS Undergrad · UC</div>
-                <h2 class="hero-card-title">Security-minded builder</h2>
-                <p class="hero-card-role">
-                  I build software with an adversarial mindset, considering how
-                  systems can be misused or fail.
-                </p>
-                <p class="hero-card-body">
-                  Through controlled lab environments, I explore offensive
-                  security techniques to better understand real-world
-                  vulnerabilities and inform defensive system design.
-                </p>
-                <div class="hero-pill">
-                  <span class="pill-dot"></span>
-                  Python · C++ · Wireshark · Metasploit · Kali · Parrot OS
-                </div>
-                <div class="hero-stats">
-                  <div>
-                    <div class="hero-stat-label">Clubs & Sports</div>
-                    <div class="hero-stat-value">
-                      Tech clubs, Tennis & more
-                    </div>
-                  </div>
-                  <div>
-                    <div class="hero-stat-label">Awards & Scholarships</div>
-                    <div class="hero-stat-value">
-                      Dean’s List (Fall 2025)<br />
-                      International Global Scholarship<br />
-                      International Outreach Scholarship
-                    </div>
-                  </div>
-                </div>
-              </article>
-            </div>
-          </section>
-
-          <!-- PROJECTS -->
-          <section id="projects" class="section">
-            <div class="section-head">
-              <h2 class="section-title">Projects</h2>
-              <p class="section-sub">
-                AI-driven hardware, software systems, and security-focused lab
-                work built in controlled environments.
-              </p>
-            </div>
-
-            <div class="projects-grid">
-              <!-- Python Banking & ATM System -->
-              <article class="card">
-                <div class="card-kicker">
-                  Personal Project · January 2026 – February 2026
-                </div>
-                <h3 class="card-title">Python Banking & ATM System</h3>
-                <p class="card-tagline">
-                  Full console-based banking system with persistent storage,
-                  security checks, and an admin panel.
-                </p>
-                <p class="card-body">
-                  Built an end-to-end ATM and banking system that lets users
-                  open accounts, receive debit cards, deposit, withdraw, check
-                  balances, and includes an admin interface for managing and
-                  unlocking accounts.
-                </p>
-                <ul class="card-list">
-                  <li>
-                    Generated unique account IDs and PINs by creating random
-                    numbers and checking for duplicates to avoid collisions.
-                  </li>
-                  <li>
-                    Maintained accurate balances, PINs, and lock status by
-                    storing all accounts in a list and updating it on every
-                    operation.
-                  </li>
-                  <li>
-                    Implemented persistent storage using a
-                    <code>save_accounts()</code> function that rewrites the
-                    <code>accounts.txt</code> file after each change.
-                  </li>
-                  <li>
-                    Added PIN security with 3 attempts, automatically locking
-                    cards and updating the file when limits were exceeded, and
-                    resetting attempts on success.
-                  </li>
-                  <li>
-                    Designed an admin panel to view all accounts and unlock
-                    cards, plus robust input validation to handle invalid
-                    choices and edge cases without crashing.
-                  </li>
-                </ul>
-                <div class="card-footer">
-                  <div class="pill">
-                    <span class="pill-dot"></span>
-                    Python · Files · ATM logic
-                  </div>
-                  <div class="card-links">
-                    <a
-                      class="card-link"
-                      href="https://lnkd.in/guAEjBxF"
-                      target="_blank"
-                      rel="noopener"
-                    >
-                      View code on GitHub
-                    </a>
-                  </div>
-                </div>
-              </article>
-
-              <!-- Python Bus Booking System -->
-              <article class="card">
-                <div class="card-kicker">
-                  Personal Project · January 2026 – February 2026
-                </div>
-                <h3 class="card-title">Python Bus Booking System</h3>
-                <p class="card-tagline">
-                  File-backed bus booking and cancellation system with seat
-                  tracking and resilient menus.
-                </p>
-                <p class="card-body">
-                  Developed a Python system that manages bus bookings with
-                  unique booking IDs, accurate seat availability, and persistent
-                  storage to simulate how real services track users and trips.
-                </p>
-                <ul class="card-list">
-                  <li>
-                    Ensured every booking had a unique ID by generating random
-                    values and checking against existing IDs.
-                  </li>
-                  <li>
-                    Kept seat availability synced per bus by updating booked
-                    seats on every booking and cancellation.
-                  </li>
-                  <li>
-                    Used file storage to persist bookings, rebuilding booked
-                    seat counts at startup by parsing existing records.
-                  </li>
-                  <li>
-                    Implemented a continuous menu loop for smooth user
-                    experience until explicit exit.
-                  </li>
-                  <li>
-                    Handled invalid input (bus numbers, menu options, booking
-                    IDs) gracefully and rebuilt the bookings file after
-                    cancellations to keep data clean.
-                  </li>
-                </ul>
-                <div class="card-footer">
-                  <div class="pill">
-                    <span class="pill-dot"></span>
-                    Python · Files · Booking logic
-                  </div>
-                  <div class="card-links">
-                    <a
-                      class="card-link"
-                      href="https://lnkd.in/gRP3uMNJ"
-                      target="_blank"
-                      rel="noopener"
-                    >
-                      View code on GitHub
-                    </a>
-                  </div>
-                </div>
-              </article>
-
-              <!-- AI Medicine Dispenser -->
-              <article class="card">
-                <div class="card-kicker">
-                  ENED Project · September 2025 – December 2025
-                </div>
-                <h3 class="card-title">
-                  AI-Integrated Medicine Dispensing Machine
-                </h3>
-                <p class="card-tagline">
-                  Assistive hardware for Alzheimer’s and dementia patients,
-                  designed to reduce missed doses and improve caregiver
-                  visibility.
-                </p>
-                <p class="card-body">
-                  Collaborated in a 4-person engineering team to design a smart
-                  dispenser that verifies the right patient, delivers the right
-                  dose, and escalates when something goes wrong.
-                </p>
-                <ul class="card-list">
-                  <li>
-                    Implemented facial recognition with a camera to identify
-                    patients before dispensing medication.
-                  </li>
-                  <li>
-                    Designed automated alert protocols to notify caregivers and
-                    trigger emergency calls (911) in life-threatening
-                    scenarios.
-                  </li>
-                  <li>
-                    Addressed medication adherence, caregiver burden, and
-                    patient safety using assistive technology.
-                  </li>
-                </ul>
-                <div class="card-footer">
-                  <div class="pill">
-                    <span class="pill-dot"></span>
-                    AI hardware · Assistive tech
-                  </div>
-                  <div class="card-links">
-                    <!-- Add repo link when code is public -->
-                  </div>
-                </div>
-              </article>
-
-              <!-- RAT Development -->
-              <article class="card">
-                <div class="card-kicker">
-                  Controlled Lab Experiment · June 2025 – July 2025
-                </div>
-                <h3 class="card-title">
-                  RAT Development & Penetration Testing
-                </h3>
-                <p class="card-tagline">
-                  Controlled Remote Access Trojan development to study
-                  full-device compromise and defensive responses.
-                </p>
-                <p class="card-body">
-                  Built RATs in a controlled lab environment to simulate
-                  complete device takeover with an ethics-first focus on
-                  mitigation and defense.
-                </p>
-                <ul class="card-list">
-                  <li>
-                    Engineered a cross-platform RAT in a Metasploit lab to
-                    simulate full-device compromise, implementing 12+ remote
-                    functions including real-time surveillance, GPS tracking,
-                    and SMS exfiltration.
-                  </li>
-                  <li>
-                    Conducted post-exploitation research on both Android and
-                    Windows, documenting weaknesses in system permissions and
-                    user access controls and how defenders can harden them.
-                  </li>
-                  <li>
-                    Summarized findings into ethical-use guidelines and
-                    mitigation steps to help translate offensive techniques into
-                    practical defensive controls.
-                  </li>
-                </ul>
-                <div class="card-footer">
-                  <div class="pill">
-                    <span class="pill-dot"></span>
-                    Offensive labs · Ethics-first
-                  </div>
-                  <div class="card-links">
-                    <!-- Add repo link if code is published -->
-                  </div>
-                </div>
-              </article>
-
-              <!-- Wi-Fi Pentest -->
-              <article class="card">
-                <div class="card-kicker">
-                  Controlled Lab Experiment · July 2025 – August 2025
-                </div>
-                <h3 class="card-title">Wi-Fi Penetration Testing Device</h3>
-                <p class="card-tagline">
-                  ESP8266-based Wi-Fi auditing to surface weak configurations
-                  and harden wireless networks.
-                </p>
-                <p class="card-body">
-                  Built a custom Wi-Fi auditing device using ESP8266MOD to
-                  simulate common wireless attack flows and provide actionable
-                  recommendations for network security.
-                </p>
-                <ul class="card-list">
-                  <li>
-                    Engineered a portable hardware-security tool using an
-                    ESP8266MOD microcontroller to evaluate 802.11
-                    vulnerabilities and test network resilience against
-                    unauthorized deauthentication in a sandboxed lab.
-                  </li>
-                  <li>
-                    Simulated “Evil Twin” access points to audit 20+ device
-                    connection attempts, highlighting how rogue networks enable
-                    credential harvesting and session hijacking.
-                  </li>
-                  <li>
-                    Generated 50+ simultaneous beacon signals to study wireless
-                    congestion, analyzing how aggressive SSID broadcasting
-                    impacts network discovery and device management.
-                  </li>
-                </ul>
-                <div class="card-footer">
-                  <div class="pill">
-                    <span class="pill-dot"></span>
-                    ESP8266 · Wireless security
-                  </div>
-                  <div class="card-links">
-                    <!-- Add repo link if code is published -->
-                  </div>
-                </div>
-              </article>
-
-              <!-- Phishing Simulation -->
-              <article class="card">
-                <div class="card-kicker">
-                  Controlled Lab Experiment · July 2025 – August 2025
-                </div>
-                <h3 class="card-title">Phishing Website Simulation</h3>
-                <p class="card-tagline">
-                  End-to-end phishing workflows to understand user deception and
-                  how to train against it.
-                </p>
-                <p class="card-body">
-                  Recreated phishing campaigns in a secure local lab to see
-                  exactly how users get tricked into handing over credentials
-                  and how to disrupt those patterns.
-                </p>
-                <ul class="card-list">
-                  <li>
-                    Researched real-world hacker tactics, including credential
-                    harvesting and fake login portals.
-                  </li>
-                  <li>
-                    Rebuilt phishing workflows to study password capture
-                    techniques and social engineering tactics.
-                  </li>
-                  <li>
-                    Proposed mitigation strategies such as MFA, user training,
-                    and email filtering policies.
-                  </li>
-                </ul>
-                <div class="card-footer">
-                  <div class="pill">
-                    <span class="pill-dot"></span>
-                    Social engineering · User defense
-                  </div>
-                  <div class="card-links">
-                    <!-- Add repo link if code is published -->
-                  </div>
-                </div>
-              </article>
-            </div>
-          </section>
-
-          <!-- EXPERIENCE -->
-          <section id="experience" class="section">
-            <div class="section-head">
-              <h2 class="section-title">Experience</h2>
-              <p class="section-sub">
-                Roles where I worked with diverse learners and organized STEM
-                initiatives.
-              </p>
-            </div>
-
-            <div class="experience-grid">
-              <!-- Event Coordinator -->
-              <div class="xp-block xp-block-alt">
-                <div class="xp-title">
-                  Event Coordinator | Tapan Rehabilitation Center
-                </div>
-                <div class="xp-time">
-                  December 2022 – January 2023 · Karnal, Haryana, India
-                </div>
-                <ul class="xp-list">
-                  <li>
-                    Worked closely with children requiring special care,
-                    assisting with their diagnosis, treatment, and development.
-                  </li>
-                  <li>
-                    Used specialized teaching techniques for children with
-                    hearing or speech impairment.
-                  </li>
-                  <li>
-                    Organized a function at Pratap Public School to raise
-                    awareness and foster social integration for children with
-                    special needs.
-                  </li>
-                  <li>
-                    Collaborated with faculty and staff to ensure meaningful
-                    interaction with students.
-                  </li>
-                </ul>
-              </div>
-
-              <!-- Science Club Coordinator -->
-              <div class="xp-block xp-block-alt">
-                <div class="xp-title">Coordinator | Science Club</div>
-                <div class="xp-time">
-                  June 2023 – June 2024 · Sant Gyaneshwar Model School, Delhi,
-                  India
-                </div>
-                <ul class="xp-list">
-                  <li>
-                    Led and organized school-wide science activities and events,
-                    promoting hands-on learning and innovation.
-                  </li>
-                  <li>
-                    Represented the club in inter-school science debates and
-                    competitions, building a culture of curiosity and academic
-                    excellence.
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </section>
-
-          <!-- CLUBS & ACTIVITIES -->
-          <section id="clubs-activities" class="section">
-            <div class="section-head">
-              <h2 class="section-title">Clubs & Activities</h2>
-              <p class="section-sub">
-                Campus organizations, and sports that shaped how
-                I collaborate and lead.
-              </p>
-            </div>
-
-            <div class="experience-grid">
-              <!-- Clubs & Student Communities -->
-              <div class="xp-block">
-                <div class="xp-title">Clubs & Student Communities</div>
-                <div class="xp-time">
-                  September 2025 – Present · University of Cincinnati
-                </div>
-                <ul class="xp-list">
-                  <li>
-                    Tennis Club, Bearcat Tech Innovators, IEEE, AAEO, UC
-                    Robotics, AI Society.
-                  </li>
-                </ul>
-              </div>
-
-              <!-- Sports & Competition -->
-              <div class="xp-block">
-                <div class="xp-title">Sports & Competition</div>
-                <div class="xp-time">Ongoing</div>
-                <ul class="xp-list">
-                  <li>
-                    Tennis, Badminton, Cricket, Soccer, Volleyball, Pickleball,
-                    Padel.
-                  </li>
-                  <li>
-                    First Position – District U-19 Tennis Championship 2022;
-                    ranked among the Top 150 AITA players in 2022.
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </section>
-
-          <!-- SKILLS -->
-          <section id="skills" class="section">
-            <div class="section-head">
-              <h2 class="section-title">Skills</h2>
-              <p class="section-sub">
-                Security tooling, operating systems, and software engineering
-                fundamentals that help me contribute quickly to real projects
-                and teams.
-              </p>
-            </div>
-
-            <div class="skills-wrap">
-              <div class="skills-group">
-                <div class="skills-label">Programming & Security Tools</div>
-                <div class="skills-chips">
-                  <span class="chip">Python</span>
-                  <span class="chip">C++</span>
-                  <span class="chip">LabVIEW</span>
-                  <span class="chip">Wireshark</span>
-                  <span class="chip">Metasploit</span>
-                  <span class="chip">Nmap</span>
-                  <span class="chip">Aircrack-ng</span>
-                  <span class="chip">John the Ripper</span>
-                  <span class="chip">Social Engineering Toolkit (SET)</span>
-                  <span class="chip">Hashcat</span>
-                  <span class="chip">Hydra</span>
-                </div>
-              </div>
-
-              <div class="skills-group">
-                <div class="skills-label">Software & CS Skills</div>
-                <div class="skills-chips">
-                  <span class="chip">Object-oriented programming</span>
-                  <span class="chip">Data structures and algorithms</span>
-                  <span class="chip">System design fundamentals</span>
-                  <span class="chip">Debugging and testing</span>
-                  <span class="chip">Version control (Git)</span>
-                </div>
-              </div>
-
-              <div class="skills-group">
-                <div class="skills-label">Operating Systems</div>
-                <div class="skills-chips">
-                  <span class="chip">Windows 11</span>
-                  <span class="chip">macOS 26 Tahoe</span>
-                  <span class="chip">Parrot OS 7.0</span>
-                  <span class="chip">Kali Linux 2025.3</span>
-                </div>
-              </div>
-
-              <div class="skills-group">
-                <div class="skills-label">Soft Skills</div>
-                <div class="skills-chips">
-                  <span class="chip">Analytical thinking</span>
-                  <span class="chip">Communication</span>
-                  <span class="chip">Teamwork</span>
-                  <span class="chip">Initiative</span>
-                  <span class="chip">Adaptability</span>
-                  <span class="chip">Leadership</span>
-                  <span class="chip">Professionalism</span>
-                </div>
-              </div>
-
-              <div class="skills-group">
-                <div class="skills-label">Languages & Tools</div>
-                <div class="skills-chips">
-                  <span class="chip">English (read · write · speak)</span>
-                  <span class="chip">Hindi (read · write · listen)</span>
-                  <span class="chip">Google Workspace</span>
-                  <span class="chip">Microsoft Office</span>
-                  <span class="chip">Adobe Suite</span>
-                  <span class="chip">Canva</span>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- EDUCATION & AWARDS -->
-          <section id="education" class="section">
-            <div class="section-head">
-              <h2 class="section-title">Education & Honors</h2>
-              <p class="section-sub">
-                Computer Science training and national-level recognition in
-                academics and competition.
-              </p>
-            </div>
-
-            <div class="edu-grid">
-              <div class="edu-card">
-                <h3 class="edu-title">University of Cincinnati</h3>
-                <div class="edu-meta">
-                  B.S. in Computer science · GPA 3.68 · Graduating May 2030
-                </div>
-                <p
-                  style="
-                    margin-bottom: 0.4rem;
-                    font-size: 0.8rem;
-                    color: #9ca3af;
-                  "
-                >
-                  Relevant coursework:
-                </p>
-                <ul class="edu-list">
-                  <li>Intro to C++</li>
-                  <li>Engineering Design I–II</li>
-                  <li>Chemistry I</li>
-                  <li>Calculus I–II</li>
-                  <li>Physics I</li>
-                </ul>
-              </div>
-
-              <div class="edu-card">
-                <h3 class="edu-title">Awards & Honors</h3>
-                <ul class="awards-list">
-                  <li>
-                    International Global Scholarship (August 2025 – Present).
-                  </li>
-                  <li>
-                    International Outreach Scholarship (August 2025 – Present).
-                  </li>
-                  <li>
-                    Dean’s List – College of Engineering and Applied Science
-                    (Fall 2025).
-                  </li>
-                  <li>Gold Medal – National-Level Science Olympiad 2023.</li>
-                  <li>Gold Medal – National Abacus Competition 2023.</li>
-                  <li>First Position – District U-19 Tennis Championship 2022.</li>
-                  <li>Ranked among the Top 150 AITA players in 2022.</li>
-                </ul>
-              </div>
-            </div>
-          </section>
-
-          <!-- CONTACT -->
-          <section id="contact" class="section">
-            <div class="section-head">
-              <h2 class="section-title">Contact</h2>
-              <p class="section-sub">
-                I’m actively seeking Fall 2026 co-op roles in software
-                engineering, systems development, or AI-driven applications,
-                with an interest in building secure and reliable systems. If my
-                work aligns with what you’re building, let’s connect.
-              </p>
-            </div>
-
-            <div class="contact-card">
-              <div class="contact-rows">
-                <div>
-                  <div class="contact-row-label">Email</div>
-                  <div class="contact-row-value">
-                    <a href="mailto:ramanal@mail.uc.edu">ramanal@mail.uc.edu</a>
-                  </div>
-                </div>
-                <div>
-                  <div class="contact-row-label">Links</div>
-                  <div class="contact-row-value">
-                    <a
-                      href="https://anshulraman.com"
-                      target="_blank"
-                      rel="noopener"
-                    >
-                      anshulraman.com
-                    </a>
-                    &nbsp;·&nbsp;
-                    <a
-                      href="https://www.linkedin.com/in/anshulraman06"
-                      target="_blank"
-                      rel="noopener"
-                    >
-                      LinkedIn
-                    </a>
-                    &nbsp;·&nbsp;
-                    <a
-                      href="https://github.com/itsramananshul"
-                      target="_blank"
-                      rel="noopener"
-                    >
-                      GitHub
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <p style="font-size: 0.8rem; color: #9ca3af">
-                Open to internships, co-ops, and collaboration on software,
-                systems, and research projects involving secure design,
-                lab-based experimentation, and AI-driven tools that solve real
-                problems.
-              </p>
-            </div>
-          </section>
-        </div>
-
-        <footer class="footer">
-          <span>© <span id="year"></span> Anshul Raman</span>
-        </footer>
-      </main>
+    <!-- MARQUEE -->
+    <div class="marquee-wrap" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Security-minded Builder</span>
+        <span class="hi">✦ available fall 2026</span>
+        <span>Python · C++ · Wireshark</span>
+        <span class="hi">✦ Dean's List</span>
+        <span>Offensive Security Enthusiast</span>
+        <span class="hi">✦ Cincinnati, OH</span>
+        <span>AI-Driven Hardware</span>
+        <span class="hi">✦ GPA 3.68</span>
+        <!-- duplicate for seamless loop -->
+        <span>Security-minded Builder</span>
+        <span class="hi">✦ available fall 2026</span>
+        <span>Python · C++ · Wireshark</span>
+        <span class="hi">✦ Dean's List</span>
+        <span>Offensive Security Enthusiast</span>
+        <span class="hi">✦ Cincinnati, OH</span>
+        <span>AI-Driven Hardware</span>
+        <span class="hi">✦ GPA 3.68</span>
+      </div>
     </div>
 
+    <main>
+
+      <!-- ABOUT -->
+      <section id="about" class="section">
+        <div class="section-label">001 — About</div>
+        <div class="about-grid reveal">
+          <div>
+            <h2 class="about-headline">
+              I build software<br />with an <em>adversarial</em><br />mindset.
+            </h2>
+            <div class="about-stats">
+              <div class="stat-block">
+                <div class="stat-num">6+</div>
+                <div class="stat-label">Projects Built</div>
+              </div>
+              <div class="stat-block">
+                <div class="stat-num">3.68</div>
+                <div class="stat-label">GPA</div>
+              </div>
+              <div class="stat-block">
+                <div class="stat-num">2</div>
+                <div class="stat-label">Scholarships</div>
+              </div>
+              <div class="stat-block">
+                <div class="stat-num">#1</div>
+                <div class="stat-label">District Tennis U-19</div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="about-body">
+              I'm a <strong>Computer Science student at University of Cincinnati</strong> focused on cybersecurity and software engineering.
+              Through controlled lab environments, I explore offensive techniques — not to cause harm,
+              but to understand exactly how attacks work so I can design systems that resist them.
+            </p>
+            <p class="about-body">
+              Outside of code, I've coordinated events for children with special needs, led a school science club,
+              competed in national-level tennis, and collected a few scholarships along the way.
+              I learn best by building things that could genuinely break.
+            </p>
+            <div class="about-pills">
+              <span class="pill">Python</span>
+              <span class="pill">C++</span>
+              <span class="pill">Metasploit</span>
+              <span class="pill">Wireshark</span>
+              <span class="pill">Kali Linux</span>
+              <span class="pill">Nmap</span>
+              <span class="pill">Aircrack-ng</span>
+              <span class="pill">Git</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects" class="section">
+        <div class="section-label">002 — Selected Work</div>
+        <div class="projects-list">
+
+          <div class="project-row reveal">
+            <div class="project-num">01</div>
+            <div class="project-main">
+              <h3 class="project-title">Python Banking & ATM System</h3>
+              <p class="project-tagline">
+                Full console-based banking system — persistent storage, PIN security with lockout, unique ID generation, and a complete admin panel.
+              </p>
+              <div class="project-tags">
+                <span class="tag">Python</span>
+                <span class="tag">File I/O</span>
+                <span class="tag">ATM Logic</span>
+              </div>
+            </div>
+            <a class="project-cta" href="https://lnkd.in/guAEjBxF" target="_blank" rel="noopener">View on GitHub ↗</a>
+          </div>
+
+          <div class="project-row reveal">
+            <div class="project-num">02</div>
+            <div class="project-main">
+              <h3 class="project-title">Python Bus Booking System</h3>
+              <p class="project-tagline">
+                File-backed seat reservation engine with unique booking IDs, live availability tracking, and graceful cancellation flow.
+              </p>
+              <div class="project-tags">
+                <span class="tag">Python</span>
+                <span class="tag">File I/O</span>
+                <span class="tag">Booking Logic</span>
+              </div>
+            </div>
+            <a class="project-cta" href="https://lnkd.in/gRP3uMNJ" target="_blank" rel="noopener">View on GitHub ↗</a>
+          </div>
+
+          <div class="project-row reveal">
+            <div class="project-num">03</div>
+            <div class="project-main">
+              <h3 class="project-title">AI Medicine Dispensing Machine</h3>
+              <p class="project-tagline">
+                Assistive hardware for Alzheimer's and dementia patients — facial recognition, automated alerts, emergency escalation, and caregiver dashboard.
+              </p>
+              <div class="project-tags">
+                <span class="tag">Facial Recognition</span>
+                <span class="tag">IoT</span>
+                <span class="tag">Hardware</span>
+                <span class="tag">AI</span>
+              </div>
+            </div>
+            <span class="project-cta">ENED Project</span>
+          </div>
+
+          <div class="project-row reveal">
+            <div class="project-num">04</div>
+            <div class="project-main">
+              <h3 class="project-title">Wi-Fi Handshake Capture Lab</h3>
+              <p class="project-tagline">
+                Controlled wireless security experiment — monitor mode, deauthentication attacks, WPA2 handshake capture, offline cracking with Hashcat + Aircrack-ng.
+              </p>
+              <div class="project-tags">
+                <span class="tag">Kali Linux</span>
+                <span class="tag">Aircrack-ng</span>
+                <span class="tag">Hashcat</span>
+                <span class="tag">Wi-Fi Security</span>
+              </div>
+            </div>
+            <span class="project-cta">Lab Experiment</span>
+          </div>
+
+          <div class="project-row reveal">
+            <div class="project-num">05</div>
+            <div class="project-main">
+              <h3 class="project-title">Network Intrusion Detection Lab</h3>
+              <p class="project-tagline">
+                Multi-stage network attack simulation using Nmap, Metasploit, and Wireshark — exploit execution, traffic analysis, and IDS evasion study.
+              </p>
+              <div class="project-tags">
+                <span class="tag">Nmap</span>
+                <span class="tag">Metasploit</span>
+                <span class="tag">Wireshark</span>
+                <span class="tag">Network Security</span>
+              </div>
+            </div>
+            <span class="project-cta">Lab Experiment</span>
+          </div>
+
+          <div class="project-row reveal">
+            <div class="project-num">06</div>
+            <div class="project-main">
+              <h3 class="project-title">Phishing Website Simulation</h3>
+              <p class="project-tagline">
+                End-to-end credential harvesting recreation in a secure local lab — social engineering analysis, fake login portals, MFA bypass research, and mitigation proposals.
+              </p>
+              <div class="project-tags">
+                <span class="tag">SET</span>
+                <span class="tag">Social Engineering</span>
+                <span class="tag">User Defense</span>
+              </div>
+            </div>
+            <span class="project-cta">Lab Experiment</span>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section id="experience" class="section">
+        <div class="section-label">003 — Experience</div>
+        <div class="xp-list">
+
+          <div class="xp-row reveal">
+            <div class="xp-time">Dec 2022 – Jan 2023<br />Karnal, India</div>
+            <div>
+              <div class="xp-role">Event Coordinator</div>
+              <div class="xp-org">Tapan Rehabilitation Center</div>
+              <ul class="xp-body">
+                <li>Worked with children requiring special care — diagnosis support, development assistance, and specialized teaching for hearing/speech impaired students.</li>
+                <li>Organized a public function at Pratap Public School to raise awareness and foster social integration for children with special needs.</li>
+                <li>Collaborated with faculty to ensure meaningful, structured interaction.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="xp-row reveal">
+            <div class="xp-time">Jun 2023 – Jun 2024<br />Delhi, India</div>
+            <div>
+              <div class="xp-role">Science Club Coordinator</div>
+              <div class="xp-org">Sant Gyaneshwar Model School</div>
+              <ul class="xp-body">
+                <li>Led school-wide science activities and events, promoting hands-on learning and innovation culture.</li>
+                <li>Represented the club in inter-school science debates and competitions.</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Clubs & Activities inline -->
+        <div style="margin-top: 3rem;">
+          <div class="section-label" style="margin-bottom: 2rem;">003b — Clubs & Activities</div>
+          <div class="xp-list">
+            <div class="xp-row reveal">
+              <div class="xp-time">Sep 2025 – Present<br />University of Cincinnati</div>
+              <div>
+                <div class="xp-role">Student Clubs</div>
+                <div class="xp-org">UC Campus</div>
+                <ul class="xp-body">
+                  <li>Tennis Club, Bearcat Tech Innovators, IEEE, AAEO, UC Robotics, AI Society</li>
+                </ul>
+              </div>
+            </div>
+            <div class="xp-row reveal">
+              <div class="xp-time">Ongoing</div>
+              <div>
+                <div class="xp-role">Sports & Competition</div>
+                <div class="xp-org">National & Collegiate Level</div>
+                <ul class="xp-body">
+                  <li>Tennis, Badminton, Cricket, Soccer, Volleyball, Pickleball, Padel.</li>
+                  <li><strong style="color:#fff">1st Place</strong> — District U-19 Tennis Championship 2022; ranked Top 150 AITA players nationally.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section id="skills" class="section">
+        <div class="section-label">004 — Skills</div>
+        <div class="skills-grid reveal">
+          <div class="skill-cell">
+            <div class="skill-cat">Programming & Security</div>
+            <div class="skill-chips">
+              <span class="chip">Python</span><span class="chip">C++</span>
+              <span class="chip">Wireshark</span><span class="chip">Metasploit</span>
+              <span class="chip">Nmap</span><span class="chip">Aircrack-ng</span>
+              <span class="chip">Hashcat</span><span class="chip">Hydra</span>
+              <span class="chip">John the Ripper</span><span class="chip">SET</span>
+              <span class="chip">LabVIEW</span>
+            </div>
+          </div>
+          <div class="skill-cell">
+            <div class="skill-cat">Software & CS</div>
+            <div class="skill-chips">
+              <span class="chip">OOP</span><span class="chip">Data Structures</span>
+              <span class="chip">Algorithms</span><span class="chip">System Design</span>
+              <span class="chip">Debugging & Testing</span><span class="chip">Git</span>
+            </div>
+          </div>
+          <div class="skill-cell">
+            <div class="skill-cat">Operating Systems</div>
+            <div class="skill-chips">
+              <span class="chip">Windows 11</span><span class="chip">macOS 26 Tahoe</span>
+              <span class="chip">Kali Linux 2025.3</span><span class="chip">Parrot OS 7.0</span>
+            </div>
+          </div>
+          <div class="skill-cell">
+            <div class="skill-cat">Soft Skills & Languages</div>
+            <div class="skill-chips">
+              <span class="chip">Analytical Thinking</span><span class="chip">Leadership</span>
+              <span class="chip">Communication</span><span class="chip">Teamwork</span>
+              <span class="chip">English</span><span class="chip">Hindi</span>
+            </div>
+          </div>
+          <div class="skill-cell">
+            <div class="skill-cat">Tools & Platforms</div>
+            <div class="skill-chips">
+              <span class="chip">Google Workspace</span><span class="chip">Microsoft Office</span>
+              <span class="chip">Adobe Suite</span><span class="chip">Canva</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EDUCATION -->
+      <section id="education" class="section">
+        <div class="section-label">005 — Education & Honors</div>
+        <div class="edu-grid reveal">
+          <div class="edu-block">
+            <h2 class="edu-school">University of Cincinnati</h2>
+            <div class="edu-degree">B.S. Computer Science · Graduating May 2030</div>
+            <ul class="edu-detail">
+              <li>GPA 3.68 · Dean's List Fall 2025</li>
+              <li>Focus: Cybersecurity &amp; Software Engineering</li>
+              <li>Key coursework: Data Structures, Algorithms, Systems Design, Security Labs</li>
+            </ul>
+          </div>
+          <div class="awards-block">
+            <h2 class="awards-title">Honors</h2>
+            <div class="award-item">
+              <span class="award-star">✦</span>
+              <div class="award-text"><strong>Dean's List — Fall 2025</strong>Academic excellence recognition, UC College of Engineering.</div>
+            </div>
+            <div class="award-item">
+              <span class="award-star">✦</span>
+              <div class="award-text"><strong>International Global Scholarship</strong>Merit-based scholarship awarded to outstanding international students.</div>
+            </div>
+            <div class="award-item">
+              <span class="award-star">✦</span>
+              <div class="award-text"><strong>International Outreach Scholarship</strong>Recognizing academic achievement and community impact.</div>
+            </div>
+            <div class="award-item">
+              <span class="award-star">✦</span>
+              <div class="award-text"><strong>District U-19 Tennis Champion, 2022</strong>First place; ranked Top 150 AITA nationally.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-label" style="padding: 0 0 0 0; margin-bottom: 2.5rem;">006 — Get In Touch</div>
+      <div class="contact-big">
+        Let's build<br />something <span>real.</span>
+      </div>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:ramana@mail.uc.edu">
+          <span class="contact-link-dot"></span>
+          Email Me
+        </a>
+        <a class="contact-link" href="https://www.linkedin.com/in/anshulraman06" target="_blank" rel="noopener">
+          <span class="contact-link-dot"></span>
+          LinkedIn
+        </a>
+        <a class="contact-link" href="https://github.com/itsramananshul" target="_blank" rel="noopener">
+          <span class="contact-link-dot"></span>
+          GitHub
+        </a>
+        <a class="contact-link" href="https://anshulraman.com" target="_blank" rel="noopener">
+          <span class="contact-link-dot"></span>
+          Personal Site
+        </a>
+      </div>
+      <div class="contact-avail">
+        <span class="avail-dot"></span>
+        Available for co-op — Fall 2026
+      </div>
+    </section>
+
+    <footer>
+      <span>© 2026 Anshul Raman</span>
+      <span>CS @ University of Cincinnati</span>
+      <span>Cincinnati, Ohio, USA</span>
+    </footer>
+
     <script>
-      document.getElementById("year").textContent = new Date().getFullYear();
+      // ── Custom cursor
+      const cursor = document.getElementById('cursor');
+      const follower = document.getElementById('cursor-follower');
+      let mx = 0, my = 0;
+      document.addEventListener('mousemove', e => {
+        mx = e.clientX; my = e.clientY;
+        cursor.style.left = mx + 'px';
+        cursor.style.top = my + 'px';
+        follower.style.left = mx + 'px';
+        follower.style.top = my + 'px';
+      });
+      document.querySelectorAll('a, button, .project-row, .chip, .pill').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          cursor.style.width = '20px';
+          cursor.style.height = '20px';
+          follower.style.width = '60px';
+          follower.style.height = '60px';
+        });
+        el.addEventListener('mouseleave', () => {
+          cursor.style.width = '12px';
+          cursor.style.height = '12px';
+          follower.style.width = '38px';
+          follower.style.height = '38px';
+        });
+      });
+
+      // ── Scroll reveal
+      const reveals = document.querySelectorAll('.reveal');
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach((e, i) => {
+          if (e.isIntersecting) {
+            e.target.style.transitionDelay = (i * 0.04) + 's';
+            e.target.classList.add('visible');
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      reveals.forEach(r => obs.observe(r));
     </script>
   </body>
 </html>
