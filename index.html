@@ -482,11 +482,11 @@
       <div class="proj-body" id="pb0">
         <div class="proj-body-inner">
           <ul>
-            <li>Generated unique account IDs and PINs checking for collisions across <code>accounts.txt</code>.</li>
-            <li>Persistent storage via <code>save_accounts()</code> rewriting file after every state change.</li>
-            <li>PIN security with 3 attempts then auto-lock — mirrors real ATM logic.</li>
-            <li>Admin panel to view all accounts and manually unlock locked cards.</li>
-            <li>Deposit, withdraw, balance check — all menu-driven with full error handling.</li>
+            <li>Generated unique account IDs and PINs by creating random numbers and checking for duplicates to avoid collisions.</li>
+            <li>Maintained accurate balances, PINs, and lock status by storing all accounts in a list and updating it on every operation.</li>
+            <li>Implemented persistent storage using a <code>save_accounts()</code> function that rewrites the <code>accounts.txt</code> file after each change.</li>
+            <li>Added PIN security with 3 attempts, automatically locking cards and updating the file when limits were exceeded, and resetting attempts on success.</li>
+            <li>Designed an admin panel to view all accounts and unlock cards, plus robust input validation to handle invalid choices and edge cases without crashing.</li>
           </ul>
           <a class="proj-link" href="https://lnkd.in/guAEjBxF" target="_blank">View on GitHub ↗</a>
         </div>
@@ -508,8 +508,8 @@
           <ul>
             <li>Unique booking IDs generated and validated against existing records to avoid collisions.</li>
             <li>Per-bus seat availability synced on every booking and cancellation event.</li>
-            <li>Continuous menu loop with graceful invalid-input handling throughout.</li>
-            <li>File rebuilt cleanly after every cancellation to keep data consistent.</li>
+            <li>Used file storage to persist bookings, rebuilding booked seat counts at startup by parsing existing records.</li>
+            <li>Handled invalid input (bus numbers, menu options, booking IDs) gracefully and rebuilt the bookings file after cancellations to keep data consistent.</li>
           </ul>
           <a class="proj-link" href="https://lnkd.in/gRP3uMNJ" target="_blank">View on GitHub ↗</a>
         </div>
@@ -520,8 +520,8 @@
       <div class="proj-header">
         <div class="proj-num">03</div>
         <div>
-          <div class="proj-title">AI Medicine Dispensing Machine</div>
-          <div class="proj-tagline">Assistive hardware for Alzheimer's patients — facial recognition, dose verification, caregiver alerts.</div>
+          <div class="proj-title">AI-Integrated Medicine Dispensing Machine</div>
+          <div class="proj-tagline">Assistive hardware for Alzheimer’s and dementia patients, designed to reduce missed doses and improve caregiver visibility.</div>
           <div class="proj-tech"><span class="pt">AI Hardware</span><span class="pt">Facial Recognition</span><span class="pt">IoT</span><span class="pt">ENED</span></div>
         </div>
         <div class="proj-arrow">↗</div>
@@ -529,9 +529,10 @@
       <div class="proj-body" id="pb2">
         <div class="proj-body-inner">
           <ul>
-            <li>Camera-based facial recognition identifies patient before dispensing — zero wrong-patient risk.</li>
-            <li>Automated caregiver alerts and 911 escalation for life-threatening missed doses.</li>
-            <li>4-person team; addressed adherence, caregiver burden, and patient safety in one system.</li>
+            <li>Collaborated in a 4-person engineering team to design a smart dispenser that verifies the right patient, delivers the right dose, and escalates when something goes wrong.</li>
+            <li>Camera-based facial recognition identifies the patient before dispensing, ensuring zero wrong-patient risk.</li>
+            <li> Designed automated alert protocols to notify caregivers and trigger emergency calls (911) in life-threatening scenarios.</li>
+            <li>Addressed medication adherence, caregiver burden, and patient safety using assistive technology.</li>
           </ul>
         </div>
       </div>
@@ -575,6 +576,7 @@
             <li>"Evil Twin" APs audited 20+ device connection attempts in a controlled environment.</li>
             <li>50+ simultaneous beacon signals to study wireless congestion thresholds.</li>
           </ul>
+          <a class="proj-link" href="https://www.linkedin.com/posts/anshulraman06_hardware-embeddedsystems-developerjourney-activity-7422510046862835712-nYUH/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE27UcIBlcMwMGGxWL1Wr2QHez-gHkecpCo" target="_blank">View LinkedIn Post ↗</a>
         </div>
       </div>
     </div>
