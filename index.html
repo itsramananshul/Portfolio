@@ -223,7 +223,7 @@
     }
     .proj-body-inner ul li::before { content:"— "; color:rgba(0,212,255,0.25); }
     .proj-body-inner code { font-size:0.73rem; background:rgba(0,212,255,0.06); padding:0.05rem 0.28rem; border-radius:3px; color:var(--blue); }
-    .proj-link { font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); border-bottom:1px solid rgba(200,255,0,0.25); padding-bottom:0.08rem; display:inline-block; margin-top:0.9rem; }
+    .proj-link { font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); border-bottom:1px solid rgba(200,255,0,0.25); padding-bottom:0.08rem; display:inline-block; margin-top:0.9rem; position:relative; z-index:10; }
 
     @media(max-width:700px){ .proj-header{grid-template-columns:36px 1fr 28px;gap:1rem;} .proj-body-inner{padding-left:44px;} #projects{padding-inline:1.5rem;} }
 
@@ -1081,7 +1081,8 @@
 /* ══════════ PROJECT EXPAND ══════════ */
 (function(){
   document.querySelectorAll('.proj-row').forEach(row=>{
-    row.addEventListener('click',()=>{
+    row.addEventListener('click',(e)=>{
+      if(e.target.closest('a')) return;
       const i=row.dataset.i;
       const body=document.getElementById('pb'+i);
       if(!body)return;
