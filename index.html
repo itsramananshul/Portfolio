@@ -212,7 +212,7 @@
       transition:max-height 0.75s var(--ease);
       padding:0;
     }
-    .proj-body.open { max-height:500px; }
+    .proj-body.open { max-height:1400px; }
     .proj-body-inner {
       padding:0 0 2rem 78px;
     }
@@ -473,22 +473,28 @@
       <div class="proj-header">
         <div class="proj-num">01</div>
         <div>
-          <div class="proj-title">Python Banking &amp; ATM System</div>
-          <div class="proj-tagline">Full console-based banking with persistent storage, PIN security &amp; admin panel.</div>
-          <div class="proj-tech"><span class="pt">Python</span><span class="pt">File I/O</span><span class="pt">ATM Logic</span></div>
+          <div class="proj-title">GradeIntel — Academic Performance Platform</div>
+          <div class="proj-tagline">Full-stack GPA dashboard with AI assistants, grade simulator, study planner, and Canvas LMS integration. Live at gradintel.anshulraman.com</div>
+          <div class="proj-tech">
+            <span class="pt">Python</span><span class="pt">Supabase</span><span class="pt">Canvas LMS API</span><span class="pt">Gemini</span><span class="pt">Grok</span><span class="pt">Claude</span><span class="pt">OpenAI</span><span class="pt">AI Frontend</span>
+          </div>
+          <div style="margin-top:0.6rem;display:flex;gap:0.8rem;flex-wrap:wrap;">
+            <a class="proj-link" href="https://gradintel.anshulraman.com" target="_blank" onclick="event.stopPropagation()">View Live Project ↗</a>
+          </div>
         </div>
         <div class="proj-arrow">↗</div>
       </div>
       <div class="proj-body" id="pb0">
         <div class="proj-body-inner">
           <ul>
-            <li>Generated unique account IDs and PINs by creating random numbers and checking for duplicates to avoid collisions.</li>
-            <li>Maintained accurate balances, PINs, and lock status by storing all accounts in a list and updating it on every operation.</li>
-            <li>Implemented persistent storage using a <code>save_accounts()</code> function that rewrites the <code>accounts.txt</code> file after each change.</li>
-            <li>Added PIN security with 3 attempts, automatically locking cards and updating the file when limits were exceeded, and resetting attempts on success.</li>
-            <li>Designed an admin panel to view all accounts and unlock cards, plus robust input validation to handle invalid choices and edge cases without crashing.</li>
+            <li>Cloud-synced GPA dashboard showing cumulative GPA, semester GPA, credits completed, and at-risk course warnings live across every device via Supabase.</li>
+            <li>Grade Simulator with drag sliders to run what-if scenarios in real time, plus a safe-zone calculator showing the exact score needed on every remaining exam to hit a target grade.</li>
+            <li>Multi-model AI Assistant integrating Gemini, Grok, Claude, and OpenAI — plus a built-in model that parses a syllabus PDF and auto-populates the entire exam structure.</li>
+            <li>Study Planner with a Pomodoro timer, deadline tracker, mood log, and AI-generated focus plans that rank courses by risk and surface what to work on first.</li>
+            <li>Canvas LMS integration to auto-pull live grades directly from the university portal.</li>
+            <li>Degree Tracker where you map your full degree, set a target graduation GPA, and drop in a degree-plan PDF for the AI to auto-import course requirements.</li>
+            <li>Gamification with XP, badges, GPA streaks, and level titles; data export, shareable GPA cards, configurable GPA scales (4.0 / 4.3 / 5.0), grade replacement rules, and full mobile-responsive UI with dark/light mode.</li>
           </ul>
-          <a class="proj-link" href="https://lnkd.in/guAEjBxF" target="_blank">View on GitHub ↗</a>
         </div>
       </div>
     </div>
@@ -497,21 +503,22 @@
       <div class="proj-header">
         <div class="proj-num">02</div>
         <div>
-          <div class="proj-title">Python Bus Booking System</div>
-          <div class="proj-tagline">File-backed bus reservation with seat tracking, cancellation, and unique booking IDs.</div>
-          <div class="proj-tech"><span class="pt">Python</span><span class="pt">File I/O</span><span class="pt">Booking Logic</span></div>
+          <div class="proj-title">Autonomous Line-Following Robot — LEGO EV3</div>
+          <div class="proj-tagline">Closed-loop autonomous robot navigating a 6-zone curved track using only a color sensor. Built through the full engineering design lifecycle at UC.</div>
+          <div class="proj-tech">
+            <span class="pt">LabVIEW</span><span class="pt">LEGO EV3</span><span class="pt">Color Sensor</span><span class="pt">Embedded Systems</span><span class="pt">ENED1002C</span>
+          </div>
         </div>
         <div class="proj-arrow">↗</div>
       </div>
       <div class="proj-body" id="pb1">
         <div class="proj-body-inner">
           <ul>
-            <li>Unique booking IDs generated and validated against existing records to avoid collisions.</li>
-            <li>Per-bus seat availability synced on every booking and cancellation event.</li>
-            <li>Used file storage to persist bookings, rebuilding booked seat counts at startup by parsing existing records.</li>
-            <li>Handled invalid input (bus numbers, menu options, booking IDs) gracefully and rebuilt the bookings file after cancellations to keep data consistent.</li>
+            <li>Designed and programmed an autonomous robot from scratch as part of UC's Engineering Design Thinking II course — navigated a curved black-line track across six zones without human input.</li>
+            <li>Reads the track surface in real time using a color sensor, dynamically adjusting left and right motor speeds based on sensor feedback to stay on course through curves and straight sections.</li>
+            <li>Followed the full engineering design lifecycle: functional decomposition, measurable design specifications, work breakdown structure, and Gantt chart before writing a single line of code.</li>
+            <li>Iterated heavily on sensor threshold tuning and motor response values during prototype testing to achieve clean, reliable navigation across all six zones in the live demo.</li>
           </ul>
-          <a class="proj-link" href="https://lnkd.in/gRP3uMNJ" target="_blank">View on GitHub ↗</a>
         </div>
       </div>
     </div>
@@ -520,13 +527,60 @@
       <div class="proj-header">
         <div class="proj-num">03</div>
         <div>
+          <div class="proj-title">Python Banking &amp; ATM System</div>
+          <div class="proj-tagline">Full console-based banking with persistent storage, PIN security &amp; admin panel.</div>
+          <div class="proj-tech"><span class="pt">Python</span><span class="pt">File I/O</span><span class="pt">ATM Logic</span></div>
+        </div>
+        <div class="proj-arrow">↗</div>
+      </div>
+      <div class="proj-body" id="pb2">
+        <div class="proj-body-inner">
+          <ul>
+            <li>Generated unique account IDs and PINs by creating random numbers and checking for duplicates to avoid collisions.</li>
+            <li>Maintained accurate balances, PINs, and lock status by storing all accounts in a list and updating it on every operation.</li>
+            <li>Implemented persistent storage using a <code>save_accounts()</code> function that rewrites the <code>accounts.txt</code> file after each change.</li>
+            <li>Added PIN security with 3 attempts, automatically locking cards and updating the file when limits were exceeded, and resetting attempts on success.</li>
+            <li>Designed an admin panel to view all accounts and unlock cards, plus robust input validation to handle invalid choices and edge cases without crashing.</li>
+          </ul>
+          <a class="proj-link" href="https://github.com/itsramananshul/atm-system" target="_blank" onclick="event.stopPropagation()">View on GitHub ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-row" data-i="3">
+      <div class="proj-header">
+        <div class="proj-num">04</div>
+        <div>
+          <div class="proj-title">Python Bus Booking System</div>
+          <div class="proj-tagline">File-backed bus reservation with seat tracking, cancellation, and unique booking IDs.</div>
+          <div class="proj-tech"><span class="pt">Python</span><span class="pt">File I/O</span><span class="pt">Booking Logic</span></div>
+        </div>
+        <div class="proj-arrow">↗</div>
+      </div>
+      <div class="proj-body" id="pb3">
+        <div class="proj-body-inner">
+          <ul>
+            <li>Unique booking IDs generated and validated against existing records to avoid collisions.</li>
+            <li>Per-bus seat availability synced on every booking and cancellation event.</li>
+            <li>Used file storage to persist bookings, rebuilding booked seat counts at startup by parsing existing records.</li>
+            <li>Handled invalid input (bus numbers, menu options, booking IDs) gracefully and rebuilt the bookings file after cancellations to keep data consistent.</li>
+          </ul>
+          <a class="proj-link" href="https://github.com/itsramananshul/bus-booking-system/" target="_blank" onclick="event.stopPropagation()">View on GitHub ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-row" data-i="4">
+      <div class="proj-header">
+        <div class="proj-num">05</div>
+        <div>
           <div class="proj-title">AI-Integrated Medicine Dispensing Machine</div>
           <div class="proj-tagline">Assistive hardware for Alzheimer’s and dementia patients, designed to reduce missed doses and improve caregiver visibility.</div>
           <div class="proj-tech"><span class="pt">AI Hardware</span><span class="pt">Facial Recognition</span><span class="pt">IoT</span><span class="pt">ENED</span></div>
         </div>
         <div class="proj-arrow">↗</div>
       </div>
-      <div class="proj-body" id="pb2">
+      <div class="proj-body" id="pb4">
         <div class="proj-body-inner">
           <ul>
             <li>Collaborated in a 4-person engineering team to design a smart dispenser that verifies the right patient, delivers the right dose, and escalates when something goes wrong.</li>
@@ -538,9 +592,9 @@
       </div>
     </div>
 
-    <div class="proj-row" data-i="3">
+    <div class="proj-row" data-i="5">
       <div class="proj-header">
-        <div class="proj-num">04</div>
+        <div class="proj-num">06</div>
         <div>
           <div class="proj-title">RAT Development &amp; Pen Testing</div>
           <div class="proj-tagline">Controlled Remote Access Trojan lab — full-device compromise, 12+ remote functions, ethical docs.</div>
@@ -548,7 +602,7 @@
         </div>
         <div class="proj-arrow">↗</div>
       </div>
-      <div class="proj-body" id="pb3">
+      <div class="proj-body" id="pb5">
         <div class="proj-body-inner">
           <ul>
             <li>Cross-platform RAT with real-time surveillance, GPS tracking, SMS exfiltration in isolated lab.</li>
@@ -559,9 +613,9 @@
       </div>
     </div>
 
-    <div class="proj-row" data-i="4">
+    <div class="proj-row" data-i="6">
       <div class="proj-header">
-        <div class="proj-num">05</div>
+        <div class="proj-num">07</div>
         <div>
           <div class="proj-title">Wi-Fi Penetration Testing Device</div>
           <div class="proj-tagline">ESP8266 wireless auditing — evil twin APs, deauth testing, 50+ beacon floods.</div>
@@ -569,21 +623,21 @@
         </div>
         <div class="proj-arrow">↗</div>
       </div>
-      <div class="proj-body" id="pb4">
+      <div class="proj-body" id="pb6">
         <div class="proj-body-inner">
           <ul>
             <li>Portable tool evaluating 802.11 vulnerabilities and deauthentication resilience.</li>
             <li>"Evil Twin" APs audited 20+ device connection attempts in a controlled environment.</li>
             <li>50+ simultaneous beacon signals to study wireless congestion thresholds.</li>
           </ul>
-          <a class="proj-link" href="https://www.linkedin.com/posts/anshulraman06_hardware-embeddedsystems-developerjourney-activity-7422510046862835712-nYUH/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE27UcIBlcMwMGGxWL1Wr2QHez-gHkecpCo" target="_blank">View LinkedIn Post ↗</a>
+          <a class="proj-link" href="https://www.linkedin.com/posts/anshulraman06_hardware-embeddedsystems-developerjourney-activity-7422510046862835712-nYUH/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE27UcIBlcMwMGGxWL1Wr2QHez-gHkecpCo" target="_blank" onclick="event.stopPropagation()">View LinkedIn Post ↗</a>
         </div>
       </div>
     </div>
 
-    <div class="proj-row" data-i="5">
+    <div class="proj-row" data-i="7">
       <div class="proj-header">
-        <div class="proj-num">06</div>
+        <div class="proj-num">08</div>
         <div>
           <div class="proj-title">Phishing Website Simulation</div>
           <div class="proj-tagline">End-to-end phishing campaigns in a secure lab — credential harvesting, MFA mitigation.</div>
@@ -591,7 +645,7 @@
         </div>
         <div class="proj-arrow">↗</div>
       </div>
-      <div class="proj-body" id="pb5">
+      <div class="proj-body" id="pb7">
         <div class="proj-body-inner">
           <ul>
             <li>Rebuilt phishing workflows to study password capture and social engineering tactics.</li>
