@@ -65,7 +65,7 @@
     .nav-links {
       display: flex; gap: 2.2rem; list-style: none;
       font-size: 0.76rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: rgba(240,244,240,0.4);
+      color: rgba(240,244,240,0.8);
     }
     .nav-links a:hover { color: var(--white); }
     @media(max-width:780px){.nav-links{display:none;}}
@@ -100,7 +100,7 @@
     @keyframes gb{0%,91%,100%{opacity:0;transform:translate(0,0)}92%{opacity:1;transform:translate(4px,2px)}94%{opacity:1;transform:translate(-4px,0)}96%{opacity:1;transform:translate(2px,0)}98%{opacity:0}}
 
     .hero-bottom { display:flex; justify-content:space-between; align-items:flex-end; margin-top:1.8rem; gap:2rem; flex-wrap:wrap; }
-    .hero-desc { max-width:28rem; font-size:0.96rem; color:rgba(240,244,240,0.5); line-height:1.9; font-weight:300; }
+    .hero-desc { max-width:28rem; font-size:0.96rem; color:rgba(240,244,240,0.78); line-height:1.9; font-weight:300; }
     .hero-desc strong { color:var(--white); font-weight:500; }
     .hero-meta { display:flex; gap:2rem; font-size:0.76rem; letter-spacing:0.14em; text-transform:uppercase; color:#445; }
     .hero-meta span b { display:block; font-weight:500; color:rgba(240,244,240,0.7); font-size:0.82rem; }
@@ -150,7 +150,7 @@
     .ab-num { font-size:0.74rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--blue); margin-bottom:0.7rem; font-family:'Courier New',monospace; opacity:0.7; }
     .ab-heading { font-family:var(--serif); font-size:clamp(2.4rem,4vw,4rem); font-weight:400; line-height:1.05; color:var(--white); margin-bottom:1rem; }
     .ab-heading em { font-style:italic; color:var(--accent); }
-    .ab-body { font-size:0.96rem; color:rgba(240,244,240,0.5); line-height:1.95; font-weight:300; }
+    .ab-body { font-size:0.96rem; color:rgba(240,244,240,0.78); line-height:1.95; font-weight:300; }
     .ab-body strong { color:var(--white); font-weight:500; }
     .ab-pills { display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:1.2rem; }
     .pill { padding:0.28rem 0.75rem; border:1px solid rgba(0,212,255,0.12); border-radius:999px; font-size:0.75rem; color:rgba(0,212,255,0.5); }
@@ -197,7 +197,7 @@
     }
     .proj-num { font-family:var(--serif); font-style:italic; font-size:1.35rem; color:rgba(0,212,255,0.2); }
     .proj-title { font-family:var(--serif); font-size:clamp(1.3rem,2.2vw,1.9rem); font-weight:400; color:var(--white); margin-bottom:0.3rem; line-height:1.1; }
-    .proj-tagline { font-size:0.84rem; color:rgba(240,244,240,0.35); line-height:1.65; margin-bottom:0.55rem; }
+    .proj-tagline { font-size:0.84rem; color:rgba(240,244,240,0.75); line-height:1.65; margin-bottom:0.55rem; }
     .proj-tech { display:flex; flex-wrap:wrap; gap:0.3rem; }
     .pt { padding:0.16rem 0.56rem; border:1px solid rgba(0,212,255,0.1); border-radius:999px; font-size:0.72rem; color:rgba(0,212,255,0.4); }
     .proj-arrow {
@@ -232,7 +232,7 @@
     .skills-head { max-width:36rem; margin:0 2.8rem 3rem; }
     .skills-head h2 { font-family:var(--serif); font-size:clamp(2.4rem,4vw,3.4rem); font-weight:400; line-height:1.05; margin-bottom:0.5rem; }
     .skills-head h2 span { font-style:italic; color:var(--accent); }
-    .skills-head p { font-size:0.84rem; color:rgba(240,244,240,0.4); line-height:1.9; }
+    .skills-head p { font-size:0.84rem; color:rgba(240,244,240,0.8); line-height:1.9; }
 
     .skills-wrap { padding-left:2.8rem; }
     .skills-scroll {
@@ -263,7 +263,7 @@
     .sk-num { font-size:0.7rem; letter-spacing:0.3em; text-transform:uppercase; color:rgba(0,212,255,0.25); margin-bottom:1.1rem; font-family:'Courier New',monospace; }
     .sk-icon { font-size:1.7rem; margin-bottom:0.9rem; line-height:1; }
     .sk-title { font-family:var(--serif); font-size:1.5rem; font-weight:400; color:var(--white); margin-bottom:0.45rem; }
-    .sk-desc { font-size:0.82rem; color:rgba(240,244,240,0.4); line-height:1.85; margin-bottom:1.1rem; }
+    .sk-desc { font-size:0.82rem; color:rgba(240,244,240,0.8); line-height:1.85; margin-bottom:1.1rem; }
     .sk-tags { display:flex; flex-wrap:wrap; gap:0.28rem; }
     .sk-tag { padding:0.18rem 0.6rem; border:1px solid rgba(0,212,255,0.1); border-radius:999px; font-size:0.72rem; color:rgba(0,212,255,0.4); background:rgba(0,212,255,0.03); transition:border-color 0.2s, color 0.2s; }
     .sk-card:hover .sk-tag { border-color:rgba(0,212,255,0.2); color:rgba(0,212,255,0.65); }
@@ -278,18 +278,105 @@
     .skills-hint::before { content:"← swipe →"; padding:0.1rem 0.5rem; border:1px solid rgba(0,212,255,0.1); border-radius:999px; }
 
     /* ══ EDUCATION ══ */
-    #education { position:relative; z-index:1; padding:7rem 2.8rem 5rem; }
+    
+#experience {
+  position: relative;
+  z-index: 1;
+  padding: 7rem 2.8rem 0;
+}
+
+.experience-wrap {
+  padding: 0 2.8rem 5rem;
+  border-top: 1px solid rgba(0,212,255,0.07);
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.exp-item {
+  border-bottom: 1px solid rgba(0,212,255,0.07);
+  padding-bottom: 1.8rem;
+}
+
+.exp-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.6rem;
+}
+
+.exp-role {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--white);
+}
+
+.exp-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(240,244,240,0.8);
+}
+
+.exp-org {
+  opacity: 0.9;
+}
+
+.exp-dates {
+  color: var(--accent);
+}
+
+.exp-points {
+  list-style: none;
+  font-size: 0.9rem;
+  color: rgba(240,244,240,0.85);
+  line-height: 1.9;
+}
+
+.exp-points li {
+  position: relative;
+  padding-left: 1.1rem;
+}
+
+.exp-points li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: rgba(0,212,255,0.8);
+}
+
+@media (max-width: 780px) {
+  #experience {
+    padding: 7rem 1.5rem 0;
+  }
+  .experience-wrap {
+    padding: 0 1.5rem 5rem;
+  }
+}
+
+.proj-row-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+#education { position:relative; z-index:1; padding:7rem 2.8rem 5rem; }
     .edu-grid { display:grid; grid-template-columns:1fr 1fr; gap:3.5rem; }
     .edu-block,.awards-block { border-top:1px solid rgba(0,212,255,0.07); padding-top:1.8rem; }
     .edu-school { font-family:var(--serif); font-size:2rem; font-weight:400; color:var(--white); margin-bottom:0.3rem; }
     .edu-deg { font-size:0.8rem; color:var(--accent); letter-spacing:0.14em; text-transform:uppercase; margin-bottom:0.7rem; opacity:0.7; }
-    .edu-list { list-style:none; font-size:0.88rem; color:rgba(240,244,240,0.4); line-height:1.9; }
+    .edu-list { list-style:none; font-size:0.88rem; color:rgba(240,244,240,0.8); line-height:1.9; }
     .edu-list li { padding-left:1rem; position:relative; }
     .edu-list li::before { content:'—'; position:absolute; left:0; color:rgba(0,212,255,0.2); }
     .aw-title { font-family:var(--serif); font-size:2rem; font-weight:400; color:var(--white); margin-bottom:1.4rem; }
     .aw-item { display:flex; gap:0.8rem; margin-bottom:1.1rem; font-size:0.88rem; align-items:flex-start; }
     .aw-star { color:var(--accent); font-size:0.55rem; padding-top:0.35rem; flex-shrink:0; opacity:0.7; }
-    .aw-text { color:rgba(240,244,240,0.4); line-height:1.75; }
+    .aw-text { color:rgba(240,244,240,0.8); line-height:1.75; }
     .aw-text strong { color:var(--white); display:block; margin-bottom:0.06rem; }
     @media(max-width:780px){ .edu-grid{grid-template-columns:1fr;} #education{padding-inline:1.5rem;} }
 
@@ -364,7 +451,7 @@
   <div class="nav-logo">Anshul Raman</div>
   <ul class="nav-links">
     <li><a href="#about-wrap">About</a></li>
-    <li><a href="#projects">Work</a></li>
+    <li><a href="#projects">Projects</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -465,11 +552,49 @@
 </div>
 
 <!-- ════ PROJECTS ════ -->
+
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="sec-label rev">004 Experience</div>
+
+  <div class="experience-wrap rev">
+    <div class="exp-item">
+      <div class="exp-header">
+        <div class="exp-role">President, Science Club</div>
+        <div class="exp-meta">
+          <span class="exp-org">Sant Gyaneshwar Model School, Alipur, Delhi, India</span>
+          <span class="exp-dates">May 2023  March 2024</span>
+        </div>
+      </div>
+      <ul class="exp-points">
+        <li>Led and managed school-wide science events, demonstrating leadership, professionalism, and team coordination.</li>
+        <li>Collaborated with staff and student teams to design interactive STEM activities, fostering a culture of curiosity and innovation.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <div class="exp-role">Event Coordinator</div>
+        <div class="exp-meta">
+          <span class="exp-org">Tapan Rehabilitation Centre, Karnal, Haryana, India</span>
+          <span class="exp-dates">December 2022  January 2023</span>
+        </div>
+      </div>
+      <ul class="exp-points">
+        <li>Supported children with special needs using patience, adaptability, and empathetic communication.</li>
+        <li>Coordinated an inclusion-awareness event with staff and volunteers, demonstrating leadership and community engagement.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <section id="projects">
   <div class="sec-label rev">004 — Selected Work</div>
   <div class="proj-list">
 
-    <div class="proj-row" data-i="0">
+    <a class="proj-row-link" href="https://gradintel.anshulraman.com" target="_blank">
+  <div class="proj-row" data-i="0">
       <div class="proj-header">
         <div class="proj-num">01</div>
         <div>
@@ -479,7 +604,7 @@
             <span class="pt">Python</span><span class="pt">Supabase</span><span class="pt">Canvas LMS API</span><span class="pt">Gemini</span><span class="pt">Grok</span><span class="pt">Claude</span><span class="pt">OpenAI</span><span class="pt">AI Frontend</span>
           </div>
           <div style="margin-top:0.6rem;display:flex;gap:0.8rem;flex-wrap:wrap;">
-            <a class="proj-link" href="https://gradintel.anshulraman.com" target="_blank" onclick="event.stopPropagation()">View Live Project ↗</a>
+            <a class="proj-link" href="https://gradintel.anshulraman.com" target="_blank">View Live Project ↗</a>
           </div>
         </div>
         <div class="proj-arrow">↗</div>
@@ -523,7 +648,8 @@
       </div>
     </div>
 
-    <div class="proj-row" data-i="2">
+    <a class="proj-row-link" href="https://github.com/itsramananshul/atm-system" target="_blank">
+  <div class="proj-row" data-i="2">
       <div class="proj-header">
         <div class="proj-num">03</div>
         <div>
@@ -542,12 +668,13 @@
             <li>Added PIN security with 3 attempts, automatically locking cards and updating the file when limits were exceeded, and resetting attempts on success.</li>
             <li>Designed an admin panel to view all accounts and unlock cards, plus robust input validation to handle invalid choices and edge cases without crashing.</li>
           </ul>
-          <a class="proj-link" href="https://github.com/itsramananshul/atm-system" target="_blank" onclick="event.stopPropagation()">View on GitHub ↗</a>
+          <a class="proj-link" href="https://github.com/itsramananshul/atm-system" target="_blank">View on GitHub ↗</a>
         </div>
       </div>
     </div>
 
-    <div class="proj-row" data-i="3">
+    <a class="proj-row-link" href="https://github.com/itsramananshul/bus-booking-system" target="_blank">
+  <div class="proj-row" data-i="3">
       <div class="proj-header">
         <div class="proj-num">04</div>
         <div>
@@ -565,7 +692,7 @@
             <li>Used file storage to persist bookings, rebuilding booked seat counts at startup by parsing existing records.</li>
             <li>Handled invalid input (bus numbers, menu options, booking IDs) gracefully and rebuilt the bookings file after cancellations to keep data consistent.</li>
           </ul>
-          <a class="proj-link" href="https://github.com/itsramananshul/bus-booking-system/" target="_blank" onclick="event.stopPropagation()">View on GitHub ↗</a>
+          <a class="proj-link" href="https://github.com/itsramananshul/bus-booking-system/" target="_blank">View on GitHub ↗</a>
         </div>
       </div>
     </div>
@@ -613,7 +740,8 @@
       </div>
     </div>
 
-    <div class="proj-row" data-i="6">
+    <a class="proj-row-link" href="https://www.linkedin.com/posts/anshulraman06/hardware-embedded-systems-developerjourney-activity-7422510046862835712-nYUH?utm_source=share&utm_medium=member_desktop" target="_blank">
+  <div class="proj-row" data-i="6">
       <div class="proj-header">
         <div class="proj-num">07</div>
         <div>
@@ -630,7 +758,7 @@
             <li>"Evil Twin" APs audited 20+ device connection attempts in a controlled environment.</li>
             <li>50+ simultaneous beacon signals to study wireless congestion thresholds.</li>
           </ul>
-          <a class="proj-link" href="https://www.linkedin.com/posts/anshulraman06_hardware-embeddedsystems-developerjourney-activity-7422510046862835712-nYUH/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE27UcIBlcMwMGGxWL1Wr2QHez-gHkecpCo" target="_blank" onclick="event.stopPropagation()">View LinkedIn Post ↗</a>
+          <a class="proj-link" href="https://www.linkedin.com/posts/anshulraman06_hardware-embeddedsystems-developerjourney-activity-7422510046862835712-nYUH/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE27UcIBlcMwMGGxWL1Wr2QHez-gHkecpCo" target="_blank">View LinkedIn Post ↗</a>
         </div>
       </div>
     </div>
@@ -966,7 +1094,7 @@
           ctx.fillStyle=h.status==='OFFLINE'?'rgba(100,100,100,0.4)':'rgba(0,212,255,0.75)';
           ctx.font='9px \"Courier New\",monospace';
           ctx.fillText(h.ip, 30, y-3);
-          ctx.fillStyle='rgba(240,244,240,0.5)';
+          ctx.fillStyle='rgba(240,244,240,0.78)';
           ctx.fillText(h.name, 110, y-3);
 
           if(h.risk==='HIGH') ctx.fillStyle='rgba(255,60,60,0.8)';
@@ -1134,16 +1262,19 @@
 
 /* ══════════ PROJECT EXPAND ══════════ */
 (function(){
+  // Auto-expand all rows on load
+  document.querySelectorAll('.proj-row').forEach(row=>{
+    const i=row.dataset.i;
+    const body=document.getElementById('pb'+i);
+    if(body){body.classList.add('open');row.classList.add('open');}
+  });
   document.querySelectorAll('.proj-row').forEach(row=>{
     row.addEventListener('click',(e)=>{
-      if(e.target.closest('a')) return;
       const i=row.dataset.i;
       const body=document.getElementById('pb'+i);
       if(!body)return;
-      const open=body.classList.contains('open');
-      document.querySelectorAll('.proj-body.open').forEach(b=>b.classList.remove('open'));
-      document.querySelectorAll('.proj-row.open').forEach(r=>r.classList.remove('open'));
-      if(!open){body.classList.add('open');row.classList.add('open');}
+      body.classList.add('open');
+      row.classList.add('open');
     });
   });
 })();
