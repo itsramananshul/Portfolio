@@ -3,7 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Anshul Raman</title>
+  <title>Anshul Raman | CS Student &amp; Security Builder</title>
+  <meta name="description" content="Anshul Raman — Computer Science student at University of Cincinnati. Security-minded builder specializing in cybersecurity, offensive security labs, and full-stack development. Co-op ready Fall 2026." />
+  <meta name="keywords" content="Anshul Raman, Computer Science, University of Cincinnati, Cybersecurity, Python, Software Engineering, Co-op" />
+  <meta name="author" content="Anshul Raman" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph — controls preview when shared on LinkedIn, iMessage, Slack etc -->
+  <meta property="og:title" content="Anshul Raman | CS Student &amp; Security Builder" />
+  <meta property="og:description" content="Computer Science student at UC — building secure systems, offensive security tools, and AI-driven platforms. Co-op ready Fall 2026." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://anshulraman.com" />
+  <meta property="og:image" content="https://anshulraman.com/favicon.png" />
+
+  <!-- Twitter card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Anshul Raman | CS Student &amp; Security Builder" />
+  <meta name="twitter:description" content="Computer Science student at UC — building secure systems, offensive security tools, and AI-driven platforms." />
   <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="shortcut icon" href="favicon.png" />
   <link rel="apple-touch-icon" href="favicon.png" />
@@ -395,7 +411,7 @@
       border-radius: 2px;
     }
     .proj-item:first-child { border-top: 1px solid var(--border); }
-    .proj-item:hover { background: rgba(255,255,255,0.02); }
+    .proj-item:hover { background: rgba(255,255,255,0.01); }
 
     .proj-number {
       font-family: var(--serif);
@@ -411,6 +427,16 @@
       color: var(--white);
       line-height: 1.15;
       margin-bottom: 0.4rem;
+    }
+    a.proj-title-link {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--white);
+      transition: color 0.2s;
+    }
+    a.proj-title-link:hover {
+      color: var(--grey);
+      text-decoration: none;
     }
     .proj-tagline {
       font-size: 0.85rem;
@@ -439,12 +465,7 @@
     /* expand */
     .proj-details {
       grid-column: 2 / 3;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s ease, opacity 0.4s ease;
-      opacity: 0;
     }
-    .proj-item.open .proj-details { max-height: 600px; opacity: 1; }
     .proj-details-inner { padding-top: 1rem; }
     ul.proj-pts { list-style: none; }
     ul.proj-pts li {
@@ -468,24 +489,7 @@
     }
     .proj-link:hover { border-color: var(--white); }
 
-    .expand-hint {
-      grid-column: 2 / 3;
-      font-size: 0.68rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--grey3);
-      margin-top: 0.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      user-select: none;
-    }
-    .expand-icon {
-      display: inline-block;
-      transition: transform 0.3s;
-      font-size: 0.8rem;
-    }
-    .proj-item.open .expand-icon { transform: rotate(45deg); }
+
 
     /* ── SKILLS ── */
     .skills-intro {
@@ -888,14 +892,13 @@
         <div class="proj-item rev" data-i="0">
           <div class="proj-number">01</div>
           <div class="proj-main">
-            <div class="proj-title">GradeIntel — Academic Performance Platform</div>
+            <a class="proj-title proj-title-link" href="https://gradintel.anshulraman.com" target="_blank" rel="noopener">GradeIntel — Academic Performance Platform ↗</a>
             <p class="proj-tagline">Full-stack GPA dashboard with AI assistants, grade simulator, study planner, and Canvas LMS integration. Live at gradintel.anshulraman.com</p>
             <div class="tags">
               <span class="tag">Python</span><span class="tag">Supabase</span><span class="tag">Canvas LMS API</span>
               <span class="tag">Gemini</span><span class="tag">Grok</span><span class="tag">Claude</span>
               <span class="tag">OpenAI</span>
             </div>
-            <div class="expand-hint"><span class="expand-icon">+</span> Details</div>
             <div class="proj-details">
               <div class="proj-details-inner">
                 <ul class="proj-pts">
@@ -911,7 +914,6 @@
               </div>
             </div>
           </div>
-          <div class="proj-arrow">↗</div>
         </div>
 
         <div class="proj-item rev" data-i="1">
@@ -923,7 +925,6 @@
               <span class="tag">LabVIEW</span><span class="tag">LEGO EV3</span><span class="tag">Color Sensor</span>
               <span class="tag">Embedded Systems</span><span class="tag">ENED1002C</span>
             </div>
-            <div class="expand-hint"><span class="expand-icon">+</span> Details</div>
             <div class="proj-details">
               <div class="proj-details-inner">
                 <ul class="proj-pts">
@@ -935,16 +936,14 @@
               </div>
             </div>
           </div>
-          <div class="proj-arrow">↗</div>
         </div>
 
         <div class="proj-item rev" data-i="2">
           <div class="proj-number">03</div>
           <div class="proj-main">
-            <div class="proj-title">Python Banking &amp; ATM System</div>
+            <a class="proj-title proj-title-link" href="https://github.com/itsramananshul/atm-system" target="_blank" rel="noopener">Python Banking &amp; ATM System ↗</a>
             <p class="proj-tagline">Full console-based banking with persistent storage, PIN security &amp; admin panel.</p>
             <div class="tags"><span class="tag">Python</span><span class="tag">File I/O</span><span class="tag">ATM Logic</span></div>
-            <div class="expand-hint"><span class="expand-icon">+</span> Details</div>
             <div class="proj-details">
               <div class="proj-details-inner">
                 <ul class="proj-pts">
@@ -957,16 +956,14 @@
               </div>
             </div>
           </div>
-          <div class="proj-arrow">↗</div>
         </div>
 
         <div class="proj-item rev" data-i="3">
           <div class="proj-number">04</div>
           <div class="proj-main">
-            <div class="proj-title">Python Bus Booking System</div>
+            <a class="proj-title proj-title-link" href="https://github.com/itsramananshul/bus-booking-system/" target="_blank" rel="noopener">Python Bus Booking System ↗</a>
             <p class="proj-tagline">File-backed bus reservation with seat tracking, cancellation, and unique booking IDs.</p>
             <div class="tags"><span class="tag">Python</span><span class="tag">File I/O</span><span class="tag">Booking Logic</span></div>
-            <div class="expand-hint"><span class="expand-icon">+</span> Details</div>
             <div class="proj-details">
               <div class="proj-details-inner">
                 <ul class="proj-pts">
@@ -979,7 +976,6 @@
               </div>
             </div>
           </div>
-          <div class="proj-arrow">↗</div>
         </div>
 
         <div class="proj-item rev" data-i="4">
@@ -988,7 +984,6 @@
             <div class="proj-title">AI-Integrated Medicine Dispensing Machine</div>
             <p class="proj-tagline">Assistive hardware for Alzheimer's and dementia patients — reduces missed doses and improves caregiver visibility.</p>
             <div class="tags"><span class="tag">AI Hardware</span><span class="tag">Facial Recognition</span><span class="tag">IoT</span><span class="tag">ENED</span></div>
-            <div class="expand-hint"><span class="expand-icon">+</span> Details</div>
             <div class="proj-details">
               <div class="proj-details-inner">
                 <ul class="proj-pts">
@@ -1000,7 +995,6 @@
               </div>
             </div>
           </div>
-          <div class="proj-arrow">↗</div>
         </div>
 
         <div class="proj-item rev" data-i="5">
@@ -1009,7 +1003,6 @@
             <div class="proj-title">RAT Development &amp; Pen Testing</div>
             <p class="proj-tagline">Controlled Remote Access Trojan lab — full-device compromise, 12+ remote functions, ethical documentation.</p>
             <div class="tags"><span class="tag">Metasploit</span><span class="tag">Kali Linux</span><span class="tag">Offensive Labs</span></div>
-            <div class="expand-hint"><span class="expand-icon">+</span> Details</div>
             <div class="proj-details">
               <div class="proj-details-inner">
                 <ul class="proj-pts">
@@ -1020,16 +1013,14 @@
               </div>
             </div>
           </div>
-          <div class="proj-arrow">↗</div>
         </div>
 
         <div class="proj-item rev" data-i="6">
           <div class="proj-number">07</div>
           <div class="proj-main">
-            <div class="proj-title">Wi-Fi Penetration Testing Device</div>
+            <a class="proj-title proj-title-link" href="https://www.linkedin.com/posts/anshulraman06/hardware-embedded-systems-developerjourney-activity-7422510046862835712-nYUH" target="_blank" rel="noopener">Wi-Fi Penetration Testing Device ↗</a>
             <p class="proj-tagline">ESP8266 wireless auditing — evil twin APs, deauth testing, 50+ beacon floods.</p>
             <div class="tags"><span class="tag">ESP8266</span><span class="tag">Aircrack-ng</span><span class="tag">Wireless Security</span></div>
-            <div class="expand-hint"><span class="expand-icon">+</span> Details</div>
             <div class="proj-details">
               <div class="proj-details-inner">
                 <ul class="proj-pts">
@@ -1041,7 +1032,6 @@
               </div>
             </div>
           </div>
-          <div class="proj-arrow">↗</div>
         </div>
 
         <div class="proj-item rev" data-i="7">
@@ -1050,7 +1040,6 @@
             <div class="proj-title">Phishing Website Simulation</div>
             <p class="proj-tagline">End-to-end phishing campaigns in a secure lab — credential harvesting, MFA mitigation.</p>
             <div class="tags"><span class="tag">SET</span><span class="tag">Social Engineering</span><span class="tag">User Defense</span></div>
-            <div class="expand-hint"><span class="expand-icon">+</span> Details</div>
             <div class="proj-details">
               <div class="proj-details-inner">
                 <ul class="proj-pts">
@@ -1061,7 +1050,6 @@
               </div>
             </div>
           </div>
-          <div class="proj-arrow">↗</div>
         </div>
 
       </div>
@@ -1225,12 +1213,7 @@
       });
     }, 300);
 
-    // Project expand/collapse
-    document.querySelectorAll(".proj-item").forEach(function(item) {
-      item.addEventListener("click", function() {
-        item.classList.toggle("open");
-      });
-    });
+
 
     // Sidebar active nav on scroll
     var sections = ["hero","about","experience","projects","skills","education","contact"];
