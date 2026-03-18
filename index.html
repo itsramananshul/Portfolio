@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Anshul Raman</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
@@ -1186,7 +1187,7 @@
           about security. Best way to reach me is email.
         </p>
         <div class="contact-btns rev">
-          <a href="mailto:ramanau@mail.uc.edu"                                 class="ct-btn ct-btn-white">✉ &nbsp;Email Me</a>
+          <a href="/cdn-cgi/l/email-protection#e5978488848b8490a588848c89cb9086cb808190" class="ct-btn ct-btn-white">✉ &nbsp;Email Me</a>
           <a href="https://www.linkedin.com/in/anshulraman06" target="_blank"  class="ct-btn ct-btn-outline">LinkedIn</a>
           <a href="https://github.com/itsramananshul"         target="_blank"  class="ct-btn ct-btn-outline">GitHub</a>
           <a href="resume.pdf"                                target="_blank"  class="ct-btn ct-btn-outline">↓ Resume</a>
@@ -1208,44 +1209,43 @@
 </div>
 
 <script>
-  // Scroll reveal
-  const revObs = new IntersectionObserver(entries => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        e.target.style.transitionDelay = (i * 0.04) + 's';
-        e.target.classList.add('vis');
-        revObs.unobserve(e.target);
-      }
+  // Make all .rev elements visible immediately on load (no observer needed)
+  document.addEventListener("DOMContentLoaded", function() {
+    // Show all reveal elements
+    document.querySelectorAll(".rev").forEach(function(el) {
+      el.classList.add("vis");
     });
-  }, { threshold: 0.07 });
-  document.querySelectorAll('.rev').forEach(el => revObs.observe(el));
 
-  // Skill bars
-  const skObs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('inview'); });
-  }, { threshold: 0.3 });
-  document.querySelectorAll('.sk-card').forEach(el => skObs.observe(el));
+    // Skill bars — animate after short delay
+    setTimeout(function() {
+      document.querySelectorAll(".sk-card").forEach(function(el) {
+        el.classList.add("inview");
+      });
+    }, 300);
 
-  // Project expand/collapse
-  document.querySelectorAll('.proj-item').forEach(item => {
-    item.addEventListener('click', () => item.classList.toggle('open'));
-  });
-
-  // Sidebar active nav link
-  const sections = ['hero','about','experience','projects','skills','education','contact'];
-  const navLinks = document.querySelectorAll('.nav-link');
-  const secObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        navLinks.forEach(l => l.classList.remove('active'));
-        const match = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
-        if (match) match.classList.add('active');
-      }
+    // Project expand/collapse
+    document.querySelectorAll(".proj-item").forEach(function(item) {
+      item.addEventListener("click", function() {
+        item.classList.toggle("open");
+      });
     });
-  }, { threshold: 0.4 });
-  sections.forEach(id => {
-    const el = document.getElementById(id);
-    if (el) secObs.observe(el);
+
+    // Sidebar active nav on scroll
+    var sections = ["hero","about","experience","projects","skills","education","contact"];
+    var navLinks = document.querySelectorAll(".nav-link");
+
+    window.addEventListener("scroll", function() {
+      var scrollY = window.scrollY + 120;
+      sections.forEach(function(id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        if (el.offsetTop <= scrollY && el.offsetTop + el.offsetHeight > scrollY) {
+          navLinks.forEach(function(l) { l.classList.remove("active"); });
+          var match = document.querySelector(".nav-link[href=\"#" + id + "\"]");
+          if (match) match.classList.add("active");
+        }
+      });
+    }, { passive: true });
   });
 </script>
 </body>
