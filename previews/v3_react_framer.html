@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anshul Raman · v3 / React + framer-motion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-0:#06051a; --bg-1:#0d0a2a; --ink:#fff; --ink-2:rgba(255,255,255,.7); --ink-3:rgba(255,255,255,.42);
+  --line:rgba(255,255,255,.08);
+  --c1:#a78bfa; --c2:#f0abfc; --c3:#67e8f9;
+  --sans:'Inter',system-ui,sans-serif;
+  --serif:'Instrument Serif',Georgia,serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --gx: clamp(20px, 5vw, 64px);
+}
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+::selection { background:var(--c2); color:#000; }
+html { background:var(--bg-0); }
+body {
+  background:var(--bg-0); color:var(--ink); font-family:var(--sans);
+  font-size:15px; line-height:1.55; overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+a { color:inherit; text-decoration:none; }
+
+/* mesh + grain */
+.mesh {
+  position:fixed; inset:-10%; z-index:-2; pointer-events:none;
+  background:
+    radial-gradient(60vmax 60vmax at 18% 22%, rgba(167,139,250,.45), transparent 55%),
+    radial-gradient(50vmax 50vmax at 82% 18%, rgba(240,171,252,.32), transparent 55%),
+    radial-gradient(70vmax 70vmax at 88% 80%, rgba(103,232,249,.28), transparent 55%),
+    var(--bg-0);
+  filter:saturate(1.05);
+}
+.grain {
+  position:fixed; inset:0; z-index:-1; pointer-events:none;
+  opacity:.05; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* glass utility */
+.glass {
+  background:rgba(255,255,255,.04);
+  backdrop-filter:blur(36px) saturate(1.4);
+  -webkit-backdrop-filter:blur(36px) saturate(1.4);
+  border:1px solid var(--line);
+  border-radius:18px;
+}
+
+/* nav */
+.nav-wrap {
+  position:fixed; top:max(20px, env(safe-area-inset-top)); left:0; right:0; z-index:80;
+  display:flex; justify-content:center; padding:0 var(--gx); pointer-events:none;
+}
+.nav-pill {
+  pointer-events:auto;
+  display:flex; align-items:center; gap:18px;
+  padding:8px 8px 8px 22px; border-radius:999px;
+  background:rgba(15,10,45,.55);
+  backdrop-filter:blur(28px) saturate(1.4);
+  border:1px solid var(--line);
+}
+.brand { font-weight:600; font-size:14px; letter-spacing:-.005em; display:flex; align-items:center; gap:10px; }
+.brand-dot {
+  width:22px; height:22px; border-radius:50%;
+  background:conic-gradient(from 200deg, var(--c1), var(--c2), var(--c3), var(--c1));
+  box-shadow:0 0 14px rgba(167,139,250,.5), inset 0 0 6px rgba(255,255,255,.4);
+}
+.nav-links { display:flex; gap:6px; }
+.nav-links a {
+  font-size:13px; padding:8px 14px; border-radius:999px;
+  color:var(--ink-2); transition:background .2s, color .2s;
+}
+.nav-links a:hover { color:var(--ink); background:rgba(255,255,255,.08); }
+.nav-cta {
+  font-size:13px; color:#0a0a0a; font-weight:600;
+  background:#fff; padding:9px 16px; border-radius:999px;
+}
+
+#root { min-height:100vh; }
+
+@keyframes spin { to { transform:rotate(360deg); } }
+.brand-dot { animation:spin 12s linear infinite; }
+
+@media (max-width:700px) { .nav-links { display:none; } }
+</style>
+</head>
+<body>
+
+<div class="mesh"></div>
+<div class="grain"></div>
+
+<div class="nav-wrap">
+  <nav class="nav-pill">
+    <span class="brand"><span class="brand-dot"></span><span>Anshul Raman</span></span>
+    <span class="nav-links">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+    </span>
+    <a class="nav-cta" href="mailto:ar.dev@anshulraman.com">Get in touch</a>
+  </nav>
+</div>
+
+<div id="root"></div>
+
+<!-- ═══ React + framer-motion via ESM (no build step) ═══ -->
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@18.3.1",
+    "react/jsx-runtime": "https://esm.sh/react@18.3.1/jsx-runtime",
+    "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
+    "framer-motion": "https://esm.sh/framer-motion@11.18.2?deps=react@18.3.1,react-dom@18.3.1",
+    "htm": "https://esm.sh/htm@3.1.1"
+  }
+}
+</script>
+
+<script type="module">
+import React, { useRef } from 'react';
+import { createRoot } from 'react-dom/client';
+import { motion, AnimatePresence, useScroll, useTransform, useInView } from 'framer-motion';
+import htm from 'htm';
+
+const html = htm.bind(React.createElement);
+
+// ── shared variants ──
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: i => ({
+    opacity: 1, y: 0,
+    transition: { delay: (i || 0) * 0.08, duration: 0.8, ease: [0.2, 0.8, 0.2, 1] }
+  })
+};
+
+const stagger = {
+  visible: { transition: { staggerChildren: 0.08 } }
+};
+
+// ── HERO ──
+function Hero() {
+  return html`
+    <section style=${{minHeight:'100dvh', padding:'160px var(--gx) 80px', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', textAlign:'center'}}>
+      <${motion.span}
+        initial=${{opacity:0, y:20}}
+        animate=${{opacity:1, y:0}}
+        transition=${{duration:.8, delay:.2}}
+        style=${{fontFamily:'var(--mono)', fontSize:11, letterSpacing:'.18em', textTransform:'uppercase', color:'var(--ink-3)', marginBottom:36, padding:'8px 16px', border:'1px solid var(--line)', borderRadius:999, background:'rgba(255,255,255,.025)', backdropFilter:'blur(20px)', display:'inline-flex', alignItems:'center', gap:10}}>
+        <${motion.span}
+          animate=${{opacity:[1,.5,1]}}
+          transition=${{duration:2, repeat:Infinity}}
+          style=${{width:6, height:6, borderRadius:'50%', background:'var(--c2)', boxShadow:'0 0 8px var(--c2)'}}/>
+        Sophomore · CS · UC · 2026
+      </${motion.span}>
+      <${motion.h1}
+        variants=${stagger}
+        initial="hidden"
+        animate="visible"
+        style=${{fontFamily:'var(--serif)', fontStyle:'italic', fontWeight:400, fontSize:'clamp(64px, 12vw, 200px)', lineHeight:.95, letterSpacing:'-.04em', marginBottom:32, maxWidth:'14ch'}}>
+        ${['Builds', 'production AI', 'while in school.'].map((w, i) => html`
+          <${motion.span}
+            key=${i}
+            variants=${fadeUp}
+            style=${{display:'inline-block', marginRight:'.25em', ...(i===1 ? {background:'linear-gradient(135deg, var(--c1), var(--c2), var(--c3))', WebkitBackgroundClip:'text', backgroundClip:'text', WebkitTextFillColor:'transparent'} : {})}}>
+            ${w}
+          </${motion.span}>`)}
+      </${motion.h1>}
+      <${motion.p}
+        initial=${{opacity:0, y:20}}
+        animate=${{opacity:1, y:0}}
+        transition=${{duration:.8, delay:.8}}
+        style=${{fontSize:17, lineHeight:1.6, color:'var(--ink-2)', maxWidth:580, margin:'0 auto 36px'}}>
+        Computer Science sophomore at the University of Cincinnati. <strong style=${{color:'var(--ink)'}}>Founding Engineer at OpenPrem.</strong> Builder of <strong style=${{color:'var(--ink)'}}>ARIA</strong> — a personal AI live in production for a year.
+      </${motion.p>}
+      <${motion.div}
+        initial=${{opacity:0, y:20}}
+        animate=${{opacity:1, y:0}}
+        transition=${{duration:.8, delay:1}}
+        style=${{display:'flex', gap:12, flexWrap:'wrap', justifyContent:'center'}}>
+        <${motion.a}
+          whileHover=${{scale:1.05, y:-2}}
+          whileTap=${{scale:.95}}
+          href="#work"
+          style=${{background:'#fff', color:'#000', padding:'14px 26px', borderRadius:999, fontWeight:600, fontSize:14, display:'inline-flex', alignItems:'center', gap:8, boxShadow:'0 12px 30px -8px rgba(255,255,255,.25)'}}>
+          See the work →
+        </${motion.a>}
+        <${motion.a}
+          whileHover=${{scale:1.05, y:-2}}
+          whileTap=${{scale:.95}}
+          href="mailto:ar.dev@anshulraman.com"
+          style=${{background:'rgba(255,255,255,.06)', color:'var(--ink)', padding:'14px 26px', borderRadius:999, fontWeight:500, fontSize:14, border:'1px solid var(--line)', backdropFilter:'blur(20px)'}}>
+          Get in touch
+        </${motion.a>}
+      </${motion.div>}
+    </section>`;
+}
+
+// ── ABOUT ──
+function StatCard({ n, l, i }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once:true, margin:"-80px" });
+  return html`
+    <${motion.div}
+      ref=${ref}
+      initial=${{opacity:0, y:40}}
+      animate=${inView ? {opacity:1, y:0} : {}}
+      transition=${{duration:.7, delay:i*.08, ease:[.2,.8,.2,1]}}
+      whileHover=${{y:-4, scale:1.02}}
+      class="glass"
+      style=${{padding:24, borderRadius:18}}>
+      <div style=${{fontFamily:'var(--serif)', fontSize:48, lineHeight:1, letterSpacing:'-.02em', background:'linear-gradient(135deg, var(--c1), var(--c2))', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent'}}>${n}</div>
+      <div style=${{fontFamily:'var(--mono)', fontSize:11, letterSpacing:'.14em', textTransform:'uppercase', color:'var(--ink-3)', marginTop:12}}>${l}</div>
+    </${motion.div>}`;
+}
+
+function About() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once:true, margin:"-100px" });
+  return html`
+    <section id="about" ref=${ref} style=${{padding:'140px var(--gx)', borderTop:'1px solid var(--line)'}}>
+      <${motion.div}
+        initial=${{opacity:0, y:30}}
+        animate=${inView ? {opacity:1, y:0} : {}}
+        transition=${{duration:.8}}
+        style=${{fontFamily:'var(--mono)', fontSize:11, letterSpacing:'.2em', textTransform:'uppercase', color:'var(--c1)', marginBottom:18}}>
+        — 01 / About
+      </${motion.div>}
+      <${motion.h2}
+        initial=${{opacity:0, y:40}}
+        animate=${inView ? {opacity:1, y:0} : {}}
+        transition=${{duration:.9, delay:.1}}
+        style=${{fontFamily:'var(--serif)', fontStyle:'italic', fontWeight:400, fontSize:'clamp(44px, 7vw, 100px)', lineHeight:1, letterSpacing:'-.025em', marginBottom:60, maxWidth:'18ch'}}>
+        A sophomore who <span style=${{background:'linear-gradient(135deg, var(--c1), var(--c2))', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent'}}>ships</span> in production.
+      </${motion.h2>}
+      <div style=${{display:'grid', gridTemplateColumns:'1.4fr 1fr', gap:60}}>
+        <${motion.div}
+          initial=${{opacity:0}}
+          animate=${inView ? {opacity:1} : {}}
+          transition=${{duration:.8, delay:.3}}
+          style=${{fontSize:17, lineHeight:1.7, color:'var(--ink-2)'}}>
+          <p style=${{marginBottom:'1em'}}>I write production code under deadline. <em style=${{color:'var(--c1)'}}>I've shipped 13+ projects</em> across AI, full-stack, and offensive security. Hackathon-tested. Production-tested.</p>
+          <p>Most comfortable when something has to actually work, in front of real users, by morning.</p>
+        </${motion.div>}
+        <div style=${{display:'grid', gridTemplateColumns:'1fr 1fr', gap:14}}>
+          <${StatCard} n="13+" l="Projects shipped" i=${0}/>
+          <${StatCard} n="365" l="Days · ARIA in prod" i=${1}/>
+          <${StatCard} n="3.68" l="GPA · Dean's list" i=${2}/>
+          <${StatCard} n="1" l="Founding-engineer role" i=${3}/>
+        </div>
+      </div>
+    </section>`;
+}
+
+// ── WORK ──
+const projects = [
+  { num:'01', t:'ARIA', meta:'Adaptive AI · 1y live', d:'Personal AI live in production for a year. 12 serverless fns, 6 cron jobs, 16/16 regression suite passing live.', href:'https://aria.anshulraman.com' },
+  { num:'02', t:'Auriva AI', meta:'Multi-Faith · 16 traditions', d:'16 sacred traditions with dedicated live scripture APIs and voice agents on iOS / Android / desktop.', href:'https://auriva.anshulraman.com' },
+  { num:'03', t:'VoxVitals', meta:'3rd · Medpace · 24h hackathon', d:'AI clinical-trial platform with voice + camera physiological sensing. Built in 24 hours.', href:'https://voxvitals.anshulraman.tech/' },
+  { num:'04', t:'GradeIntel', meta:'Live · Multi-LLM', d:'Cloud-synced GPA dashboard with multi-LLM AI assistant and Canvas LMS integration.', href:'https://gradintel.anshulraman.com' }
+];
+
+function ProjCard({ p, i }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once:true, margin:"-80px" });
+  return html`
+    <${motion.a}
+      ref=${ref}
+      initial=${{opacity:0, y:60}}
+      animate=${inView ? {opacity:1, y:0} : {}}
+      transition=${{duration:.85, delay:i*.08, ease:[.2,.8,.2,1]}}
+      whileHover=${{x:6, backgroundColor:'rgba(255,255,255,.07)'}}
+      href=${p.href}
+      target="_blank"
+      class="glass"
+      style=${{padding:32, borderRadius:18, display:'grid', gridTemplateColumns:'60px 1fr 60px', gap:24, alignItems:'center', cursor:'pointer'}}>
+      <div style=${{fontFamily:'var(--mono)', fontSize:11, letterSpacing:'.16em', color:'var(--ink-3)'}}>${p.num}</div>
+      <div>
+        <h3 style=${{fontFamily:'var(--serif)', fontStyle:'italic', fontWeight:400, fontSize:36, lineHeight:1.05, marginBottom:6}}>${p.t}</h3>
+        <div style=${{fontFamily:'var(--mono)', fontSize:11, letterSpacing:'.14em', textTransform:'uppercase', color:'var(--c1)', marginBottom:8}}>${p.meta}</div>
+        <p style=${{fontSize:14, color:'var(--ink-2)', lineHeight:1.65}}>${p.d}</p>
+      </div>
+      <${motion.span}
+        whileHover=${{x:8}}
+        style=${{fontFamily:'var(--mono)', fontSize:18, color:'var(--c1)'}}>→</${motion.span>}
+    </${motion.a>}`;
+}
+
+function Work() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once:true });
+  return html`
+    <section id="work" ref=${ref} style=${{padding:'140px var(--gx)', borderTop:'1px solid var(--line)'}}>
+      <${motion.div}
+        initial=${{opacity:0, y:30}}
+        animate=${inView ? {opacity:1, y:0} : {}}
+        transition=${{duration:.8}}
+        style=${{fontFamily:'var(--mono)', fontSize:11, letterSpacing:'.2em', textTransform:'uppercase', color:'var(--c1)', marginBottom:18}}>
+        — 02 / Selected work
+      </${motion.div>}
+      <${motion.h2}
+        initial=${{opacity:0, y:40}}
+        animate=${inView ? {opacity:1, y:0} : {}}
+        transition=${{duration:.9, delay:.1}}
+        style=${{fontFamily:'var(--serif)', fontStyle:'italic', fontWeight:400, fontSize:'clamp(44px, 7vw, 100px)', lineHeight:1, letterSpacing:'-.025em', marginBottom:60}}>
+        Things I have actually built.
+      </${motion.h2>}
+      <div style=${{display:'flex', flexDirection:'column', gap:14}}>
+        ${projects.map((p, i) => html`<${ProjCard} p=${p} i=${i} key=${p.num}/>`)}
+      </div>
+    </section>`;
+}
+
+// ── CONTACT ──
+function Contact() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once:true, margin:"-100px" });
+  return html`
+    <section id="contact" ref=${ref} style=${{padding:'200px var(--gx) 100px', borderTop:'1px solid var(--line)', textAlign:'center'}}>
+      <${motion.h2}
+        initial=${{opacity:0, scale:.92}}
+        animate=${inView ? {opacity:1, scale:1} : {}}
+        transition=${{duration:1, ease:[.2,.8,.2,1]}}
+        style=${{fontFamily:'var(--serif)', fontStyle:'italic', fontWeight:400, fontSize:'clamp(72px, 14vw, 220px)', lineHeight:.95, letterSpacing:'-.03em', marginBottom:36, maxWidth:'14ch', margin:'0 auto 36px'}}>
+        Let's <span style=${{background:'linear-gradient(135deg, var(--c1), var(--c2), var(--c3))', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent'}}>build</span> something.
+      </${motion.h2>}
+      <${motion.a}
+        initial=${{opacity:0, y:20}}
+        animate=${inView ? {opacity:1, y:0} : {}}
+        transition=${{duration:.8, delay:.4}}
+        whileHover=${{scale:1.05, y:-3, boxShadow:'0 18px 40px rgba(167,139,250,.5)'}}
+        whileTap=${{scale:.97}}
+        href="mailto:ar.dev@anshulraman.com"
+        style=${{display:'inline-flex', alignItems:'center', gap:10, background:'var(--c2)', color:'#000', padding:'18px 32px', borderRadius:999, fontWeight:600, fontSize:15, marginTop:32, boxShadow:'0 12px 30px rgba(240,171,252,.3)'}}>
+        ar.dev@anshulraman.com →
+      </${motion.a>}
+    </section>`;
+}
+
+// ── APP ──
+function App() {
+  return html`<${React.Fragment}>
+    <${Hero}/>
+    <${About}/>
+    <${Work}/>
+    <${Contact}/>
+    <footer style=${{padding:'24px var(--gx)', borderTop:'1px solid var(--line)', display:'flex', justifyContent:'space-between', flexWrap:'wrap', gap:14, fontFamily:'var(--mono)', fontSize:11, letterSpacing:'.06em', color:'var(--ink-3)', textTransform:'uppercase'}}>
+      <span>© 2026 Anshul Raman</span>
+      <span>v3 · React + framer-motion</span>
+      <span>Cincinnati · OH</span>
+    </footer>
+  </${React.Fragment}>`;
+}
+
+createRoot(document.getElementById('root')).render(html`<${App}/>`);
+
+// smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+  const id = a.getAttribute('href');
+  if (id.length > 1) {
+    const t = document.querySelector(id);
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior:'smooth', block:'start' }); }
+  }
+}));
+</script>
+</body>
+</html>

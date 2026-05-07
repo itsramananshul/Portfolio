@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pick a portfolio variant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root { --bg:#0a0a0a; --ink:#fff; --ink-2:rgba(255,255,255,.62); --ink-3:rgba(255,255,255,.38); --line:rgba(255,255,255,.10); --accent:#7df9ff; }
+  body {
+    background:var(--bg); color:var(--ink); font-family:'Inter',system-ui,sans-serif;
+    font-size:15px; line-height:1.55; padding:64px clamp(20px, 5vw, 80px); -webkit-font-smoothing:antialiased; min-height:100dvh;
+  }
+  body::before {
+    content:''; position:fixed; inset:0; pointer-events:none; z-index:0;
+    background:
+      radial-gradient(900px 500px at 20% 20%, rgba(168,85,247,.08), transparent 60%),
+      radial-gradient(900px 500px at 80% 80%, rgba(125,249,255,.06), transparent 60%);
+  }
+  .wrap { max-width:980px; margin:0 auto; position:relative; z-index:2; }
+  .meta { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-3); display:flex; justify-content:space-between; margin-bottom:18px; flex-wrap:wrap; gap:8px; }
+  h1 {
+    font-size:clamp(40px, 7vw, 84px); font-weight:800; line-height:.96;
+    letter-spacing:-.04em; margin-bottom:14px;
+  }
+  h1 em { font-style:italic; font-weight:300; opacity:.5; }
+  h1 .accent { color:var(--accent); }
+  .lede { font-size:18px; color:var(--ink-2); max-width:680px; margin-bottom:48px; }
+  .lede strong { color:var(--ink); font-weight:500; }
+  .lede code { font-family:'JetBrains Mono', monospace; font-size:.88em; background:rgba(255,255,255,.06); padding:1px 6px; border-radius:3px; }
+
+  .list { display:flex; flex-direction:column; gap:14px; }
+  .opt {
+    background:rgba(255,255,255,.03); border:1px solid var(--line); border-radius:14px;
+    padding:24px; display:grid; grid-template-columns:60px 1fr auto;
+    gap:24px; align-items:center;
+    text-decoration:none; color:inherit;
+    transition:transform .25s, background .25s, border-color .25s;
+  }
+  .opt:hover { transform:translateX(4px); background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.18); }
+  .opt .n {
+    font-family:'JetBrains Mono',monospace; font-size:32px; font-weight:500;
+    color:var(--accent); letter-spacing:-.02em;
+  }
+  .opt .name { font-weight:700; font-size:24px; letter-spacing:-.025em; margin-bottom:4px; }
+  .opt .stack { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.06em; color:var(--accent); text-transform:uppercase; margin-bottom:8px; }
+  .opt .desc { font-size:14px; color:var(--ink-2); line-height:1.55; }
+  .opt .arr { font-family:'JetBrains Mono',monospace; font-size:18px; opacity:.5; transition:transform .25s, opacity .25s; }
+  .opt:hover .arr { transform:translateX(4px); opacity:1; color:var(--accent); }
+
+  @media (max-width:700px) {
+    .opt { grid-template-columns:48px 1fr; gap:16px; padding:18px; }
+    .opt .arr { grid-column:2; padding-top:10px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="meta"><span>Anshul Raman · Portfolio Stack Demos</span><span>2026 · 05 · 07</span></div>
+  <h1>Four <span class="accent">animation stacks.</span><br>Same content. <em>Different bones.</em></h1>
+  <p class="lede">
+    <strong>Your live <code>index.html</code> isn't touched.</strong> Each variant below is a standalone preview using a different animation library/approach. Open each on your phone, see what you like.
+  </p>
+
+  <div class="list">
+
+    <a class="opt" href="v1_motion_one.html">
+      <span class="n">v1</span>
+      <div>
+        <div class="stack">— motion one (vanilla framer-motion)</div>
+        <div class="name">Restrained, native, fast.</div>
+        <div class="desc">Vanilla JS animations via Motion One — same author as framer-motion, same easing curves, no React needed. Word-by-word stagger reveals on hero + section headings, scroll-triggered fades on stat cards and project rows. Clean dark theme with a cyan accent. Loads in &lt;30kb of JS.</div>
+      </div>
+      <span class="arr">↗</span>
+    </a>
+
+    <a class="opt" href="v2_gsap_max.html">
+      <span class="n">v2</span>
+      <div>
+        <div class="stack">— gsap + scrolltrigger + lenis</div>
+        <div class="name">Awwwards-mode. Maximum motion.</div>
+        <div class="desc">GSAP timeline-based hero entrance, infinite marquee strip between sections, smooth Lenis scrolling, parallax background numbers, custom red cursor with magnetic hover effect, project rows that expand on hover. Bebas Neue display + Instrument Serif italic. <strong>The "I want to win design awards" treatment.</strong></div>
+      </div>
+      <span class="arr">↗</span>
+    </a>
+
+    <a class="opt" href="v3_react_framer.html">
+      <span class="n">v3</span>
+      <div>
+        <div class="stack">— react + framer-motion (esm, no build)</div>
+        <div class="name">The actual framer-motion library.</div>
+        <div class="desc">React 18 + framer-motion 11 loaded directly via ESM CDN — runs in the browser without any build step. <code>motion.div</code> primitives with <code>whileHover</code>, <code>whileTap</code>, <code>useInView</code>, variants with stagger. Mesh-gradient backdrop, glass cards, gradient pill nav. <strong>The closest thing to your "what if it was a real React app".</strong></div>
+      </div>
+      <span class="arr">↗</span>
+    </a>
+
+    <a class="opt" href="v4_21st_inspired.html">
+      <span class="n">v4</span>
+      <div>
+        <div class="stack">— 21st.dev inspired (magic ui · bento · glass)</div>
+        <div class="name">Premium component-library aesthetic.</div>
+        <div class="desc">The 21st.dev / shadcn / magic-ui visual language: floating pill nav with animated logo mark, shine-effect tag pill, conic-gradient borders that animate on hover, bento grid (4-col + 2-col asymmetric), purple/pink/cyan beam color palette, glass-morphism. Geist font. <strong>The closest "designer template" feel without React.</strong></div>
+      </div>
+      <span class="arr">↗</span>
+    </a>
+
+  </div>
+
+  <p style="margin-top:48px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.06em; color:var(--ink-3); line-height:1.85;">
+    All four are <strong style="color:var(--ink)">standalone</strong> — no install needed, no build step, all run in the browser. Same content (Sophomore + UC, OpenPrem Founding Engineer, ARIA + Auriva + VoxVitals + GradeIntel). Tell me which feels right and I'll commit it as the new <code style="font-family:inherit; background:rgba(255,255,255,.06); padding:1px 5px; border-radius:3px;">index.html</code>.
+  </p>
+</div>
+</body>
+</html>
