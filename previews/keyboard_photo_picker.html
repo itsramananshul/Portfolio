@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pick a keyboard photo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background:#000; color:#fff;
+    font-family:'Inter',system-ui,sans-serif;
+    padding:48px 18px; min-height:100vh;
+  }
+  body::before {
+    content:''; position:fixed; inset:0; pointer-events:none; z-index:0;
+    background:radial-gradient(900px 500px at 50% 30%, rgba(74,240,74,.08), transparent 60%);
+  }
+  .wrap { max-width:1100px; margin:0 auto; position:relative; z-index:2; }
+  h1 {
+    font-size:clamp(26px, 4vw, 44px); font-weight:800;
+    letter-spacing:-.025em; margin-bottom:14px;
+  }
+  h1 .gr { color:#0f0; }
+  .lede {
+    color:rgba(255,255,255,.55);
+    font-family:'Share Tech Mono', monospace;
+    font-size:13px; letter-spacing:.06em;
+    margin-bottom:48px; line-height:1.7;
+  }
+  .lede strong { color:#fff; font-weight:600; }
+
+  .grid {
+    display:grid; grid-template-columns:repeat(2, 1fr); gap:20px;
+  }
+  .opt {
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:14px; padding:14px;
+    transition:border-color .25s, transform .25s, background .3s;
+    cursor:pointer;
+  }
+  .opt:hover {
+    border-color:rgba(74,240,74,.4);
+    background:rgba(74,240,74,.05);
+    transform:translateY(-2px);
+  }
+  .opt-num {
+    font-family:'Share Tech Mono', monospace;
+    font-size:11px; letter-spacing:.18em; text-transform:uppercase;
+    color:#0f0; margin-bottom:10px;
+    display:flex; justify-content:space-between;
+  }
+  .opt-num .author { color:rgba(255,255,255,.4); }
+  .opt img {
+    width:100%; aspect-ratio:16/9; object-fit:cover;
+    border-radius:8px; display:block;
+    background:#1a1a1a;
+  }
+  .opt-name {
+    margin-top:14px;
+    font-weight:600; font-size:15px; letter-spacing:-.01em;
+  }
+  .opt-desc {
+    margin-top:4px;
+    font-family:'Share Tech Mono', monospace;
+    font-size:11px; letter-spacing:.06em;
+    color:rgba(255,255,255,.5); line-height:1.5;
+  }
+
+  @media (max-width:700px) {
+    .grid { grid-template-columns:1fr; }
+  }
+
+  .foot {
+    margin-top:48px; padding-top:24px; border-top:1px solid rgba(255,255,255,.08);
+    font-family:'Share Tech Mono', monospace;
+    font-size:11px; letter-spacing:.12em; text-transform:uppercase;
+    color:rgba(255,255,255,.4); line-height:1.8;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <h1><span class="gr">▢▢▢</span> &nbsp; pick a <em style="color:#0f0">keyboard</em></h1>
+  <p class="lede">
+    Four free-to-use mechanical keyboard photos from Unsplash.<br>
+    <strong>Tell me a number (01–04)</strong> and I'll overlay your tech logos onto the keys of that photo with the pop-up hover animation.
+  </p>
+
+  <div class="grid">
+
+    <div class="opt" data-pick="01">
+      <div class="opt-num"><span>— 01 / Black on white</span><span class="author">unsplash · cVUPic1cbd4</span></div>
+      <img src="https://images.unsplash.com/photo-1589578228447-e1a4e481c6c8?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600" alt="Black mechanical keyboard on white table" loading="lazy">
+      <div class="opt-name">Black on white desk</div>
+      <div class="opt-desc">Clean overhead shot. Black keys, white desk. Highest contrast — logos will pop.</div>
+    </div>
+
+    <div class="opt" data-pick="02">
+      <div class="opt-num"><span>— 02 / Black overhead</span><span class="author">unsplash · c4a_0kycTUE</span></div>
+      <img src="https://images.unsplash.com/photo-1625130694338-4110ba634e59?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600" alt="Black and white keyboard overhead shot" loading="lazy">
+      <div class="opt-name">Pure overhead</div>
+      <div class="opt-desc">Black/white keyboard from directly above. Most "blueprint-like" — every key visible.</div>
+    </div>
+
+    <div class="opt" data-pick="03">
+      <div class="opt-num"><span>— 03 / Red accent</span><span class="author">unsplash · p5rgceFiOH0</span></div>
+      <img src="https://images.unsplash.com/photo-1635987391914-cb84b567e68f?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600" alt="Black keyboard with red accent keys" loading="lazy">
+      <div class="opt-name">Black + red accents</div>
+      <div class="opt-desc">Black keys, red modifiers (Esc, arrows). Cinematic angle. Most personality.</div>
+    </div>
+
+    <div class="opt" data-pick="04">
+      <div class="opt-num"><span>— 04 / Colorful</span><span class="author">unsplash · ZByWaPXD2fU</span></div>
+      <img src="https://images.unsplash.com/photo-1595044426077-d36d9236d54a?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600" alt="White, green, and blue mechanical keyboard" loading="lazy">
+      <div class="opt-name">White / green / blue</div>
+      <div class="opt-desc">Multi-color caps already. Most playful — but logos may compete with existing colors.</div>
+    </div>
+
+  </div>
+
+  <div class="foot">
+    <span style="color:#0f0">●</span> &nbsp; All four photos: free for commercial use under Unsplash license<br>
+    Once you pick, I'll position ~30–50 tech logos on the actual keys of that photo with the pop-up animation
+  </div>
+</div>
+
+</body>
+</html>
