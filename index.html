@@ -78,7 +78,7 @@
       </p>
       <div class="hero-stats rev">
         <div class="stat"><div class="stat-val">3.68</div><div class="stat-label">GPA</div></div>
-        <div class="stat"><div class="stat-val">11+</div><div class="stat-label">Projects</div></div>
+        <div class="stat"><div class="stat-val">12+</div><div class="stat-label">Projects</div></div>
         <div class="stat"><div class="stat-val">2</div><div class="stat-label">Scholarships</div></div>
         <div class="stat"><div class="stat-val">#1</div><div class="stat-label">District Tennis</div></div>
       </div>
@@ -194,9 +194,71 @@
       <h2 class="section-title rev">Things I&apos;ve<br /><em>actually built.</em></h2>
       <div class="projects-list">
 
-        <!-- 01 VoxVitals -->
+        <!-- 01 ARIA -->
         <div class="proj-item rev" data-i="0">
           <div class="proj-number">01</div>
+          <div class="proj-main">
+            <a class="proj-title proj-title-link" href="https://aria.anshulraman.com" target="_blank" rel="noopener">ARIA &mdash; Personal AI Operating System &#8599;</a>
+            <p class="proj-tagline" style="font-size:0.78rem;letter-spacing:0.06em;color:var(--grey3);text-transform:uppercase;margin-bottom:0.4rem;">aria.anshulraman.com &middot; Live in production &middot; Built entirely solo</p>
+            <p class="proj-tagline"><b style="color:var(--white);">Most AI projects are demos. ARIA is not.</b> ARIA is a fully autonomous personal AI system I built from scratch. It runs continuously in the background &mdash; monitoring, reasoning, writing, and acting &mdash; 24/7, without being asked. It knows my grades, my deadlines, my conversations, my habits, and my goals. It manages them automatically. <em>Not a chatbot. Not a wrapper. A system.</em></p>
+            <div class="tags">
+              <span class="tag">Node.js</span><span class="tag">Python</span><span class="tag">TypeScript</span>
+              <span class="tag">Vercel</span><span class="tag">Supabase</span><span class="tag">Gemini 2.5</span>
+              <span class="tag">Groq Whisper</span><span class="tag">Telegram Bot</span><span class="tag">PWA</span>
+              <span class="tag">Three.js</span>
+            </div>
+            <div class="proj-details">
+              <div class="proj-details-inner">
+
+                <p style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.22em;color:var(--grey);font-weight:500;margin:0.4rem 0 0.9rem;border-left:2px solid var(--grey3);padding-left:0.7rem;">By the numbers</p>
+                <div style="display:flex;flex-direction:column;gap:0.7rem;margin-bottom:0.4rem;">
+                  <div style="display:grid;grid-template-columns:72px 1fr;gap:1.1rem;align-items:baseline;">
+                    <span style="font-family:'Courier New',ui-monospace,monospace;font-size:1.55rem;color:var(--white);font-weight:600;text-align:right;line-height:1;letter-spacing:-0.02em;">12</span>
+                    <span style="font-size:0.85rem;color:var(--grey);line-height:1.55;font-weight:300;">serverless functions in production &mdash; at the hard ceiling of the hosting plan, every slot used</span>
+                  </div>
+                  <div style="display:grid;grid-template-columns:72px 1fr;gap:1.1rem;align-items:baseline;">
+                    <span style="font-family:'Courier New',ui-monospace,monospace;font-size:1.55rem;color:var(--white);font-weight:600;text-align:right;line-height:1;letter-spacing:-0.02em;">6</span>
+                    <span style="font-size:0.85rem;color:var(--grey);line-height:1.55;font-weight:300;">scheduled autonomous jobs, running as frequently as every 15 minutes</span>
+                  </div>
+                  <div style="display:grid;grid-template-columns:72px 1fr;gap:1.1rem;align-items:baseline;">
+                    <span style="font-family:'Courier New',ui-monospace,monospace;font-size:1.55rem;color:var(--white);font-weight:600;text-align:right;line-height:1;letter-spacing:-0.02em;">5</span>
+                    <span style="font-size:0.85rem;color:var(--grey);line-height:1.55;font-weight:300;">long-running edge functions handling tasks too complex for serverless timeouts</span>
+                  </div>
+                  <div style="display:grid;grid-template-columns:72px 1fr;gap:1.1rem;align-items:baseline;">
+                    <span style="font-family:'Courier New',ui-monospace,monospace;font-size:1.4rem;color:var(--white);font-weight:600;text-align:right;line-height:1;letter-spacing:-0.02em;">16/16</span>
+                    <span style="font-size:0.85rem;color:var(--grey);line-height:1.55;font-weight:300;">automated regression tests passing against the live production endpoint</span>
+                  </div>
+                  <div style="display:grid;grid-template-columns:72px 1fr;gap:1.1rem;align-items:baseline;">
+                    <span style="font-family:'Courier New',ui-monospace,monospace;font-size:1.55rem;color:var(--white);font-weight:600;text-align:right;line-height:1;letter-spacing:-0.02em;">3</span>
+                    <span style="font-size:0.85rem;color:var(--grey);line-height:1.55;font-weight:300;">interfaces &mdash; Telegram, a PWA, and an always-on voice agent on desktop</span>
+                  </div>
+                  <div style="display:grid;grid-template-columns:72px 1fr;gap:1.1rem;align-items:baseline;">
+                    <span style="font-family:'Courier New',ui-monospace,monospace;font-size:1.55rem;color:var(--white);font-weight:600;text-align:right;line-height:1;letter-spacing:-0.02em;">0</span>
+                    <span style="font-size:0.85rem;color:var(--grey);line-height:1.55;font-weight:300;">times you have to open an app for it to be working</span>
+                  </div>
+                </div>
+
+                <p style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.22em;color:var(--grey);font-weight:500;margin:1.5rem 0 0.7rem;border-left:2px solid var(--grey3);padding-left:0.7rem;">What makes it technically interesting</p>
+                <ul class="proj-pts">
+                  <li><b>The hardest part of building an AI system that operates continuously is not the AI &mdash; it&rsquo;s the judgment layer.</b> ARIA has to decide, on every single interaction, what kind of question it&rsquo;s dealing with, what data source is actually relevant, and what level of action is safe to take. Getting that wrong has real consequences: a misclassified question sends the user into a multi-step autonomous research loop instead of giving an immediate answer. I built, tested, and iterated on that judgment layer extensively &mdash; validating every change against real production traffic before it touched live behavior.</li>
+                  <li><b>The memory system required a different kind of thinking.</b> There are things ARIA should remember forever, things it should remember temporarily, and things it should stop surfacing once you&rsquo;ve told it they&rsquo;re resolved &mdash; all without deleting anything. Designing those three layers to work together without conflicting took more architectural iteration than most of the features people would notice.</li>
+                  <li><b>Destructive actions</b> &mdash; sending an email, modifying a calendar event &mdash; have a dedicated safety architecture that is explicitly not AI-based. The last gate before any irreversible action executes is deterministic, hardcoded logic. I made that decision deliberately: defense in depth only works if the two layers can fail independently of each other.</li>
+                  <li><b>The behavioral intelligence layer</b> &mdash; the part that detects when I&rsquo;m overwhelmed, stuck in a loop, or avoiding something, and adjusts how ARIA engages &mdash; was built in phases, shipped dormant, validated in shadow against real traffic, and only activated once the data confirmed it was behaving correctly. <em>That pattern is how I&rsquo;d handle any high-risk change in a production system.</em></li>
+                </ul>
+
+                <p style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.22em;color:var(--grey);font-weight:500;margin:1.5rem 0 0.5rem;border-left:2px solid var(--grey3);padding-left:0.7rem;">Stack</p>
+                <p style="font-size:0.78rem;line-height:1.85;color:var(--grey);font-weight:300;margin-bottom:0.6rem;">Node.js &middot; Python &middot; TypeScript (Deno) &middot; PostgreSQL &middot; Supabase &middot; Vercel &middot; Gemini 2.5 Flash &middot; Groq Whisper &middot; Google OAuth2 &middot; Gmail API &middot; Google Calendar API &middot; Telegram Bot API &middot; GitHub API &middot; OpenWakeWord &middot; faster-whisper &middot; edge-tts &middot; Three.js &middot; PWA</p>
+
+                <a class="proj-link" href="https://aria.anshulraman.com" target="_blank">Read More About ARIA &#8599;</a>
+              </div>
+            </div>
+          </div>
+          <div class="proj-arrow">&nearr;</div>
+        </div>
+
+        <!-- 02 VoxVitals -->
+        <div class="proj-item rev" data-i="0">
+          <div class="proj-number">02</div>
           <div class="proj-main">
             <a class="proj-title proj-title-link" href="https://voxvitals.anshulraman.tech/" target="_blank" rel="noopener">VoxVitals &mdash; AI Clinical Trial Platform &#8599;</a>
             <p class="proj-tagline">3rd Place &middot; Medpace Clinical Trial Challenge @ RevolutionUC 2026 &nbsp;&middot;&nbsp; MLH Best Use of Presage API &nbsp;&middot;&nbsp; Built in 24 hours.</p>
@@ -220,9 +282,9 @@
           <div class="proj-arrow">&nearr;</div>
         </div>
 
-        <!-- 02 GradeIntel -->
+        <!-- 03 GradeIntel -->
         <div class="proj-item rev" data-i="1">
-          <div class="proj-number">02</div>
+          <div class="proj-number">03</div>
           <div class="proj-main">
             <a class="proj-title proj-title-link" href="https://gradintel.anshulraman.com" target="_blank" rel="noopener">GradeIntel &mdash; Academic Performance Platform &#8599;</a>
             <p class="proj-tagline">Full-stack GPA dashboard with AI assistants, grade simulator, study planner, and Canvas LMS integration. Live at gradintel.anshulraman.com</p>
@@ -248,9 +310,9 @@
           </div>
         </div>
 
-        <!-- 03 ReachOut -->
+        <!-- 04 ReachOut -->
         <div class="proj-item rev" data-i="1">
-          <div class="proj-number">03</div>
+          <div class="proj-number">04</div>
           <div class="proj-main">
             <a class="proj-title proj-title-link" href="https://reachout.anshulraman.com/" target="_blank" rel="noopener">ReachOut &mdash; Automated Job Outreach Platform &#8599;</a>
             <p class="proj-tagline">Full-stack cold email automation that finds recruiters across 4 job boards, generates personalised emails, and sends them from your own Gmail. Built for job seekers who want to skip the queue.</p>
@@ -276,9 +338,9 @@
           </div>
         </div>
 
-        <!-- 04 AI Phone Agent -->
+        <!-- 05 AI Phone Agent -->
         <div class="proj-item rev" data-i="2">
-          <div class="proj-number">04</div>
+          <div class="proj-number">05</div>
           <div class="proj-main">
             <a class="proj-title proj-title-link" href="https://github.com/itsramananshul/ai-phone-agent/" target="_blank" rel="noopener">AI Phone Agent &mdash; Local Voice AI System &#8599;</a>
             <p class="proj-tagline">Fully working AI phone agent that answers calls and holds real conversations, running completely free on a local machine.</p>
@@ -301,9 +363,9 @@
           </div>
         </div>
 
-        <!-- 05 EV3 Robot — UPDATED -->
+        <!-- 06 EV3 Robot — UPDATED -->
         <div class="proj-item rev" data-i="10">
-          <div class="proj-number">05</div>
+          <div class="proj-number">06</div>
           <div class="proj-main">
             <a class="proj-title proj-title-link" href="https://www.linkedin.com/posts/anshulraman06_engineering-robotics-labview-ugcPost-7454015401723719680-FJUj?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE27UcIBlcMwMGGxWL1Wr2QHez-gHkecpCo" target="_blank" rel="noopener">EV3 Autonomous Robot &mdash; UC Engineering Design Project &#8599;</a>
             <p class="proj-tagline">Fully autonomous robot that navigates a line track, detects and grabs a bin by weight classification, and delivers it to the correct drop zone. Built from scratch with zero prior hardware experience.</p>
@@ -327,9 +389,9 @@
           <div class="proj-arrow">&nearr;</div>
         </div>
 
-        <!-- 06 ATM System -->
+        <!-- 07 ATM System -->
         <div class="proj-item rev" data-i="9">
-          <div class="proj-number">06</div>
+          <div class="proj-number">07</div>
           <div class="proj-main">
             <a class="proj-title proj-title-link" href="https://github.com/itsramananshul/atm-system" target="_blank" rel="noopener">Python Banking &amp; ATM System &#8599;</a>
             <p class="proj-tagline">Full console-based banking with persistent storage, PIN security &amp; admin panel.</p>
@@ -348,9 +410,9 @@
           </div>
         </div>
 
-        <!-- 07 Bus Booking -->
+        <!-- 08 Bus Booking -->
         <div class="proj-item rev" data-i="4">
-          <div class="proj-number">07</div>
+          <div class="proj-number">08</div>
           <div class="proj-main">
             <a class="proj-title proj-title-link" href="https://github.com/itsramananshul/bus-booking-system/" target="_blank" rel="noopener">Python Bus Booking System &#8599;</a>
             <p class="proj-tagline">File-backed bus reservation with seat tracking, cancellation, and unique booking IDs.</p>
@@ -369,9 +431,9 @@
           </div>
         </div>
 
-        <!-- 08 Medicine Dispensing -->
+        <!-- 09 Medicine Dispensing -->
         <div class="proj-item rev" data-i="5">
-          <div class="proj-number">08</div>
+          <div class="proj-number">09</div>
           <div class="proj-main">
             <div class="proj-title">AI-Integrated Medicine Dispensing Machine</div>
             <p class="proj-tagline">Assistive hardware for Alzheimer&apos;s and dementia patients &mdash; reduces missed doses and improves caregiver visibility.</p>
@@ -389,9 +451,9 @@
           </div>
         </div>
 
-        <!-- 09 RAT -->
+        <!-- 10 RAT -->
         <div class="proj-item rev" data-i="6">
-          <div class="proj-number">09</div>
+          <div class="proj-number">10</div>
           <div class="proj-main">
             <div class="proj-title">RAT Development &amp; Pen Testing</div>
             <p class="proj-tagline">Controlled Remote Access Trojan lab &mdash; full-device compromise, 12+ remote functions, ethical documentation.</p>
@@ -408,9 +470,9 @@
           </div>
         </div>
 
-        <!-- 10 Wi-Fi -->
+        <!-- 11 Wi-Fi -->
         <div class="proj-item rev" data-i="7">
-          <div class="proj-number">10</div>
+          <div class="proj-number">11</div>
           <div class="proj-main">
             <a class="proj-title proj-title-link" href="https://www.linkedin.com/posts/anshulraman06/hardware-embedded-systems-developerjourney-activity-7422510046862835712-nYUH" target="_blank" rel="noopener">Wi-Fi Penetration Testing Device &#8599;</a>
             <p class="proj-tagline">ESP8266 wireless auditing &mdash; evil twin APs, deauth testing, 50+ beacon floods.</p>
@@ -428,9 +490,9 @@
           </div>
         </div>
 
-        <!-- 11 Phishing -->
+        <!-- 12 Phishing -->
         <div class="proj-item rev" data-i="8">
-          <div class="proj-number">11</div>
+          <div class="proj-number">12</div>
           <div class="proj-main">
             <div class="proj-title">Phishing Website Simulation</div>
             <p class="proj-tagline">End-to-end phishing campaigns in a secure lab &mdash; credential harvesting, MFA mitigation.</p>
