@@ -176,9 +176,10 @@ body.menu-open { overflow:hidden; }
 
 /* ───────── HERO ───────── */
 .hero {
-  min-height:100dvh; padding:140px 6vw 56px;
+  min-height:100dvh; padding:140px 6vw 36px;
   display:flex; flex-direction:column; justify-content:center;
 }
+#about { padding-top:84px; }
 .hero-eyebrow {
   font-family:var(--mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase;
   color:var(--ink-3); margin-bottom:32px;
@@ -214,8 +215,8 @@ body.menu-open { overflow:hidden; }
 .stat-label { font-family:var(--mono); font-size:10.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-3); margin-top:8px; }
 
 .hero-bottom {
-  display:flex; justify-content:flex-start; align-items:flex-end;
-  margin-top:42px; flex-wrap:wrap; gap:18px;
+  display:flex; justify-content:flex-end; align-items:flex-end;
+  margin-top:32px; flex-wrap:wrap; gap:18px;
 }
 .btn-orange {
   display:inline-flex; align-items:center; gap:10px;
@@ -423,117 +424,108 @@ body.menu-open { overflow:hidden; }
 .hover-preview .hp-d { color:rgba(255,255,255,.72); }
 .hover-preview .hp-foot { font-family:var(--mono); font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:rgba(255,255,255,.45); margin-top:10px; }
 
-/* ───────── SKILLS — console (tabbed) ───────── */
+/* ───────── SKILLS — departure board ───────── */
 .skills-section { padding:120px 6vw; background:var(--bg-2); }
 .skills-intro { font-size:18px; line-height:1.6; color:var(--ink-2); max-width:60ch; margin-bottom:40px; }
 .skills-intro strong { color:var(--ink); }
 
-.console {
-  background:#0d0d0d; color:#fff;
+.deck {
+  background:#0a0a0a; color:#fff;
   border:1px solid rgba(255,255,255,.08);
   border-radius:18px; overflow:hidden;
+  position:relative;
   box-shadow:0 30px 80px -40px rgba(0,0,0,.6);
-  position:relative;
 }
-.console::before {
-  content:''; position:absolute; left:0; top:0; right:0; height:3px;
-  background:linear-gradient(90deg, var(--orange) 0%, var(--orange) var(--tab-pct, 16.6%), transparent var(--tab-pct, 16.6%));
-  transition:--tab-pct .4s cubic-bezier(.2,.8,.2,1);
-  z-index:2;
-}
-
-.console-tabs {
-  display:grid; grid-template-columns:repeat(6, 1fr);
-  border-bottom:1px solid rgba(255,255,255,.06);
-  background:rgba(255,255,255,.015);
-  overflow:auto; scrollbar-width:none;
-}
-.console-tabs::-webkit-scrollbar { display:none; }
-.console-tab {
-  display:flex; flex-direction:column; align-items:flex-start; gap:6px;
-  padding:18px 20px; min-width:0;
-  background:none; border:none; cursor:pointer;
-  color:rgba(255,255,255,.5);
-  font:inherit; text-align:left;
-  border-right:1px solid rgba(255,255,255,.04);
-  transition:background .25s, color .25s;
-  position:relative;
-}
-.console-tab:last-child { border-right:none; }
-.console-tab:hover { background:rgba(255,255,255,.025); color:rgba(255,255,255,.8); }
-.console-tab.active { background:rgba(255,97,26,.06); color:#fff; }
-.console-tab .t-id {
-  font-family:var(--mono); font-size:9.5px; letter-spacing:.18em; text-transform:uppercase;
-  color:rgba(255,255,255,.35);
-}
-.console-tab.active .t-id { color:var(--orange); }
-.console-tab .t-name {
-  font-family:var(--sans); font-weight:600; font-size:13.5px; letter-spacing:-.005em;
-  display:flex; align-items:center; gap:7px;
-  white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:100%;
-}
-.console-tab .t-name .ic { font-size:15px; flex-shrink:0; }
-
-.console-panel {
-  padding:36px 40px 40px;
-  display:grid; grid-template-columns:1fr; gap:22px;
-  min-height:340px;
-}
-.panel-head {
-  display:flex; align-items:flex-start; justify-content:space-between; gap:24px;
-  flex-wrap:wrap;
-}
-.panel-meta { display:flex; flex-direction:column; gap:8px; max-width:62ch; }
-.panel-id {
-  font-family:var(--mono); font-size:10.5px; letter-spacing:.22em; text-transform:uppercase;
-  color:rgba(255,255,255,.4);
-}
-.panel-name {
-  font-family:var(--sans); font-weight:600; font-size:clamp(26px, 3.2vw, 36px);
-  letter-spacing:-.02em; line-height:1.05;
-  display:flex; align-items:center; gap:14px;
-}
-.panel-name .ic { font-size:36px; }
-.panel-desc { font-size:15px; line-height:1.55; color:rgba(255,255,255,.7); }
-
-.panel-level {
-  display:flex; flex-direction:column; align-items:flex-end; gap:8px;
-  min-width:200px;
-}
-.panel-level-label {
-  font-family:var(--mono); font-size:10px; letter-spacing:.18em; text-transform:uppercase;
+.deck-stat {
+  position:absolute; top:0; right:0; z-index:5;
+  display:flex; align-items:center; gap:12px;
+  padding:12px 18px;
+  font-family:var(--mono); font-size:9.5px; letter-spacing:.22em; text-transform:uppercase;
   color:rgba(255,255,255,.45);
-  display:flex; align-items:center; gap:10px;
+  background:rgba(0,0,0,.4); border-bottom-left-radius:14px;
+  border-left:1px solid rgba(255,255,255,.06); border-bottom:1px solid rgba(255,255,255,.06);
 }
-.panel-level-label b { color:var(--orange); font-weight:600; }
-.panel-bar {
-  width:200px; height:6px; border-radius:99px; background:rgba(255,255,255,.08);
-  position:relative; overflow:hidden;
-}
-.panel-bar::before {
-  content:''; position:absolute; inset:0; right:auto;
-  width:var(--pct, 80%);
-  background:linear-gradient(90deg, var(--orange), #ff8d50);
-  border-radius:99px; box-shadow:0 0 12px rgba(255,97,26,.6);
-  transform:scaleX(0); transform-origin:left;
-  animation:fill 1s cubic-bezier(.2,.8,.2,1) forwards;
-}
-@keyframes fill { to { transform:scaleX(1); } }
+.deck-stat .live { display:inline-flex; align-items:center; gap:6px; color:var(--orange); }
+.deck-stat .live::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--orange); box-shadow:0 0 8px var(--orange); animation:bk 1.4s ease-in-out infinite; }
 
-.panel-tags {
-  display:flex; flex-wrap:wrap; gap:6px;
-  padding-top:16px; border-top:1px solid rgba(255,255,255,.06);
+.lane {
+  display:grid; grid-template-columns:240px 1fr;
+  align-items:stretch;
+  border-bottom:1px solid rgba(255,255,255,.05);
+  height:88px;
 }
-.panel-tag {
-  font-family:var(--mono); font-size:11px; letter-spacing:.02em;
-  background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08);
-  padding:6px 11px; border-radius:6px; color:rgba(255,255,255,.78);
-  transition:background .2s, color .2s, border-color .2s, transform .2s;
-  opacity:0; transform:translateY(6px);
-  animation:tagIn .35s cubic-bezier(.2,.8,.2,1) forwards;
+.lane:last-child { border-bottom:none; }
+.lane:nth-child(odd) { background:rgba(255,255,255,.012); }
+
+.lane-label {
+  display:flex; flex-direction:column; justify-content:center; gap:6px;
+  padding:0 22px;
+  background:linear-gradient(90deg, rgba(255,97,26,.10), rgba(255,97,26,.02));
+  border-right:1px solid rgba(255,97,26,.18);
+  position:relative; z-index:2;
+  white-space:nowrap; overflow:hidden;
 }
-.panel-tag:hover { background:var(--orange); color:#fff; border-color:var(--orange); transform:translateY(-1px); }
-@keyframes tagIn { to { opacity:1; transform:translateY(0); } }
+.lane-label::after {
+  content:''; position:absolute; right:-14px; top:50%; transform:translateY(-50%);
+  width:0; height:0; border-style:solid;
+  border-width:14px 0 14px 14px;
+  border-color:transparent transparent transparent rgba(255,97,26,.18);
+}
+.lane-label .id {
+  font-family:var(--mono); font-size:9.5px; letter-spacing:.22em; text-transform:uppercase;
+  color:rgba(255,255,255,.45);
+}
+.lane-label .name {
+  font-family:var(--sans); font-weight:600; font-size:15px; letter-spacing:-.01em;
+  display:flex; align-items:center; gap:8px;
+  color:#fff;
+}
+.lane-label .name .ic { font-size:17px; }
+.lane-label .pct { color:var(--orange); font-family:var(--mono); font-size:10px; letter-spacing:.06em; margin-left:auto; padding-left:8px; }
+
+.lane-track {
+  height:100%; overflow:hidden; position:relative;
+  display:flex; align-items:center;
+}
+.lane-track::before, .lane-track::after {
+  content:''; position:absolute; top:0; bottom:0; width:60px; pointer-events:none; z-index:2;
+}
+.lane-track::before { left:0; background:linear-gradient(90deg, #0a0a0a, transparent); }
+.lane-track::after  { right:0; background:linear-gradient(-90deg, #0a0a0a, transparent); }
+
+.lane-strip {
+  display:flex; gap:10px; align-items:center;
+  padding:0 5px; flex-shrink:0;
+  animation:scrollLeft 32s linear infinite;
+}
+.lane.dir-right .lane-strip { animation-name:scrollRight; }
+.lane:nth-child(2) .lane-strip { animation-duration:36s; }
+.lane:nth-child(3) .lane-strip { animation-duration:42s; }
+.lane:nth-child(4) .lane-strip { animation-duration:28s; }
+.lane:nth-child(5) .lane-strip { animation-duration:38s; }
+.lane:nth-child(6) .lane-strip { animation-duration:30s; }
+.lane:nth-child(7) .lane-strip { animation-duration:24s; }
+.lane:hover .lane-strip { animation-play-state:paused; }
+
+@keyframes scrollLeft { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+@keyframes scrollRight { from { transform:translateX(-50%); } to { transform:translateX(0); } }
+
+.chip {
+  display:inline-flex; align-items:center;
+  font-family:var(--mono); font-size:13px; letter-spacing:.02em;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.1);
+  padding:9px 14px; border-radius:8px;
+  color:rgba(255,255,255,.82);
+  white-space:nowrap;
+  transition:background .25s, color .25s, border-color .25s, transform .25s, box-shadow .25s;
+}
+.chip:hover {
+  background:var(--orange); color:#fff; border-color:var(--orange);
+  transform:translateY(-2px);
+  box-shadow:0 12px 24px -10px rgba(255,97,26,.5);
+}
+.chip-sep { color:var(--orange); opacity:.4; font-size:14px; padding:0 4px; }
 
 /* ───────── EDUCATION ───────── */
 .edu-section { padding:120px 6vw 80px; }
@@ -684,10 +676,8 @@ footer {
 
 /* ───────── RESPONSIVE ───────── */
 @media (max-width:1024px) {
-  .console-tabs { grid-template-columns:repeat(3, 1fr); }
-  .console-tab:nth-child(3n) { border-right:none; }
-  .console-panel { padding:30px 28px 32px; min-height:auto; }
-  .panel-level { min-width:auto; align-items:flex-start; }
+  .lane { grid-template-columns:200px 1fr; height:78px; }
+  .lane-label { padding:0 18px; }
   .edu-grid { grid-template-columns:1fr; }
   .tracks { grid-template-columns:repeat(2, 1fr); }
   .track.featured { grid-column:1 / -1; }
@@ -766,23 +756,18 @@ footer {
   .compact-row .yr { text-align:left; margin-top:4px; font-size:10.5px; opacity:.5; }
   .compact-row .arr { grid-column:3; grid-row:1 / span 3; align-self:center; font-size:13px; }
 
-  /* skills console */
+  /* skills deck */
   .skills-intro { font-size:15.5px; margin-bottom:28px; }
-  .console-tabs { grid-template-columns:repeat(3, 1fr); }
-  .console-tab { padding:12px 10px; gap:4px; }
-  .console-tab:nth-child(3n) { border-right:none; }
-  .console-tab:nth-child(-n+3) { border-bottom:1px solid rgba(255,255,255,.04); }
-  .console-tab .t-id { font-size:8.5px; }
-  .console-tab .t-name { font-size:11.5px; gap:5px; }
-  .console-tab .t-name .ic { font-size:13px; }
-  .console-panel { padding:24px 22px 28px; gap:18px; min-height:auto; }
-  .panel-head { gap:14px; }
-  .panel-name { font-size:24px; gap:10px; }
-  .panel-name .ic { font-size:26px; }
-  .panel-desc { font-size:13.5px; line-height:1.55; }
-  .panel-level { min-width:auto; align-items:flex-start; }
-  .panel-bar { width:100%; max-width:240px; }
-  .panel-tag { font-size:10px; padding:5px 9px; }
+  .deck-stat { font-size:8.5px; padding:9px 12px; gap:8px; }
+  .lane { grid-template-columns:130px 1fr; height:74px; }
+  .lane-label { padding:0 14px; gap:3px; }
+  .lane-label::after { display:none; }
+  .lane-label .id { font-size:8.5px; letter-spacing:.16em; }
+  .lane-label .name { font-size:12.5px; gap:5px; flex-wrap:wrap; }
+  .lane-label .name .ic { font-size:14px; }
+  .lane-label .pct { font-size:9px; padding-left:6px; margin-left:0; }
+  .chip { font-size:11.5px; padding:7px 11px; }
+  .lane-track::before, .lane-track::after { width:30px; }
 
   /* education */
   .edu-grid { grid-template-columns:1fr; gap:12px; }
@@ -1022,38 +1007,9 @@ footer {
 <section class="skills-section" id="skills">
   <div class="section-eyebrow"><span class="glyph">⌬</span> Skills · Console</div>
   <h2 class="section-h">What I actually <em>reach for.</em></h2>
-  <p class="skills-intro">Not a buzzword list. <strong>These are the tools I use when things get real.</strong> Tap a module to see everything wired in.</p>
+  <p class="skills-intro">Not a buzzword list. <strong>These are the tools I use when things get real.</strong> Six lanes always running &mdash; hover any lane to pause it.</p>
 
-  <div class="console" id="skillsConsole">
-    <div class="console-tabs" role="tablist">
-      <button class="console-tab active" data-mod="cognition" type="button" role="tab">
-        <span class="t-id">M01</span>
-        <span class="t-name"><span class="ic">🧠</span>AI / LLMs</span>
-      </button>
-      <button class="console-tab" data-mod="ship" type="button" role="tab">
-        <span class="t-id">M02</span>
-        <span class="t-name"><span class="ic">⚡</span>Full-Stack</span>
-      </button>
-      <button class="console-tab" data-mod="integrations" type="button" role="tab">
-        <span class="t-id">M03</span>
-        <span class="t-name"><span class="ic">🔌</span>APIs</span>
-      </button>
-      <button class="console-tab" data-mod="offensive" type="button" role="tab">
-        <span class="t-id">M04</span>
-        <span class="t-name"><span class="ic">⚔️</span>Security</span>
-      </button>
-      <button class="console-tab" data-mod="metal" type="button" role="tab">
-        <span class="t-id">M05</span>
-        <span class="t-name"><span class="ic">🔧</span>Systems</span>
-      </button>
-      <button class="console-tab" data-mod="humans" type="button" role="tab">
-        <span class="t-id">M06</span>
-        <span class="t-name"><span class="ic">🤝</span>Human</span>
-      </button>
-    </div>
-
-    <div class="console-panel" id="skillsPanel" role="tabpanel"></div>
-  </div>
+  <div class="deck" id="skillsDeck"></div>
 </section>
 
 <!-- ════════ EDUCATION ════════ -->
@@ -1415,73 +1371,44 @@ document.querySelectorAll('.compact-row').forEach(row => {
   row.addEventListener('mouseleave', () => hp.classList.remove('show'));
 });
 
-// Skills console
-const SKILLS = {
-  cognition: {
-    id:'M01 · COGNITION', icon:'🧠', name:'AI &amp; LLM Engineering', level:'Advanced', pct:88,
-    desc:'Building production AI systems &mdash; agents, voice, RAG, streaming. The kind that have to actually work, not demo well.',
-    tags:['Gemini 2.5 Flash','Claude','OpenAI','Grok','Ollama','LLaMA 3.2','Groq Whisper','faster-whisper','OpenWakeWord','edge-tts','gTTS','ElevenLabs','Vector Search','RAG','SSE Streaming']
-  },
-  ship: {
-    id:'M02 · SHIP', icon:'⚡', name:'Full-Stack Development', level:'Solid', pct:84,
-    desc:'Shipping web apps end-to-end &mdash; auth, data, edge functions, frontend, the boring middle, all of it.',
-    tags:['Node.js','Python','JavaScript','TypeScript','C++','Next.js','React','Flask','Vercel','Vercel Edge','Supabase','PostgreSQL','PWA','Service Workers','Web Speech API','Three.js','Git']
-  },
-  integrations: {
-    id:'M03 · INTEGRATIONS', icon:'🔌', name:'APIs &amp; Integrations', level:'Solid', pct:82,
-    desc:'Wiring real services together until everything talks to everything &mdash; and stays talking when one of them goes down.',
-    tags:['Google OAuth2','Gmail API','Calendar API','Microsoft OAuth','Telegram Bot API','GitHub API','Twilio','Canvas LMS','Hunter.io','RapidAPI','Presage SDK','API.Bible','alQuran.cloud','GurbaniNow','VedicScriptures']
-  },
-  offensive: {
-    id:'M04 · OFFENSIVE', icon:'⚔️', name:'Offensive Security', level:'Proficient', pct:78,
-    desc:'Tools I use to find weaknesses before the bad guys do &mdash; in lab environments, ethically operated.',
-    tags:['Metasploit','Nmap','Aircrack-ng','Hashcat','Hydra','John the Ripper','Wireshark','SET','Kali Linux 2025.3','Parrot OS 7.0']
-  },
-  metal: {
-    id:'M05 · METAL', icon:'🔧', name:'Systems &amp; Hardware', level:'Solid', pct:75,
-    desc:'Working close to the metal &mdash; OS internals, embedded boards, IoT, robotics. The half of the stack you can actually touch.',
-    tags:['Linux','Windows 11','macOS Tahoe','LabVIEW','ESP8266','EV3 Mindstorms','Sensors','State Machines','File I/O','Facial Recognition']
-  },
-  humans: {
-    id:'M06 · HUMANS', icon:'🤝', name:'Human Skills', level:'Strong', pct:80,
-    desc:'The stuff that makes tech teams actually work &mdash; and the languages I think in.',
-    tags:['Leadership','Communication','Teamwork','English','Hindi']
-  }
-};
+// Skills departure board
+const SKILL_LANES = [
+  { id:'M01', icon:'🧠', name:'AI / LLMs', pct:88, dir:'left',
+    tags:['Gemini 2.5 Flash','Claude','OpenAI','Grok','Ollama','LLaMA 3.2','Groq Whisper','faster-whisper','OpenWakeWord','edge-tts','gTTS','ElevenLabs','Vector Search','RAG','SSE Streaming'] },
+  { id:'M02', icon:'⚡', name:'Full-Stack', pct:84, dir:'right',
+    tags:['Node.js','Python','JavaScript','TypeScript','C++','Next.js','React','Flask','Vercel','Vercel Edge','Supabase','PostgreSQL','PWA','Service Workers','Web Speech API','Three.js','Git'] },
+  { id:'M03', icon:'🔌', name:'APIs', pct:82, dir:'left',
+    tags:['Google OAuth2','Gmail API','Calendar API','Microsoft OAuth','Telegram Bot API','GitHub API','Twilio','Canvas LMS','Hunter.io','RapidAPI','Presage SDK','API.Bible','alQuran.cloud','GurbaniNow','VedicScriptures'] },
+  { id:'M04', icon:'⚔️', name:'Security', pct:78, dir:'right',
+    tags:['Metasploit','Nmap','Aircrack-ng','Hashcat','Hydra','John the Ripper','Wireshark','SET','Kali Linux 2025.3','Parrot OS 7.0'] },
+  { id:'M05', icon:'🔧', name:'Systems', pct:75, dir:'left',
+    tags:['Linux','Windows 11','macOS Tahoe','LabVIEW','ESP8266','EV3 Mindstorms','Sensors','State Machines','File I/O','Facial Recognition'] },
+  { id:'M06', icon:'🤝', name:'Human', pct:80, dir:'right',
+    tags:['Leadership','Communication','Teamwork','English','Hindi'] }
+];
 
-const consoleEl = document.getElementById('skillsConsole');
-const skillsPanel = document.getElementById('skillsPanel');
-const skillsTabs = Array.from(document.querySelectorAll('.console-tab'));
-const TAB_PCTS = ['16.6%','33.3%','50%','66.6%','83.3%','100%'];
-
-function renderSkill(modKey, idx) {
-  const s = SKILLS[modKey];
-  if (!s) return;
-  consoleEl.style.setProperty('--tab-pct', TAB_PCTS[idx]);
-  skillsPanel.innerHTML = `
-    <div class="panel-head">
-      <div class="panel-meta">
-        <div class="panel-id">${s.id}</div>
-        <div class="panel-name"><span class="ic">${s.icon}</span>${s.name}</div>
-        <div class="panel-desc">${s.desc}</div>
+(function renderDeck() {
+  const deck = document.getElementById('skillsDeck');
+  if (!deck) return;
+  const stat = document.createElement('div');
+  stat.className = 'deck-stat';
+  stat.innerHTML = `<span class="live">Live</span><span>· 6 lanes · 72 tools · auto-running</span>`;
+  deck.appendChild(stat);
+  SKILL_LANES.forEach(s => {
+    const lane = document.createElement('div');
+    lane.className = 'lane' + (s.dir === 'right' ? ' dir-right' : '');
+    const chips = s.tags.map(t => `<span class="chip">${t}</span>`).join('<span class="chip-sep" aria-hidden="true">·</span>');
+    lane.innerHTML = `
+      <div class="lane-label">
+        <span class="id">${s.id}</span>
+        <span class="name"><span class="ic">${s.icon}</span>${s.name}<span class="pct">${s.pct}%</span></span>
       </div>
-      <div class="panel-level">
-        <div class="panel-level-label">LEVEL · <b>${s.level}</b></div>
-        <div class="panel-bar" style="--pct:${s.pct}%"></div>
-      </div>
-    </div>
-    <div class="panel-tags">
-      ${s.tags.map((t,i) => `<span class="panel-tag" style="animation-delay:${i*30}ms">${t}</span>`).join('')}
-    </div>`;
-}
-
-skillsTabs.forEach((tab, i) => {
-  tab.addEventListener('click', () => {
-    skillsTabs.forEach(t => t.classList.toggle('active', t === tab));
-    renderSkill(tab.dataset.mod, i);
+      <div class="lane-track">
+        <div class="lane-strip">${chips}<span class="chip-sep" aria-hidden="true">·</span>${chips}</div>
+      </div>`;
+    deck.appendChild(lane);
   });
-});
-renderSkill('cognition', 0);
+})();
 
 // scroll-spy nav (only highlights the section links, not brand or CTA)
 const sections = ['hero','about','experience','work','skills','education','contact'];
