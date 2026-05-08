@@ -219,7 +219,7 @@ button { font:inherit; border:none; background:none; cursor:pointer; color:inher
 .work-section .section-h { color:#fff; }
 .work-section .section-h b { color:var(--orange); font-weight:700; font-style:italic; }
 
-.tracks { display:grid; grid-template-columns:repeat(2, 1fr); gap:18px; perspective:1200px; }
+.tracks { display:grid; grid-template-columns:repeat(3, 1fr); gap:18px; perspective:1200px; }
 .track {
   background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.06);
   padding:32px; border-radius:14px;
@@ -229,7 +229,15 @@ button { font:inherit; border:none; background:none; cursor:pointer; color:inher
   text-align:left; width:100%; cursor:pointer;
   transform-style:preserve-3d;
 }
+.track.featured {
+  grid-column:1 / -1; min-height:340px;
+  background:linear-gradient(135deg, rgba(255,97,26,.08) 0%, rgba(255,255,255,.04) 60%);
+  border:1px solid rgba(255,97,26,.22);
+}
+.track.featured .track-t { font-size:clamp(40px, 5vw, 64px); }
+.track.featured .track-d { font-size:16px; max-width:62ch; }
 .track:hover { background:rgba(255,255,255,.08); transform:translateY(-4px) rotateX(2deg) rotateY(-2deg); box-shadow:0 28px 60px -28px rgba(255,97,26,.35); }
+.track.featured:hover { background:linear-gradient(135deg, rgba(255,97,26,.14) 0%, rgba(255,255,255,.06) 60%); border-color:rgba(255,97,26,.4); }
 .track::before {
   content:''; position:absolute; top:24px; right:24px;
   width:14px; height:14px; border-radius:50%; background:var(--orange);
@@ -243,18 +251,35 @@ button { font:inherit; border:none; background:none; cursor:pointer; color:inher
 
 .compact { padding-top:32px; position:relative; }
 .compact-row {
-  display:grid; grid-template-columns:60px 1.6fr 1fr 100px;
-  gap:18px; padding:14px 0;
+  display:grid; grid-template-columns:60px 1.6fr 1fr 100px 28px;
+  gap:18px; padding:16px 18px;
   border-top:1px solid rgba(255,255,255,.08);
   font-family:var(--sans); font-size:14px;
-  align-items:baseline; cursor:pointer;
-  transition:background .2s, padding .2s;
+  align-items:baseline; cursor:pointer; position:relative; isolation:isolate;
+  transition:color .25s ease, transform .25s ease;
+  border-radius:6px;
 }
-.compact-row:hover { background:rgba(255,255,255,.05); padding-left:8px; padding-right:8px; }
+.compact-row::before {
+  content:''; position:absolute; inset:0; z-index:-1;
+  background:var(--orange);
+  transform-origin:left; transform:scaleX(0);
+  transition:transform .35s cubic-bezier(.2,.8,.2,1);
+  border-radius:6px;
+}
+.compact-row:hover { color:#fff; transform:translateX(2px); }
+.compact-row:hover::before { transform:scaleX(1); }
+.compact-row:hover .n, .compact-row:hover .yr, .compact-row:hover .stack { color:#fff; opacity:.95; }
 .compact-row:last-child { border-bottom:1px solid rgba(255,255,255,.08); }
-.compact-row .n, .compact-row .yr { font-family:var(--mono); font-size:11px; letter-spacing:.06em; opacity:.5; text-transform:uppercase; }
+.compact-row .n, .compact-row .yr { font-family:var(--mono); font-size:11px; letter-spacing:.06em; opacity:.5; text-transform:uppercase; transition:color .25s, opacity .25s; }
 .compact-row .ttl { font-weight:600; }
-.compact-row .stack { font-family:var(--mono); font-size:11px; opacity:.55; }
+.compact-row .stack { font-family:var(--mono); font-size:11px; opacity:.6; transition:color .25s, opacity .25s; }
+.compact-row .arr {
+  font-family:var(--mono); font-size:14px; opacity:0;
+  transform:translateX(-6px);
+  transition:opacity .25s, transform .25s;
+  text-align:right;
+}
+.compact-row:hover .arr { opacity:1; transform:translateX(0); }
 
 .hover-preview {
   position:fixed; pointer-events:none; z-index:80;
@@ -483,10 +508,10 @@ footer {
 
 /* ───────── RESPONSIVE ───────── */
 @media (max-width:1024px) {
-  .about-grid { grid-template-columns:1fr 1fr; }
-  .about-card.span2 { grid-column:span 2; grid-template-columns:1fr 1fr; }
   .rack { grid-template-columns:1fr 1fr; }
   .edu-grid { grid-template-columns:1fr; }
+  .tracks { grid-template-columns:repeat(2, 1fr); }
+  .track.featured { grid-column:1 / -1; }
 }
 @media (max-width:768px) {
   .disc { width:48px; height:48px; font-size:18px; }
@@ -498,13 +523,13 @@ footer {
   .hero-stats { grid-template-columns:repeat(2, 1fr); }
   .stat:nth-child(2) { border-right:none; }
   .stat:nth-child(1), .stat:nth-child(2) { border-bottom:1px solid var(--line); }
-  .about-grid { grid-template-columns:1fr; }
-  .about-card.span2 { grid-column:auto; grid-template-columns:1fr; gap:24px; }
-  .about-card.tall { grid-row:auto; }
   .tracks { grid-template-columns:1fr; }
+  .track.featured { grid-column:auto; min-height:300px; padding:28px; }
+  .track.featured .track-t { font-size:42px; }
   .rack { grid-template-columns:1fr; }
-  .compact-row { grid-template-columns:40px 1fr; gap:6px 12px; }
+  .compact-row { grid-template-columns:40px 1fr 24px; gap:6px 12px; padding:14px 10px; }
   .compact-row .stack, .compact-row .yr { grid-column:2; }
+  .compact-row .arr { grid-column:3; grid-row:1 / span 2; align-self:center; }
   .exp-timeline { padding-left:36px; }
   .exp-timeline::before { left:8px; }
   .exp-card::before { left:-32px; width:14px; height:14px; }
@@ -632,12 +657,12 @@ footer {
   <h2 class="section-h">Things I've <b>actually built.</b></h2>
 
   <div class="tracks">
-    <button class="track" data-id="aria">
-      <div class="track-num">— TRACK 01</div>
+    <button class="track featured" data-id="aria">
+      <div class="track-num">— TRACK 01 / FEATURED</div>
       <div class="track-t">ARIA</div>
-      <div class="track-meta"><span>Adaptive AI</span><span>·</span><span>1 year live</span></div>
-      <div class="track-d">Personal AI live in production for a year. 12 serverless fns at the platform ceiling. 6 cron jobs every 15 min. 16/16 regression suite.</div>
-      <div class="track-cta">Open case study →</div>
+      <div class="track-meta"><span>Adaptive AI</span><span>·</span><span>1 year live in production</span><span>·</span><span>built solo</span></div>
+      <div class="track-d">Personal AI that decides <em>how</em> to engage with you — reading emotional state, detecting patterns, adapting in real time. 12 serverless functions at the platform ceiling. 6 cron jobs every 15 minutes. 16/16 regression suite passing against a live endpoint. Not a wrapper. A system.</div>
+      <div class="track-cta">Open full case study →</div>
     </button>
     <button class="track" data-id="voxvitals">
       <div class="track-num">— TRACK 02</div>
@@ -663,15 +688,15 @@ footer {
   </div>
 
   <div class="compact" id="compact-list">
-    <div class="compact-row" data-id="reachout"><span class="n">05</span><span class="ttl">ReachOut</span><span class="stack">Job-outreach automation · 4 boards</span><span class="yr">2026</span></div>
-    <div class="compact-row" data-id="phone"><span class="n">06</span><span class="ttl">AI Phone Agent</span><span class="stack">Twilio + LLaMA + Whisper · local</span><span class="yr">2025</span></div>
-    <div class="compact-row" data-id="ev3"><span class="n">07</span><span class="ttl">EV3 Autonomous Robot</span><span class="stack">LabVIEW · sensors · state machine</span><span class="yr">2025</span></div>
-    <div class="compact-row" data-id="atm"><span class="n">08</span><span class="ttl">Python ATM System</span><span class="stack">File I/O · PIN security</span><span class="yr">2024</span></div>
-    <div class="compact-row" data-id="bus"><span class="n">09</span><span class="ttl">Bus Booking System</span><span class="stack">File-backed reservations</span><span class="yr">2024</span></div>
-    <div class="compact-row" data-id="med"><span class="n">10</span><span class="ttl">AI Medicine Dispenser</span><span class="stack">Facial recognition · IoT</span><span class="yr">2024</span></div>
-    <div class="compact-row" data-id="rat"><span class="n">11</span><span class="ttl">RAT &amp; Pen-Test Lab</span><span class="stack">Metasploit · Kali</span><span class="yr">2024</span></div>
-    <div class="compact-row" data-id="wifi"><span class="n">12</span><span class="ttl">Wi-Fi Pen-Test Device</span><span class="stack">ESP8266 · Aircrack-ng</span><span class="yr">2024</span></div>
-    <div class="compact-row" data-id="phish"><span class="n">13</span><span class="ttl">Phishing Simulation</span><span class="stack">SET · Social engineering</span><span class="yr">2024</span></div>
+    <div class="compact-row" data-id="reachout"><span class="n">05</span><span class="ttl">ReachOut</span><span class="stack">Recruiter outreach engine · 6-pattern email finder · Gmail OAuth send</span><span class="yr">2026</span><span class="arr">→</span></div>
+    <div class="compact-row" data-id="phone"><span class="n">06</span><span class="ttl">AI Phone Agent</span><span class="stack">Calls answered by local LLaMA · zero cloud · $1/mo Twilio</span><span class="yr">2025</span><span class="arr">→</span></div>
+    <div class="compact-row" data-id="ev3"><span class="n">07</span><span class="ttl">EV3 Autonomous Robot</span><span class="stack">Single-loop state machine · 45 documented runs · zero human input</span><span class="yr">2025</span><span class="arr">→</span></div>
+    <div class="compact-row" data-id="atm"><span class="n">08</span><span class="ttl">Python ATM System</span><span class="stack">Console banking · 3-strike PIN lockout · file-backed accounts</span><span class="yr">2024</span><span class="arr">→</span></div>
+    <div class="compact-row" data-id="bus"><span class="n">09</span><span class="ttl">Bus Booking System</span><span class="stack">Reservation engine · auto-rebuild on cancel · collision-safe IDs</span><span class="yr">2024</span><span class="arr">→</span></div>
+    <div class="compact-row" data-id="med"><span class="n">10</span><span class="ttl">AI Medicine Dispenser</span><span class="stack">Face-verified dosing · caregiver alerts · emergency escalation</span><span class="yr">2024</span><span class="arr">→</span></div>
+    <div class="compact-row" data-id="rat"><span class="n">11</span><span class="ttl">RAT &amp; Pen-Test Lab</span><span class="stack">Cross-platform compromise research · ethical lab only · 12+ remote fns</span><span class="yr">2024</span><span class="arr">→</span></div>
+    <div class="compact-row" data-id="wifi"><span class="n">12</span><span class="ttl">Wi-Fi Pen-Test Device</span><span class="stack">Evil-twin AP · 50+ beacon flood · 802.11 deauth audit on ESP8266</span><span class="yr">2024</span><span class="arr">→</span></div>
+    <div class="compact-row" data-id="phish"><span class="n">13</span><span class="ttl">Phishing Simulation</span><span class="stack">SET workflows · credential harvesting in lab · MFA defense write-up</span><span class="yr">2024</span><span class="arr">→</span></div>
   </div>
 </section>
 
