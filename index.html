@@ -1,727 +1,1283 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Anshul Raman | CS Student &amp; Security Builder</title>
-  <meta name="description" content="Anshul Raman — Computer Science student at University of Cincinnati. Security-minded builder specializing in cybersecurity, offensive security labs, and full-stack development. Co-op ready Fall 2026." />
-  <meta name="keywords" content="Anshul Raman, Computer Science, University of Cincinnati, Cybersecurity, Python, Software Engineering, Co-op" />
-  <meta name="author" content="Anshul Raman" />
-  <meta name="robots" content="index, follow" />
-  <meta property="og:title" content="Anshul Raman | CS Student &amp; Security Builder" />
-  <meta property="og:description" content="Computer Science student at UC — building secure systems, offensive security tools, and AI-driven platforms. Co-op ready Fall 2026." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://anshulraman.com" />
-  <meta property="og:image" content="https://anshulraman.com/favicon.png" />
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Anshul Raman | CS Student &amp; Security Builder" />
-  <meta name="twitter:description" content="Computer Science student at UC — building secure systems, offensive security tools, and AI-driven platforms." />
-  <link rel="icon" type="image/png" href="favicon.png" />
-  <link rel="shortcut icon" href="favicon.png" />
-  <link rel="apple-touch-icon" href="favicon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
-  <script>
-    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-  </script>
-  <script defer src="/_vercel/insights/script.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anshul Raman · Security-minded builder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Doto:wght@400;700;900&family=Fragment+Mono&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#ebebeb; --bg-2:#dfdfdf; --bg-3:#262626; --bg-4:#1a1a1a;
+  --ink:#0a0a0a; --ink-2:#3a3a3a; --ink-3:#666; --ink-4:#999;
+  --orange:#ff611a; --orange-soft:#ffead9;
+  --line:#cfcfcf;
+  --sans:'Manrope',system-ui,sans-serif;
+  --display:'Doto',system-ui,sans-serif;
+  --mono:'Fragment Mono',ui-monospace,monospace;
+}
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+::selection { background:var(--orange); color:#000; }
+html { background:var(--bg); scroll-behavior:smooth; }
+body {
+  background:var(--bg); color:var(--ink); font-family:var(--sans);
+  font-size:15px; line-height:1.55; font-weight:400;
+  -webkit-font-smoothing:antialiased; min-height:100dvh;
+}
+a { color:inherit; text-decoration:none; }
+button { font:inherit; border:none; background:none; cursor:pointer; color:inherit; }
+
+/* ───────── disc / nav ───────── */
+.disc {
+  position:fixed; top:18px; left:18px; z-index:60;
+  width:64px; height:64px; border-radius:50%;
+  background:var(--orange);
+  display:grid; place-items:center;
+  font-family:var(--display); font-weight:900; font-size:22px; color:#fff;
+  box-shadow:0 4px 18px -4px rgba(255,97,26,.5);
+  transition:transform .4s;
+}
+.disc:hover { transform:rotate(45deg); }
+
+.tab-nav {
+  position:fixed; top:18px; left:50%; transform:translateX(-50%); z-index:60;
+  display:flex; gap:0;
+  background:var(--bg-3); color:#fff;
+  padding:5px; border-radius:999px;
+  font-family:var(--mono); font-size:10px; letter-spacing:.18em; text-transform:uppercase;
+  backdrop-filter:blur(10px);
+  max-width:calc(100vw - 36px); overflow:auto;
+}
+.tab-nav::-webkit-scrollbar { display:none; }
+.tab-nav a {
+  padding:9px 13px; border-radius:999px; white-space:nowrap;
+  color:rgba(255,255,255,.6); transition:color .25s, background .25s;
+}
+.tab-nav a:hover, .tab-nav a.active { color:#fff; background:rgba(255,255,255,.08); }
+.tab-nav .blink::before { content:'●'; color:var(--orange); margin-right:6px; animation:bk 1s steps(2) infinite; }
+@keyframes bk { 50% { opacity:.3; } }
+
+.autoplay {
+  position:fixed; top:34px; right:18px; z-index:60;
+  font-family:var(--mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase;
+  display:flex; align-items:center; gap:8px; opacity:.55;
+}
+.autoplay .dot { width:8px; height:8px; border-radius:50%; background:var(--orange); animation:bk 1.4s ease-in-out infinite; }
+
+/* ───────── HERO ───────── */
+.hero {
+  min-height:100dvh; padding:140px 6vw 80px;
+  display:flex; flex-direction:column; justify-content:center;
+}
+.hero-eyebrow {
+  font-family:var(--mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--ink-3); margin-bottom:32px;
+  display:flex; align-items:center; gap:10px;
+}
+.hero-eyebrow::before { content:'⌬'; color:var(--orange); font-size:1.2em; }
+
+.hero-h {
+  font-family:var(--sans); font-weight:300;
+  font-size:clamp(48px, 8vw, 132px); line-height:.95;
+  letter-spacing:-.045em;
+  margin-bottom:32px;
+}
+.hero-h b { font-weight:700; }
+.hero-h .accent { color:var(--orange); font-weight:600; font-style:italic; }
+
+.hero-letterspaced {
+  font-family:var(--sans); font-weight:300;
+  font-size:clamp(15px, 1.4vw, 18px); line-height:2.4;
+  letter-spacing:.6em; text-transform:uppercase;
+  max-width:75ch; opacity:.7; margin-top:32px;
+}
+
+.hero-stats {
+  display:grid; grid-template-columns:repeat(4, 1fr); gap:0;
+  margin-top:64px; max-width:720px;
+  border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+}
+.stat { padding:22px 14px; border-right:1px solid var(--line); }
+.stat:last-child { border-right:none; }
+.stat-val { font-family:var(--display); font-size:clamp(36px, 4.8vw, 56px); font-weight:900; line-height:1; letter-spacing:-.02em; color:var(--ink); }
+.stat-val em { color:var(--orange); font-style:normal; }
+.stat-label { font-family:var(--mono); font-size:10.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-3); margin-top:8px; }
+
+.hero-bottom {
+  display:flex; justify-content:space-between; align-items:flex-end;
+  margin-top:64px; flex-wrap:wrap; gap:18px;
+}
+.hero-bottom .made { font-family:var(--mono); font-size:11px; letter-spacing:.06em; opacity:.45; }
+.btn-orange {
+  display:inline-flex; align-items:center; gap:10px;
+  background:var(--orange); color:#fff;
+  font-family:var(--sans); font-weight:600; font-size:15px;
+  padding:16px 24px; border-radius:999px;
+  transition:transform .25s, box-shadow .25s;
+}
+.btn-orange:hover { transform:translateY(-2px); box-shadow:0 12px 28px -8px rgba(255,97,26,.5); }
+
+/* ───────── ABOUT ───────── */
+.section-pad { padding:120px 6vw; }
+.section-eyebrow {
+  font-family:var(--mono); font-size:13px; letter-spacing:.16em; text-transform:uppercase;
+  display:flex; align-items:center; gap:12px; opacity:.6;
+  margin-bottom:24px;
+}
+.section-eyebrow::after { content:''; flex:1; height:1px; background:currentColor; opacity:.3; }
+.section-eyebrow .glyph { color:var(--orange); font-size:1.4em; }
+.section-h {
+  font-family:var(--sans); font-weight:300;
+  font-size:clamp(40px, 6vw, 84px); line-height:.96; letter-spacing:-.035em;
+  margin-bottom:48px;
+}
+.section-h b { font-weight:700; }
+.section-h em { font-style:italic; color:var(--orange); }
+
+.about-h {
+  font-family:var(--sans); font-weight:300;
+  font-size:clamp(40px, 6vw, 84px); line-height:.96; letter-spacing:-.035em;
+  margin-bottom:32px;
+}
+.about-h b { font-weight:700; }
+.about-h em { font-style:italic; color:var(--orange); }
+
+.about-body {
+  font-family:var(--sans); font-size:clamp(18px, 2vw, 22px); line-height:1.6;
+  max-width:70ch; color:var(--ink-2);
+}
+.about-body p { margin-bottom:1.1em; }
+.about-body p strong { color:var(--ink); font-weight:600; }
+.about-body p .accent { color:var(--orange); font-weight:600; }
+.about-body p em { font-style:italic; color:var(--orange); }
+
+.about-pills { display:flex; flex-wrap:wrap; gap:8px; margin-top:36px; max-width:70ch; }
+.about-pill {
+  font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+  background:#fff; color:var(--ink-2); border:1px solid var(--line);
+  padding:7px 12px; border-radius:99px;
+  transition:background .2s, color .2s, border-color .2s, transform .2s;
+}
+.about-pill:hover { background:var(--orange); color:#fff; border-color:var(--orange); transform:translateY(-1px); }
+
+/* ───────── EXPERIENCE — terminal/log style ───────── */
+.exp-section { padding:120px 6vw; background:var(--bg-4); color:#fff; position:relative; overflow:hidden; }
+.exp-section::before {
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background:
+    radial-gradient(800px 400px at 90% 0%, rgba(255,97,26,.08), transparent 60%),
+    radial-gradient(700px 400px at 10% 100%, rgba(255,97,26,.04), transparent 60%);
+}
+.exp-section .section-eyebrow { color:rgba(255,255,255,.7); }
+.exp-section .section-h { color:#fff; }
+
+.exp-timeline { position:relative; padding-left:60px; max-width:1100px; }
+.exp-timeline::before {
+  content:''; position:absolute; left:18px; top:8px; bottom:8px;
+  width:2px; background:linear-gradient(180deg, var(--orange) 0%, rgba(255,97,26,.2) 100%);
+}
+.exp-card {
+  position:relative; margin-bottom:18px; padding:28px 30px;
+  background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08);
+  border-radius:14px;
+  transition:transform .35s cubic-bezier(.2,.8,.2,1), background .3s, border-color .3s;
+  transform-style:preserve-3d; perspective:1200px;
+}
+.exp-card:hover { transform:translateX(6px) rotateY(-1.5deg); background:rgba(255,255,255,.06); border-color:rgba(255,97,26,.4); }
+.exp-card::before {
+  content:''; position:absolute; left:-50px; top:32px;
+  width:18px; height:18px; border-radius:50%;
+  background:var(--bg-4); border:2px solid var(--orange);
+  box-shadow:0 0 0 4px var(--bg-4), 0 0 20px rgba(255,97,26,.5);
+}
+.exp-card.live::before { background:var(--orange); animation:bk 1.6s ease-in-out infinite; }
+.exp-head {
+  display:flex; flex-wrap:wrap; gap:12px 24px; align-items:baseline;
+  margin-bottom:6px;
+}
+.exp-period {
+  font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--orange); display:inline-flex; align-items:center; gap:8px;
+}
+.exp-period::before { content:'▸'; }
+.exp-org { font-family:var(--mono); font-size:11px; letter-spacing:.06em; color:rgba(255,255,255,.5); }
+.exp-role {
+  font-family:var(--sans); font-weight:600;
+  font-size:clamp(22px, 2.4vw, 30px); letter-spacing:-.015em; margin-bottom:14px;
+}
+.exp-pts { list-style:none; display:flex; flex-direction:column; gap:8px; }
+.exp-pts li {
+  position:relative; padding-left:18px;
+  font-size:14px; line-height:1.65; color:rgba(255,255,255,.78);
+}
+.exp-pts li::before { content:'—'; position:absolute; left:0; color:var(--orange); }
+
+/* ───────── PROJECTS / TRACKS ───────── */
+.work-section { padding:120px 6vw 60px; background:var(--bg-3); color:#fff; }
+.work-section .section-eyebrow { color:rgba(255,255,255,.7); }
+.work-section .section-h { color:#fff; }
+.work-section .section-h b { color:var(--orange); font-weight:700; font-style:italic; }
+
+.tracks { display:grid; grid-template-columns:repeat(3, 1fr); gap:18px; perspective:1200px; }
+.track {
+  background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.06);
+  padding:32px; border-radius:14px;
+  display:flex; flex-direction:column; gap:14px; min-height:260px;
+  transition:background .3s, transform .3s, box-shadow .3s;
+  position:relative; overflow:hidden;
+  text-align:left; width:100%; cursor:pointer;
+  transform-style:preserve-3d;
+}
+.track.featured {
+  grid-column:1 / -1; min-height:340px;
+  background:linear-gradient(135deg, rgba(255,97,26,.08) 0%, rgba(255,255,255,.04) 60%);
+  border:1px solid rgba(255,97,26,.22);
+}
+.track.featured .track-t { font-size:clamp(40px, 5vw, 64px); }
+.track.featured .track-d { font-size:16px; max-width:62ch; }
+.track:hover { background:rgba(255,255,255,.08); transform:translateY(-4px) rotateX(2deg) rotateY(-2deg); box-shadow:0 28px 60px -28px rgba(255,97,26,.35); }
+.track.featured:hover { background:linear-gradient(135deg, rgba(255,97,26,.14) 0%, rgba(255,255,255,.06) 60%); border-color:rgba(255,97,26,.4); }
+.track::before {
+  content:''; position:absolute; top:24px; right:24px;
+  width:14px; height:14px; border-radius:50%; background:var(--orange);
+  box-shadow:0 0 12px var(--orange); animation:bk 2s ease-in-out infinite;
+}
+.track-num { font-family:var(--mono); font-size:11px; letter-spacing:.16em; opacity:.5; text-transform:uppercase; }
+.track-t { font-family:var(--sans); font-weight:600; font-size:clamp(28px,3vw,40px); letter-spacing:-.02em; }
+.track-d { font-size:14.5px; line-height:1.6; opacity:.75; margin-top:auto; }
+.track-meta { display:flex; gap:14px; font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; opacity:.55; }
+.track-cta { font-family:var(--mono); font-size:10.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--orange); margin-top:6px; opacity:.85; }
+
+.compact { padding-top:32px; position:relative; }
+.compact-row {
+  display:grid; grid-template-columns:60px 1.6fr 1fr 100px 22px;
+  gap:18px; padding:14px 18px;
+  border-top:1px solid rgba(255,255,255,.08);
+  font-family:var(--sans); font-size:14px;
+  align-items:baseline; cursor:pointer; position:relative;
+  transition:padding-left .35s cubic-bezier(.2,.8,.2,1), background .25s;
+}
+.compact-row::before {
+  content:''; position:absolute; left:0; top:18%; bottom:18%;
+  width:3px; background:var(--orange);
+  transform:scaleY(0); transform-origin:center;
+  transition:transform .35s cubic-bezier(.2,.8,.2,1);
+}
+.compact-row:hover { padding-left:30px; background:rgba(255,255,255,.025); }
+.compact-row:hover::before { transform:scaleY(1); }
+.compact-row:hover .ttl { color:var(--orange); }
+.compact-row:last-child { border-bottom:1px solid rgba(255,255,255,.08); }
+
+.compact-row .n {
+  font-family:var(--sans); font-size:11px; letter-spacing:.14em;
+  color:rgba(255,255,255,.4); text-transform:uppercase; font-weight:500;
+}
+.compact-row .ttl {
+  font-family:var(--sans); font-weight:600;
+  font-size:15px; letter-spacing:-.005em;
+  color:#fff;
+  transition:color .25s;
+}
+.compact-row .stack {
+  font-family:var(--sans); font-size:13.5px; line-height:1.5;
+  font-weight:400;
+  color:rgba(255,255,255,.55);
+}
+.compact-row .yr {
+  font-family:var(--sans); font-size:12px; font-weight:500;
+  color:rgba(255,255,255,.45); letter-spacing:.04em;
+  text-align:right;
+}
+.compact-row .arr {
+  font-family:var(--mono); font-size:14px;
+  color:var(--orange); opacity:0;
+  transform:translateX(-6px);
+  transition:opacity .3s, transform .3s;
+  text-align:right;
+}
+.compact-row:hover .arr { opacity:1; transform:translateX(0); }
+
+.hover-preview {
+  position:fixed; pointer-events:none; z-index:80;
+  background:#0c0c0c; color:#fff; border:1px solid rgba(255,255,255,.12);
+  padding:18px 20px; border-radius:12px;
+  width:340px; max-width:78vw;
+  font-size:13px; line-height:1.55;
+  box-shadow:0 30px 60px -20px rgba(0,0,0,.6), 0 0 0 1px rgba(255,97,26,.15);
+  opacity:0; transform:translateY(8px) rotateX(-12deg) rotateY(6deg) scale(.96);
+  transform-style:preserve-3d;
+  transition:opacity .25s ease, transform .35s cubic-bezier(.2,.8,.2,1);
+}
+.hover-preview.show { opacity:1; transform:translateY(0) rotateX(0) rotateY(0) scale(1); }
+.hover-preview .hp-eyebrow { font-family:var(--mono); font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--orange); margin-bottom:8px; }
+.hover-preview .hp-t { font-weight:600; font-size:18px; letter-spacing:-.01em; margin-bottom:6px; }
+.hover-preview .hp-d { color:rgba(255,255,255,.72); }
+.hover-preview .hp-foot { font-family:var(--mono); font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:rgba(255,255,255,.45); margin-top:10px; }
+
+/* ───────── SKILLS — modular rack ───────── */
+.skills-section { padding:120px 6vw; background:var(--bg-2); }
+.skills-intro { font-size:18px; line-height:1.6; color:var(--ink-2); max-width:60ch; margin-bottom:48px; }
+.skills-intro strong { color:var(--ink); }
+.rack { display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; perspective:1400px; }
+.rack-mod {
+  background:#0e0e0e; color:#fff; border:1px solid rgba(255,255,255,.08);
+  border-radius:14px; padding:24px 26px;
+  display:flex; flex-direction:column; gap:14px;
+  position:relative; overflow:hidden;
+  transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s, border-color .35s;
+  transform-style:preserve-3d; min-height:280px;
+}
+.rack-mod::before {
+  content:''; position:absolute; left:0; top:0; right:0; height:3px;
+  background:linear-gradient(90deg, var(--orange), transparent);
+}
+.rack-mod::after {
+  content:''; position:absolute; top:14px; right:14px;
+  width:8px; height:8px; border-radius:50%;
+  background:var(--orange); box-shadow:0 0 10px var(--orange);
+  animation:bk 2.4s ease-in-out infinite;
+}
+.rack-mod:hover { transform:translateY(-4px) rotateX(3deg) rotateY(-3deg); box-shadow:0 28px 60px -22px rgba(255,97,26,.5); border-color:rgba(255,97,26,.4); }
+.rack-id {
+  font-family:var(--mono); font-size:10px; letter-spacing:.22em; text-transform:uppercase;
+  color:rgba(255,255,255,.4);
+}
+.rack-name {
+  font-family:var(--sans); font-weight:600; font-size:20px; letter-spacing:-.01em;
+  display:flex; align-items:center; gap:8px;
+}
+.rack-name .ic { font-size:22px; }
+.rack-desc { font-size:13px; color:rgba(255,255,255,.62); line-height:1.55; }
+.rack-meter {
+  display:flex; align-items:center; gap:12px;
+  font-family:var(--mono); font-size:10px; letter-spacing:.16em; text-transform:uppercase;
+  color:rgba(255,255,255,.5);
+}
+.rack-bar {
+  flex:1; height:6px; border-radius:99px; background:rgba(255,255,255,.08); position:relative; overflow:hidden;
+}
+.rack-bar::before {
+  content:''; position:absolute; inset:0; right:auto;
+  width:var(--pct, 80%);
+  background:linear-gradient(90deg, var(--orange), #ff8d50);
+  border-radius:99px;
+  box-shadow:0 0 12px rgba(255,97,26,.6);
+  transform:scaleX(0); transform-origin:left;
+  animation:fill 1.4s cubic-bezier(.2,.8,.2,1) forwards;
+}
+@keyframes fill { to { transform:scaleX(1); } }
+.rack-tags { display:flex; flex-wrap:wrap; gap:5px; margin-top:auto; }
+.rack-tag {
+  font-family:var(--mono); font-size:10px; letter-spacing:.04em;
+  background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08);
+  padding:4px 8px; border-radius:5px; color:rgba(255,255,255,.72);
+  transition:background .2s, color .2s;
+}
+.rack-tag:hover { background:var(--orange); color:#fff; border-color:var(--orange); }
+
+/* ───────── EDUCATION ───────── */
+.edu-section { padding:120px 6vw 80px; }
+.edu-grid { display:grid; grid-template-columns:1.1fr 1fr; gap:24px; }
+.edu-card, .honors-card {
+  background:#fff; border:1px solid var(--line); border-radius:16px; padding:32px 34px;
+  transition:transform .3s, box-shadow .3s, border-color .3s;
+}
+.edu-card:hover, .honors-card:hover { transform:translateY(-3px); border-color:var(--orange); box-shadow:0 22px 50px -28px rgba(255,97,26,.3); }
+.edu-school { font-weight:700; font-size:24px; letter-spacing:-.015em; margin-bottom:6px; }
+.edu-deg { font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); margin-bottom:18px; }
+.edu-pts { list-style:none; display:flex; flex-direction:column; gap:8px; font-size:14.5px; color:var(--ink-2); }
+.edu-pts li::before { content:'— '; color:var(--orange); }
+.honors-title { font-family:var(--mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase; opacity:.5; margin-bottom:18px; }
+.honor-item { display:grid; grid-template-columns:24px 1fr; gap:12px; padding:12px 0; border-top:1px solid var(--line); }
+.honor-item:first-of-type { border-top:none; padding-top:4px; }
+.honor-mark { color:var(--orange); font-size:18px; line-height:1.2; }
+.honor-name { font-weight:600; font-size:14.5px; }
+.honor-desc { font-size:13px; color:var(--ink-3); margin-top:2px; }
+
+/* ───────── CONTACT ───────── */
+#contact { background:var(--orange); color:#000; padding:160px 6vw; text-align:center; }
+#contact h2 {
+  font-family:var(--sans); font-weight:300;
+  font-size:clamp(48px, 9vw, 140px); line-height:.95; letter-spacing:-.04em; max-width:18ch; margin:0 auto 32px;
+}
+#contact h2 em { font-style:italic; font-weight:700; }
+#contact .tag { font-family:var(--mono); font-size:13px; letter-spacing:.18em; text-transform:uppercase; opacity:.6; margin-bottom:32px; }
+#contact .lede { font-family:var(--sans); font-size:18px; line-height:1.5; max-width:520px; margin:0 auto 48px; opacity:.8; }
+.contact-btns { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-bottom:28px; }
+.btn-dark, .btn-outline {
+  display:inline-flex; align-items:center; gap:10px;
+  font-family:var(--sans); font-weight:600; font-size:14.5px;
+  padding:16px 24px; border-radius:999px;
+  transition:transform .25s, background .25s, color .25s;
+}
+.btn-dark { background:#000; color:#fff; }
+.btn-dark:hover { transform:translateY(-2px); }
+.btn-outline { background:transparent; color:#000; border:1.5px solid #000; }
+.btn-outline:hover { background:#000; color:#fff; transform:translateY(-2px); }
+.contact-avail { font-family:var(--mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase; opacity:.7; display:inline-flex; align-items:center; gap:8px; }
+.contact-avail .ca-dot { width:8px; height:8px; border-radius:50%; background:#000; animation:bk 1.4s ease-in-out infinite; }
+
+footer {
+  background:#000; color:rgba(255,255,255,.5);
+  padding:24px 6vw; display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px;
+  font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+}
+
+/* ───────── MODAL ───────── */
+.modal-overlay {
+  position:fixed; inset:0; z-index:200;
+  background:rgba(8,8,8,.78); backdrop-filter:blur(14px) saturate(120%);
+  display:flex; align-items:center; justify-content:center;
+  padding:40px 20px;
+  opacity:0; pointer-events:none;
+  transition:opacity .35s ease;
+  perspective:1500px;
+}
+.modal-overlay.open { opacity:1; pointer-events:auto; }
+.modal-card {
+  background:#0d0d0d; color:#fff;
+  width:min(960px, 100%); max-height:88dvh;
+  border-radius:18px; border:1px solid rgba(255,255,255,.08);
+  box-shadow:0 50px 100px -20px rgba(0,0,0,.7), 0 0 0 1px rgba(255,97,26,.18);
+  display:flex; flex-direction:column;
+  transform:translateY(40px) rotateX(-22deg) scale(.92);
+  transform-origin:50% 100%;
+  transition:transform .55s cubic-bezier(.2,.85,.2,1);
+  overflow:hidden;
+}
+.modal-overlay.open .modal-card { transform:translateY(0) rotateX(0) scale(1); }
+.modal-head {
+  padding:32px 40px 22px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  position:relative;
+  background:linear-gradient(180deg, rgba(255,97,26,.06), transparent);
+}
+.modal-num { font-family:var(--mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--orange); margin-bottom:10px; }
+.modal-title {
+  font-family:var(--sans); font-weight:700;
+  font-size:clamp(28px, 4.2vw, 44px); line-height:1.05; letter-spacing:-.025em;
+  margin-bottom:10px;
+}
+.modal-oneliner { font-size:15.5px; line-height:1.55; color:rgba(255,255,255,.78); max-width:64ch; }
+.modal-oneliner b { color:#fff; font-weight:600; }
+.modal-oneliner em { color:var(--orange); font-style:italic; }
+.modal-close {
+  position:absolute; top:22px; right:22px;
+  width:38px; height:38px; border-radius:50%;
+  background:rgba(255,255,255,.06); color:#fff;
+  display:grid; place-items:center;
+  font-family:var(--mono); font-size:16px;
+  transition:background .25s, transform .25s;
+}
+.modal-close:hover { background:var(--orange); transform:rotate(90deg); }
+.modal-body {
+  padding:24px 40px 36px;
+  overflow-y:auto; flex:1;
+  font-size:14.5px; line-height:1.7;
+  color:rgba(255,255,255,.78);
+}
+.modal-body::-webkit-scrollbar { width:8px; }
+.modal-body::-webkit-scrollbar-track { background:transparent; }
+.modal-body::-webkit-scrollbar-thumb { background:rgba(255,255,255,.12); border-radius:99px; }
+.modal-body h4 {
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.22em; text-transform:uppercase;
+  color:rgba(255,255,255,.5); font-weight:500;
+  border-left:2px solid var(--orange); padding-left:10px;
+  margin:24px 0 12px;
+}
+.modal-body h4:first-child { margin-top:0; }
+.modal-body ul { list-style:none; display:flex; flex-direction:column; gap:10px; padding:0; }
+.modal-body ul li { position:relative; padding-left:18px; font-size:14px; line-height:1.65; }
+.modal-body ul li::before { content:'→'; position:absolute; left:0; color:var(--orange); font-family:var(--mono); }
+.modal-body b { color:#fff; font-weight:600; }
+.modal-body em { color:var(--orange); font-style:italic; }
+.modal-body code {
+  font-family:var(--mono); font-size:.88em; background:rgba(255,255,255,.06);
+  padding:1px 6px; border-radius:4px; color:#ffd1bd;
+}
+.modal-body .stat-grid { display:flex; flex-direction:column; gap:8px; margin:8px 0 4px; }
+.modal-body .stat-grid > div { display:grid; grid-template-columns:80px 1fr; gap:18px; align-items:baseline; }
+.modal-body .stat-grid .num { font-family:var(--mono); font-size:24px; color:#fff; font-weight:600; text-align:right; line-height:1; letter-spacing:-.02em; }
+.modal-body .stat-grid .lab { font-size:13.5px; color:rgba(255,255,255,.65); line-height:1.5; }
+.modal-body .stack-line { font-family:var(--mono); font-size:12.5px; line-height:1.85; color:rgba(255,255,255,.65); }
+.modal-foot {
+  padding:18px 40px 28px;
+  border-top:1px solid rgba(255,255,255,.08);
+  display:flex; flex-wrap:wrap; gap:10px;
+  background:rgba(255,255,255,.02);
+}
+.modal-foot a {
+  display:inline-flex; align-items:center; gap:8px;
+  background:var(--orange); color:#fff;
+  padding:12px 20px; border-radius:999px;
+  font-weight:600; font-size:13px;
+  transition:transform .25s, box-shadow .25s;
+}
+.modal-foot a.alt { background:rgba(255,255,255,.08); color:#fff; }
+.modal-foot a:hover { transform:translateY(-2px); box-shadow:0 10px 24px -10px rgba(255,97,26,.55); }
+.modal-tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:6px; }
+.modal-tags span {
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase;
+  background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08);
+  padding:4px 9px; border-radius:99px; color:rgba(255,255,255,.7);
+}
+
+/* ───────── RESPONSIVE ───────── */
+@media (max-width:1024px) {
+  .rack { grid-template-columns:1fr 1fr; }
+  .edu-grid { grid-template-columns:1fr; }
+  .tracks { grid-template-columns:repeat(2, 1fr); }
+  .track.featured { grid-column:1 / -1; }
+}
+@media (max-width:768px) {
+  /* fixed chrome */
+  .disc { width:44px; height:44px; font-size:16px; top:12px; left:12px; }
+  .tab-nav { top:14px; padding:4px; gap:0; max-width:calc(100vw - 70px); -webkit-overflow-scrolling:touch; scroll-snap-type:x mandatory; }
+  .tab-nav::after { content:''; position:absolute; right:0; top:0; bottom:0; width:24px; background:linear-gradient(90deg, transparent, var(--bg-3)); pointer-events:none; border-radius:0 999px 999px 0; }
+  .tab-nav a { padding:8px 11px; font-size:9px; letter-spacing:.14em; scroll-snap-align:start; }
+  .autoplay { display:none; }
+
+  /* section spacing */
+  .hero { padding:96px 5vw 56px; }
+  .section-pad, .exp-section, .work-section, .skills-section, .edu-section { padding:72px 5vw; }
+  #contact { padding:96px 5vw; }
+  .section-h, .about-h { font-size:clamp(34px, 9vw, 50px); margin-bottom:28px; }
+  .section-eyebrow { font-size:11px; margin-bottom:18px; }
+
+  /* hero */
+  .hero-eyebrow { font-size:10px; margin-bottom:24px; }
+  .hero-h { font-size:clamp(40px, 11vw, 64px); margin-bottom:26px; line-height:1; }
+  .hero-letterspaced { font-size:12px; line-height:2.1; letter-spacing:.32em; margin-top:24px; }
+  .hero-stats { grid-template-columns:repeat(2, 1fr); margin-top:40px; }
+  .stat { padding:18px 12px; }
+  .stat:nth-child(2) { border-right:none; }
+  .stat:nth-child(1), .stat:nth-child(2) { border-bottom:1px solid var(--line); }
+  .stat-val { font-size:36px; }
+  .stat-label { font-size:9.5px; }
+  .hero-bottom { margin-top:42px; }
+  .btn-orange { padding:14px 20px; font-size:14px; }
+
+  /* about */
+  .about-body { font-size:16.5px; line-height:1.65; }
+  .about-pills { gap:6px; margin-top:28px; }
+  .about-pill { font-size:10px; padding:6px 10px; }
+
+  /* experience */
+  .exp-section { overflow:visible; }
+  .exp-timeline { padding-left:30px; }
+  .exp-timeline::before { left:6px; }
+  .exp-card { padding:22px 22px; }
+  .exp-card::before { left:-28px; top:24px; width:14px; height:14px; box-shadow:0 0 0 3px var(--bg-4), 0 0 16px rgba(255,97,26,.5); }
+  .exp-card:hover { transform:none; }
+  .exp-head { gap:6px 16px; }
+  .exp-period { font-size:10.5px; }
+  .exp-org { font-size:10.5px; }
+  .exp-role { font-size:20px; margin-bottom:10px; }
+  .exp-pts li { font-size:13.5px; }
+
+  /* projects */
+  .tracks { grid-template-columns:1fr; gap:12px; }
+  .track { padding:24px; min-height:auto; }
+  .track:hover { transform:translateY(-3px); }
+  .track.featured { grid-column:auto; min-height:240px; padding:26px; }
+  .track.featured .track-t { font-size:38px; }
+  .track.featured .track-d { font-size:14.5px; }
+  .track-t { font-size:30px; }
+  .track-d { font-size:13.5px; }
+  .track-meta { font-size:10px; gap:10px; flex-wrap:wrap; }
+  .track-cta { font-size:9.5px; }
+  .track::before { width:10px; height:10px; top:18px; right:18px; }
+
+  /* compact rows */
+  .compact { padding-top:24px; }
+  .compact-row { grid-template-columns:32px 1fr 20px; gap:2px 10px; padding:14px 6px 14px 12px; align-items:start; }
+  .compact-row:hover { padding-left:20px; }
+  .compact-row .n { font-size:10px; padding-top:2px; }
+  .compact-row .ttl { font-size:15px; line-height:1.3; }
+  .compact-row .stack, .compact-row .yr { grid-column:2; }
+  .compact-row .stack { font-size:12.5px; line-height:1.4; margin-top:3px; }
+  .compact-row .yr { text-align:left; margin-top:4px; font-size:10.5px; opacity:.5; }
+  .compact-row .arr { grid-column:3; grid-row:1 / span 3; align-self:center; font-size:13px; }
+
+  /* skills rack */
+  .rack { grid-template-columns:1fr; gap:10px; }
+  .rack-mod { padding:22px 22px; min-height:auto; gap:12px; }
+  .rack-mod:hover { transform:translateY(-3px); }
+  .rack-name { font-size:18px; }
+  .rack-desc { font-size:12.5px; }
+  .rack-tag { font-size:9.5px; padding:3px 7px; }
+  .skills-intro { font-size:15.5px; margin-bottom:32px; }
+
+  /* education */
+  .edu-grid { grid-template-columns:1fr; gap:12px; }
+  .edu-card, .honors-card { padding:24px 22px; }
+  .edu-card:hover, .honors-card:hover { transform:none; }
+  .edu-school { font-size:21px; }
+  .edu-deg { font-size:10.5px; }
+  .honor-name { font-size:13.5px; }
+  .honor-desc { font-size:12px; }
+
+  /* contact */
+  #contact h2 { font-size:clamp(40px, 11vw, 60px); }
+  #contact .lede { font-size:15.5px; margin-bottom:32px; }
+  .contact-btns { gap:8px; margin-bottom:24px; }
+  .btn-dark, .btn-outline { padding:13px 18px; font-size:13.5px; }
+
+  /* modal */
+  .modal-overlay { padding:24px 12px; }
+  .modal-head { padding:24px 22px 18px; }
+  .modal-num { font-size:10px; }
+  .modal-title { font-size:24px; }
+  .modal-oneliner { font-size:14px; }
+  .modal-close { width:32px; height:32px; font-size:14px; top:18px; right:18px; }
+  .modal-body { padding:18px 22px 28px; font-size:13.5px; line-height:1.65; }
+  .modal-body h4 { margin:18px 0 10px; font-size:9.5px; }
+  .modal-body ul li { font-size:13px; line-height:1.55; }
+  .modal-body .stat-grid > div { grid-template-columns:60px 1fr; gap:14px; }
+  .modal-body .stat-grid .num { font-size:20px; }
+  .modal-body .stat-grid .lab { font-size:12.5px; }
+  .modal-foot { padding:14px 22px 22px; gap:8px; }
+  .modal-foot a { padding:11px 16px; font-size:12px; }
+  .modal-tags span { font-size:9.5px; padding:3px 8px; }
+
+  .hover-preview { display:none; }
+  footer { flex-direction:column; gap:6px; padding:20px 5vw; font-size:10px; }
+}
+
+@media (max-width:380px) {
+  .hero-h { font-size:36px; }
+  .stat-val { font-size:32px; }
+  .track-t { font-size:26px; }
+  .track.featured .track-t { font-size:32px; }
+  .section-h, .about-h { font-size:30px; }
+  #contact h2 { font-size:36px; }
+}
+</style>
 </head>
 <body>
 
-<div class="layout">
+<a class="disc" href="#hero" title="Anshul Raman">A</a>
 
-  <!-- ── SIDEBAR ── -->
-  <aside>
-    <div class="sidebar-name">Anshul Raman</div>
-    <div class="sidebar-role">CS Student · UC · Security</div>
-    <nav>
-      <div class="nav-section">
-        <div class="nav-label">Navigate</div>
-        <a href="#hero"       class="nav-link active"><span class="dot"></span>Home</a>
-        <a href="#about"      class="nav-link"><span class="dot"></span>About</a>
-        <a href="#experience" class="nav-link"><span class="dot"></span>Experience</a>
-        <a href="#projects"   class="nav-link"><span class="dot"></span>Projects</a>
-        <a href="#skills"     class="nav-link"><span class="dot"></span>Skills</a>
-        <a href="#education"  class="nav-link"><span class="dot"></span>Education</a>
-        <a href="#contact"    class="nav-link"><span class="dot"></span>Contact</a>
+<nav class="tab-nav">
+  <a href="#hero" class="active blink">HOME</a>
+  <a href="#about">ABOUT</a>
+  <a href="#experience">EXPERIENCE</a>
+  <a href="#work">PROJECTS</a>
+  <a href="#skills">SKILLS</a>
+  <a href="#education">EDUCATION</a>
+  <a href="#contact">CONTACT</a>
+</nav>
+
+<div class="autoplay"><span class="dot"></span>Building</div>
+
+<!-- ════════ HERO ════════ -->
+<section class="hero" id="hero">
+  <div class="hero-eyebrow">CS · University of Cincinnati · Co-op Fall 2026</div>
+  <h1 class="hero-h">
+    <b>Anshul Raman</b><br>
+    writes software with<br>
+    an adversarial lens —<br>
+    <span class="accent">studying how systems break.</span>
+  </h1>
+  <p class="hero-letterspaced">From full-stack platforms to offensive labs &mdash; building things that are meant to last, with a deep interest in AI and a curiosity for how systems can be tested, broken, and rebuilt stronger.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-val">3.68</div><div class="stat-label">GPA</div></div>
+    <div class="stat"><div class="stat-val">13<em>+</em></div><div class="stat-label">Projects</div></div>
+    <div class="stat"><div class="stat-val">2</div><div class="stat-label">Scholarships</div></div>
+    <div class="stat"><div class="stat-val">#1</div><div class="stat-label">District Tennis</div></div>
+  </div>
+  <div class="hero-bottom">
+    <div class="made">© 2026 — built by Anshul Raman</div>
+    <a class="btn-orange" href="#work">Browse the projects ⌬</a>
+  </div>
+</section>
+
+<!-- ════════ ABOUT ════════ -->
+<section class="section-pad" id="about">
+  <div class="section-eyebrow"><span class="glyph">⌬</span> About</div>
+  <h2 class="about-h">A little <em>about</em> me</h2>
+
+  <div class="about-body">
+    <p>I grew up <strong>taking apart phones, routers, and toys</strong> — not because I hated them, but because I wanted to see <em>how they failed.</em> That same curiosity now runs through everything I build: full-stack platforms, AI systems, cybersecurity, networking, and the messy in-between.</p>
+
+    <p>I'm a <strong>sophomore at the University of Cincinnati</strong> studying Computer Science with a focus on full-stack development and AI systems &mdash; <span class="accent">Founding Engineer at OpenPrem.</span> Dean's List Fall 2025, GPA 3.68, open to summer roles and co-op starting Fall 2026.</p>
+
+    <p>My method is short feedback loops: <strong>prototype, break, harden.</strong> Production-ready apps on one screen, offensive security labs and hardware builds on the other &mdash; from Wi-Fi auditing to phishing simulations to local networks. I want to understand where real systems crack so I can build ones that don't.</p>
+
+    <p>Outside the terminal, <strong>I used to play tennis at the national level back in India</strong> &mdash; still pick up a racquet whenever I can, and I'll happily lose to you at badminton, cricket, soccer, or volleyball. On campus I'm in Tennis Club, Bearcat Tech Innovators, IEEE, AAEO, UC Robotics, and the AI Society. Hackathon-tested. Production-tested. Most comfortable when something has to actually work, in front of real users, by morning.</p>
+  </div>
+
+  <div class="about-pills">
+    <span class="about-pill">Security Mindset</span>
+    <span class="about-pill">Systems Thinking</span>
+    <span class="about-pill">Adversarial Thinking</span>
+    <span class="about-pill">Red-team Labs</span>
+    <span class="about-pill">Python Automation</span>
+    <span class="about-pill">Hardware Experiments</span>
+    <span class="about-pill">Dean's List</span>
+    <span class="about-pill">Co-op Fall 2026</span>
+    <span class="about-pill">Tennis #1 District</span>
+    <span class="about-pill">IEEE Member</span>
+  </div>
+</section>
+
+<!-- ════════ EXPERIENCE ════════ -->
+<section class="exp-section" id="experience">
+  <div class="section-eyebrow"><span class="glyph">⌬</span> Experience · Session log</div>
+  <h2 class="section-h">Where I've <em>shown up.</em></h2>
+
+  <div class="exp-timeline">
+    <div class="exp-card live">
+      <div class="exp-head">
+        <span class="exp-period">Apr 2026 → Now</span>
+        <span class="exp-org">OpenPrem · Cincinnati, Ohio, USA</span>
       </div>
-    </nav>
-    <div class="sidebar-bottom">
-      <div class="avail">
-        <span class="avail-dot"></span>
-        Available Fall 2026
+      <div class="exp-role">Founding Engineer</div>
+      <ul class="exp-pts">
+        <li>Currently contributing to OpenPrem &mdash; details to be added soon.</li>
+      </ul>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-head">
+        <span class="exp-period">May 2023 → Mar 2024</span>
+        <span class="exp-org">Sant Gyaneshwar Model School · Alipur, Delhi, India</span>
       </div>
-      <div class="sidebar-btns">
-        <a href="resume.pdf" target="_blank" class="sb-btn sb-btn-primary">&#8595; &nbsp;Download Resume</a>
-        <a href="https://github.com/itsramananshul" target="_blank" class="sb-btn sb-btn-ghost">GitHub</a>
-        <a href="https://www.linkedin.com/in/anshulraman06" target="_blank" class="sb-btn sb-btn-ghost">LinkedIn</a>
+      <div class="exp-role">President, Science Club</div>
+      <ul class="exp-pts">
+        <li>Led and managed school-wide science events, demonstrating leadership, professionalism, and team coordination.</li>
+        <li>Collaborated with staff and student teams to design interactive STEM activities, fostering a culture of curiosity and innovation.</li>
+      </ul>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-head">
+        <span class="exp-period">Dec 2022 → Jan 2023</span>
+        <span class="exp-org">Tapan Rehabilitation Centre · Karnal, Haryana, India</span>
+      </div>
+      <div class="exp-role">Event Coordinator</div>
+      <ul class="exp-pts">
+        <li>Supported children with special needs using patience, empathy, and adaptive communication techniques.</li>
+        <li>Assisted children with hearing and speech impairments through tailored learning approaches.</li>
+        <li>Coordinated an inclusion awareness event at Pratap Public School to promote social integration.</li>
+        <li>Collaborated with staff and volunteers to ensure effective event execution and engagement.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ PROJECTS ════════ -->
+<section class="work-section" id="work">
+  <div class="section-eyebrow"><span class="glyph" style="color:var(--orange)">⌬</span>Selected Projects · TRACKS</div>
+  <h2 class="section-h">Things I've <b>actually built.</b></h2>
+
+  <div class="tracks">
+    <button class="track featured" data-id="aria">
+      <div class="track-num">— TRACK 01 / FEATURED</div>
+      <div class="track-t">ARIA</div>
+      <div class="track-meta"><span>Adaptive AI</span><span>·</span><span>1 year live in production</span><span>·</span><span>built solo</span></div>
+      <div class="track-d">Personal AI that decides <em>how</em> to engage with you — reading emotional state, detecting patterns, adapting in real time. 12 serverless functions at the platform ceiling. 6 cron jobs every 15 minutes. 16/16 regression suite passing against a live endpoint. Not a wrapper. A system.</div>
+      <div class="track-cta">Open full case study →</div>
+    </button>
+    <button class="track" data-id="voxvitals">
+      <div class="track-num">— TRACK 02</div>
+      <div class="track-t">VoxVitals</div>
+      <div class="track-meta"><span>3rd · 24h hackathon</span></div>
+      <div class="track-d">AI clinical-trial platform. Voice check-ins. Real-time camera-based physiological sensing. Three role-based dashboards. Built in 24 hours.</div>
+      <div class="track-cta">Open case study →</div>
+    </button>
+    <button class="track" data-id="auriva">
+      <div class="track-num">— TRACK 03</div>
+      <div class="track-t">Auriva AI</div>
+      <div class="track-meta"><span>Multi-Faith</span><span>·</span><span>16 traditions</span></div>
+      <div class="track-d">16 sacred traditions, each with a dedicated live scripture API and authored Gemini prompt. Voice agents across iOS / Android / desktop.</div>
+      <div class="track-cta">Open case study →</div>
+    </button>
+    <button class="track" data-id="gradintel">
+      <div class="track-num">— TRACK 04</div>
+      <div class="track-t">GradIntel</div>
+      <div class="track-meta"><span>Live</span><span>·</span><span>multi-LLM</span></div>
+      <div class="track-d">Cloud-synced GPA dashboard with simulator, multi-model AI assistant (Gemini, Grok, Claude, OpenAI), Canvas LMS integration.</div>
+      <div class="track-cta">Open case study →</div>
+    </button>
+  </div>
+
+  <div class="compact" id="compact-list">
+    <div class="compact-row" data-id="reachout"><span class="n">05</span><span class="ttl">ReachOut</span><span class="stack">Cold-outreach engine · Gmail-OAuth send · 4 job boards</span><span class="yr">2026</span><span class="arr">→</span></div>
+    <div class="compact-row" data-id="phone"><span class="n">06</span><span class="ttl">AI Phone Agent</span><span class="stack">Local voice agent · Twilio + LLaMA + Whisper · $1/mo</span><span class="yr">2025</span><span class="arr">→</span></div>
+    <div class="compact-row" data-id="ev3"><span class="n">07</span><span class="ttl">EV3 Autonomous Robot</span><span class="stack">Autonomous robot · LabVIEW state machine · 45 test runs</span><span class="yr">2025</span><span class="arr">→</span></div>
+    <div class="compact-row" data-id="atm"><span class="n">08</span><span class="ttl">Python ATM System</span><span class="stack">Console banking · file-backed ledger · 3-strike PIN</span><span class="yr">2024</span><span class="arr">→</span></div>
+    <div class="compact-row" data-id="bus"><span class="n">09</span><span class="ttl">Bus Booking System</span><span class="stack">Reservation engine · seat tracking · crash-safe</span><span class="yr">2024</span><span class="arr">→</span></div>
+    <div class="compact-row" data-id="med"><span class="n">10</span><span class="ttl">AI Medicine Dispenser</span><span class="stack">Face-verified dosing · caregiver alerts · IoT</span><span class="yr">2024</span><span class="arr">→</span></div>
+    <div class="compact-row" data-id="rat"><span class="n">11</span><span class="ttl">RAT &amp; Pen-Test Lab</span><span class="stack">Cross-platform compromise · ethical lab · Metasploit</span><span class="yr">2024</span><span class="arr">→</span></div>
+    <div class="compact-row" data-id="wifi"><span class="n">12</span><span class="ttl">Wi-Fi Pen-Test Device</span><span class="stack">Wireless audit · evil-twin AP · ESP8266 + Aircrack-ng</span><span class="yr">2024</span><span class="arr">→</span></div>
+    <div class="compact-row" data-id="phish"><span class="n">13</span><span class="ttl">Phishing Simulation</span><span class="stack">Phishing workflows · credential harvesting · MFA defense</span><span class="yr">2024</span><span class="arr">→</span></div>
+  </div>
+</section>
+
+<!-- ════════ SKILLS ════════ -->
+<section class="skills-section" id="skills">
+  <div class="section-eyebrow"><span class="glyph">⌬</span> Skills · Module rack</div>
+  <h2 class="section-h">What I actually <em>reach for.</em></h2>
+  <p class="skills-intro">Not a buzzword list. <strong>These are the tools I use when things get real.</strong> Six modules, every patch wired, every fader where I want it.</p>
+
+  <div class="rack">
+
+    <div class="rack-mod" style="--pct:88%">
+      <div class="rack-id">M01 · COGNITION</div>
+      <div class="rack-name"><span class="ic">🧠</span> AI &amp; LLM Engineering</div>
+      <div class="rack-desc">Building production AI systems &mdash; agents, voice, RAG, streaming.</div>
+      <div class="rack-meter"><span>LVL</span><div class="rack-bar"></div><span>Advanced</span></div>
+      <div class="rack-tags">
+        <span class="rack-tag">Gemini 2.5 Flash</span><span class="rack-tag">Claude</span><span class="rack-tag">OpenAI</span>
+        <span class="rack-tag">Grok</span><span class="rack-tag">Ollama</span><span class="rack-tag">LLaMA 3.2</span>
+        <span class="rack-tag">Groq Whisper</span><span class="rack-tag">faster-whisper</span><span class="rack-tag">OpenWakeWord</span>
+        <span class="rack-tag">edge-tts</span><span class="rack-tag">gTTS</span><span class="rack-tag">ElevenLabs</span>
+        <span class="rack-tag">Vector Search</span><span class="rack-tag">RAG</span><span class="rack-tag">SSE Streaming</span>
       </div>
     </div>
-  </aside>
 
-  <!-- ── MAIN ── -->
-  <main>
-
-    <!-- HERO -->
-    <section class="section" id="hero">
-      <div class="hero-label rev">CS · University of Cincinnati · Co-op Fall 2026</div>
-      <h1 class="hero-name rev">
-        Anshul<br /><em>Raman</em>
-      </h1>
-      <p class="hero-desc rev">
-        <strong>Security-minded builder.</strong> I write software with an adversarial lens &mdash; studying how
-        systems break so I can build ones that don&apos;t. From full stack platforms to offensive labs,
-        I build things that are meant to last, driven by a deep interest in AI and a curiosity for
-        how systems can be tested, broken, and rebuilt stronger.
-      </p>
-      <div class="hero-stats rev">
-        <div class="stat"><div class="stat-val">3.68</div><div class="stat-label">GPA</div></div>
-        <div class="stat"><div class="stat-val">13+</div><div class="stat-label">Projects</div></div>
-        <div class="stat"><div class="stat-val">2</div><div class="stat-label">Scholarships</div></div>
-        <div class="stat"><div class="stat-val">#1</div><div class="stat-label">District Tennis</div></div>
+    <div class="rack-mod" style="--pct:84%">
+      <div class="rack-id">M02 · SHIP</div>
+      <div class="rack-name"><span class="ic">⚡</span> Full-Stack Development</div>
+      <div class="rack-desc">Shipping web apps end-to-end &mdash; auth, data, edge, frontend.</div>
+      <div class="rack-meter"><span>LVL</span><div class="rack-bar"></div><span>Solid</span></div>
+      <div class="rack-tags">
+        <span class="rack-tag">Node.js</span><span class="rack-tag">Python</span><span class="rack-tag">JavaScript</span>
+        <span class="rack-tag">TypeScript</span><span class="rack-tag">C++</span><span class="rack-tag">Next.js</span>
+        <span class="rack-tag">React</span><span class="rack-tag">Flask</span><span class="rack-tag">Vercel</span>
+        <span class="rack-tag">Vercel Edge</span><span class="rack-tag">Supabase</span><span class="rack-tag">PostgreSQL</span>
+        <span class="rack-tag">PWA</span><span class="rack-tag">Service Workers</span><span class="rack-tag">Web Speech API</span>
+        <span class="rack-tag">Three.js</span><span class="rack-tag">Git</span>
       </div>
-      <div class="hero-scroll rev">Scroll to explore</div>
-    </section>
+    </div>
 
-    <!-- ABOUT -->
-    <section class="section" id="about">
-      <div class="section-tag rev">About</div>
-      <h2 class="section-title rev">Who I am<br /><em>and why it matters.</em></h2>
-      <div class="about-grid">
-        <div class="about-card rev">
-          <div>
-            <div class="about-num">01 &mdash; Origin</div>
-            <h3 class="about-heading">A kid who broke<br /><em>everything.</em></h3>
-            <p class="about-body">
-              I grew up taking apart phones, routers, and toys &mdash; not because I hated them,
-              but because <strong>I wanted to see how they failed.</strong> That same curiosity
-              now drives my work across full stack development, AI systems, cybersecurity,
-              networking, and systems programming.
-            </p>
-            <div class="pills">
-              <span class="pill">Security Mindset</span>
-              <span class="pill">Systems Thinking</span>
-              <span class="pill">Adversarial Thinking</span>
-            </div>
-          </div>
-          <div>
-            <div class="about-num">02 &mdash; Method</div>
-            <h3 class="about-heading">Build fast,<br /><em>break it safely.</em></h3>
-            <p class="about-body">
-              Short feedback loops: I prototype, break, and harden systems. At UC, I work on
-              <strong>full stack and AI projects</strong> alongside offensive security labs,
-              hardware builds, and Python tools to understand where real systems crack, from
-              Wi-Fi to phishing to local networks.
-            </p>
-            <div class="pills">
-              <span class="pill">Red-team Labs</span>
-              <span class="pill">Python Automation</span>
-              <span class="pill">Hardware Experiments</span>
-            </div>
-          </div>
-        </div>
-        <div class="about-card rev">
-          <div class="about-num">03 &mdash; Campus Life</div>
-          <h3 class="about-heading">What keeps me<br /><em>moving.</em></h3>
-          <p class="about-body">
-            <strong>Clubs:</strong> Tennis Club &middot; Bearcat Tech Innovators &middot; IEEE &middot; AAEO &middot; UC Robotics &middot; AI Society<br /><br />
-            <strong>Sports:</strong> Tennis &middot; Badminton &middot; Cricket &middot; Soccer &middot; Volleyball
-          </p>
-          <div class="pills">
-            <span class="pill">Tennis #1 District</span>
-            <span class="pill">Top 150 AITA</span>
-            <span class="pill">IEEE Member</span>
-          </div>
-        </div>
-        <div class="about-card rev">
-          <div class="about-num">04 &mdash; Right Now</div>
-          <h3 class="about-heading">Currently<br /><em>at Cincinnati.</em></h3>
-          <p class="about-body">
-            Sophomore at the University of Cincinnati studying Computer Science with a focus on
-            full stack development and AI systems, building production-ready web applications
-            and user-focused software, with growing experience in cybersecurity through hands-on
-            labs and systems exploration. Dean&apos;s List Fall 2025. <strong>Open to summer roles and
-            co-op opportunities starting Fall 2026.</strong>
-          </p>
-          <div class="pills">
-            <span class="pill">Dean&apos;s List</span>
-            <span class="pill">3.68 GPA</span>
-            <span class="pill">Co-op Fall 2026</span>
-          </div>
-        </div>
+    <div class="rack-mod" style="--pct:82%">
+      <div class="rack-id">M03 · INTEGRATIONS</div>
+      <div class="rack-name"><span class="ic">🔌</span> APIs &amp; Integrations</div>
+      <div class="rack-desc">Wiring real services together until everything talks to everything.</div>
+      <div class="rack-meter"><span>LVL</span><div class="rack-bar"></div><span>Solid</span></div>
+      <div class="rack-tags">
+        <span class="rack-tag">Google OAuth2</span><span class="rack-tag">Gmail API</span><span class="rack-tag">Calendar API</span>
+        <span class="rack-tag">Microsoft OAuth</span><span class="rack-tag">Telegram Bot API</span><span class="rack-tag">GitHub API</span>
+        <span class="rack-tag">Twilio</span><span class="rack-tag">Canvas LMS</span><span class="rack-tag">Hunter.io</span>
+        <span class="rack-tag">RapidAPI</span><span class="rack-tag">Presage SDK</span><span class="rack-tag">API.Bible</span>
+        <span class="rack-tag">alQuran.cloud</span><span class="rack-tag">GurbaniNow</span><span class="rack-tag">VedicScriptures</span>
       </div>
-    </section>
+    </div>
 
-    <!-- EXPERIENCE -->
-    <section class="section" id="experience">
-      <div class="section-tag rev">Experience</div>
-      <h2 class="section-title rev">Where I&apos;ve<br /><em>shown up.</em></h2>
-      <div class="exp-item rev">
-        <div class="exp-left">
-          <div class="exp-period">Apr 2026 &ndash; Present</div>
-          <div class="exp-org">OpenPrem<br />Cincinnati, Ohio, USA</div>
-        </div>
-        <div class="exp-right">
-          <div class="exp-role">Founding Engineer</div>
-          <ul class="pts">
-            <li>Currently contributing to OpenPrem &mdash; details to be added soon.</li>
-          </ul>
-        </div>
+    <div class="rack-mod" style="--pct:78%">
+      <div class="rack-id">M04 · OFFENSIVE</div>
+      <div class="rack-name"><span class="ic">⚔️</span> Offensive Security</div>
+      <div class="rack-desc">Tools I use to find weaknesses before the bad guys do.</div>
+      <div class="rack-meter"><span>LVL</span><div class="rack-bar"></div><span>Proficient</span></div>
+      <div class="rack-tags">
+        <span class="rack-tag">Metasploit</span><span class="rack-tag">Nmap</span><span class="rack-tag">Aircrack-ng</span>
+        <span class="rack-tag">Hashcat</span><span class="rack-tag">Hydra</span><span class="rack-tag">John the Ripper</span>
+        <span class="rack-tag">Wireshark</span><span class="rack-tag">SET</span><span class="rack-tag">Kali Linux 2025.3</span>
+        <span class="rack-tag">Parrot OS 7.0</span>
       </div>
-      <div class="exp-item rev">
-        <div class="exp-left">
-          <div class="exp-period">May 2023 &ndash; Mar 2024</div>
-          <div class="exp-org">Sant Gyaneshwar Model School<br />Alipur, Delhi, India</div>
-        </div>
-        <div class="exp-right">
-          <div class="exp-role">President, Science Club</div>
-          <ul class="pts">
-            <li>Led and managed school-wide science events, demonstrating leadership, professionalism, and team coordination.</li>
-            <li>Collaborated with staff and student teams to design interactive STEM activities, fostering a culture of curiosity and innovation.</li>
-          </ul>
-        </div>
+    </div>
+
+    <div class="rack-mod" style="--pct:75%">
+      <div class="rack-id">M05 · METAL</div>
+      <div class="rack-name"><span class="ic">🔧</span> Systems &amp; Hardware</div>
+      <div class="rack-desc">Working close to the metal &mdash; OS, embedded, IoT, robotics.</div>
+      <div class="rack-meter"><span>LVL</span><div class="rack-bar"></div><span>Solid</span></div>
+      <div class="rack-tags">
+        <span class="rack-tag">Linux</span><span class="rack-tag">Windows 11</span><span class="rack-tag">macOS Tahoe</span>
+        <span class="rack-tag">LabVIEW</span><span class="rack-tag">ESP8266</span><span class="rack-tag">EV3 Mindstorms</span>
+        <span class="rack-tag">Sensors</span><span class="rack-tag">State Machines</span><span class="rack-tag">File I/O</span>
+        <span class="rack-tag">Facial Recognition</span>
       </div>
-      <div class="exp-item rev">
-        <div class="exp-left">
-          <div class="exp-period">Dec 2022 &ndash; Jan 2023</div>
-          <div class="exp-org">Tapan Rehabilitation Centre<br />Karnal, Haryana, India</div>
-        </div>
-        <div class="exp-right">
-          <div class="exp-role">Event Coordinator</div>
-          <ul class="pts">
-            <li>Supported children with special needs using patience, empathy, and adaptive communication techniques.</li>
-            <li>Assisted children with hearing and speech impairments through tailored learning approaches.</li>
-            <li>Coordinated an inclusion awareness event at Pratap Public School to promote social integration.</li>
-            <li>Collaborated with staff and volunteers to ensure effective event execution and engagement.</li>
-          </ul>
-        </div>
+    </div>
+
+    <div class="rack-mod" style="--pct:80%">
+      <div class="rack-id">M06 · HUMANS</div>
+      <div class="rack-name"><span class="ic">🤝</span> Human Skills</div>
+      <div class="rack-desc">The stuff that makes tech teams actually work.</div>
+      <div class="rack-meter"><span>LVL</span><div class="rack-bar"></div><span>Strong</span></div>
+      <div class="rack-tags">
+        <span class="rack-tag">Leadership</span><span class="rack-tag">Communication</span>
+        <span class="rack-tag">Teamwork</span><span class="rack-tag">English</span><span class="rack-tag">Hindi</span>
       </div>
-    </section>
+    </div>
 
-    <!-- PROJECTS -->
-    <section class="section" id="projects">
-      <div class="section-tag rev">Projects</div>
-      <h2 class="section-title rev">Things I&apos;ve<br /><em>actually built.</em></h2>
-      <div class="projects-list">
+  </div>
+</section>
 
-        <!-- 01 ARIA -->
-        <div class="proj-item rev" data-i="0">
-          <div class="proj-number">01</div>
-          <div class="proj-main">
-            <a class="proj-title proj-title-link" href="https://aria.anshulraman.com" target="_blank" rel="noopener">ARIA &mdash; Adaptive AI System &#8599;</a>
-            <p class="proj-tagline" style="font-size:0.78rem;letter-spacing:0.06em;color:var(--grey3);text-transform:uppercase;margin-bottom:0.4rem;">aria.anshulraman.com &middot; Live in production &middot; Built entirely solo</p>
-            <p class="proj-tagline"><b style="color:var(--white);">Most AI systems answer questions. ARIA decides how to engage with you</b> &mdash; reading emotional state, detecting behavioral patterns, and adapting in real time. <em>Not a wrapper. A system.</em></p>
-            <div class="tags">
-              <span class="tag">Node.js</span><span class="tag">Python</span><span class="tag">TypeScript</span>
-              <span class="tag">Vercel</span><span class="tag">Supabase</span><span class="tag">Gemini 2.5</span>
-              <span class="tag">Groq Whisper</span><span class="tag">Telegram Bot</span><span class="tag">PWA</span>
-            </div>
-            <div class="proj-details">
-              <div class="proj-details-inner">
+<!-- ════════ EDUCATION ════════ -->
+<section class="edu-section" id="education">
+  <div class="section-eyebrow"><span class="glyph">⌬</span> Education · Where I'm learning</div>
+  <h2 class="section-h">Where I'm <em>learning.</em></h2>
 
-                <p style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.22em;color:var(--grey);font-weight:500;margin:0.4rem 0 0.9rem;border-left:2px solid var(--grey3);padding-left:0.7rem;">By the numbers</p>
-                <div style="display:flex;flex-direction:column;gap:0.7rem;margin-bottom:0.4rem;">
-                  <div style="display:grid;grid-template-columns:72px 1fr;gap:1.1rem;align-items:baseline;">
-                    <span style="font-family:'Courier New',ui-monospace,monospace;font-size:1.55rem;color:var(--white);font-weight:600;text-align:right;line-height:1;letter-spacing:-0.02em;">12</span>
-                    <span style="font-size:0.85rem;color:var(--grey);line-height:1.55;font-weight:300;">serverless functions &mdash; at the hard ceiling of the platform, every slot used</span>
-                  </div>
-                  <div style="display:grid;grid-template-columns:72px 1fr;gap:1.1rem;align-items:baseline;">
-                    <span style="font-family:'Courier New',ui-monospace,monospace;font-size:1.55rem;color:var(--white);font-weight:600;text-align:right;line-height:1;letter-spacing:-0.02em;">5</span>
-                    <span style="font-size:0.85rem;color:var(--grey);line-height:1.55;font-weight:300;">long-running edge functions for tasks that exceed serverless timeouts</span>
-                  </div>
-                  <div style="display:grid;grid-template-columns:72px 1fr;gap:1.1rem;align-items:baseline;">
-                    <span style="font-family:'Courier New',ui-monospace,monospace;font-size:1.55rem;color:var(--white);font-weight:600;text-align:right;line-height:1;letter-spacing:-0.02em;">6</span>
-                    <span style="font-size:0.85rem;color:var(--grey);line-height:1.55;font-weight:300;">scheduled autonomous jobs, running as frequently as every 15 minutes</span>
-                  </div>
-                  <div style="display:grid;grid-template-columns:72px 1fr;gap:1.1rem;align-items:baseline;">
-                    <span style="font-family:'Courier New',ui-monospace,monospace;font-size:1.55rem;color:var(--white);font-weight:600;text-align:right;line-height:1;letter-spacing:-0.02em;">4</span>
-                    <span style="font-size:0.85rem;color:var(--grey);line-height:1.55;font-weight:300;">intelligence phases, each feature-flagged and shadow-validated before activation</span>
-                  </div>
-                  <div style="display:grid;grid-template-columns:72px 1fr;gap:1.1rem;align-items:baseline;">
-                    <span style="font-family:'Courier New',ui-monospace,monospace;font-size:1.4rem;color:var(--white);font-weight:600;text-align:right;line-height:1;letter-spacing:-0.02em;">16/16</span>
-                    <span style="font-size:0.85rem;color:var(--grey);line-height:1.55;font-weight:300;">automated regression tests passing against the live production endpoint</span>
-                  </div>
-                  <div style="display:grid;grid-template-columns:72px 1fr;gap:1.1rem;align-items:baseline;">
-                    <span style="font-family:'Courier New',ui-monospace,monospace;font-size:1.55rem;color:var(--white);font-weight:600;text-align:right;line-height:1;letter-spacing:-0.02em;">0</span>
-                    <span style="font-size:0.85rem;color:var(--grey);line-height:1.55;font-weight:300;">times you have to open an app for it to be working</span>
-                  </div>
-                </div>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-school">University of Cincinnati</div>
+      <div class="edu-deg">B.S. Computer Science · Graduating May 2030</div>
+      <ul class="edu-pts">
+        <li>GPA 3.68 · Dean's List Fall 2025</li>
+        <li>Focus: Cybersecurity &amp; Software Engineering</li>
+        <li>Data Structures · Algorithms · Systems · Security Labs</li>
+      </ul>
+    </div>
+    <div class="honors-card">
+      <div class="honors-title">— Honors &amp; Awards</div>
+      <div class="honor-item"><div class="honor-mark">✦</div><div><div class="honor-name">Dean's List — Fall 2025</div><div class="honor-desc">Academic excellence, UC College of Engineering.</div></div></div>
+      <div class="honor-item"><div class="honor-mark">✦</div><div><div class="honor-name">International Global Scholarship</div><div class="honor-desc">Merit-based award for outstanding international students.</div></div></div>
+      <div class="honor-item"><div class="honor-mark">✦</div><div><div class="honor-name">International Outreach Scholarship</div><div class="honor-desc">Recognizing academic achievement and community impact.</div></div></div>
+      <div class="honor-item"><div class="honor-mark">✦</div><div><div class="honor-name">District U-19 Tennis Champion, 2022</div><div class="honor-desc">1st place; ranked Top 150 AITA nationally.</div></div></div>
+    </div>
+  </div>
+</section>
 
-                <p style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.22em;color:var(--grey);font-weight:500;margin:1.5rem 0 0.7rem;border-left:2px solid var(--grey3);padding-left:0.7rem;">What it does differently</p>
-                <ul class="proj-pts">
-                  <li><b>Four-phase behavioral intelligence pipeline.</b> Signal observation &rarr; thinking layer &rarr; pattern memory &rarr; micro-coaching. Each phase ships dormant, runs in shadow against real traffic, and activates only when accuracy is confirmed. Circuit breaker auto-disables any phase on failure.</li>
-                  <li><b>Per-turn emotional signal detection.</b> Stress, avoidance, decision paralysis, overload, uncertainty &mdash; each confidence-scored. Behavioral directives shape <em>how</em> ARIA engages, not <em>what</em> it says. Per-mode cooldowns, global throttle, self-harm pre-exit, and silent fallback on any error.</li>
-                  <li><b>Six-layer memory architecture.</b> Permanent profile (distilled every 72h), living memory (appended every conversation), active document context (confidence decay/boost/prune per turn), cold memory with recency weighting, per-person people graph with sensitive-fact gates, and full-text session log search.</li>
-                  <li><b>A system that knows when to stop.</b> Topic sovereignty layer detects dismissals in any natural phrasing, stores scoped suppressions across all output surfaces &mdash; briefings, alerts, follow-ups &mdash; without deleting the underlying memory.</li>
-                  <li><b>Hybrid knowledge retrieval over a full personal corpus.</b> Semantic and keyword search run in parallel, merged, deduplicated, reranked. 15-minute re-indexing with SHA-based change detection. Source routing that learns preferred retrieval paths from outcome data. Hourly semantic clustering across the entire vault.</li>
-                  <li><b>Autonomous execution engine.</b> Up to 10 steps, dispatched via edge function to bypass serverless limits. Per-step state persists to the database &mdash; mid-run kills are survivable. Output sanitization rejects scaffolding tokens before the user sees the response.</li>
-                  <li><b>Non-AI final gate for irreversible actions.</b> The last check before any email sends is hardcoded deterministic logic &mdash; not a language model. Defense in depth only works when both layers can fail independently.</li>
-                  <li><b>Always-on desktop voice agent.</b> Wake word, local STT, neural TTS. 1.2s post-speech delay to prevent self-triggering. Automatic response compression for voice: 1&ndash;3 sentences, no markdown.</li>
-                  <li><b>Production engineering.</b> 16-test regression suite + multi-scenario simulation suite. Unit tests for every module. SQL migrations. Point-in-time snapshots with restore scripts. Feature flags on every behavioral change.</li>
-                </ul>
+<!-- ════════ CONTACT ════════ -->
+<section id="contact">
+  <div class="tag">⌬ Let's make something</div>
+  <h2>Let's <em>build</em> something real.</h2>
+  <p class="lede">For internships, AI engineering work, hackathon teams, security collabs &mdash; or just to talk about the ideas. I read every email.</p>
+  <div class="contact-btns">
+    <a class="btn-dark" href="mailto:ramanal@mail.uc.edu">✉ Email Me</a>
+    <a class="btn-outline" href="https://www.linkedin.com/in/anshulraman06" target="_blank" rel="noopener">LinkedIn</a>
+    <a class="btn-outline" href="https://github.com/itsramananshul" target="_blank" rel="noopener">GitHub</a>
+    <a class="btn-outline" href="resume.pdf" target="_blank" rel="noopener">↓ Resume</a>
+  </div>
+  <div class="contact-avail"><span class="ca-dot"></span>Available for co-op — Fall 2026</div>
+</section>
 
-                <p style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.22em;color:var(--grey);font-weight:500;margin:1.5rem 0 0.5rem;border-left:2px solid var(--grey3);padding-left:0.7rem;">Stack</p>
-                <p style="font-size:0.78rem;line-height:1.85;color:var(--grey);font-weight:300;margin-bottom:0.6rem;">Node.js &middot; Python &middot; TypeScript (Deno) &middot; PostgreSQL &middot; Supabase &middot; Vercel &middot; Gemini 2.5 Flash &middot; Groq Whisper &middot; Google OAuth2 &middot; Telegram Bot API &middot; GitHub API &middot; OpenWakeWord &middot; faster-whisper &middot; edge-tts &middot; PWA</p>
+<footer>
+  <span>© 2026 made by Anshul Raman</span>
+  <span>CS @ University of Cincinnati</span>
+  <span>Cincinnati · OH</span>
+</footer>
 
-                <a class="proj-link" href="https://aria.anshulraman.com" target="_blank">Read More About ARIA &#8599;</a>
-              </div>
-            </div>
-          </div>
-          <div class="proj-arrow">&nearr;</div>
-        </div>
-
-        <!-- 02 Auriva AI -->
-        <div class="proj-item rev" data-i="0">
-          <div class="proj-number">02</div>
-          <div class="proj-main">
-            <a class="proj-title proj-title-link" href="https://auriva-ai.anshulraman.com" target="_blank" rel="noopener">Auriva AI &mdash; Multi-Faith Spiritual Guide &#8599;</a>
-            <p class="proj-tagline" style="font-size:0.78rem;letter-spacing:0.06em;color:var(--grey3);text-transform:uppercase;margin-bottom:0.4rem;">auriva-ai.anshulraman.com</p>
-            <p class="proj-tagline"><b style="color:var(--white);">Most spiritual apps pick one religion. Auriva chose all of them</b> &mdash; 16 sacred traditions, each with a dedicated live scripture API, an individually authored Gemini system prompt, and a voice conversation agent engineered differently for iOS, Android, and desktop. <em>The differentiator is not breadth; it&rsquo;s that every tradition is genuinely first-class:</em> Arabic Quranic text from a live endpoint, Gurmukhi from a Sikh gurbani service, and a two-model hybrid for Bible where Gemini picks the verse reference and a scripture API fetches the text.</p>
-            <div class="tags">
-              <span class="tag">JavaScript</span><span class="tag">Vercel Edge</span><span class="tag">Supabase</span>
-              <span class="tag">Gemini 2.5</span><span class="tag">Web Speech API</span><span class="tag">Voice AI</span>
-              <span class="tag">API.Bible</span><span class="tag">Multi-Faith AI</span>
-            </div>
-            <div class="proj-details">
-              <div class="proj-details-inner">
-
-                <ul class="proj-pts">
-                  <li><b>Verse retrieval runs a 3-tier cascade:</b> 4 live scripture APIs at tier one (GurbaniNow, alQuran.cloud, VedicScriptures, API.Bible), Gemini generation with per-source prompts at tier two, and hardcoded verse pools at tier three &mdash; zero UI errors regardless of network state.</li>
-                  <li><b>Two-phase VAD runs 2 calibration passes</b> before each desktop voice session &mdash; measures ambient silence before TTS fires, then re-measures speaker bleed while TTS plays, deriving a threshold that blocks self-triggering without cutting off a real user speaking over the AI.</li>
-                  <li><b>Android TTS sentence-chunking</b> splits every response into individual sentences chained as separate speech objects via callbacks, working around the OS hard utterance cutoff; each sentence carries its own safety timeout.</li>
-                  <li><b>iOS audio unlock</b> fires a near-silent utterance inside the button-click gesture handler before voice mode activates, bypassing the browser&rsquo;s restriction on <code style="font-size:0.85em;background:#222;padding:0.1em 0.3em;border-radius:3px;">speechSynthesis</code> in async contexts.</li>
-                  <li><b>Bible verse pipeline is two-stage:</b> Gemini runs a high-temperature reference-selection pass across all 66 books, then API.Bible retrieves the actual text with a three-translation waterfall fallback (NIV &rarr; KJV &rarr; AMP).</li>
-                  <li><b>Gemini SSE edge proxy on Vercel Edge Runtime</b> parses the stream and forwards raw text tokens &mdash; first words reach the client before the full response is computed.</li>
-                  <li><b>Message editing</b> truncates in-memory history at the selected index, wipes and atomically re-inserts the Supabase <code style="font-size:0.85em;background:#222;padding:0.1em 0.3em;border-radius:3px;">messages</code> table, and restores the original text into the input for re-submission.</li>
-                  <li><b>Dual-path auth boot</b> runs <code style="font-size:0.85em;background:#222;padding:0.1em 0.3em;border-radius:3px;">getSession</code> and <code style="font-size:0.85em;background:#222;padding:0.1em 0.3em;border-radius:3px;">onAuthStateChange</code> in parallel with a readiness guard specifically for Safari&rsquo;s post-redirect timing issues on older iOS.</li>
-                  <li><b>No framework</b> &mdash; auth screen, onboarding flow, and full chat interface hand-built in vanilla ES modules.</li>
-                </ul>
-
-                <p style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.22em;color:var(--grey);font-weight:500;margin:1.5rem 0 0.5rem;border-left:2px solid var(--grey3);padding-left:0.7rem;">Stack</p>
-                <p style="font-size:0.78rem;line-height:1.85;color:var(--grey);font-weight:300;margin-bottom:0.6rem;">Gemini 2.5 Flash &middot; Vercel Edge Functions &middot; Supabase (Auth + Postgres + RLS) &middot; Vanilla ES Modules &middot; Web Speech API &middot; API.Bible &middot; alQuran.cloud &middot; GurbaniNow &middot; VedicScriptures</p>
-
-                <a class="proj-link" href="https://auriva-ai.anshulraman.com" target="_blank">View Live Project &#8599;</a>
-                <a class="proj-link" href="https://github.com/itsramananshul/Auriva-AI" target="_blank">View on GitHub &#8599;</a>
-              </div>
-            </div>
-          </div>
-          <div class="proj-arrow">&nearr;</div>
-        </div>
-
-        <!-- 03 VoxVitals -->
-        <div class="proj-item rev" data-i="0">
-          <div class="proj-number">03</div>
-          <div class="proj-main">
-            <a class="proj-title proj-title-link" href="https://voxvitals.anshulraman.tech/" target="_blank" rel="noopener">VoxVitals &mdash; AI Clinical Trial Platform &#8599;</a>
-            <p class="proj-tagline">3rd Place &middot; Medpace Clinical Trial Challenge @ RevolutionUC 2026 &nbsp;&middot;&nbsp; MLH Best Use of Presage API &nbsp;&middot;&nbsp; Built in 24 hours.</p>
-            <div class="tags">
-              <span class="tag">Next.js</span><span class="tag">React</span><span class="tag">Supabase</span>
-              <span class="tag">Gemini API</span><span class="tag">ElevenLabs</span><span class="tag">Presage SDK</span>
-            </div>
-            <div class="proj-details">
-              <div class="proj-details-inner">
-                <ul class="proj-pts">
-                  <li>Built a full-stack AI clinical intelligence platform in 24 hrs &mdash; voice check-ins, real-time physiological sensing (heart rate, breathing rate, stress) via the Presage API camera SDK, medication scanning with AI safety and dosage analysis, and voice-phrase authentication.</li>
-                  <li>Engineered three role-based dashboards: patients interact entirely through voice; doctors get Gemini-powered risk scoring that auto-flags patients as stable, moderate, high risk, or critical; lead doctors get a global command center with doctor performance analytics, cohort insights, and trial-wide adherence and dropout metrics.</li>
-                  <li>Built a simulation lab for generating synthetic patients and modeling clinical workflows, plus an optimization engine predicting trial completion likelihood and identifying at-risk individuals before dropout.</li>
-                  <li>Integrated real-time emergency alerting, AI symptom matching to patient history, built-in doctor-patient messaging, and voice-activated login with exact-phrase verification &mdash; any deviation fails authentication.</li>
-                </ul>
-                <a class="proj-link" href="https://voxvitals.anshulraman.tech/" target="_blank">View Live Project &#8599;</a>
-                <a class="proj-link" href="https://github.com/itsramananshul/Revlu-hackathon" target="_blank">View on GitHub &#8599;</a>
-              </div>
-            </div>
-          </div>
-          <div class="proj-arrow">&nearr;</div>
-        </div>
-
-        <!-- 04 GradIntel -->
-        <div class="proj-item rev" data-i="1">
-          <div class="proj-number">04</div>
-          <div class="proj-main">
-            <a class="proj-title proj-title-link" href="https://gradintel.anshulraman.com" target="_blank" rel="noopener">GradIntel &mdash; Academic Performance Platform &#8599;</a>
-            <p class="proj-tagline">Full-stack GPA dashboard with AI assistants, grade simulator, study planner, and Canvas LMS integration. Live at gradintel.anshulraman.com</p>
-            <div class="tags">
-              <span class="tag">Python</span><span class="tag">Supabase</span><span class="tag">Canvas LMS API</span>
-              <span class="tag">Gemini</span><span class="tag">Grok</span><span class="tag">Claude</span><span class="tag">OpenAI</span>
-            </div>
-            <div class="proj-details">
-              <div class="proj-details-inner">
-                <ul class="proj-pts">
-                  <li>Cloud-synced GPA dashboard: cumulative GPA, semester GPA, credits, at-risk warnings across every device via Supabase.</li>
-                  <li>Grade Simulator with sliders for what-if scenarios + safe-zone calculator for every remaining exam.</li>
-                  <li>Multi-model AI Assistant &mdash; Gemini, Grok, Claude, OpenAI &mdash; plus syllabus PDF parser that auto-populates exam structure.</li>
-                  <li>Study Planner: Pomodoro timer, deadline tracker, mood log, AI-generated risk-ranked focus plans.</li>
-                  <li>Canvas LMS integration to auto-pull live grades from the university portal.</li>
-                  <li>Degree Tracker with AI-powered degree-plan PDF import and target GPA calculator.</li>
-                  <li>Gamification: XP, badges, GPA streaks, level titles, shareable cards, configurable GPA scales (4.0 / 4.3 / 5.0).</li>
-                </ul>
-                <a class="proj-link" href="https://gradintel.anshulraman.com" target="_blank">View Live Project &#8599;</a>
-                <a class="proj-link" href="https://github.com/itsramananshul/gradintel" target="_blank">View on GitHub &#8599;</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 05 ReachOut -->
-        <div class="proj-item rev" data-i="1">
-          <div class="proj-number">05</div>
-          <div class="proj-main">
-            <a class="proj-title proj-title-link" href="https://reachout.anshulraman.com/" target="_blank" rel="noopener">ReachOut &mdash; Automated Job Outreach Platform &#8599;</a>
-            <p class="proj-tagline">Full-stack cold email automation that finds recruiters across 4 job boards, generates personalised emails, and sends them from your own Gmail. Built for job seekers who want to skip the queue.</p>
-            <div class="tags">
-              <span class="tag">JavaScript</span><span class="tag">Supabase</span><span class="tag">Gmail API</span>
-              <span class="tag">Google OAuth</span><span class="tag">Microsoft OAuth</span><span class="tag">Hunter.io</span><span class="tag">RapidAPI</span>
-            </div>
-            <div class="proj-details">
-              <div class="proj-details-inner">
-                <ul class="proj-pts">
-                  <li>Cloud-synced campaign dashboard: emails sent, companies reached, delivery rate, and campaign history across every device via Supabase.</li>
-                  <li>Multi-source job search across LinkedIn, Indeed, Glassdoor &amp; Handshake &mdash; filter by source and select listings in one click.</li>
-                  <li>Recruiter email finder that generates 6 pattern variations per contact (<code style="font-size:0.85em;background:#222;padding:0.1em 0.3em;border-radius:3px;">firstname@</code>, <code style="font-size:0.85em;background:#222;padding:0.1em 0.3em;border-radius:3px;">f.lastname@</code>, <code style="font-size:0.85em;background:#222;padding:0.1em 0.3em;border-radius:3px;">fi.last@</code>, etc.) with confidence scoring.</li>
-                  <li>Variable-driven email template editor with live preview &mdash; auto-swaps recruiter name, company, job title, and your skills per send.</li>
-                  <li>Gmail &amp; Outlook OAuth integration: emails sent from your own account with resume attached, never from a shared server.</li>
-                  <li>4-step campaign wizard: profile builder, job selector, email composer, and live send queue with per-job status tracking.</li>
-                  <li>Setup integrations for Hunter.io (email accuracy) and RapidAPI JSearch (live job data) with embedded step-by-step instructions.</li>
-                </ul>
-                <a class="proj-link" href="https://reachout.anshulraman.com/" target="_blank">View Live Project &#8599;</a>
-                <a class="proj-link" href="https://github.com/itsramananshul/reachout" target="_blank">View on GitHub &#8599;</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 06 AI Phone Agent -->
-        <div class="proj-item rev" data-i="2">
-          <div class="proj-number">06</div>
-          <div class="proj-main">
-            <a class="proj-title proj-title-link" href="https://github.com/itsramananshul/ai-phone-agent/" target="_blank" rel="noopener">AI Phone Agent &mdash; Local Voice AI System &#8599;</a>
-            <p class="proj-tagline">Fully working AI phone agent that answers calls and holds real conversations, running completely free on a local machine.</p>
-            <div class="tags">
-              <span class="tag">Twilio</span><span class="tag">Node.js</span><span class="tag">Python</span>
-              <span class="tag">Ollama</span><span class="tag">Faster-Whisper</span><span class="tag">Flask</span><span class="tag">gTTS</span>
-            </div>
-            <div class="proj-details">
-              <div class="proj-details-inner">
-                <ul class="proj-pts">
-                  <li>Voice pipeline integrating Twilio call handling, local Whisper transcription, LLaMA 3.2 via Ollama, and gTTS text-to-speech into a single real-time conversation loop.</li>
-                  <li>Dual server architecture with Node.js handling Twilio webhooks and Python handling AI processing, communicating internally to keep the call alive during inference.</li>
-                  <li>Built a polling system to solve live call timing &mdash; keeps the call open every 5 seconds while AI processes, then plays reply the moment it&apos;s ready.</li>
-                  <li>Fully local and free &mdash; no OpenAI, no paid APIs. LLaMA 3.2 runs on device via Ollama, Whisper transcribes locally, total cost is $1/month for the Twilio number.</li>
-                  <li>Debugged and resolved webhook routing, call state management, Python&ndash;Node intercommunication, and package dependency conflicts across the full stack.</li>
-                </ul>
-                <a class="proj-link" href="https://github.com/itsramananshul/ai-phone-agent/" target="_blank">View on GitHub &#8599;</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 07 EV3 Robot — UPDATED -->
-        <div class="proj-item rev" data-i="10">
-          <div class="proj-number">07</div>
-          <div class="proj-main">
-            <a class="proj-title proj-title-link" href="https://www.linkedin.com/posts/anshulraman06_engineering-robotics-labview-ugcPost-7454015401723719680-FJUj?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE27UcIBlcMwMGGxWL1Wr2QHez-gHkecpCo" target="_blank" rel="noopener">EV3 Autonomous Robot &mdash; UC Engineering Design Project &#8599;</a>
-            <p class="proj-tagline">Fully autonomous robot that navigates a line track, detects and grabs a bin by weight classification, and delivers it to the correct drop zone. Built from scratch with zero prior hardware experience.</p>
-            <div class="tags">
-              <span class="tag">LabVIEW</span><span class="tag">LEGO Mindstorms EV3</span><span class="tag">Sensors</span>
-              <span class="tag">State Machine</span><span class="tag">ENED1002C</span>
-            </div>
-            <div class="proj-details">
-              <div class="proj-details-inner">
-                <ul class="proj-pts">
-                  <li>Single LabVIEW While Loop with a GRabbed boolean state machine controlling every behavior in real time &mdash; line following, bin detection, claw actuation, carry, and drop-off &mdash; no sequential structures, no human input.</li>
-                  <li>Dual color sensors in Detect mode straddle the 1-inch black line edges for real-time directional correction. Ultrasonic proximity sensor triggers motorized gear-driven claw at under 5cm distance.</li>
-                  <li>4 physical prototype iterations (gear train &rarr; tricycle &rarr; forklift redesign &rarr; final claw build) and 5 complete software architecture rewrites before landing on the final design.</li>
-                  <li>45 documented test runs across 3 experimental factors &mdash; surface color, lighting conditions, and tape contrast &mdash; with full descriptive statistics to validate sensor reliability before demo day.</li>
-                  <li>Applied the full engineering design process: stakeholder analysis, morphological charts across 6 design functions, weighted decision matrices, and descriptive statistics &mdash; not just built it, actually engineered it.</li>
-                </ul>
-                <a class="proj-link" href="https://www.linkedin.com/posts/anshulraman06_engineering-robotics-labview-ugcPost-7454015401723719680-FJUj?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE27UcIBlcMwMGGxWL1Wr2QHez-gHkecpCo" target="_blank">View LinkedIn Post &#8599;</a>
-              </div>
-            </div>
-          </div>
-          <div class="proj-arrow">&nearr;</div>
-        </div>
-
-        <!-- 08 ATM System -->
-        <div class="proj-item rev" data-i="9">
-          <div class="proj-number">08</div>
-          <div class="proj-main">
-            <a class="proj-title proj-title-link" href="https://github.com/itsramananshul/atm-system" target="_blank" rel="noopener">Python Banking &amp; ATM System &#8599;</a>
-            <p class="proj-tagline">Full console-based banking with persistent storage, PIN security &amp; admin panel.</p>
-            <div class="tags"><span class="tag">Python</span><span class="tag">File I/O</span><span class="tag">ATM Logic</span></div>
-            <div class="proj-details">
-              <div class="proj-details-inner">
-                <ul class="proj-pts">
-                  <li>Unique account IDs and PINs with duplicate-collision detection.</li>
-                  <li>Persistent storage via <code style="font-size:0.85em;background:#222;padding:0.1em 0.3em;border-radius:3px;">save_accounts()</code> &mdash; rewrites accounts.txt after every operation.</li>
-                  <li>3-attempt PIN lockout with auto-lock on failure, reset on success.</li>
-                  <li>Admin panel: view all accounts, unlock cards, robust input validation.</li>
-                </ul>
-                <a class="proj-link" href="https://github.com/itsramananshul/atm-system" target="_blank">View on GitHub &#8599;</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 09 Bus Booking -->
-        <div class="proj-item rev" data-i="4">
-          <div class="proj-number">09</div>
-          <div class="proj-main">
-            <a class="proj-title proj-title-link" href="https://github.com/itsramananshul/bus-booking-system/" target="_blank" rel="noopener">Python Bus Booking System &#8599;</a>
-            <p class="proj-tagline">File-backed bus reservation with seat tracking, cancellation, and unique booking IDs.</p>
-            <div class="tags"><span class="tag">Python</span><span class="tag">File I/O</span><span class="tag">Booking Logic</span></div>
-            <div class="proj-details">
-              <div class="proj-details-inner">
-                <ul class="proj-pts">
-                  <li>Unique booking IDs validated against existing records to avoid collisions.</li>
-                  <li>Per-bus seat availability synced on every booking and cancellation.</li>
-                  <li>File storage persists bookings, rebuilding seat counts at startup.</li>
-                  <li>Handles invalid input gracefully; rebuilds bookings file after cancellations.</li>
-                </ul>
-                <a class="proj-link" href="https://github.com/itsramananshul/bus-booking-system/" target="_blank">View on GitHub &#8599;</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 10 Medicine Dispensing -->
-        <div class="proj-item rev" data-i="5">
-          <div class="proj-number">10</div>
-          <div class="proj-main">
-            <div class="proj-title">AI-Integrated Medicine Dispensing Machine</div>
-            <p class="proj-tagline">Assistive hardware for Alzheimer&apos;s and dementia patients &mdash; reduces missed doses and improves caregiver visibility.</p>
-            <div class="tags"><span class="tag">AI Hardware</span><span class="tag">Facial Recognition</span><span class="tag">IoT</span><span class="tag">ENED</span></div>
-            <div class="proj-details">
-              <div class="proj-details-inner">
-                <ul class="proj-pts">
-                  <li>4-person team: smart dispenser verifies patient, delivers correct dose, escalates emergencies.</li>
-                  <li>Camera-based facial recognition before dispensing &mdash; zero wrong-patient risk.</li>
-                  <li>Automated alerts to caregivers + emergency call trigger in life-threatening scenarios.</li>
-                  <li>Addresses medication adherence, caregiver burden, and patient safety.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 11 RAT -->
-        <div class="proj-item rev" data-i="6">
-          <div class="proj-number">11</div>
-          <div class="proj-main">
-            <div class="proj-title">RAT Development &amp; Pen Testing</div>
-            <p class="proj-tagline">Controlled Remote Access Trojan lab &mdash; full-device compromise, 12+ remote functions, ethical documentation.</p>
-            <div class="tags"><span class="tag">Metasploit</span><span class="tag">Kali Linux</span><span class="tag">Offensive Labs</span></div>
-            <div class="proj-details">
-              <div class="proj-details-inner">
-                <ul class="proj-pts">
-                  <li>Cross-platform RAT: real-time surveillance, GPS tracking, SMS exfiltration in isolated lab.</li>
-                  <li>Post-exploitation research on Android &amp; Windows &mdash; documented system permission weaknesses.</li>
-                  <li>Compiled ethical-use guidelines and mitigation steps as final deliverable.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 12 Wi-Fi -->
-        <div class="proj-item rev" data-i="7">
-          <div class="proj-number">12</div>
-          <div class="proj-main">
-            <a class="proj-title proj-title-link" href="https://www.linkedin.com/posts/anshulraman06/hardware-embedded-systems-developerjourney-activity-7422510046862835712-nYUH" target="_blank" rel="noopener">Wi-Fi Penetration Testing Device &#8599;</a>
-            <p class="proj-tagline">ESP8266 wireless auditing &mdash; evil twin APs, deauth testing, 50+ beacon floods.</p>
-            <div class="tags"><span class="tag">ESP8266</span><span class="tag">Aircrack-ng</span><span class="tag">Wireless Security</span></div>
-            <div class="proj-details">
-              <div class="proj-details-inner">
-                <ul class="proj-pts">
-                  <li>Portable tool evaluating 802.11 vulnerabilities and deauthentication resilience.</li>
-                  <li>&ldquo;Evil Twin&rdquo; APs audited 20+ device connection attempts in a controlled environment.</li>
-                  <li>50+ simultaneous beacon signals to study wireless congestion thresholds.</li>
-                </ul>
-                <a class="proj-link" href="https://www.linkedin.com/posts/anshulraman06/hardware-embedded-systems-developerjourney-activity-7422510046862835712-nYUH" target="_blank">View LinkedIn Post &#8599;</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 13 Phishing -->
-        <div class="proj-item rev" data-i="8">
-          <div class="proj-number">13</div>
-          <div class="proj-main">
-            <div class="proj-title">Phishing Website Simulation</div>
-            <p class="proj-tagline">End-to-end phishing campaigns in a secure lab &mdash; credential harvesting, MFA mitigation.</p>
-            <div class="tags"><span class="tag">SET</span><span class="tag">Social Engineering</span><span class="tag">User Defense</span></div>
-            <div class="proj-details">
-              <div class="proj-details-inner">
-                <ul class="proj-pts">
-                  <li>Rebuilt phishing workflows to study password capture and social engineering tactics.</li>
-                  <li>Fake login portals and credential harvesting flows recreated in secure local lab.</li>
-                  <li>Mitigation: MFA enforcement, user awareness training, email filtering policies.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- SKILLS -->
-    <section class="section" id="skills">
-      <div class="section-tag rev">Skills</div>
-      <h2 class="section-title rev">What I actually<br /><em>reach for.</em></h2>
-      <p class="skills-intro rev">Not a buzzword list. These are the tools I use when things get real.</p>
-      <div class="skills-grid">
-        <div class="sk-card rev" style="--pct:88%">
-          <div class="sk-card-top"><div class="sk-name">&#129504; AI &amp; LLM Engineering</div><div class="sk-level">Advanced</div></div>
-          <div class="sk-desc">Building production AI systems &mdash; agents, voice, RAG, streaming.</div>
-          <div class="sk-bar-track"><div class="sk-bar-fill"></div></div>
-          <div class="sk-tags">
-            <span class="sk-tag">Gemini 2.5 Flash</span><span class="sk-tag">Claude</span><span class="sk-tag">OpenAI</span>
-            <span class="sk-tag">Grok</span><span class="sk-tag">Ollama (LLaMA 3.2)</span><span class="sk-tag">Groq Whisper</span>
-            <span class="sk-tag">faster-whisper</span><span class="sk-tag">OpenWakeWord</span><span class="sk-tag">edge-tts</span>
-            <span class="sk-tag">gTTS</span><span class="sk-tag">ElevenLabs</span><span class="sk-tag">Vector Search</span>
-            <span class="sk-tag">RAG</span><span class="sk-tag">SSE Streaming</span>
-          </div>
-        </div>
-        <div class="sk-card rev" style="--pct:84%">
-          <div class="sk-card-top"><div class="sk-name">&#9889; Full Stack Development</div><div class="sk-level">Solid</div></div>
-          <div class="sk-desc">Shipping web apps end-to-end &mdash; auth, data, edge, frontend.</div>
-          <div class="sk-bar-track"><div class="sk-bar-fill"></div></div>
-          <div class="sk-tags">
-            <span class="sk-tag">Node.js</span><span class="sk-tag">Python</span><span class="sk-tag">JavaScript</span>
-            <span class="sk-tag">TypeScript</span><span class="sk-tag">C++</span><span class="sk-tag">Next.js</span>
-            <span class="sk-tag">React</span><span class="sk-tag">Flask</span><span class="sk-tag">Vercel</span>
-            <span class="sk-tag">Vercel Edge</span><span class="sk-tag">Supabase</span><span class="sk-tag">PostgreSQL</span>
-            <span class="sk-tag">PWA</span><span class="sk-tag">Service Workers</span><span class="sk-tag">Web Speech API</span>
-            <span class="sk-tag">Three.js</span><span class="sk-tag">Git</span>
-          </div>
-        </div>
-        <div class="sk-card rev" style="--pct:82%">
-          <div class="sk-card-top"><div class="sk-name">&#128268; APIs &amp; Integrations</div><div class="sk-level">Solid</div></div>
-          <div class="sk-desc">Wiring real services together until everything talks to everything.</div>
-          <div class="sk-bar-track"><div class="sk-bar-fill"></div></div>
-          <div class="sk-tags">
-            <span class="sk-tag">Google OAuth2</span><span class="sk-tag">Gmail API</span><span class="sk-tag">Google Calendar API</span>
-            <span class="sk-tag">Microsoft OAuth</span><span class="sk-tag">Telegram Bot API</span><span class="sk-tag">GitHub API</span>
-            <span class="sk-tag">Twilio</span><span class="sk-tag">Canvas LMS</span><span class="sk-tag">Hunter.io</span>
-            <span class="sk-tag">RapidAPI</span><span class="sk-tag">Presage SDK</span><span class="sk-tag">API.Bible</span>
-            <span class="sk-tag">alQuran.cloud</span><span class="sk-tag">GurbaniNow</span><span class="sk-tag">VedicScriptures</span>
-          </div>
-        </div>
-        <div class="sk-card rev" style="--pct:78%">
-          <div class="sk-card-top"><div class="sk-name">&#9876;&#65039; Offensive Security</div><div class="sk-level">Proficient</div></div>
-          <div class="sk-desc">Tools I use to find weaknesses before the bad guys do.</div>
-          <div class="sk-bar-track"><div class="sk-bar-fill"></div></div>
-          <div class="sk-tags">
-            <span class="sk-tag">Metasploit</span><span class="sk-tag">Nmap</span><span class="sk-tag">Aircrack-ng</span>
-            <span class="sk-tag">Hashcat</span><span class="sk-tag">Hydra</span><span class="sk-tag">John the Ripper</span>
-            <span class="sk-tag">Wireshark</span><span class="sk-tag">SET</span><span class="sk-tag">Kali Linux 2025.3</span>
-            <span class="sk-tag">Parrot OS 7.0</span>
-          </div>
-        </div>
-        <div class="sk-card rev" style="--pct:75%">
-          <div class="sk-card-top"><div class="sk-name">&#128295; Systems &amp; Hardware</div><div class="sk-level">Solid</div></div>
-          <div class="sk-desc">Working close to the metal &mdash; OS, embedded, IoT, robotics.</div>
-          <div class="sk-bar-track"><div class="sk-bar-fill"></div></div>
-          <div class="sk-tags">
-            <span class="sk-tag">Linux</span><span class="sk-tag">Windows 11</span><span class="sk-tag">macOS Tahoe</span>
-            <span class="sk-tag">LabVIEW</span><span class="sk-tag">ESP8266</span><span class="sk-tag">LEGO Mindstorms EV3</span>
-            <span class="sk-tag">Sensors</span><span class="sk-tag">State Machines</span><span class="sk-tag">File I/O</span>
-            <span class="sk-tag">Facial Recognition</span>
-          </div>
-        </div>
-        <div class="sk-card rev" style="--pct:80%">
-          <div class="sk-card-top"><div class="sk-name">&#129309; Human Skills</div><div class="sk-level">Strong</div></div>
-          <div class="sk-desc">The stuff that makes tech teams actually work.</div>
-          <div class="sk-bar-track"><div class="sk-bar-fill"></div></div>
-          <div class="sk-tags">
-            <span class="sk-tag">Leadership</span><span class="sk-tag">Communication</span>
-            <span class="sk-tag">Teamwork</span><span class="sk-tag">English</span><span class="sk-tag">Hindi</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- EDUCATION -->
-    <section class="section" id="education">
-      <div class="section-tag rev">Education</div>
-      <h2 class="section-title rev">Where I&apos;m<br /><em>learning.</em></h2>
-      <div class="edu-grid">
-        <div class="edu-card rev">
-          <div class="edu-school">University of Cincinnati</div>
-          <div class="edu-deg">B.S. Computer Science &middot; Graduating May 2030</div>
-          <ul class="edu-pts">
-            <li>GPA 3.68 &middot; Dean&apos;s List Fall 2025</li>
-            <li>Focus: Cybersecurity &amp; Software Engineering</li>
-            <li>Data Structures &middot; Algorithms &middot; Systems &middot; Security Labs</li>
-          </ul>
-        </div>
-        <div class="honors-card rev">
-          <div class="honors-title">Honors &amp; Awards</div>
-          <div class="honor-item">
-            <div class="honor-mark">&#10022;</div>
-            <div class="honor-text">
-              <div class="honor-name">Dean&apos;s List &mdash; Fall 2025</div>
-              <div class="honor-desc">Academic excellence, UC College of Engineering.</div>
-            </div>
-          </div>
-          <div class="honor-item">
-            <div class="honor-mark">&#10022;</div>
-            <div class="honor-text">
-              <div class="honor-name">International Global Scholarship</div>
-              <div class="honor-desc">Merit-based award for outstanding international students.</div>
-            </div>
-          </div>
-          <div class="honor-item">
-            <div class="honor-mark">&#10022;</div>
-            <div class="honor-text">
-              <div class="honor-name">International Outreach Scholarship</div>
-              <div class="honor-desc">Recognizing academic achievement and community impact.</div>
-            </div>
-          </div>
-          <div class="honor-item">
-            <div class="honor-mark">&#10022;</div>
-            <div class="honor-text">
-              <div class="honor-name">District U-19 Tennis Champion, 2022</div>
-              <div class="honor-desc">1st place; ranked Top 150 AITA nationally.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section class="section" id="contact">
-      <div class="section-tag rev">Contact</div>
-      <div class="contact-inner">
-        <div class="contact-big rev">Let&apos;s build<br />something real.</div>
-        <p class="contact-sub rev">
-          I&apos;m always open to interesting problems, co-op opportunities, or a good conversation
-          about security. Best way to reach me is email.
-        </p>
-        <div class="contact-btns rev">
-          <a href="/cdn-cgi/l/email-protection#f684979b9798979ab69b979f9ad88395d8939283" class="ct-btn ct-btn-white">&#9993; &nbsp;Email Me</a>
-          <a href="https://www.linkedin.com/in/anshulraman06" target="_blank" class="ct-btn ct-btn-outline">LinkedIn</a>
-          <a href="https://github.com/itsramananshul" target="_blank" class="ct-btn ct-btn-outline">GitHub</a>
-          <a href="resume.pdf" target="_blank" class="ct-btn ct-btn-outline">&#8595; Resume</a>
-        </div>
-        <div class="contact-avail rev">
-          <span class="ca-dot"></span>
-          Available for co-op &mdash; Fall 2026
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <span>&copy; 2026 Anshul Raman</span>
-      <span>CS @ University of Cincinnati</span>
-      <span>Cincinnati, Ohio, USA</span>
-    </footer>
-
-  </main>
+<!-- HOVER PREVIEW -->
+<div class="hover-preview" id="hoverPreview">
+  <div class="hp-eyebrow" id="hpEyebrow">— PROJECT</div>
+  <div class="hp-t" id="hpTitle"></div>
+  <div class="hp-d" id="hpDesc"></div>
+  <div class="hp-foot">Click to open full case study →</div>
 </div>
 
-<script src="script.js" defer></script>
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="modal-card" id="modalCard">
+    <div class="modal-head">
+      <div class="modal-num" id="mNum"></div>
+      <h2 class="modal-title" id="mTitle"></h2>
+      <p class="modal-oneliner" id="mOneliner"></p>
+      <div class="modal-tags" id="mTags"></div>
+      <button class="modal-close" id="mClose" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body" id="mBody"></div>
+    <div class="modal-foot" id="mFoot"></div>
+  </div>
+</div>
+
+<script>
+const PROJECTS = {
+  aria: {
+    num:'— TRACK 01 / ADAPTIVE AI', title:'ARIA — Adaptive AI System',
+    oneliner:`<b>Most AI systems answer questions. ARIA decides how to engage with you</b> — reading emotional state, detecting behavioral patterns, adapting in real time. <em>Not a wrapper. A system.</em> Live in production for a year, built solo.`,
+    tags:['Node.js','Python','TypeScript','Vercel','Supabase','Gemini 2.5','Groq Whisper','Telegram Bot','PWA'],
+    body:`
+      <h4>By the numbers</h4>
+      <div class="stat-grid">
+        <div><span class="num">12</span><span class="lab">serverless functions — at the hard ceiling of the platform, every slot used</span></div>
+        <div><span class="num">5</span><span class="lab">long-running edge functions for tasks that exceed serverless timeouts</span></div>
+        <div><span class="num">6</span><span class="lab">scheduled autonomous jobs, running as frequently as every 15 minutes</span></div>
+        <div><span class="num">4</span><span class="lab">intelligence phases, each feature-flagged and shadow-validated before activation</span></div>
+        <div><span class="num">16/16</span><span class="lab">automated regression tests passing against the live production endpoint</span></div>
+        <div><span class="num">0</span><span class="lab">times you have to open an app for it to be working</span></div>
+      </div>
+      <h4>What it does differently</h4>
+      <ul>
+        <li><b>Four-phase behavioral intelligence pipeline.</b> Signal observation → thinking layer → pattern memory → micro-coaching. Each phase ships dormant, runs in shadow against real traffic, and activates only when accuracy is confirmed. Circuit breaker auto-disables any phase on failure.</li>
+        <li><b>Per-turn emotional signal detection.</b> Stress, avoidance, decision paralysis, overload, uncertainty — each confidence-scored. Behavioral directives shape <em>how</em> ARIA engages, not <em>what</em> it says. Per-mode cooldowns, global throttle, self-harm pre-exit, silent fallback on any error.</li>
+        <li><b>Six-layer memory architecture.</b> Permanent profile (distilled every 72h), living memory (appended every conversation), active document context (confidence decay/boost/prune per turn), cold memory with recency weighting, per-person people graph with sensitive-fact gates, full-text session log search.</li>
+        <li><b>A system that knows when to stop.</b> Topic sovereignty layer detects dismissals in any natural phrasing, stores scoped suppressions across all output surfaces — briefings, alerts, follow-ups — without deleting the underlying memory.</li>
+        <li><b>Hybrid knowledge retrieval over a full personal corpus.</b> Semantic and keyword search run in parallel, merged, deduplicated, reranked. 15-min re-indexing with SHA-based change detection. Source routing learns preferred retrieval paths from outcome data. Hourly semantic clustering across the entire vault.</li>
+        <li><b>Autonomous execution engine.</b> Up to 10 steps, dispatched via edge function to bypass serverless limits. Per-step state persists to the database — mid-run kills are survivable. Output sanitization rejects scaffolding tokens before the user sees the response.</li>
+        <li><b>Non-AI final gate for irreversible actions.</b> The last check before any email sends is hardcoded deterministic logic — not a language model. Defense in depth only works when both layers can fail independently.</li>
+        <li><b>Always-on desktop voice agent.</b> Wake word, local STT, neural TTS. 1.2s post-speech delay to prevent self-triggering. Automatic response compression for voice: 1–3 sentences, no markdown.</li>
+        <li><b>Production engineering.</b> 16-test regression suite + multi-scenario simulation suite. Unit tests for every module. SQL migrations. Point-in-time snapshots with restore scripts. Feature flags on every behavioral change.</li>
+      </ul>
+      <h4>Stack</h4>
+      <p class="stack-line">Node.js · Python · TypeScript (Deno) · PostgreSQL · Supabase · Vercel · Gemini 2.5 Flash · Groq Whisper · Google OAuth2 · Telegram Bot API · GitHub API · OpenWakeWord · faster-whisper · edge-tts · PWA</p>`,
+    links:[{label:'Read more about ARIA ↗', url:'https://aria.anshulraman.com', primary:true}]
+  },
+  voxvitals: {
+    num:'— TRACK 02 / 24-HOUR HACKATHON', title:'VoxVitals — AI Clinical Trial Platform',
+    oneliner:`<b>3rd Place · Medpace Clinical Trial Challenge @ RevolutionUC 2026.</b> MLH Best Use of Presage API. <em>Built in 24 hours.</em> Voice check-ins, real-time camera-based physiological sensing, three role-based dashboards.`,
+    tags:['Next.js','React','Supabase','Gemini API','ElevenLabs','Presage SDK'],
+    body:`
+      <h4>What got shipped</h4>
+      <ul>
+        <li>Built a full-stack AI clinical intelligence platform in 24 hrs — voice check-ins, real-time physiological sensing (heart rate, breathing rate, stress) via the Presage API camera SDK, medication scanning with AI safety and dosage analysis, and voice-phrase authentication.</li>
+        <li>Engineered three role-based dashboards: patients interact entirely through voice; doctors get Gemini-powered risk scoring that auto-flags patients as stable, moderate, high risk, or critical; lead doctors get a global command center with doctor performance analytics, cohort insights, and trial-wide adherence and dropout metrics.</li>
+        <li>Built a simulation lab for generating synthetic patients and modeling clinical workflows, plus an optimization engine predicting trial completion likelihood and identifying at-risk individuals before dropout.</li>
+        <li>Integrated real-time emergency alerting, AI symptom matching to patient history, built-in doctor-patient messaging, and voice-activated login with exact-phrase verification — any deviation fails authentication.</li>
+      </ul>`,
+    links:[
+      {label:'View live ↗', url:'https://voxvitals.anshulraman.tech/', primary:true},
+      {label:'GitHub ↗', url:'https://github.com/itsramananshul/Revlu-hackathon'}
+    ]
+  },
+  auriva: {
+    num:'— TRACK 03 / MULTI-FAITH AI', title:'Auriva AI — Multi-Faith Spiritual Guide',
+    oneliner:`<b>Most spiritual apps pick one religion. Auriva chose all of them</b> — 16 sacred traditions, each with a dedicated live scripture API, an individually authored Gemini system prompt, and a voice conversation agent engineered differently for iOS, Android, and desktop. <em>Every tradition is genuinely first-class.</em>`,
+    tags:['JavaScript','Vercel Edge','Supabase','Gemini 2.5','Web Speech API','Voice AI','API.Bible','Multi-Faith'],
+    body:`
+      <h4>What's actually built</h4>
+      <ul>
+        <li><b>Verse retrieval runs a 3-tier cascade:</b> 4 live scripture APIs at tier one (GurbaniNow, alQuran.cloud, VedicScriptures, API.Bible), Gemini generation with per-source prompts at tier two, hardcoded verse pools at tier three — zero UI errors regardless of network state.</li>
+        <li><b>Two-phase VAD runs 2 calibration passes</b> before each desktop voice session — measures ambient silence before TTS fires, then re-measures speaker bleed while TTS plays, deriving a threshold that blocks self-triggering without cutting off a real user speaking over the AI.</li>
+        <li><b>Android TTS sentence-chunking</b> splits every response into individual sentences chained as separate speech objects via callbacks, working around the OS hard utterance cutoff; each sentence carries its own safety timeout.</li>
+        <li><b>iOS audio unlock</b> fires a near-silent utterance inside the button-click gesture handler before voice mode activates, bypassing the browser's restriction on <code>speechSynthesis</code> in async contexts.</li>
+        <li><b>Bible verse pipeline is two-stage:</b> Gemini runs a high-temperature reference-selection pass across all 66 books, then API.Bible retrieves the actual text with a three-translation waterfall fallback (NIV → KJV → AMP).</li>
+        <li><b>Gemini SSE edge proxy on Vercel Edge Runtime</b> parses the stream and forwards raw text tokens — first words reach the client before the full response is computed.</li>
+        <li><b>Message editing</b> truncates in-memory history at the selected index, wipes and atomically re-inserts the Supabase <code>messages</code> table, restores the original text into the input for re-submission.</li>
+        <li><b>Dual-path auth boot</b> runs <code>getSession</code> and <code>onAuthStateChange</code> in parallel with a readiness guard specifically for Safari's post-redirect timing issues on older iOS.</li>
+        <li><b>No framework</b> — auth screen, onboarding flow, and full chat interface hand-built in vanilla ES modules.</li>
+      </ul>
+      <h4>Stack</h4>
+      <p class="stack-line">Gemini 2.5 Flash · Vercel Edge Functions · Supabase (Auth + Postgres + RLS) · Vanilla ES Modules · Web Speech API · API.Bible · alQuran.cloud · GurbaniNow · VedicScriptures</p>`,
+    links:[
+      {label:'View live ↗', url:'https://auriva-ai.anshulraman.com', primary:true},
+      {label:'GitHub ↗', url:'https://github.com/itsramananshul/Auriva-AI'}
+    ]
+  },
+  gradintel: {
+    num:'— TRACK 04 / ACADEMIC PLATFORM', title:'GradIntel — Academic Performance Platform',
+    oneliner:`<b>Full-stack GPA dashboard with AI assistants, grade simulator, study planner, and Canvas LMS integration.</b> Live at gradintel.anshulraman.com.`,
+    tags:['Python','Supabase','Canvas LMS API','Gemini','Grok','Claude','OpenAI'],
+    body:`
+      <h4>What's inside</h4>
+      <ul>
+        <li>Cloud-synced GPA dashboard: cumulative GPA, semester GPA, credits, at-risk warnings across every device via Supabase.</li>
+        <li>Grade Simulator with sliders for what-if scenarios + safe-zone calculator for every remaining exam.</li>
+        <li>Multi-model AI Assistant — Gemini, Grok, Claude, OpenAI — plus syllabus PDF parser that auto-populates exam structure.</li>
+        <li>Study Planner: Pomodoro timer, deadline tracker, mood log, AI-generated risk-ranked focus plans.</li>
+        <li>Canvas LMS integration to auto-pull live grades from the university portal.</li>
+        <li>Degree Tracker with AI-powered degree-plan PDF import and target GPA calculator.</li>
+        <li>Gamification: XP, badges, GPA streaks, level titles, shareable cards, configurable GPA scales (4.0 / 4.3 / 5.0).</li>
+      </ul>`,
+    links:[
+      {label:'View live ↗', url:'https://gradintel.anshulraman.com', primary:true},
+      {label:'GitHub ↗', url:'https://github.com/itsramananshul/gradintel'}
+    ]
+  },
+  reachout: {
+    num:'— 05 / OUTREACH AUTOMATION', title:'ReachOut — Automated Job Outreach Platform',
+    oneliner:`<b>Full-stack cold email automation that finds recruiters across 4 job boards, generates personalized emails, and sends them from your own Gmail.</b> Built for job seekers who want to skip the queue.`,
+    tags:['JavaScript','Supabase','Gmail API','Google OAuth','Microsoft OAuth','Hunter.io','RapidAPI'],
+    body:`
+      <h4>What it does</h4>
+      <ul>
+        <li>Cloud-synced campaign dashboard: emails sent, companies reached, delivery rate, and campaign history across every device via Supabase.</li>
+        <li>Multi-source job search across LinkedIn, Indeed, Glassdoor &amp; Handshake — filter by source and select listings in one click.</li>
+        <li>Recruiter email finder that generates 6 pattern variations per contact (<code>firstname@</code>, <code>f.lastname@</code>, <code>fi.last@</code>, etc.) with confidence scoring.</li>
+        <li>Variable-driven email template editor with live preview — auto-swaps recruiter name, company, job title, and your skills per send.</li>
+        <li>Gmail &amp; Outlook OAuth integration: emails sent from your own account with resume attached, never from a shared server.</li>
+        <li>4-step campaign wizard: profile builder, job selector, email composer, live send queue with per-job status tracking.</li>
+        <li>Setup integrations for Hunter.io (email accuracy) and RapidAPI JSearch (live job data) with embedded step-by-step instructions.</li>
+      </ul>`,
+    links:[
+      {label:'View live ↗', url:'https://reachout.anshulraman.com/', primary:true},
+      {label:'GitHub ↗', url:'https://github.com/itsramananshul/reachout'}
+    ]
+  },
+  phone: {
+    num:'— 06 / LOCAL VOICE AI', title:'AI Phone Agent — Local Voice AI System',
+    oneliner:`<b>Fully working AI phone agent that answers calls and holds real conversations</b> — running completely free on a local machine. No OpenAI, no paid APIs.`,
+    tags:['Twilio','Node.js','Python','Ollama','Faster-Whisper','Flask','gTTS'],
+    body:`
+      <h4>How it works</h4>
+      <ul>
+        <li>Voice pipeline integrating Twilio call handling, local Whisper transcription, LLaMA 3.2 via Ollama, and gTTS text-to-speech into a single real-time conversation loop.</li>
+        <li>Dual server architecture with Node.js handling Twilio webhooks and Python handling AI processing, communicating internally to keep the call alive during inference.</li>
+        <li>Built a polling system to solve live call timing — keeps the call open every 5 seconds while AI processes, then plays reply the moment it's ready.</li>
+        <li>Fully local and free — LLaMA 3.2 runs on device via Ollama, Whisper transcribes locally, total cost is $1/month for the Twilio number.</li>
+        <li>Debugged and resolved webhook routing, call state management, Python–Node intercommunication, and package dependency conflicts across the full stack.</li>
+      </ul>`,
+    links:[{label:'GitHub ↗', url:'https://github.com/itsramananshul/ai-phone-agent/', primary:true}]
+  },
+  ev3: {
+    num:'— 07 / ENGINEERING DESIGN', title:'EV3 Autonomous Robot — UC Engineering Design Project',
+    oneliner:`<b>Fully autonomous robot that navigates a line track, detects and grabs a bin by weight classification, and delivers it to the correct drop zone.</b> Built from scratch with zero prior hardware experience.`,
+    tags:['LabVIEW','LEGO Mindstorms EV3','Sensors','State Machine','ENED1002C'],
+    body:`
+      <h4>What I built</h4>
+      <ul>
+        <li>Single LabVIEW While Loop with a Grabbed boolean state machine controlling every behavior in real time — line following, bin detection, claw actuation, carry, and drop-off — no sequential structures, no human input.</li>
+        <li>Dual color sensors in Detect mode straddle the 1-inch black line edges for real-time directional correction. Ultrasonic proximity sensor triggers motorized gear-driven claw at under 5cm distance.</li>
+        <li>4 physical prototype iterations (gear train → tricycle → forklift redesign → final claw build) and 5 complete software architecture rewrites before landing on the final design.</li>
+        <li>45 documented test runs across 3 experimental factors — surface color, lighting conditions, and tape contrast — with full descriptive statistics to validate sensor reliability before demo day.</li>
+        <li>Applied the full engineering design process: stakeholder analysis, morphological charts across 6 design functions, weighted decision matrices, and descriptive statistics — not just built it, actually engineered it.</li>
+      </ul>`,
+    links:[{label:'View LinkedIn post ↗', url:'https://www.linkedin.com/posts/anshulraman06_engineering-robotics-labview-ugcPost-7454015401723719680-FJUj', primary:true}]
+  },
+  atm: {
+    num:'— 08 / SYSTEMS', title:'Python Banking & ATM System',
+    oneliner:`<b>Full console-based banking with persistent storage, PIN security &amp; admin panel.</b>`,
+    tags:['Python','File I/O','ATM Logic'],
+    body:`
+      <h4>Features</h4>
+      <ul>
+        <li>Unique account IDs and PINs with duplicate-collision detection.</li>
+        <li>Persistent storage via <code>save_accounts()</code> — rewrites <code>accounts.txt</code> after every operation.</li>
+        <li>3-attempt PIN lockout with auto-lock on failure, reset on success.</li>
+        <li>Admin panel: view all accounts, unlock cards, robust input validation.</li>
+      </ul>`,
+    links:[{label:'GitHub ↗', url:'https://github.com/itsramananshul/atm-system', primary:true}]
+  },
+  bus: {
+    num:'— 09 / SYSTEMS', title:'Python Bus Booking System',
+    oneliner:`<b>File-backed bus reservation with seat tracking, cancellation, and unique booking IDs.</b>`,
+    tags:['Python','File I/O','Booking Logic'],
+    body:`
+      <h4>Features</h4>
+      <ul>
+        <li>Unique booking IDs validated against existing records to avoid collisions.</li>
+        <li>Per-bus seat availability synced on every booking and cancellation.</li>
+        <li>File storage persists bookings, rebuilding seat counts at startup.</li>
+        <li>Handles invalid input gracefully; rebuilds bookings file after cancellations.</li>
+      </ul>`,
+    links:[{label:'GitHub ↗', url:'https://github.com/itsramananshul/bus-booking-system/', primary:true}]
+  },
+  med: {
+    num:'— 10 / AI HARDWARE', title:'AI-Integrated Medicine Dispensing Machine',
+    oneliner:`<b>Assistive hardware for Alzheimer's and dementia patients</b> — reduces missed doses and improves caregiver visibility.`,
+    tags:['AI Hardware','Facial Recognition','IoT','ENED'],
+    body:`
+      <h4>What it does</h4>
+      <ul>
+        <li>4-person team: smart dispenser verifies patient, delivers correct dose, escalates emergencies.</li>
+        <li>Camera-based facial recognition before dispensing — zero wrong-patient risk.</li>
+        <li>Automated alerts to caregivers + emergency call trigger in life-threatening scenarios.</li>
+        <li>Addresses medication adherence, caregiver burden, and patient safety.</li>
+      </ul>`,
+    links:[]
+  },
+  rat: {
+    num:'— 11 / OFFENSIVE SECURITY', title:'RAT Development & Pen Testing',
+    oneliner:`<b>Controlled Remote Access Trojan lab</b> — full-device compromise, 12+ remote functions, ethical documentation. Lab-only, ethically operated.`,
+    tags:['Metasploit','Kali Linux','Offensive Labs'],
+    body:`
+      <h4>What I researched</h4>
+      <ul>
+        <li>Cross-platform RAT: real-time surveillance, GPS tracking, SMS exfiltration in isolated lab.</li>
+        <li>Post-exploitation research on Android &amp; Windows — documented system permission weaknesses.</li>
+        <li>Compiled ethical-use guidelines and mitigation steps as final deliverable.</li>
+      </ul>`,
+    links:[]
+  },
+  wifi: {
+    num:'— 12 / WIRELESS SECURITY', title:'Wi-Fi Penetration Testing Device',
+    oneliner:`<b>ESP8266 wireless auditing</b> — evil twin APs, deauth testing, 50+ beacon floods.`,
+    tags:['ESP8266','Aircrack-ng','Wireless Security'],
+    body:`
+      <h4>What I built</h4>
+      <ul>
+        <li>Portable tool evaluating 802.11 vulnerabilities and deauthentication resilience.</li>
+        <li>"Evil Twin" APs audited 20+ device connection attempts in a controlled environment.</li>
+        <li>50+ simultaneous beacon signals to study wireless congestion thresholds.</li>
+      </ul>`,
+    links:[{label:'View LinkedIn post ↗', url:'https://www.linkedin.com/posts/anshulraman06/hardware-embedded-systems-developerjourney-activity-7422510046862835712-nYUH', primary:true}]
+  },
+  phish: {
+    num:'— 13 / SOCIAL ENGINEERING', title:'Phishing Website Simulation',
+    oneliner:`<b>End-to-end phishing campaigns in a secure lab</b> — credential harvesting, MFA mitigation, defensive analysis.`,
+    tags:['SET','Social Engineering','User Defense'],
+    body:`
+      <h4>What I learned</h4>
+      <ul>
+        <li>Rebuilt phishing workflows to study password capture and social engineering tactics.</li>
+        <li>Fake login portals and credential harvesting flows recreated in secure local lab.</li>
+        <li>Mitigation: MFA enforcement, user awareness training, email filtering policies.</li>
+      </ul>`,
+    links:[]
+  }
+};
+
+const overlay = document.getElementById('modalOverlay');
+const mNum = document.getElementById('mNum');
+const mTitle = document.getElementById('mTitle');
+const mOneliner = document.getElementById('mOneliner');
+const mTags = document.getElementById('mTags');
+const mBody = document.getElementById('mBody');
+const mFoot = document.getElementById('mFoot');
+const mClose = document.getElementById('mClose');
+
+function openModal(id) {
+  const p = PROJECTS[id]; if (!p) return;
+  mNum.textContent = p.num;
+  mTitle.textContent = p.title;
+  mOneliner.innerHTML = p.oneliner;
+  mTags.innerHTML = (p.tags || []).map(t => `<span>${t}</span>`).join('');
+  mBody.innerHTML = p.body;
+  mFoot.innerHTML = (p.links || []).map(l => `<a href="${l.url}" target="_blank" rel="noopener" class="${l.primary ? '' : 'alt'}">${l.label}</a>`).join('');
+  mBody.scrollTop = 0;
+  overlay.classList.add('open');
+  overlay.setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  overlay.classList.remove('open');
+  overlay.setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('[data-id]').forEach(el => el.addEventListener('click', () => openModal(el.dataset.id)));
+mClose.addEventListener('click', closeModal);
+overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+const hp = document.getElementById('hoverPreview');
+const hpEy = document.getElementById('hpEyebrow');
+const hpT = document.getElementById('hpTitle');
+const hpD = document.getElementById('hpDesc');
+
+function shortDesc(p) {
+  const tmp = document.createElement('div');
+  tmp.innerHTML = p.oneliner;
+  return tmp.textContent.trim().replace(/\s+/g,' ').slice(0, 220) + (tmp.textContent.length > 220 ? '…' : '');
+}
+
+document.querySelectorAll('.compact-row').forEach(row => {
+  row.addEventListener('mouseenter', () => {
+    const p = PROJECTS[row.dataset.id]; if (!p) return;
+    hpEy.textContent = p.num;
+    hpT.textContent = p.title;
+    hpD.textContent = shortDesc(p);
+    hp.classList.add('show');
+  });
+  row.addEventListener('mousemove', e => {
+    const pad = 18;
+    let x = e.clientX + pad;
+    let y = e.clientY + pad;
+    const w = hp.offsetWidth, h = hp.offsetHeight;
+    if (x + w + pad > window.innerWidth) x = e.clientX - w - pad;
+    if (y + h + pad > window.innerHeight) y = e.clientY - h - pad;
+    hp.style.left = x + 'px';
+    hp.style.top  = y + 'px';
+  });
+  row.addEventListener('mouseleave', () => hp.classList.remove('show'));
+});
+
+// scroll-spy nav
+const sections = ['hero','about','experience','work','skills','education','contact'];
+const navLinks = Array.from(document.querySelectorAll('.tab-nav a'));
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id;
+      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+    }
+  });
+}, { rootMargin:'-40% 0px -55% 0px' });
+sections.forEach(id => { const el = document.getElementById(id); if (el) io.observe(el); });
+</script>
 </body>
 </html>
