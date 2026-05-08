@@ -4,6 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Anshul Raman · Security-minded builder</title>
+<meta name="description" content="Anshul Raman — CS at the University of Cincinnati. Founding Engineer at OpenPrem. Builds AI systems that run for months without anyone touching them." />
+<meta name="author" content="Anshul Raman" />
+<meta property="og:title" content="Anshul Raman · Security-minded builder" />
+<meta property="og:description" content="CS student at UC. Founding Engineer at OpenPrem. Builds AI systems that run for months without anyone touching them." />
+<meta property="og:type" content="profile" />
+<meta property="og:image" content="favicon.png" />
+<meta name="theme-color" content="#ff611a" />
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="shortcut icon" href="favicon.png" />
+<link rel="apple-touch-icon" href="favicon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Doto:wght@400;700;900&family=Fragment+Mono&display=swap" rel="stylesheet">
@@ -166,7 +176,7 @@ body.menu-open { overflow:hidden; }
 
 /* ───────── HERO ───────── */
 .hero {
-  min-height:100dvh; padding:140px 6vw 80px;
+  min-height:100dvh; padding:140px 6vw 56px;
   display:flex; flex-direction:column; justify-content:center;
 }
 .hero-eyebrow {
@@ -204,10 +214,9 @@ body.menu-open { overflow:hidden; }
 .stat-label { font-family:var(--mono); font-size:10.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-3); margin-top:8px; }
 
 .hero-bottom {
-  display:flex; justify-content:space-between; align-items:flex-end;
-  margin-top:64px; flex-wrap:wrap; gap:18px;
+  display:flex; justify-content:flex-start; align-items:flex-end;
+  margin-top:42px; flex-wrap:wrap; gap:18px;
 }
-.hero-bottom .made { font-family:var(--mono); font-size:11px; letter-spacing:.06em; opacity:.45; }
 .btn-orange {
   display:inline-flex; align-items:center; gap:10px;
   background:var(--orange); color:#fff;
@@ -414,66 +423,117 @@ body.menu-open { overflow:hidden; }
 .hover-preview .hp-d { color:rgba(255,255,255,.72); }
 .hover-preview .hp-foot { font-family:var(--mono); font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:rgba(255,255,255,.45); margin-top:10px; }
 
-/* ───────── SKILLS — modular rack ───────── */
+/* ───────── SKILLS — console (tabbed) ───────── */
 .skills-section { padding:120px 6vw; background:var(--bg-2); }
-.skills-intro { font-size:18px; line-height:1.6; color:var(--ink-2); max-width:60ch; margin-bottom:48px; }
+.skills-intro { font-size:18px; line-height:1.6; color:var(--ink-2); max-width:60ch; margin-bottom:40px; }
 .skills-intro strong { color:var(--ink); }
-.rack { display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; perspective:1400px; }
-.rack-mod {
-  background:#0e0e0e; color:#fff; border:1px solid rgba(255,255,255,.08);
-  border-radius:14px; padding:24px 26px;
-  display:flex; flex-direction:column; gap:14px;
-  position:relative; overflow:hidden;
-  transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s, border-color .35s;
-  transform-style:preserve-3d; min-height:280px;
+
+.console {
+  background:#0d0d0d; color:#fff;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:18px; overflow:hidden;
+  box-shadow:0 30px 80px -40px rgba(0,0,0,.6);
+  position:relative;
 }
-.rack-mod::before {
+.console::before {
   content:''; position:absolute; left:0; top:0; right:0; height:3px;
-  background:linear-gradient(90deg, var(--orange), transparent);
+  background:linear-gradient(90deg, var(--orange) 0%, var(--orange) var(--tab-pct, 16.6%), transparent var(--tab-pct, 16.6%));
+  transition:--tab-pct .4s cubic-bezier(.2,.8,.2,1);
+  z-index:2;
 }
-.rack-mod::after {
-  content:''; position:absolute; top:14px; right:14px;
-  width:8px; height:8px; border-radius:50%;
-  background:var(--orange); box-shadow:0 0 10px var(--orange);
-  animation:bk 2.4s ease-in-out infinite;
+
+.console-tabs {
+  display:grid; grid-template-columns:repeat(6, 1fr);
+  border-bottom:1px solid rgba(255,255,255,.06);
+  background:rgba(255,255,255,.015);
+  overflow:auto; scrollbar-width:none;
 }
-.rack-mod:hover { transform:translateY(-4px) rotateX(3deg) rotateY(-3deg); box-shadow:0 28px 60px -22px rgba(255,97,26,.5); border-color:rgba(255,97,26,.4); }
-.rack-id {
-  font-family:var(--mono); font-size:10px; letter-spacing:.22em; text-transform:uppercase;
+.console-tabs::-webkit-scrollbar { display:none; }
+.console-tab {
+  display:flex; flex-direction:column; align-items:flex-start; gap:6px;
+  padding:18px 20px; min-width:0;
+  background:none; border:none; cursor:pointer;
+  color:rgba(255,255,255,.5);
+  font:inherit; text-align:left;
+  border-right:1px solid rgba(255,255,255,.04);
+  transition:background .25s, color .25s;
+  position:relative;
+}
+.console-tab:last-child { border-right:none; }
+.console-tab:hover { background:rgba(255,255,255,.025); color:rgba(255,255,255,.8); }
+.console-tab.active { background:rgba(255,97,26,.06); color:#fff; }
+.console-tab .t-id {
+  font-family:var(--mono); font-size:9.5px; letter-spacing:.18em; text-transform:uppercase;
+  color:rgba(255,255,255,.35);
+}
+.console-tab.active .t-id { color:var(--orange); }
+.console-tab .t-name {
+  font-family:var(--sans); font-weight:600; font-size:13.5px; letter-spacing:-.005em;
+  display:flex; align-items:center; gap:7px;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:100%;
+}
+.console-tab .t-name .ic { font-size:15px; flex-shrink:0; }
+
+.console-panel {
+  padding:36px 40px 40px;
+  display:grid; grid-template-columns:1fr; gap:22px;
+  min-height:340px;
+}
+.panel-head {
+  display:flex; align-items:flex-start; justify-content:space-between; gap:24px;
+  flex-wrap:wrap;
+}
+.panel-meta { display:flex; flex-direction:column; gap:8px; max-width:62ch; }
+.panel-id {
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.22em; text-transform:uppercase;
   color:rgba(255,255,255,.4);
 }
-.rack-name {
-  font-family:var(--sans); font-weight:600; font-size:20px; letter-spacing:-.01em;
-  display:flex; align-items:center; gap:8px;
+.panel-name {
+  font-family:var(--sans); font-weight:600; font-size:clamp(26px, 3.2vw, 36px);
+  letter-spacing:-.02em; line-height:1.05;
+  display:flex; align-items:center; gap:14px;
 }
-.rack-name .ic { font-size:22px; }
-.rack-desc { font-size:13px; color:rgba(255,255,255,.62); line-height:1.55; }
-.rack-meter {
-  display:flex; align-items:center; gap:12px;
-  font-family:var(--mono); font-size:10px; letter-spacing:.16em; text-transform:uppercase;
-  color:rgba(255,255,255,.5);
+.panel-name .ic { font-size:36px; }
+.panel-desc { font-size:15px; line-height:1.55; color:rgba(255,255,255,.7); }
+
+.panel-level {
+  display:flex; flex-direction:column; align-items:flex-end; gap:8px;
+  min-width:200px;
 }
-.rack-bar {
-  flex:1; height:6px; border-radius:99px; background:rgba(255,255,255,.08); position:relative; overflow:hidden;
+.panel-level-label {
+  font-family:var(--mono); font-size:10px; letter-spacing:.18em; text-transform:uppercase;
+  color:rgba(255,255,255,.45);
+  display:flex; align-items:center; gap:10px;
 }
-.rack-bar::before {
+.panel-level-label b { color:var(--orange); font-weight:600; }
+.panel-bar {
+  width:200px; height:6px; border-radius:99px; background:rgba(255,255,255,.08);
+  position:relative; overflow:hidden;
+}
+.panel-bar::before {
   content:''; position:absolute; inset:0; right:auto;
   width:var(--pct, 80%);
   background:linear-gradient(90deg, var(--orange), #ff8d50);
-  border-radius:99px;
-  box-shadow:0 0 12px rgba(255,97,26,.6);
+  border-radius:99px; box-shadow:0 0 12px rgba(255,97,26,.6);
   transform:scaleX(0); transform-origin:left;
-  animation:fill 1.4s cubic-bezier(.2,.8,.2,1) forwards;
+  animation:fill 1s cubic-bezier(.2,.8,.2,1) forwards;
 }
 @keyframes fill { to { transform:scaleX(1); } }
-.rack-tags { display:flex; flex-wrap:wrap; gap:5px; margin-top:auto; }
-.rack-tag {
-  font-family:var(--mono); font-size:10px; letter-spacing:.04em;
-  background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08);
-  padding:4px 8px; border-radius:5px; color:rgba(255,255,255,.72);
-  transition:background .2s, color .2s;
+
+.panel-tags {
+  display:flex; flex-wrap:wrap; gap:6px;
+  padding-top:16px; border-top:1px solid rgba(255,255,255,.06);
 }
-.rack-tag:hover { background:var(--orange); color:#fff; border-color:var(--orange); }
+.panel-tag {
+  font-family:var(--mono); font-size:11px; letter-spacing:.02em;
+  background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08);
+  padding:6px 11px; border-radius:6px; color:rgba(255,255,255,.78);
+  transition:background .2s, color .2s, border-color .2s, transform .2s;
+  opacity:0; transform:translateY(6px);
+  animation:tagIn .35s cubic-bezier(.2,.8,.2,1) forwards;
+}
+.panel-tag:hover { background:var(--orange); color:#fff; border-color:var(--orange); transform:translateY(-1px); }
+@keyframes tagIn { to { opacity:1; transform:translateY(0); } }
 
 /* ───────── EDUCATION ───────── */
 .edu-section { padding:120px 6vw 80px; }
@@ -624,7 +684,10 @@ footer {
 
 /* ───────── RESPONSIVE ───────── */
 @media (max-width:1024px) {
-  .rack { grid-template-columns:1fr 1fr; }
+  .console-tabs { grid-template-columns:repeat(3, 1fr); }
+  .console-tab:nth-child(3n) { border-right:none; }
+  .console-panel { padding:30px 28px 32px; min-height:auto; }
+  .panel-level { min-width:auto; align-items:flex-start; }
   .edu-grid { grid-template-columns:1fr; }
   .tracks { grid-template-columns:repeat(2, 1fr); }
   .track.featured { grid-column:1 / -1; }
@@ -703,14 +766,23 @@ footer {
   .compact-row .yr { text-align:left; margin-top:4px; font-size:10.5px; opacity:.5; }
   .compact-row .arr { grid-column:3; grid-row:1 / span 3; align-self:center; font-size:13px; }
 
-  /* skills rack */
-  .rack { grid-template-columns:1fr; gap:10px; }
-  .rack-mod { padding:22px 22px; min-height:auto; gap:12px; }
-  .rack-mod:hover { transform:translateY(-3px); }
-  .rack-name { font-size:18px; }
-  .rack-desc { font-size:12.5px; }
-  .rack-tag { font-size:9.5px; padding:3px 7px; }
-  .skills-intro { font-size:15.5px; margin-bottom:32px; }
+  /* skills console */
+  .skills-intro { font-size:15.5px; margin-bottom:28px; }
+  .console-tabs { grid-template-columns:repeat(3, 1fr); }
+  .console-tab { padding:12px 10px; gap:4px; }
+  .console-tab:nth-child(3n) { border-right:none; }
+  .console-tab:nth-child(-n+3) { border-bottom:1px solid rgba(255,255,255,.04); }
+  .console-tab .t-id { font-size:8.5px; }
+  .console-tab .t-name { font-size:11.5px; gap:5px; }
+  .console-tab .t-name .ic { font-size:13px; }
+  .console-panel { padding:24px 22px 28px; gap:18px; min-height:auto; }
+  .panel-head { gap:14px; }
+  .panel-name { font-size:24px; gap:10px; }
+  .panel-name .ic { font-size:26px; }
+  .panel-desc { font-size:13.5px; line-height:1.55; }
+  .panel-level { min-width:auto; align-items:flex-start; }
+  .panel-bar { width:100%; max-width:240px; }
+  .panel-tag { font-size:10px; padding:5px 9px; }
 
   /* education */
   .edu-grid { grid-template-columns:1fr; gap:12px; }
@@ -819,7 +891,6 @@ footer {
     <div class="stat"><div class="stat-val">#1</div><div class="stat-label">District Tennis</div></div>
   </div>
   <div class="hero-bottom">
-    <div class="made">© 2026 — built by Anshul Raman</div>
     <a class="btn-orange" href="#work">Browse the projects ⌬</a>
   </div>
 </section>
@@ -949,92 +1020,39 @@ footer {
 
 <!-- ════════ SKILLS ════════ -->
 <section class="skills-section" id="skills">
-  <div class="section-eyebrow"><span class="glyph">⌬</span> Skills · Module rack</div>
+  <div class="section-eyebrow"><span class="glyph">⌬</span> Skills · Console</div>
   <h2 class="section-h">What I actually <em>reach for.</em></h2>
-  <p class="skills-intro">Not a buzzword list. <strong>These are the tools I use when things get real.</strong> Six modules, every patch wired, every fader where I want it.</p>
+  <p class="skills-intro">Not a buzzword list. <strong>These are the tools I use when things get real.</strong> Tap a module to see everything wired in.</p>
 
-  <div class="rack">
-
-    <div class="rack-mod" style="--pct:88%">
-      <div class="rack-id">M01 · COGNITION</div>
-      <div class="rack-name"><span class="ic">🧠</span> AI &amp; LLM Engineering</div>
-      <div class="rack-desc">Building production AI systems &mdash; agents, voice, RAG, streaming.</div>
-      <div class="rack-meter"><span>LVL</span><div class="rack-bar"></div><span>Advanced</span></div>
-      <div class="rack-tags">
-        <span class="rack-tag">Gemini 2.5 Flash</span><span class="rack-tag">Claude</span><span class="rack-tag">OpenAI</span>
-        <span class="rack-tag">Grok</span><span class="rack-tag">Ollama</span><span class="rack-tag">LLaMA 3.2</span>
-        <span class="rack-tag">Groq Whisper</span><span class="rack-tag">faster-whisper</span><span class="rack-tag">OpenWakeWord</span>
-        <span class="rack-tag">edge-tts</span><span class="rack-tag">gTTS</span><span class="rack-tag">ElevenLabs</span>
-        <span class="rack-tag">Vector Search</span><span class="rack-tag">RAG</span><span class="rack-tag">SSE Streaming</span>
-      </div>
+  <div class="console" id="skillsConsole">
+    <div class="console-tabs" role="tablist">
+      <button class="console-tab active" data-mod="cognition" type="button" role="tab">
+        <span class="t-id">M01</span>
+        <span class="t-name"><span class="ic">🧠</span>AI / LLMs</span>
+      </button>
+      <button class="console-tab" data-mod="ship" type="button" role="tab">
+        <span class="t-id">M02</span>
+        <span class="t-name"><span class="ic">⚡</span>Full-Stack</span>
+      </button>
+      <button class="console-tab" data-mod="integrations" type="button" role="tab">
+        <span class="t-id">M03</span>
+        <span class="t-name"><span class="ic">🔌</span>APIs</span>
+      </button>
+      <button class="console-tab" data-mod="offensive" type="button" role="tab">
+        <span class="t-id">M04</span>
+        <span class="t-name"><span class="ic">⚔️</span>Security</span>
+      </button>
+      <button class="console-tab" data-mod="metal" type="button" role="tab">
+        <span class="t-id">M05</span>
+        <span class="t-name"><span class="ic">🔧</span>Systems</span>
+      </button>
+      <button class="console-tab" data-mod="humans" type="button" role="tab">
+        <span class="t-id">M06</span>
+        <span class="t-name"><span class="ic">🤝</span>Human</span>
+      </button>
     </div>
 
-    <div class="rack-mod" style="--pct:84%">
-      <div class="rack-id">M02 · SHIP</div>
-      <div class="rack-name"><span class="ic">⚡</span> Full-Stack Development</div>
-      <div class="rack-desc">Shipping web apps end-to-end &mdash; auth, data, edge, frontend.</div>
-      <div class="rack-meter"><span>LVL</span><div class="rack-bar"></div><span>Solid</span></div>
-      <div class="rack-tags">
-        <span class="rack-tag">Node.js</span><span class="rack-tag">Python</span><span class="rack-tag">JavaScript</span>
-        <span class="rack-tag">TypeScript</span><span class="rack-tag">C++</span><span class="rack-tag">Next.js</span>
-        <span class="rack-tag">React</span><span class="rack-tag">Flask</span><span class="rack-tag">Vercel</span>
-        <span class="rack-tag">Vercel Edge</span><span class="rack-tag">Supabase</span><span class="rack-tag">PostgreSQL</span>
-        <span class="rack-tag">PWA</span><span class="rack-tag">Service Workers</span><span class="rack-tag">Web Speech API</span>
-        <span class="rack-tag">Three.js</span><span class="rack-tag">Git</span>
-      </div>
-    </div>
-
-    <div class="rack-mod" style="--pct:82%">
-      <div class="rack-id">M03 · INTEGRATIONS</div>
-      <div class="rack-name"><span class="ic">🔌</span> APIs &amp; Integrations</div>
-      <div class="rack-desc">Wiring real services together until everything talks to everything.</div>
-      <div class="rack-meter"><span>LVL</span><div class="rack-bar"></div><span>Solid</span></div>
-      <div class="rack-tags">
-        <span class="rack-tag">Google OAuth2</span><span class="rack-tag">Gmail API</span><span class="rack-tag">Calendar API</span>
-        <span class="rack-tag">Microsoft OAuth</span><span class="rack-tag">Telegram Bot API</span><span class="rack-tag">GitHub API</span>
-        <span class="rack-tag">Twilio</span><span class="rack-tag">Canvas LMS</span><span class="rack-tag">Hunter.io</span>
-        <span class="rack-tag">RapidAPI</span><span class="rack-tag">Presage SDK</span><span class="rack-tag">API.Bible</span>
-        <span class="rack-tag">alQuran.cloud</span><span class="rack-tag">GurbaniNow</span><span class="rack-tag">VedicScriptures</span>
-      </div>
-    </div>
-
-    <div class="rack-mod" style="--pct:78%">
-      <div class="rack-id">M04 · OFFENSIVE</div>
-      <div class="rack-name"><span class="ic">⚔️</span> Offensive Security</div>
-      <div class="rack-desc">Tools I use to find weaknesses before the bad guys do.</div>
-      <div class="rack-meter"><span>LVL</span><div class="rack-bar"></div><span>Proficient</span></div>
-      <div class="rack-tags">
-        <span class="rack-tag">Metasploit</span><span class="rack-tag">Nmap</span><span class="rack-tag">Aircrack-ng</span>
-        <span class="rack-tag">Hashcat</span><span class="rack-tag">Hydra</span><span class="rack-tag">John the Ripper</span>
-        <span class="rack-tag">Wireshark</span><span class="rack-tag">SET</span><span class="rack-tag">Kali Linux 2025.3</span>
-        <span class="rack-tag">Parrot OS 7.0</span>
-      </div>
-    </div>
-
-    <div class="rack-mod" style="--pct:75%">
-      <div class="rack-id">M05 · METAL</div>
-      <div class="rack-name"><span class="ic">🔧</span> Systems &amp; Hardware</div>
-      <div class="rack-desc">Working close to the metal &mdash; OS, embedded, IoT, robotics.</div>
-      <div class="rack-meter"><span>LVL</span><div class="rack-bar"></div><span>Solid</span></div>
-      <div class="rack-tags">
-        <span class="rack-tag">Linux</span><span class="rack-tag">Windows 11</span><span class="rack-tag">macOS Tahoe</span>
-        <span class="rack-tag">LabVIEW</span><span class="rack-tag">ESP8266</span><span class="rack-tag">EV3 Mindstorms</span>
-        <span class="rack-tag">Sensors</span><span class="rack-tag">State Machines</span><span class="rack-tag">File I/O</span>
-        <span class="rack-tag">Facial Recognition</span>
-      </div>
-    </div>
-
-    <div class="rack-mod" style="--pct:80%">
-      <div class="rack-id">M06 · HUMANS</div>
-      <div class="rack-name"><span class="ic">🤝</span> Human Skills</div>
-      <div class="rack-desc">The stuff that makes tech teams actually work.</div>
-      <div class="rack-meter"><span>LVL</span><div class="rack-bar"></div><span>Strong</span></div>
-      <div class="rack-tags">
-        <span class="rack-tag">Leadership</span><span class="rack-tag">Communication</span>
-        <span class="rack-tag">Teamwork</span><span class="rack-tag">English</span><span class="rack-tag">Hindi</span>
-      </div>
-    </div>
-
+    <div class="console-panel" id="skillsPanel" role="tabpanel"></div>
   </div>
 </section>
 
@@ -1396,6 +1414,74 @@ document.querySelectorAll('.compact-row').forEach(row => {
   });
   row.addEventListener('mouseleave', () => hp.classList.remove('show'));
 });
+
+// Skills console
+const SKILLS = {
+  cognition: {
+    id:'M01 · COGNITION', icon:'🧠', name:'AI &amp; LLM Engineering', level:'Advanced', pct:88,
+    desc:'Building production AI systems &mdash; agents, voice, RAG, streaming. The kind that have to actually work, not demo well.',
+    tags:['Gemini 2.5 Flash','Claude','OpenAI','Grok','Ollama','LLaMA 3.2','Groq Whisper','faster-whisper','OpenWakeWord','edge-tts','gTTS','ElevenLabs','Vector Search','RAG','SSE Streaming']
+  },
+  ship: {
+    id:'M02 · SHIP', icon:'⚡', name:'Full-Stack Development', level:'Solid', pct:84,
+    desc:'Shipping web apps end-to-end &mdash; auth, data, edge functions, frontend, the boring middle, all of it.',
+    tags:['Node.js','Python','JavaScript','TypeScript','C++','Next.js','React','Flask','Vercel','Vercel Edge','Supabase','PostgreSQL','PWA','Service Workers','Web Speech API','Three.js','Git']
+  },
+  integrations: {
+    id:'M03 · INTEGRATIONS', icon:'🔌', name:'APIs &amp; Integrations', level:'Solid', pct:82,
+    desc:'Wiring real services together until everything talks to everything &mdash; and stays talking when one of them goes down.',
+    tags:['Google OAuth2','Gmail API','Calendar API','Microsoft OAuth','Telegram Bot API','GitHub API','Twilio','Canvas LMS','Hunter.io','RapidAPI','Presage SDK','API.Bible','alQuran.cloud','GurbaniNow','VedicScriptures']
+  },
+  offensive: {
+    id:'M04 · OFFENSIVE', icon:'⚔️', name:'Offensive Security', level:'Proficient', pct:78,
+    desc:'Tools I use to find weaknesses before the bad guys do &mdash; in lab environments, ethically operated.',
+    tags:['Metasploit','Nmap','Aircrack-ng','Hashcat','Hydra','John the Ripper','Wireshark','SET','Kali Linux 2025.3','Parrot OS 7.0']
+  },
+  metal: {
+    id:'M05 · METAL', icon:'🔧', name:'Systems &amp; Hardware', level:'Solid', pct:75,
+    desc:'Working close to the metal &mdash; OS internals, embedded boards, IoT, robotics. The half of the stack you can actually touch.',
+    tags:['Linux','Windows 11','macOS Tahoe','LabVIEW','ESP8266','EV3 Mindstorms','Sensors','State Machines','File I/O','Facial Recognition']
+  },
+  humans: {
+    id:'M06 · HUMANS', icon:'🤝', name:'Human Skills', level:'Strong', pct:80,
+    desc:'The stuff that makes tech teams actually work &mdash; and the languages I think in.',
+    tags:['Leadership','Communication','Teamwork','English','Hindi']
+  }
+};
+
+const consoleEl = document.getElementById('skillsConsole');
+const skillsPanel = document.getElementById('skillsPanel');
+const skillsTabs = Array.from(document.querySelectorAll('.console-tab'));
+const TAB_PCTS = ['16.6%','33.3%','50%','66.6%','83.3%','100%'];
+
+function renderSkill(modKey, idx) {
+  const s = SKILLS[modKey];
+  if (!s) return;
+  consoleEl.style.setProperty('--tab-pct', TAB_PCTS[idx]);
+  skillsPanel.innerHTML = `
+    <div class="panel-head">
+      <div class="panel-meta">
+        <div class="panel-id">${s.id}</div>
+        <div class="panel-name"><span class="ic">${s.icon}</span>${s.name}</div>
+        <div class="panel-desc">${s.desc}</div>
+      </div>
+      <div class="panel-level">
+        <div class="panel-level-label">LEVEL · <b>${s.level}</b></div>
+        <div class="panel-bar" style="--pct:${s.pct}%"></div>
+      </div>
+    </div>
+    <div class="panel-tags">
+      ${s.tags.map((t,i) => `<span class="panel-tag" style="animation-delay:${i*30}ms">${t}</span>`).join('')}
+    </div>`;
+}
+
+skillsTabs.forEach((tab, i) => {
+  tab.addEventListener('click', () => {
+    skillsTabs.forEach(t => t.classList.toggle('active', t === tab));
+    renderSkill(tab.dataset.mod, i);
+  });
+});
+renderSkill('cognition', 0);
 
 // scroll-spy nav (only highlights the section links, not brand or CTA)
 const sections = ['hero','about','experience','work','skills','education','contact'];
