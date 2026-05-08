@@ -424,108 +424,92 @@ body.menu-open { overflow:hidden; }
 .hover-preview .hp-d { color:rgba(255,255,255,.72); }
 .hover-preview .hp-foot { font-family:var(--mono); font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:rgba(255,255,255,.45); margin-top:10px; }
 
-/* ───────── SKILLS — departure board ───────── */
+/* ───────── SKILLS — 3D icon stack ───────── */
 .skills-section { padding:120px 6vw; background:var(--bg-2); }
-.skills-intro { font-size:18px; line-height:1.6; color:var(--ink-2); max-width:60ch; margin-bottom:40px; }
+.skills-intro { font-size:18px; line-height:1.6; color:var(--ink-2); max-width:60ch; margin-bottom:36px; }
 .skills-intro strong { color:var(--ink); }
+.skills-intro kbd {
+  font-family:var(--mono); font-size:.85em;
+  background:var(--orange); color:#fff;
+  padding:2px 7px; border-radius:5px; font-weight:600;
+}
 
-.deck {
-  background:#0a0a0a; color:#fff;
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:18px; overflow:hidden;
+.stack-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(82px, 1fr));
+  gap:10px;
+  perspective:900px;
+  perspective-origin:50% 50%;
+}
+
+.ic-tile {
+  --c: #ff611a;
+  --rx: 0deg;
+  --ry: 0deg;
   position:relative;
-  box-shadow:0 30px 80px -40px rgba(0,0,0,.6);
+  background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:14px;
+  aspect-ratio:1 / 1;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:8px; padding:10px 6px;
+  cursor:default;
+  transform-style:preserve-3d;
+  transform:rotateX(var(--rx)) rotateY(var(--ry)) translateZ(0);
+  transition:transform .12s linear, border-color .35s, box-shadow .35s, background .35s;
+  overflow:hidden;
+  isolation:isolate;
+  opacity:0;
+  animation:tileIn .6s cubic-bezier(.2,.8,.2,1) forwards;
+  animation-delay:var(--d, 0ms);
 }
-.deck-stat {
-  position:absolute; top:0; right:0; z-index:5;
-  display:flex; align-items:center; gap:12px;
-  padding:12px 18px;
-  font-family:var(--mono); font-size:9.5px; letter-spacing:.22em; text-transform:uppercase;
-  color:rgba(255,255,255,.45);
-  background:rgba(0,0,0,.4); border-bottom-left-radius:14px;
-  border-left:1px solid rgba(255,255,255,.06); border-bottom:1px solid rgba(255,255,255,.06);
-}
-.deck-stat .live { display:inline-flex; align-items:center; gap:6px; color:var(--orange); }
-.deck-stat .live::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--orange); box-shadow:0 0 8px var(--orange); animation:bk 1.4s ease-in-out infinite; }
+@keyframes tileIn { to { opacity:1; } }
 
-.lane {
-  display:grid; grid-template-columns:240px 1fr;
-  align-items:stretch;
-  border-bottom:1px solid rgba(255,255,255,.05);
-  height:88px;
+.ic-tile::before {
+  content:''; position:absolute; inset:-1px;
+  background:radial-gradient(circle at center, var(--c) 0%, transparent 65%);
+  opacity:0; z-index:0;
+  transition:opacity .4s ease;
+  border-radius:inherit;
 }
-.lane:last-child { border-bottom:none; }
-.lane:nth-child(odd) { background:rgba(255,255,255,.012); }
+.ic-tile::after {
+  content:''; position:absolute; top:0; bottom:0; left:0; right:0;
+  background:linear-gradient(115deg, transparent 32%, rgba(255,255,255,.16) 50%, transparent 68%);
+  transform:translateX(-110%);
+  transition:transform .65s cubic-bezier(.2,.8,.2,1);
+  pointer-events:none; z-index:2;
+  border-radius:inherit;
+}
+.ic-tile:hover {
+  border-color:var(--c);
+  background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.02));
+  box-shadow:0 18px 40px -16px var(--c), 0 0 0 1px var(--c) inset;
+  z-index:5;
+}
+.ic-tile:hover::before { opacity:.18; }
+.ic-tile:hover::after { transform:translateX(110%); }
 
-.lane-label {
-  display:flex; flex-direction:column; justify-content:center; gap:6px;
-  padding:0 22px;
-  background:linear-gradient(90deg, rgba(255,97,26,.10), rgba(255,97,26,.02));
-  border-right:1px solid rgba(255,97,26,.18);
-  position:relative; z-index:2;
-  white-space:nowrap; overflow:hidden;
+.ic-tile img {
+  width:30px; height:30px;
+  position:relative; z-index:1;
+  filter:brightness(.9) contrast(.95);
+  opacity:.8;
+  transition:filter .35s, opacity .35s, transform .4s cubic-bezier(.2,.8,.2,1);
 }
-.lane-label::after {
-  content:''; position:absolute; right:-14px; top:50%; transform:translateY(-50%);
-  width:0; height:0; border-style:solid;
-  border-width:14px 0 14px 14px;
-  border-color:transparent transparent transparent rgba(255,97,26,.18);
+.ic-tile:hover img {
+  opacity:1;
+  filter:brightness(1.1) drop-shadow(0 0 10px var(--c));
+  transform:scale(1.18) rotate(-4deg) translateZ(20px);
 }
-.lane-label .id {
-  font-family:var(--mono); font-size:9.5px; letter-spacing:.22em; text-transform:uppercase;
-  color:rgba(255,255,255,.45);
+.ic-tile span {
+  font-family:var(--mono); font-size:9.5px; letter-spacing:.04em;
+  color:rgba(255,255,255,.55);
+  text-align:center; line-height:1.1;
+  position:relative; z-index:1;
+  transition:color .3s, transform .3s;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:100%;
 }
-.lane-label .name {
-  font-family:var(--sans); font-weight:600; font-size:15px; letter-spacing:-.01em;
-  display:flex; align-items:center; gap:8px;
-  color:#fff;
-}
-.lane-label .name .ic { font-size:17px; }
-.lane-label .pct { color:var(--orange); font-family:var(--mono); font-size:10px; letter-spacing:.06em; margin-left:auto; padding-left:8px; }
-
-.lane-track {
-  height:100%; overflow:hidden; position:relative;
-  display:flex; align-items:center;
-}
-.lane-track::before, .lane-track::after {
-  content:''; position:absolute; top:0; bottom:0; width:60px; pointer-events:none; z-index:2;
-}
-.lane-track::before { left:0; background:linear-gradient(90deg, #0a0a0a, transparent); }
-.lane-track::after  { right:0; background:linear-gradient(-90deg, #0a0a0a, transparent); }
-
-.lane-strip {
-  display:flex; gap:10px; align-items:center;
-  padding:0 5px; flex-shrink:0;
-  animation:scrollLeft 32s linear infinite;
-}
-.lane.dir-right .lane-strip { animation-name:scrollRight; }
-.lane:nth-child(2) .lane-strip { animation-duration:36s; }
-.lane:nth-child(3) .lane-strip { animation-duration:42s; }
-.lane:nth-child(4) .lane-strip { animation-duration:28s; }
-.lane:nth-child(5) .lane-strip { animation-duration:38s; }
-.lane:nth-child(6) .lane-strip { animation-duration:30s; }
-.lane:nth-child(7) .lane-strip { animation-duration:24s; }
-.lane:hover .lane-strip { animation-play-state:paused; }
-
-@keyframes scrollLeft { from { transform:translateX(0); } to { transform:translateX(-50%); } }
-@keyframes scrollRight { from { transform:translateX(-50%); } to { transform:translateX(0); } }
-
-.chip {
-  display:inline-flex; align-items:center;
-  font-family:var(--mono); font-size:13px; letter-spacing:.02em;
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.1);
-  padding:9px 14px; border-radius:8px;
-  color:rgba(255,255,255,.82);
-  white-space:nowrap;
-  transition:background .25s, color .25s, border-color .25s, transform .25s, box-shadow .25s;
-}
-.chip:hover {
-  background:var(--orange); color:#fff; border-color:var(--orange);
-  transform:translateY(-2px);
-  box-shadow:0 12px 24px -10px rgba(255,97,26,.5);
-}
-.chip-sep { color:var(--orange); opacity:.4; font-size:14px; padding:0 4px; }
+.ic-tile:hover span { color:#fff; transform:translateZ(15px); }
 
 /* ───────── EDUCATION ───────── */
 .edu-section { padding:120px 6vw 80px; }
@@ -676,8 +660,7 @@ footer {
 
 /* ───────── RESPONSIVE ───────── */
 @media (max-width:1024px) {
-  .lane { grid-template-columns:200px 1fr; height:78px; }
-  .lane-label { padding:0 18px; }
+  .stack-grid { grid-template-columns:repeat(auto-fill, minmax(76px, 1fr)); gap:8px; }
   .edu-grid { grid-template-columns:1fr; }
   .tracks { grid-template-columns:repeat(2, 1fr); }
   .track.featured { grid-column:1 / -1; }
@@ -756,18 +739,13 @@ footer {
   .compact-row .yr { text-align:left; margin-top:4px; font-size:10.5px; opacity:.5; }
   .compact-row .arr { grid-column:3; grid-row:1 / span 3; align-self:center; font-size:13px; }
 
-  /* skills deck */
-  .skills-intro { font-size:15.5px; margin-bottom:28px; }
-  .deck-stat { font-size:8.5px; padding:9px 12px; gap:8px; }
-  .lane { grid-template-columns:130px 1fr; height:74px; }
-  .lane-label { padding:0 14px; gap:3px; }
-  .lane-label::after { display:none; }
-  .lane-label .id { font-size:8.5px; letter-spacing:.16em; }
-  .lane-label .name { font-size:12.5px; gap:5px; flex-wrap:wrap; }
-  .lane-label .name .ic { font-size:14px; }
-  .lane-label .pct { font-size:9px; padding-left:6px; margin-left:0; }
-  .chip { font-size:11.5px; padding:7px 11px; }
-  .lane-track::before, .lane-track::after { width:30px; }
+  /* skills stack */
+  .skills-intro { font-size:15.5px; margin-bottom:24px; }
+  .stack-grid { grid-template-columns:repeat(auto-fill, minmax(70px, 1fr)); gap:7px; }
+  .ic-tile { padding:8px 5px; gap:6px; border-radius:12px; }
+  .ic-tile img { width:24px; height:24px; }
+  .ic-tile span { font-size:8.5px; }
+  .ic-tile:hover { transform:rotateX(0) rotateY(0) translateY(-2px) scale(1.04); }
 
   /* education */
   .edu-grid { grid-template-columns:1fr; gap:12px; }
@@ -1007,9 +985,9 @@ footer {
 <section class="skills-section" id="skills">
   <div class="section-eyebrow"><span class="glyph">⌬</span> Skills · Console</div>
   <h2 class="section-h">What I actually <em>reach for.</em></h2>
-  <p class="skills-intro">Not a buzzword list. <strong>These are the tools I use when things get real.</strong> Six lanes always running &mdash; hover any lane to pause it.</p>
+  <p class="skills-intro">Not a buzzword list. <strong>These are the tools I actually reach for when things get real.</strong> <kbd>Hover</kbd> any tile.</p>
 
-  <div class="deck" id="skillsDeck"></div>
+  <div class="stack-grid" id="stackGrid"></div>
 </section>
 
 <!-- ════════ EDUCATION ════════ -->
@@ -1371,42 +1349,77 @@ document.querySelectorAll('.compact-row').forEach(row => {
   row.addEventListener('mouseleave', () => hp.classList.remove('show'));
 });
 
-// Skills departure board
-const SKILL_LANES = [
-  { id:'M01', icon:'🧠', name:'AI / LLMs', pct:88, dir:'left',
-    tags:['Gemini 2.5 Flash','Claude','OpenAI','Grok','Ollama','LLaMA 3.2','Groq Whisper','faster-whisper','OpenWakeWord','edge-tts','gTTS','ElevenLabs','Vector Search','RAG','SSE Streaming'] },
-  { id:'M02', icon:'⚡', name:'Full-Stack', pct:84, dir:'right',
-    tags:['Node.js','Python','JavaScript','TypeScript','C++','Next.js','React','Flask','Vercel','Vercel Edge','Supabase','PostgreSQL','PWA','Service Workers','Web Speech API','Three.js','Git'] },
-  { id:'M03', icon:'🔌', name:'APIs', pct:82, dir:'left',
-    tags:['Google OAuth2','Gmail API','Calendar API','Microsoft OAuth','Telegram Bot API','GitHub API','Twilio','Canvas LMS','Hunter.io','RapidAPI','Presage SDK','API.Bible','alQuran.cloud','GurbaniNow','VedicScriptures'] },
-  { id:'M04', icon:'⚔️', name:'Security', pct:78, dir:'right',
-    tags:['Metasploit','Nmap','Aircrack-ng','Hashcat','Hydra','John the Ripper','Wireshark','SET','Kali Linux 2025.3','Parrot OS 7.0'] },
-  { id:'M05', icon:'🔧', name:'Systems', pct:75, dir:'left',
-    tags:['Linux','Windows 11','macOS Tahoe','LabVIEW','ESP8266','EV3 Mindstorms','Sensors','State Machines','File I/O','Facial Recognition'] },
-  { id:'M06', icon:'🤝', name:'Human', pct:80, dir:'right',
-    tags:['Leadership','Communication','Teamwork','English','Hindi'] }
+// Skills — 3D icon stack
+const STACK = [
+  // Languages & runtimes
+  { name:'Python',      slug:'python',           c:'#3776AB' },
+  { name:'JavaScript',  slug:'javascript',       c:'#F7DF1E' },
+  { name:'TypeScript',  slug:'typescript',       c:'#3178C6' },
+  { name:'C++',         slug:'cplusplus',        c:'#00599C' },
+  { name:'Node.js',     slug:'nodedotjs',        c:'#5FA04E' },
+  // Frontend / frameworks
+  { name:'React',       slug:'react',            c:'#61DAFB' },
+  { name:'Next.js',     slug:'nextdotjs',        c:'#FFFFFF' },
+  { name:'Three.js',    slug:'threedotjs',       c:'#FFFFFF' },
+  { name:'Flask',       slug:'flask',            c:'#FFFFFF' },
+  { name:'HTML5',       slug:'html5',            c:'#E34F26' },
+  { name:'CSS3',        slug:'css3',             c:'#1572B6' },
+  // Data / cloud
+  { name:'PostgreSQL',  slug:'postgresql',       c:'#4169E1' },
+  { name:'Supabase',    slug:'supabase',         c:'#3ECF8E' },
+  { name:'Vercel',      slug:'vercel',           c:'#FFFFFF' },
+  // AI / LLMs
+  { name:'OpenAI',      slug:'openai',           c:'#FFFFFF' },
+  { name:'Claude',      slug:'anthropic',        c:'#D97757' },
+  { name:'Gemini',      slug:'googlegemini',     c:'#8E75B2' },
+  { name:'Ollama',      slug:'ollama',           c:'#FFFFFF' },
+  { name:'HuggingFace', slug:'huggingface',      c:'#FFD21E' },
+  { name:'ElevenLabs',  slug:'elevenlabs',       c:'#FFFFFF' },
+  // APIs / integrations
+  { name:'Gmail',       slug:'gmail',            c:'#EA4335' },
+  { name:'Calendar',    slug:'googlecalendar',   c:'#4285F4' },
+  { name:'Telegram',    slug:'telegram',         c:'#26A5E4' },
+  { name:'GitHub',      slug:'github',           c:'#FFFFFF' },
+  { name:'Twilio',      slug:'twilio',           c:'#F22F46' },
+  { name:'Canvas',      slug:'instructure',      c:'#E72429' },
+  // Security
+  { name:'Kali',        slug:'kalilinux',        c:'#557C94' },
+  { name:'Parrot',      slug:'parrotsecurity',   c:'#2BD1FC' },
+  { name:'Wireshark',   slug:'wireshark',        c:'#1679A7' },
+  { name:'Metasploit',  slug:'metasploit',       c:'#2596CD' },
+  // Systems / tools
+  { name:'Linux',       slug:'linux',            c:'#FCC624' },
+  { name:'macOS',       slug:'apple',            c:'#FFFFFF' },
+  { name:'Git',         slug:'git',              c:'#F05032' },
+  { name:'VS Code',     slug:'visualstudiocode', c:'#007ACC' },
+  { name:'Raspberry Pi',slug:'raspberrypi',      c:'#A22846' },
+  { name:'Arduino',     slug:'arduino',          c:'#00979D' }
 ];
 
-(function renderDeck() {
-  const deck = document.getElementById('skillsDeck');
-  if (!deck) return;
-  const stat = document.createElement('div');
-  stat.className = 'deck-stat';
-  stat.innerHTML = `<span class="live">Live</span><span>· 6 lanes · 72 tools · auto-running</span>`;
-  deck.appendChild(stat);
-  SKILL_LANES.forEach(s => {
-    const lane = document.createElement('div');
-    lane.className = 'lane' + (s.dir === 'right' ? ' dir-right' : '');
-    const chips = s.tags.map(t => `<span class="chip">${t}</span>`).join('<span class="chip-sep" aria-hidden="true">·</span>');
-    lane.innerHTML = `
-      <div class="lane-label">
-        <span class="id">${s.id}</span>
-        <span class="name"><span class="ic">${s.icon}</span>${s.name}<span class="pct">${s.pct}%</span></span>
-      </div>
-      <div class="lane-track">
-        <div class="lane-strip">${chips}<span class="chip-sep" aria-hidden="true">·</span>${chips}</div>
-      </div>`;
-    deck.appendChild(lane);
+(function renderStack() {
+  const grid = document.getElementById('stackGrid');
+  if (!grid) return;
+  STACK.forEach((s, i) => {
+    const tile = document.createElement('div');
+    tile.className = 'ic-tile';
+    tile.style.setProperty('--c', s.c);
+    tile.style.setProperty('--d', (i * 30) + 'ms');
+    tile.innerHTML = `
+      <img src="https://cdn.simpleicons.org/${s.slug}/FFFFFF" alt="${s.name}" loading="lazy" />
+      <span>${s.name}</span>`;
+    // 3D mouse-tracking tilt
+    tile.addEventListener('mousemove', e => {
+      const r = tile.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      tile.style.setProperty('--rx', (-y * 22) + 'deg');
+      tile.style.setProperty('--ry', (x * 22) + 'deg');
+    });
+    tile.addEventListener('mouseleave', () => {
+      tile.style.setProperty('--rx', '0deg');
+      tile.style.setProperty('--ry', '0deg');
+    });
+    grid.appendChild(tile);
   });
 })();
 
