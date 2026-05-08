@@ -489,24 +489,15 @@ body.menu-open { overflow:hidden; }
 .ic-tile:hover::before { opacity:.18; }
 .ic-tile:hover::after { transform:translateX(110%); }
 
-.ic-tile .icon {
+.ic-tile img {
   width:30px; height:30px;
   position:relative; z-index:1;
-  background:rgba(255,255,255,.82);
-  -webkit-mask-image:var(--icon-url);
-  mask-image:var(--icon-url);
-  -webkit-mask-size:contain;
-  mask-size:contain;
-  -webkit-mask-repeat:no-repeat;
-  mask-repeat:no-repeat;
-  -webkit-mask-position:center;
-  mask-position:center;
-  transition:background .35s, transform .4s cubic-bezier(.2,.8,.2,1), filter .35s;
+  opacity:1;
+  transition:transform .4s cubic-bezier(.2,.8,.2,1), filter .35s;
 }
-.ic-tile:hover .icon {
-  background:var(--c);
-  filter:drop-shadow(0 0 10px var(--c));
-  transform:scale(1.18) rotate(-4deg) translateZ(20px);
+.ic-tile:hover img {
+  filter:drop-shadow(0 0 14px var(--c)) drop-shadow(0 0 6px var(--c));
+  transform:scale(1.2) rotate(-4deg) translateZ(20px);
 }
 .ic-tile span {
   font-family:var(--mono); font-size:9.5px; letter-spacing:.04em;
@@ -750,7 +741,7 @@ footer {
   .skills-intro { font-size:15.5px; margin-bottom:24px; }
   .stack-grid { grid-template-columns:repeat(auto-fill, minmax(70px, 1fr)); gap:7px; }
   .ic-tile { padding:8px 5px; gap:6px; border-radius:12px; }
-  .ic-tile .icon { width:24px; height:24px; }
+  .ic-tile img { width:24px; height:24px; }
   .ic-tile span { font-size:8.5px; }
   .ic-tile:hover { transform:rotateX(0) rotateY(0) translateY(-2px) scale(1.04); }
 
@@ -856,7 +847,7 @@ footer {
   <p class="hero-letterspaced">From full-stack platforms to offensive labs &mdash; building things that are meant to last, with a deep interest in AI and a curiosity for how systems can be tested, broken, and rebuilt stronger.</p>
   <div class="hero-stats">
     <div class="stat"><div class="stat-val">3.68</div><div class="stat-label">GPA</div></div>
-    <div class="stat"><div class="stat-val">13<em>+</em></div><div class="stat-label">Projects</div></div>
+    <div class="stat"><div class="stat-val">14<em>+</em></div><div class="stat-label">Projects</div></div>
     <div class="stat"><div class="stat-val">2</div><div class="stat-label">Scholarships</div></div>
     <div class="stat"><div class="stat-val">#1</div><div class="stat-label">District Tennis</div></div>
   </div>
@@ -976,15 +967,16 @@ footer {
   </div>
 
   <div class="compact" id="compact-list">
-    <div class="compact-row" data-id="reachout"><span class="n">05</span><span class="ttl">ReachOut</span><span class="stack">Cold-outreach engine · Gmail-OAuth send · 4 job boards</span><span class="yr">2026</span><span class="arr">→</span></div>
-    <div class="compact-row" data-id="phone"><span class="n">06</span><span class="ttl">AI Phone Agent</span><span class="stack">Local voice agent · Twilio + LLaMA + Whisper · $1/mo</span><span class="yr">2025</span><span class="arr">→</span></div>
-    <div class="compact-row" data-id="ev3"><span class="n">07</span><span class="ttl">EV3 Autonomous Robot</span><span class="stack">Autonomous robot · LabVIEW state machine · 45 test runs</span><span class="yr">2025</span><span class="arr">→</span></div>
-    <div class="compact-row" data-id="atm"><span class="n">08</span><span class="ttl">Python ATM System</span><span class="stack">Console banking · file-backed ledger · 3-strike PIN</span><span class="yr">2024</span><span class="arr">→</span></div>
-    <div class="compact-row" data-id="bus"><span class="n">09</span><span class="ttl">Bus Booking System</span><span class="stack">Reservation engine · seat tracking · crash-safe</span><span class="yr">2024</span><span class="arr">→</span></div>
-    <div class="compact-row" data-id="med"><span class="n">10</span><span class="ttl">AI Medicine Dispenser</span><span class="stack">Face-verified dosing · caregiver alerts · IoT</span><span class="yr">2024</span><span class="arr">→</span></div>
-    <div class="compact-row" data-id="rat"><span class="n">11</span><span class="ttl">RAT &amp; Pen-Test Lab</span><span class="stack">Cross-platform compromise · ethical lab · Metasploit</span><span class="yr">2024</span><span class="arr">→</span></div>
-    <div class="compact-row" data-id="wifi"><span class="n">12</span><span class="ttl">Wi-Fi Pen-Test Device</span><span class="stack">Wireless audit · evil-twin AP · ESP8266 + Aircrack-ng</span><span class="yr">2024</span><span class="arr">→</span></div>
-    <div class="compact-row" data-id="phish"><span class="n">13</span><span class="ttl">Phishing Simulation</span><span class="stack">Phishing workflows · credential harvesting · MFA defense</span><span class="yr">2024</span><span class="arr">→</span></div>
+    <div class="compact-row" data-id="credix"><span class="n">05</span><span class="ttl">Credix</span><span class="stack">Fintech-grade budgeting · Plaid bank sync · GPT-4o categorization</span><span class="yr">2026</span><span class="arr">→</span></div>
+    <div class="compact-row" data-id="reachout"><span class="n">06</span><span class="ttl">ReachOut</span><span class="stack">Cold-outreach engine · Gmail-OAuth send · 4 job boards</span><span class="yr">2026</span><span class="arr">→</span></div>
+    <div class="compact-row" data-id="phone"><span class="n">07</span><span class="ttl">AI Phone Agent</span><span class="stack">Local voice agent · Twilio + LLaMA + Whisper · $1/mo</span><span class="yr">2025</span><span class="arr">→</span></div>
+    <div class="compact-row" data-id="ev3"><span class="n">08</span><span class="ttl">EV3 Autonomous Robot</span><span class="stack">Autonomous robot · LabVIEW state machine · 45 test runs</span><span class="yr">2025</span><span class="arr">→</span></div>
+    <div class="compact-row" data-id="atm"><span class="n">09</span><span class="ttl">Python ATM System</span><span class="stack">Console banking · file-backed ledger · 3-strike PIN</span><span class="yr">2024</span><span class="arr">→</span></div>
+    <div class="compact-row" data-id="bus"><span class="n">10</span><span class="ttl">Bus Booking System</span><span class="stack">Reservation engine · seat tracking · crash-safe</span><span class="yr">2024</span><span class="arr">→</span></div>
+    <div class="compact-row" data-id="med"><span class="n">11</span><span class="ttl">AI Medicine Dispenser</span><span class="stack">Face-verified dosing · caregiver alerts · IoT</span><span class="yr">2024</span><span class="arr">→</span></div>
+    <div class="compact-row" data-id="rat"><span class="n">12</span><span class="ttl">RAT &amp; Pen-Test Lab</span><span class="stack">Cross-platform compromise · ethical lab · Metasploit</span><span class="yr">2024</span><span class="arr">→</span></div>
+    <div class="compact-row" data-id="wifi"><span class="n">13</span><span class="ttl">Wi-Fi Pen-Test Device</span><span class="stack">Wireless audit · evil-twin AP · ESP8266 + Aircrack-ng</span><span class="yr">2024</span><span class="arr">→</span></div>
+    <div class="compact-row" data-id="phish"><span class="n">14</span><span class="ttl">Phishing Simulation</span><span class="stack">Phishing workflows · credential harvesting · MFA defense</span><span class="yr">2024</span><span class="arr">→</span></div>
   </div>
 </section>
 
@@ -1158,8 +1150,32 @@ const PROJECTS = {
       {label:'GitHub ↗', url:'https://github.com/itsramananshul/gradintel'}
     ]
   },
+  credix: {
+    num:'— 05 / FINTECH', title:'Credix — Fintech-grade Budgeting MVP',
+    oneliner:`<b>Connect a real bank account, watch transactions categorize themselves, set budgets, and get GPT-4o spending insights — with international currency conversion baked in.</b> Live at <em>credix.anshulraman.com</em>.`,
+    tags:['Next.js','React','TypeScript','Tailwind','Supabase','PostgreSQL','Plaid','OpenAI GPT-4o','SWR','Vercel','GitHub Actions'],
+    body:`
+      <h4>What's actually built</h4>
+      <ul>
+        <li><b>Plaid Link integration</b> for real bank-account connectivity, with the <code>transactionsSync</code> cursor API to incrementally pull transactions and reconcile state without re-fetching the world.</li>
+        <li><b>Dual-path categorization</b>: deterministic rule-based engine first, optional GPT-4o-mini pass for ambiguous transactions — every category change is auditable.</li>
+        <li><b>Monthly budget tracking</b> with alert thresholds and spend-pace projections so you know mid-month whether you're on track.</li>
+        <li><b>Subscription detection</b> from transaction patterns — finds recurring charges by amount + cadence + merchant fingerprint, surfaces them as a list you can cancel.</li>
+        <li><b>International currency conversion</b> via Open Exchange Rates so transactions in foreign currencies normalize to your home currency for budgeting.</li>
+        <li><b>AI spending insights</b> (GPT-4o-mini) that summarize where your money went, flag anomalies, and recommend cuts — generated on demand, not on every page load.</li>
+        <li><b>Supabase + RLS</b> for auth and per-user data isolation. Postgres functions (<code>PLpgSQL</code>) handle the heavier categorization and aggregation logic at the DB layer.</li>
+        <li><b>SWR hooks</b> (<code>useTransactions</code>, <code>useBudgets</code>, <code>useSubscriptions</code>) for cache + revalidation — instant UI, eventual consistency.</li>
+        <li><b>GitHub Actions CI</b>: type-check, lint, build on every push. Vercel auto-deploys main.</li>
+      </ul>
+      <h4>Stack</h4>
+      <p class="stack-line">Next.js · React · TypeScript · Tailwind CSS · Supabase (Auth + Postgres + RLS) · PLpgSQL · Plaid · OpenAI GPT-4o-mini · Open Exchange Rates · SWR · Vercel · GitHub Actions</p>`,
+    links:[
+      {label:'View live ↗', url:'https://credix.anshulraman.com/', primary:true},
+      {label:'GitHub ↗', url:'https://github.com/itsramananshul/credix'}
+    ]
+  },
   reachout: {
-    num:'— 05 / OUTREACH AUTOMATION', title:'ReachOut — Automated Job Outreach Platform',
+    num:'— 06 / OUTREACH AUTOMATION', title:'ReachOut — Automated Job Outreach Platform',
     oneliner:`<b>Full-stack cold email automation that finds recruiters across 4 job boards, generates personalized emails, and sends them from your own Gmail.</b> Built for job seekers who want to skip the queue.`,
     tags:['JavaScript','Supabase','Gmail API','Google OAuth','Microsoft OAuth','Hunter.io','RapidAPI'],
     body:`
@@ -1179,7 +1195,7 @@ const PROJECTS = {
     ]
   },
   phone: {
-    num:'— 06 / LOCAL VOICE AI', title:'AI Phone Agent — Local Voice AI System',
+    num:'— 07 / LOCAL VOICE AI', title:'AI Phone Agent — Local Voice AI System',
     oneliner:`<b>Fully working AI phone agent that answers calls and holds real conversations</b> — running completely free on a local machine. No OpenAI, no paid APIs.`,
     tags:['Twilio','Node.js','Python','Ollama','Faster-Whisper','Flask','gTTS'],
     body:`
@@ -1194,7 +1210,7 @@ const PROJECTS = {
     links:[{label:'GitHub ↗', url:'https://github.com/itsramananshul/ai-phone-agent/', primary:true}]
   },
   ev3: {
-    num:'— 07 / ENGINEERING DESIGN', title:'EV3 Autonomous Robot — UC Engineering Design Project',
+    num:'— 08 / ENGINEERING DESIGN', title:'EV3 Autonomous Robot — UC Engineering Design Project',
     oneliner:`<b>Fully autonomous robot that navigates a line track, detects and grabs a bin by weight classification, and delivers it to the correct drop zone.</b> Built from scratch with zero prior hardware experience.`,
     tags:['LabVIEW','LEGO Mindstorms EV3','Sensors','State Machine','ENED1002C'],
     body:`
@@ -1209,7 +1225,7 @@ const PROJECTS = {
     links:[{label:'View LinkedIn post ↗', url:'https://www.linkedin.com/posts/anshulraman06_engineering-robotics-labview-ugcPost-7454015401723719680-FJUj', primary:true}]
   },
   atm: {
-    num:'— 08 / SYSTEMS', title:'Python Banking & ATM System',
+    num:'— 09 / SYSTEMS', title:'Python Banking & ATM System',
     oneliner:`<b>Full console-based banking with persistent storage, PIN security &amp; admin panel.</b>`,
     tags:['Python','File I/O','ATM Logic'],
     body:`
@@ -1223,7 +1239,7 @@ const PROJECTS = {
     links:[{label:'GitHub ↗', url:'https://github.com/itsramananshul/atm-system', primary:true}]
   },
   bus: {
-    num:'— 09 / SYSTEMS', title:'Python Bus Booking System',
+    num:'— 10 / SYSTEMS', title:'Python Bus Booking System',
     oneliner:`<b>File-backed bus reservation with seat tracking, cancellation, and unique booking IDs.</b>`,
     tags:['Python','File I/O','Booking Logic'],
     body:`
@@ -1237,7 +1253,7 @@ const PROJECTS = {
     links:[{label:'GitHub ↗', url:'https://github.com/itsramananshul/bus-booking-system/', primary:true}]
   },
   med: {
-    num:'— 10 / AI HARDWARE', title:'AI-Integrated Medicine Dispensing Machine',
+    num:'— 11 / AI HARDWARE', title:'AI-Integrated Medicine Dispensing Machine',
     oneliner:`<b>Assistive hardware for Alzheimer's and dementia patients</b> — reduces missed doses and improves caregiver visibility.`,
     tags:['AI Hardware','Facial Recognition','IoT','ENED'],
     body:`
@@ -1251,7 +1267,7 @@ const PROJECTS = {
     links:[]
   },
   rat: {
-    num:'— 11 / OFFENSIVE SECURITY', title:'RAT Development & Pen Testing',
+    num:'— 12 / OFFENSIVE SECURITY', title:'RAT Development & Pen Testing',
     oneliner:`<b>Controlled Remote Access Trojan lab</b> — full-device compromise, 12+ remote functions, ethical documentation. Lab-only, ethically operated.`,
     tags:['Metasploit','Kali Linux','Offensive Labs'],
     body:`
@@ -1264,7 +1280,7 @@ const PROJECTS = {
     links:[]
   },
   wifi: {
-    num:'— 12 / WIRELESS SECURITY', title:'Wi-Fi Penetration Testing Device',
+    num:'— 13 / WIRELESS SECURITY', title:'Wi-Fi Penetration Testing Device',
     oneliner:`<b>ESP8266 wireless auditing</b> — evil twin APs, deauth testing, 50+ beacon floods.`,
     tags:['ESP8266','Aircrack-ng','Wireless Security'],
     body:`
@@ -1277,7 +1293,7 @@ const PROJECTS = {
     links:[{label:'View LinkedIn post ↗', url:'https://www.linkedin.com/posts/anshulraman06/hardware-embedded-systems-developerjourney-activity-7422510046862835712-nYUH', primary:true}]
   },
   phish: {
-    num:'— 13 / SOCIAL ENGINEERING', title:'Phishing Website Simulation',
+    num:'— 14 / SOCIAL ENGINEERING', title:'Phishing Website Simulation',
     oneliner:`<b>End-to-end phishing campaigns in a secure lab</b> — credential harvesting, MFA mitigation, defensive analysis.`,
     tags:['SET','Social Engineering','User Defense'],
     body:`
@@ -1356,51 +1372,58 @@ document.querySelectorAll('.compact-row').forEach(row => {
   row.addEventListener('mouseleave', () => hp.classList.remove('show'));
 });
 
-// Skills — 3D icon stack
+// Skills — 3D icon stack (covers every tool used across all 14 apps)
+// Display color uses brand color when bright on dark bg; falls back to white for dark brands.
+// Glow color (--c) always uses brand color.
 const STACK = [
   // Languages & runtimes
-  { name:'Python',      slug:'python',           c:'#3776AB' },
-  { name:'JavaScript',  slug:'javascript',       c:'#F7DF1E' },
-  { name:'TypeScript',  slug:'typescript',       c:'#3178C6' },
-  { name:'C++',         slug:'cplusplus',        c:'#00599C' },
-  { name:'Node.js',     slug:'nodedotjs',        c:'#5FA04E' },
+  { name:'Python',       slug:'python',          c:'#3776AB', d:'3776AB' },
+  { name:'TypeScript',   slug:'typescript',      c:'#3178C6', d:'3178C6' },
+  { name:'JavaScript',   slug:'javascript',      c:'#F7DF1E', d:'F7DF1E' },
+  { name:'Node.js',      slug:'nodedotjs',       c:'#5FA04E', d:'5FA04E' },
+  { name:'C++',          slug:'cplusplus',       c:'#00599C', d:'00599C' },
   // Frontend / frameworks
-  { name:'React',       slug:'react',            c:'#61DAFB' },
-  { name:'Next.js',     slug:'nextdotjs',        c:'#FFFFFF' },
-  { name:'Three.js',    slug:'threedotjs',       c:'#FFFFFF' },
-  { name:'Flask',       slug:'flask',            c:'#FFFFFF' },
-  { name:'HTML5',       slug:'html5',            c:'#E34F26' },
-  { name:'CSS3',        slug:'css3',             c:'#1572B6' },
-  // Data / cloud
-  { name:'PostgreSQL',  slug:'postgresql',       c:'#4169E1' },
-  { name:'Supabase',    slug:'supabase',         c:'#3ECF8E' },
-  { name:'Vercel',      slug:'vercel',           c:'#FFFFFF' },
-  // AI / LLMs
-  { name:'OpenAI',      slug:'openai',           c:'#FFFFFF' },
-  { name:'Claude',      slug:'anthropic',        c:'#D97757' },
-  { name:'Gemini',      slug:'googlegemini',     c:'#8E75B2' },
-  { name:'Ollama',      slug:'ollama',           c:'#FFFFFF' },
-  { name:'HuggingFace', slug:'huggingface',      c:'#FFD21E' },
-  { name:'ElevenLabs',  slug:'elevenlabs',       c:'#FFFFFF' },
+  { name:'React',        slug:'react',           c:'#61DAFB', d:'61DAFB' },
+  { name:'Next.js',      slug:'nextdotjs',       c:'#FFFFFF', d:'FFFFFF' },
+  { name:'Tailwind',     slug:'tailwindcss',     c:'#06B6D4', d:'06B6D4' },
+  { name:'Three.js',     slug:'threedotjs',      c:'#FFFFFF', d:'FFFFFF' },
+  { name:'Flask',        slug:'flask',           c:'#FFFFFF', d:'FFFFFF' },
+  { name:'HTML5',        slug:'html5',           c:'#E34F26', d:'E34F26' },
+  { name:'CSS3',         slug:'css3',            c:'#1572B6', d:'1572B6' },
+  { name:'PWA',          slug:'pwa',             c:'#5A0FC8', d:'A077F5' },
+  // Data / cloud / deploy
+  { name:'PostgreSQL',   slug:'postgresql',      c:'#4169E1', d:'4169E1' },
+  { name:'Supabase',     slug:'supabase',        c:'#3ECF8E', d:'3ECF8E' },
+  { name:'Vercel',       slug:'vercel',          c:'#FFFFFF', d:'FFFFFF' },
+  { name:'GH Actions',   slug:'githubactions',   c:'#2088FF', d:'2088FF' },
+  // AI / LLMs / Voice
+  { name:'OpenAI',       slug:'openai',          c:'#74AA9C', d:'EFEFEF' },
+  { name:'Claude',       slug:'anthropic',       c:'#D97757', d:'D97757' },
+  { name:'Gemini',       slug:'googlegemini',    c:'#8E75B2', d:'8E75B2' },
+  { name:'Ollama',       slug:'ollama',          c:'#FFFFFF', d:'FFFFFF' },
+  { name:'HuggingFace',  slug:'huggingface',     c:'#FFD21E', d:'FFD21E' },
+  { name:'ElevenLabs',   slug:'elevenlabs',      c:'#FFFFFF', d:'FFFFFF' },
   // APIs / integrations
-  { name:'Gmail',       slug:'gmail',            c:'#EA4335' },
-  { name:'Calendar',    slug:'googlecalendar',   c:'#4285F4' },
-  { name:'Telegram',    slug:'telegram',         c:'#26A5E4' },
-  { name:'GitHub',      slug:'github',           c:'#FFFFFF' },
-  { name:'Twilio',      slug:'twilio',           c:'#F22F46' },
-  { name:'Canvas',      slug:'instructure',      c:'#E72429' },
+  { name:'Gmail',        slug:'gmail',           c:'#EA4335', d:'EA4335' },
+  { name:'Calendar',     slug:'googlecalendar',  c:'#4285F4', d:'4285F4' },
+  { name:'Outlook',      slug:'microsoftoutlook',c:'#0078D4', d:'0078D4' },
+  { name:'Telegram',     slug:'telegram',        c:'#26A5E4', d:'26A5E4' },
+  { name:'GitHub',       slug:'github',          c:'#9CA3AF', d:'FFFFFF' },
+  { name:'Twilio',       slug:'twilio',          c:'#F22F46', d:'F22F46' },
+  { name:'Canvas',       slug:'instructure',     c:'#E72429', d:'E72429' },
+  { name:'Plaid',        slug:'plaid',           c:'#FFFFFF', d:'FFFFFF' },
   // Security
-  { name:'Kali',        slug:'kalilinux',        c:'#557C94' },
-  { name:'Parrot',      slug:'parrotsecurity',   c:'#2BD1FC' },
-  { name:'Wireshark',   slug:'wireshark',        c:'#1679A7' },
-  { name:'Metasploit',  slug:'metasploit',       c:'#2596CD' },
-  // Systems / tools
-  { name:'Linux',       slug:'linux',            c:'#FCC624' },
-  { name:'macOS',       slug:'apple',            c:'#FFFFFF' },
-  { name:'Git',         slug:'git',              c:'#F05032' },
-  { name:'VS Code',     slug:'visualstudiocode', c:'#007ACC' },
-  { name:'Raspberry Pi',slug:'raspberrypi',      c:'#A22846' },
-  { name:'Arduino',     slug:'arduino',          c:'#00979D' }
+  { name:'Kali',         slug:'kalilinux',       c:'#557C94', d:'9DB7C9' },
+  { name:'Parrot',       slug:'parrotsecurity',  c:'#15D3F6', d:'15D3F6' },
+  { name:'Wireshark',    slug:'wireshark',       c:'#1679A7', d:'4FA8D4' },
+  { name:'Metasploit',   slug:'metasploit',      c:'#2596CD', d:'2596CD' },
+  // Systems / tools / hardware
+  { name:'Linux',        slug:'linux',           c:'#FCC624', d:'FCC624' },
+  { name:'macOS',        slug:'apple',           c:'#FFFFFF', d:'FFFFFF' },
+  { name:'Git',          slug:'git',             c:'#F05032', d:'F05032' },
+  { name:'VS Code',      slug:'visualstudiocode',c:'#007ACC', d:'2EA7E0' },
+  { name:'Raspberry Pi', slug:'raspberrypi',     c:'#A22846', d:'CC4477' },
+  { name:'Arduino',      slug:'arduino',         c:'#00979D', d:'00979D' }
 ];
 
 (function renderStack() {
@@ -1410,12 +1433,11 @@ const STACK = [
     const tile = document.createElement('div');
     tile.className = 'ic-tile';
     tile.style.setProperty('--c', s.c);
-    tile.style.setProperty('--d', (i * 30) + 'ms');
-    const iconURL = `https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${s.slug}.svg`;
+    tile.style.setProperty('--d', (i * 25) + 'ms');
+    const iconURL = `https://cdn.simpleicons.org/${s.slug}/${s.d}`;
     tile.innerHTML = `
-      <div class="icon" style="--icon-url:url('${iconURL}')" role="img" aria-label="${s.name}"></div>
+      <img src="${iconURL}" alt="${s.name}" loading="lazy" onerror="this.parentElement.style.display='none'" />
       <span>${s.name}</span>`;
-    // 3D mouse-tracking tilt
     tile.addEventListener('mousemove', e => {
       const r = tile.getBoundingClientRect();
       const x = (e.clientX - r.left) / r.width - 0.5;
