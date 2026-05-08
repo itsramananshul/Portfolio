@@ -41,19 +41,54 @@ button { font:inherit; border:none; background:none; cursor:pointer; color:inher
 .disc:hover { transform:rotate(45deg); }
 
 .tab-nav {
-  position:fixed; top:18px; left:50%; transform:translateX(-50%); z-index:160;
-  display:flex; gap:0; align-items:center;
-  background:var(--bg-3); color:#fff;
+  position:fixed; top:14px; left:0; right:0; z-index:160;
+  display:flex; justify-content:center;
+  pointer-events:none; padding:0 14px;
+  transition:transform .4s cubic-bezier(.2,.8,.2,1), opacity .25s ease;
+}
+.tab-nav.nav-hidden { transform:translateY(-130%); opacity:0; }
+.tab-nav-inner {
+  pointer-events:auto;
+  display:flex; align-items:center; gap:0;
+  background:rgba(38,38,38,.82); color:#fff;
   padding:5px; border-radius:999px;
   font-family:var(--mono); font-size:10px; letter-spacing:.18em; text-transform:uppercase;
-  backdrop-filter:blur(10px);
+  backdrop-filter:blur(14px) saturate(140%);
+  -webkit-backdrop-filter:blur(14px) saturate(140%);
+  border:1px solid rgba(255,255,255,.06);
+  max-width:calc(100vw - 28px);
 }
-.tab-nav a {
+.tab-brand {
+  display:flex; align-items:center; gap:8px;
+  padding:8px 14px 8px 12px; border-radius:999px;
+  color:#fff; font-weight:600;
+  font-family:var(--sans); font-size:12.5px; letter-spacing:-.005em; text-transform:none;
+  white-space:nowrap;
+}
+.tab-brand .dot {
+  width:8px; height:8px; border-radius:50%;
+  background:var(--orange);
+  box-shadow:0 0 12px rgba(255,97,26,.55);
+  animation:bk 1.6s ease-in-out infinite;
+}
+.tab-links { display:flex; align-items:center; gap:0; }
+.tab-links a {
   padding:9px 13px; border-radius:999px; white-space:nowrap;
   color:rgba(255,255,255,.6); transition:color .25s, background .25s;
 }
-.tab-nav a:hover, .tab-nav a.active { color:#fff; background:rgba(255,255,255,.08); }
-.tab-nav .blink::before { content:'●'; color:var(--orange); margin-right:6px; animation:bk 1s steps(2) infinite; }
+.tab-links a:hover, .tab-links a.active { color:#fff; background:rgba(255,255,255,.08); }
+.tab-cta {
+  display:inline-flex; align-items:center; gap:6px;
+  padding:9px 14px; border-radius:999px;
+  background:var(--orange); color:#fff;
+  font-family:var(--mono); font-size:10px; letter-spacing:.18em; text-transform:uppercase;
+  font-weight:600;
+  transition:transform .25s, background .25s;
+  margin-left:4px; white-space:nowrap;
+}
+.tab-cta:hover { background:#ff7d3e; transform:translateY(-1px); }
+.tab-cta .arr { display:inline-block; transition:transform .25s; }
+.tab-cta:hover .arr { transform:translateX(2px); }
 @keyframes bk { 50% { opacity:.3; } }
 
 /* mobile menu toggle (hidden on desktop) */
@@ -596,10 +631,14 @@ footer {
 }
 @media (max-width:768px) {
   /* fixed chrome */
-  .disc { width:44px; height:44px; font-size:16px; top:12px; left:12px; }
-  .tab-nav { top:14px; padding:4px; gap:0; }
-  .tab-nav a:not(.nav-brand) { display:none; }
-  .nav-toggle { display:inline-flex; padding:8px 12px; font-size:11px; }
+  .disc { display:none; }
+  .tab-nav { top:12px; padding:0 12px; }
+  .tab-nav-inner { padding:4px; gap:2px; }
+  .tab-links { display:none; }
+  .tab-brand { padding:7px 11px 7px 10px; font-size:12px; }
+  .tab-brand .dot { width:7px; height:7px; }
+  .tab-cta { padding:8px 11px; font-size:9.5px; margin-left:2px; }
+  .nav-toggle { display:inline-flex; padding:8px 11px; font-size:9.5px; }
   .autoplay { display:none; }
 
   /* section spacing */
@@ -716,6 +755,10 @@ footer {
   .track.featured .track-t { font-size:32px; }
   .section-h, .about-h { font-size:30px; }
   #contact h2 { font-size:36px; }
+  .tab-brand span:not(.dot) { display:none; }
+  .tab-brand { padding:8px 10px; }
+  .tab-cta { padding:8px 10px; font-size:9px; }
+  .nav-toggle { padding:8px 10px; font-size:9px; }
 }
 </style>
 </head>
@@ -724,17 +767,24 @@ footer {
 <a class="disc" href="#hero" title="Anshul Raman">A</a>
 
 <nav class="tab-nav" id="tabNav">
-  <a href="#hero" class="active blink">HOME</a>
-  <a href="#about">ABOUT</a>
-  <a href="#experience">EXPERIENCE</a>
-  <a href="#work">PROJECTS</a>
-  <a href="#skills">SKILLS</a>
-  <a href="#education">EDUCATION</a>
-  <a href="#contact">CONTACT</a>
-  <button class="nav-toggle" type="button" id="navToggle" aria-label="Open menu" aria-expanded="false">
-    Menu
-    <span class="bars" aria-hidden="true"><span></span><span></span><span></span></span>
-  </button>
+  <div class="tab-nav-inner">
+    <a class="tab-brand" href="#hero" aria-label="Anshul Raman — Home">
+      <span class="dot"></span>
+      <span>Anshul Raman</span>
+    </a>
+    <div class="tab-links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#work">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+    </div>
+    <a class="tab-cta" href="#contact">Contact <span class="arr">→</span></a>
+    <button class="nav-toggle" type="button" id="navToggle" aria-label="Open menu" aria-expanded="false">
+      Menu
+      <span class="bars" aria-hidden="true"><span></span><span></span><span></span></span>
+    </button>
+  </div>
 </nav>
 
 <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
@@ -1347,15 +1397,15 @@ document.querySelectorAll('.compact-row').forEach(row => {
   row.addEventListener('mouseleave', () => hp.classList.remove('show'));
 });
 
-// scroll-spy nav
+// scroll-spy nav (only highlights the section links, not brand or CTA)
 const sections = ['hero','about','experience','work','skills','education','contact'];
-const navLinks = Array.from(document.querySelectorAll('.tab-nav a'));
+const linkLinks = Array.from(document.querySelectorAll('.tab-links a'));
 const drawerLinks = Array.from(document.querySelectorAll('.mobile-drawer a'));
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
       const id = e.target.id;
-      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+      linkLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
       drawerLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
     }
   });
@@ -1373,6 +1423,34 @@ function setMenu(open) {
 if (navToggle) navToggle.addEventListener('click', () => setMenu(!document.body.classList.contains('menu-open')));
 drawerLinks.forEach(a => a.addEventListener('click', () => setMenu(false)));
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && document.body.classList.contains('menu-open')) setMenu(false); });
+
+// nav hides on scroll-down, returns on scroll-up
+(function () {
+  const nav = document.getElementById('tabNav');
+  if (!nav) return;
+  let lastY = window.scrollY;
+  let ticking = false;
+  const THRESHOLD = 6;     // ignore tiny jitter
+  const TOP_GUARD = 80;    // never hide near the very top
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const y = window.scrollY;
+      if (document.body.classList.contains('menu-open')) { ticking = false; lastY = y; return; }
+      if (y < TOP_GUARD) {
+        nav.classList.remove('nav-hidden');
+      } else if (y > lastY + THRESHOLD) {
+        nav.classList.add('nav-hidden');
+      } else if (y < lastY - THRESHOLD) {
+        nav.classList.remove('nav-hidden');
+      }
+      lastY = y;
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive:true });
+})();
 </script>
 </body>
 </html>
