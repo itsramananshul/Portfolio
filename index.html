@@ -41,15 +41,13 @@ button { font:inherit; border:none; background:none; cursor:pointer; color:inher
 .disc:hover { transform:rotate(45deg); }
 
 .tab-nav {
-  position:fixed; top:18px; left:50%; transform:translateX(-50%); z-index:60;
-  display:flex; gap:0;
+  position:fixed; top:18px; left:50%; transform:translateX(-50%); z-index:160;
+  display:flex; gap:0; align-items:center;
   background:var(--bg-3); color:#fff;
   padding:5px; border-radius:999px;
   font-family:var(--mono); font-size:10px; letter-spacing:.18em; text-transform:uppercase;
   backdrop-filter:blur(10px);
-  max-width:calc(100vw - 36px); overflow:auto;
 }
-.tab-nav::-webkit-scrollbar { display:none; }
 .tab-nav a {
   padding:9px 13px; border-radius:999px; white-space:nowrap;
   color:rgba(255,255,255,.6); transition:color .25s, background .25s;
@@ -57,6 +55,72 @@ button { font:inherit; border:none; background:none; cursor:pointer; color:inher
 .tab-nav a:hover, .tab-nav a.active { color:#fff; background:rgba(255,255,255,.08); }
 .tab-nav .blink::before { content:'●'; color:var(--orange); margin-right:6px; animation:bk 1s steps(2) infinite; }
 @keyframes bk { 50% { opacity:.3; } }
+
+/* mobile menu toggle (hidden on desktop) */
+.nav-toggle {
+  display:none; align-items:center; gap:8px;
+  padding:9px 13px; border-radius:999px;
+  background:rgba(255,255,255,.08); border:none;
+  color:#fff; font:inherit; font-family:var(--mono); font-size:10px;
+  letter-spacing:.18em; text-transform:uppercase; cursor:pointer;
+}
+.nav-toggle .bars { display:inline-flex; flex-direction:column; gap:3px; }
+.nav-toggle .bars span {
+  display:block; width:14px; height:1.5px; background:#fff; border-radius:2px;
+  transition:transform .3s cubic-bezier(.2,.8,.2,1), opacity .3s ease;
+}
+body.menu-open .nav-toggle .bars span:first-child { transform:translateY(4.5px) rotate(45deg); }
+body.menu-open .nav-toggle .bars span:nth-child(2) { opacity:0; }
+body.menu-open .nav-toggle .bars span:last-child { transform:translateY(-4.5px) rotate(-45deg); }
+
+/* mobile drawer */
+.mobile-drawer {
+  position:fixed; inset:0; z-index:150;
+  background:rgba(8,8,8,.96);
+  backdrop-filter:blur(18px) saturate(140%);
+  -webkit-backdrop-filter:blur(18px) saturate(140%);
+  opacity:0; pointer-events:none;
+  transition:opacity .35s cubic-bezier(.2,.8,.2,1);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  padding:80px 24px 60px;
+}
+.mobile-drawer::before {
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(700px 500px at 50% 30%, rgba(255,97,26,.12), transparent 70%);
+}
+body.menu-open .mobile-drawer { opacity:1; pointer-events:auto; }
+.mobile-drawer ul {
+  list-style:none; display:flex; flex-direction:column; gap:2px;
+  text-align:center; position:relative; z-index:1;
+}
+.mobile-drawer li {
+  opacity:0; transform:translateY(18px);
+  transition:opacity .45s cubic-bezier(.2,.8,.2,1), transform .45s cubic-bezier(.2,.8,.2,1);
+}
+body.menu-open .mobile-drawer li { opacity:1; transform:translateY(0); }
+body.menu-open .mobile-drawer li:nth-child(1) { transition-delay:.06s; }
+body.menu-open .mobile-drawer li:nth-child(2) { transition-delay:.10s; }
+body.menu-open .mobile-drawer li:nth-child(3) { transition-delay:.14s; }
+body.menu-open .mobile-drawer li:nth-child(4) { transition-delay:.18s; }
+body.menu-open .mobile-drawer li:nth-child(5) { transition-delay:.22s; }
+body.menu-open .mobile-drawer li:nth-child(6) { transition-delay:.26s; }
+body.menu-open .mobile-drawer li:nth-child(7) { transition-delay:.30s; }
+.mobile-drawer a {
+  display:block; padding:12px 22px;
+  font-family:var(--sans); font-weight:300;
+  font-size:clamp(32px, 9vw, 50px);
+  letter-spacing:-.025em; line-height:1;
+  color:rgba(255,255,255,.55);
+  transition:color .25s ease, transform .25s ease;
+}
+.mobile-drawer a:hover, .mobile-drawer a.active { color:#fff; }
+.mobile-drawer a.active { font-style:italic; color:var(--orange); font-weight:600; }
+.mobile-drawer .drawer-foot {
+  position:absolute; bottom:32px; left:0; right:0;
+  font-family:var(--mono); font-size:10px; letter-spacing:.18em; text-transform:uppercase;
+  color:rgba(255,255,255,.35); text-align:center; z-index:1;
+}
+body.menu-open { overflow:hidden; }
 
 .autoplay {
   position:fixed; top:34px; right:18px; z-index:60;
@@ -533,9 +597,9 @@ footer {
 @media (max-width:768px) {
   /* fixed chrome */
   .disc { width:44px; height:44px; font-size:16px; top:12px; left:12px; }
-  .tab-nav { top:14px; padding:4px; gap:0; max-width:calc(100vw - 70px); -webkit-overflow-scrolling:touch; scroll-snap-type:x mandatory; }
-  .tab-nav::after { content:''; position:absolute; right:0; top:0; bottom:0; width:24px; background:linear-gradient(90deg, transparent, var(--bg-3)); pointer-events:none; border-radius:0 999px 999px 0; }
-  .tab-nav a { padding:8px 11px; font-size:9px; letter-spacing:.14em; scroll-snap-align:start; }
+  .tab-nav { top:14px; padding:4px; gap:0; }
+  .tab-nav a:not(.nav-brand) { display:none; }
+  .nav-toggle { display:inline-flex; padding:8px 12px; font-size:11px; }
   .autoplay { display:none; }
 
   /* section spacing */
@@ -659,7 +723,7 @@ footer {
 
 <a class="disc" href="#hero" title="Anshul Raman">A</a>
 
-<nav class="tab-nav">
+<nav class="tab-nav" id="tabNav">
   <a href="#hero" class="active blink">HOME</a>
   <a href="#about">ABOUT</a>
   <a href="#experience">EXPERIENCE</a>
@@ -667,7 +731,24 @@ footer {
   <a href="#skills">SKILLS</a>
   <a href="#education">EDUCATION</a>
   <a href="#contact">CONTACT</a>
+  <button class="nav-toggle" type="button" id="navToggle" aria-label="Open menu" aria-expanded="false">
+    Menu
+    <span class="bars" aria-hidden="true"><span></span><span></span><span></span></span>
+  </button>
 </nav>
+
+<div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+  <ul>
+    <li><a href="#hero" data-nav="hero">Home</a></li>
+    <li><a href="#about" data-nav="about">About</a></li>
+    <li><a href="#experience" data-nav="experience">Experience</a></li>
+    <li><a href="#work" data-nav="work">Projects</a></li>
+    <li><a href="#skills" data-nav="skills">Skills</a></li>
+    <li><a href="#education" data-nav="education">Education</a></li>
+    <li><a href="#contact" data-nav="contact">Contact</a></li>
+  </ul>
+  <div class="drawer-foot">⌬ Anshul Raman · Cincinnati · OH</div>
+</div>
 
 <div class="autoplay"><span class="dot"></span>Building</div>
 
@@ -1269,15 +1350,29 @@ document.querySelectorAll('.compact-row').forEach(row => {
 // scroll-spy nav
 const sections = ['hero','about','experience','work','skills','education','contact'];
 const navLinks = Array.from(document.querySelectorAll('.tab-nav a'));
+const drawerLinks = Array.from(document.querySelectorAll('.mobile-drawer a'));
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
       const id = e.target.id;
       navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+      drawerLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
     }
   });
 }, { rootMargin:'-40% 0px -55% 0px' });
 sections.forEach(id => { const el = document.getElementById(id); if (el) io.observe(el); });
+
+// mobile drawer
+const navToggle = document.getElementById('navToggle');
+const drawer = document.getElementById('mobileDrawer');
+function setMenu(open) {
+  document.body.classList.toggle('menu-open', open);
+  if (navToggle) navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  if (drawer) drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
+}
+if (navToggle) navToggle.addEventListener('click', () => setMenu(!document.body.classList.contains('menu-open')));
+drawerLinks.forEach(a => a.addEventListener('click', () => setMenu(false)));
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && document.body.classList.contains('menu-open')) setMenu(false); });
 </script>
 </body>
 </html>
