@@ -489,14 +489,23 @@ body.menu-open { overflow:hidden; }
 .ic-tile:hover::before { opacity:.18; }
 .ic-tile:hover::after { transform:translateX(110%); }
 
-.ic-tile img {
+.ic-tile .icon {
   width:30px; height:30px;
   position:relative; z-index:1;
-  opacity:1;
-  transition:transform .4s cubic-bezier(.2,.8,.2,1), filter .35s;
+  background:var(--d, #fff);
+  -webkit-mask-image:var(--icon-url);
+  mask-image:var(--icon-url);
+  -webkit-mask-size:contain;
+  mask-size:contain;
+  -webkit-mask-repeat:no-repeat;
+  mask-repeat:no-repeat;
+  -webkit-mask-position:center;
+  mask-position:center;
+  transition:background .35s, transform .4s cubic-bezier(.2,.8,.2,1), filter .35s;
 }
-.ic-tile:hover img {
-  filter:drop-shadow(0 0 14px var(--c)) drop-shadow(0 0 6px var(--c));
+.ic-tile:hover .icon {
+  background:var(--c);
+  filter:drop-shadow(0 0 12px var(--c)) drop-shadow(0 0 4px var(--c));
   transform:scale(1.2) rotate(-4deg) translateZ(20px);
 }
 .ic-tile span {
@@ -741,7 +750,7 @@ footer {
   .skills-intro { font-size:15.5px; margin-bottom:24px; }
   .stack-grid { grid-template-columns:repeat(auto-fill, minmax(70px, 1fr)); gap:7px; }
   .ic-tile { padding:8px 5px; gap:6px; border-radius:12px; }
-  .ic-tile img { width:24px; height:24px; }
+  .ic-tile .icon { width:24px; height:24px; }
   .ic-tile span { font-size:8.5px; }
   .ic-tile:hover { transform:rotateX(0) rotateY(0) translateY(-2px) scale(1.04); }
 
@@ -1372,16 +1381,29 @@ document.querySelectorAll('.compact-row').forEach(row => {
   row.addEventListener('mouseleave', () => hp.classList.remove('show'));
 });
 
-// Skills — 3D icon stack (every tool I actually use, scanned from all 14 projects)
+// Skills — 3D icon stack (every brand-tool I actually use)
 // `c` = glow color on hover. `d` = display color at rest (brightened for dark brands).
 const STACK = [
   // Languages & runtimes
   { name:'Python',       slug:'python',          c:'#3776AB', d:'3776AB' },
   { name:'TypeScript',   slug:'typescript',      c:'#3178C6', d:'3178C6' },
   { name:'JavaScript',   slug:'javascript',      c:'#F7DF1E', d:'F7DF1E' },
+  { name:'Java',         slug:'openjdk',         c:'#ED8B00', d:'ED8B00' },
+  { name:'C',            slug:'c',               c:'#A8B9CC', d:'A8B9CC' },
+  { name:'C++',          slug:'cplusplus',       c:'#00599C', d:'4F8DD4' },
+  { name:'C#',           slug:'csharp',          c:'#239120', d:'4FB820' },
+  { name:'Go',           slug:'go',              c:'#00ADD8', d:'00ADD8' },
+  { name:'Rust',         slug:'rust',            c:'#FFFFFF', d:'FFFFFF' },
+  { name:'Kotlin',       slug:'kotlin',          c:'#7F52FF', d:'A88BFF' },
+  { name:'Swift',        slug:'swift',           c:'#F05138', d:'F05138' },
+  { name:'Dart',         slug:'dart',            c:'#0175C2', d:'2EA7E0' },
+  { name:'Ruby',         slug:'ruby',            c:'#CC342D', d:'CC342D' },
+  { name:'PHP',          slug:'php',             c:'#777BB4', d:'A8ADDD' },
+  { name:'MATLAB',       slug:'mathworks',       c:'#0076A8', d:'4FA8D4' },
+  { name:'Bash',         slug:'gnubash',         c:'#4EAA25', d:'4EAA25' },
+  { name:'PowerShell',   slug:'powershell',      c:'#5391FE', d:'5391FE' },
   { name:'Node.js',      slug:'nodedotjs',       c:'#5FA04E', d:'5FA04E' },
   { name:'Deno',         slug:'deno',            c:'#70FFAF', d:'70FFAF' },
-  { name:'C++',          slug:'cplusplus',       c:'#00599C', d:'00599C' },
   // Frontend / frameworks
   { name:'React',        slug:'react',           c:'#61DAFB', d:'61DAFB' },
   { name:'Next.js',      slug:'nextdotjs',       c:'#FFFFFF', d:'FFFFFF' },
@@ -1396,6 +1418,7 @@ const STACK = [
   { name:'PostgreSQL',   slug:'postgresql',      c:'#4169E1', d:'4169E1' },
   { name:'Supabase',     slug:'supabase',        c:'#3ECF8E', d:'3ECF8E' },
   { name:'Vercel',       slug:'vercel',          c:'#FFFFFF', d:'FFFFFF' },
+  { name:'Google Cloud', slug:'googlecloud',     c:'#4285F4', d:'4285F4' },
   { name:'GH Actions',   slug:'githubactions',   c:'#2088FF', d:'2088FF' },
   // AI / LLMs / Voice
   { name:'OpenAI',       slug:'openai',          c:'#74AA9C', d:'EFEFEF' },
@@ -1403,7 +1426,7 @@ const STACK = [
   { name:'Gemini',       slug:'googlegemini',    c:'#8E75B2', d:'8E75B2' },
   { name:'Grok / xAI',   slug:'x',               c:'#FFFFFF', d:'FFFFFF' },
   { name:'Meta · LLaMA', slug:'meta',            c:'#0866FF', d:'4F8DFF' },
-  { name:'Groq',         slug:'groq',            c:'#F55036', d:'F55036' },
+  { name:'DeepSeek',     slug:'deepseek',        c:'#4D6BFE', d:'4D6BFE' },
   { name:'Ollama',       slug:'ollama',          c:'#FFFFFF', d:'FFFFFF' },
   { name:'HuggingFace',  slug:'huggingface',     c:'#FFD21E', d:'FFD21E' },
   { name:'ElevenLabs',   slug:'elevenlabs',      c:'#FFFFFF', d:'FFFFFF' },
@@ -1418,7 +1441,6 @@ const STACK = [
   { name:'GitHub',       slug:'github',          c:'#9CA3AF', d:'FFFFFF' },
   { name:'Twilio',       slug:'twilio',          c:'#F22F46', d:'F22F46' },
   { name:'Canvas',       slug:'instructure',     c:'#E72429', d:'E72429' },
-  { name:'Plaid',        slug:'plaid',           c:'#FFFFFF', d:'FFFFFF' },
   // Job-board scrape sources (ReachOut)
   { name:'LinkedIn',     slug:'linkedin',        c:'#0A66C2', d:'2D87E2' },
   { name:'Indeed',       slug:'indeed',          c:'#003A9B', d:'4D88E0' },
@@ -1431,14 +1453,15 @@ const STACK = [
   { name:'Hashcat',      slug:'hashcat',         c:'#FFFFFF', d:'FFFFFF' },
   // Systems / tools / hardware
   { name:'Linux',        slug:'linux',           c:'#FCC624', d:'FCC624' },
+  { name:'Ubuntu',       slug:'ubuntu',          c:'#E95420', d:'E95420' },
+  { name:'Arch Linux',   slug:'archlinux',       c:'#1793D1', d:'2EB8F0' },
   { name:'macOS',        slug:'apple',           c:'#FFFFFF', d:'FFFFFF' },
   { name:'Windows',      slug:'windows11',       c:'#0078D4', d:'2EA7E0' },
   { name:'Git',          slug:'git',             c:'#F05032', d:'F05032' },
   { name:'VS Code',      slug:'visualstudiocode',c:'#007ACC', d:'2EA7E0' },
   { name:'Raspberry Pi', slug:'raspberrypi',     c:'#A22846', d:'CC4477' },
   { name:'Arduino',      slug:'arduino',         c:'#00979D', d:'00979D' },
-  { name:'Espressif',    slug:'espressif',       c:'#E7352C', d:'E7352C' },
-  { name:'LEGO',         slug:'lego',            c:'#FFCF00', d:'FFCF00' }
+  { name:'Espressif',    slug:'espressif',       c:'#E7352C', d:'E7352C' }
 ];
 
 (function renderStack() {
@@ -1449,9 +1472,10 @@ const STACK = [
     tile.className = 'ic-tile';
     tile.style.setProperty('--c', s.c);
     tile.style.setProperty('--d', (i * 25) + 'ms');
-    const iconURL = `https://cdn.simpleicons.org/${s.slug}/${s.d}`;
+    const iconURL = `https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/${s.slug}.svg`;
+    tile.style.setProperty('--d', '#' + s.d);
     tile.innerHTML = `
-      <img src="${iconURL}" alt="${s.name}" loading="lazy" onerror="this.parentElement.style.display='none'" />
+      <div class="icon" style="--icon-url:url('${iconURL}')" role="img" aria-label="${s.name}"></div>
       <span>${s.name}</span>`;
     tile.addEventListener('mousemove', e => {
       const r = tile.getBoundingClientRect();
