@@ -1372,15 +1372,15 @@ document.querySelectorAll('.compact-row').forEach(row => {
   row.addEventListener('mouseleave', () => hp.classList.remove('show'));
 });
 
-// Skills — 3D icon stack (covers every tool used across all 14 apps)
-// Display color uses brand color when bright on dark bg; falls back to white for dark brands.
-// Glow color (--c) always uses brand color.
+// Skills — 3D icon stack (every tool I actually use, scanned from all 14 projects)
+// `c` = glow color on hover. `d` = display color at rest (brightened for dark brands).
 const STACK = [
   // Languages & runtimes
   { name:'Python',       slug:'python',          c:'#3776AB', d:'3776AB' },
   { name:'TypeScript',   slug:'typescript',      c:'#3178C6', d:'3178C6' },
   { name:'JavaScript',   slug:'javascript',      c:'#F7DF1E', d:'F7DF1E' },
   { name:'Node.js',      slug:'nodedotjs',       c:'#5FA04E', d:'5FA04E' },
+  { name:'Deno',         slug:'deno',            c:'#70FFAF', d:'70FFAF' },
   { name:'C++',          slug:'cplusplus',       c:'#00599C', d:'00599C' },
   // Frontend / frameworks
   { name:'React',        slug:'react',           c:'#61DAFB', d:'61DAFB' },
@@ -1388,6 +1388,7 @@ const STACK = [
   { name:'Tailwind',     slug:'tailwindcss',     c:'#06B6D4', d:'06B6D4' },
   { name:'Three.js',     slug:'threedotjs',      c:'#FFFFFF', d:'FFFFFF' },
   { name:'Flask',        slug:'flask',           c:'#FFFFFF', d:'FFFFFF' },
+  { name:'SWR',          slug:'swr',             c:'#FFFFFF', d:'FFFFFF' },
   { name:'HTML5',        slug:'html5',           c:'#E34F26', d:'E34F26' },
   { name:'CSS3',         slug:'css3',            c:'#1572B6', d:'1572B6' },
   { name:'PWA',          slug:'pwa',             c:'#5A0FC8', d:'A077F5' },
@@ -1400,30 +1401,44 @@ const STACK = [
   { name:'OpenAI',       slug:'openai',          c:'#74AA9C', d:'EFEFEF' },
   { name:'Claude',       slug:'anthropic',       c:'#D97757', d:'D97757' },
   { name:'Gemini',       slug:'googlegemini',    c:'#8E75B2', d:'8E75B2' },
+  { name:'Grok / xAI',   slug:'x',               c:'#FFFFFF', d:'FFFFFF' },
+  { name:'Meta · LLaMA', slug:'meta',            c:'#0866FF', d:'4F8DFF' },
+  { name:'Groq',         slug:'groq',            c:'#F55036', d:'F55036' },
   { name:'Ollama',       slug:'ollama',          c:'#FFFFFF', d:'FFFFFF' },
   { name:'HuggingFace',  slug:'huggingface',     c:'#FFD21E', d:'FFD21E' },
   { name:'ElevenLabs',   slug:'elevenlabs',      c:'#FFFFFF', d:'FFFFFF' },
   // APIs / integrations
+  { name:'Google',       slug:'google',          c:'#4285F4', d:'4285F4' },
   { name:'Gmail',        slug:'gmail',           c:'#EA4335', d:'EA4335' },
   { name:'Calendar',     slug:'googlecalendar',  c:'#4285F4', d:'4285F4' },
-  { name:'Outlook',      slug:'microsoftoutlook',c:'#0078D4', d:'0078D4' },
+  { name:'Microsoft',    slug:'microsoft',       c:'#5E5E5E', d:'B7B7B7' },
+  { name:'Outlook',      slug:'microsoftoutlook',c:'#0078D4', d:'2EA7E0' },
+  { name:'Edge',         slug:'microsoftedge',   c:'#0078D7', d:'2EA7E0' },
   { name:'Telegram',     slug:'telegram',        c:'#26A5E4', d:'26A5E4' },
   { name:'GitHub',       slug:'github',          c:'#9CA3AF', d:'FFFFFF' },
   { name:'Twilio',       slug:'twilio',          c:'#F22F46', d:'F22F46' },
   { name:'Canvas',       slug:'instructure',     c:'#E72429', d:'E72429' },
   { name:'Plaid',        slug:'plaid',           c:'#FFFFFF', d:'FFFFFF' },
+  // Job-board scrape sources (ReachOut)
+  { name:'LinkedIn',     slug:'linkedin',        c:'#0A66C2', d:'2D87E2' },
+  { name:'Indeed',       slug:'indeed',          c:'#003A9B', d:'4D88E0' },
+  { name:'Glassdoor',    slug:'glassdoor',       c:'#0CAA41', d:'34D26B' },
   // Security
   { name:'Kali',         slug:'kalilinux',       c:'#557C94', d:'9DB7C9' },
   { name:'Parrot',       slug:'parrotsecurity',  c:'#15D3F6', d:'15D3F6' },
   { name:'Wireshark',    slug:'wireshark',       c:'#1679A7', d:'4FA8D4' },
   { name:'Metasploit',   slug:'metasploit',      c:'#2596CD', d:'2596CD' },
+  { name:'Hashcat',      slug:'hashcat',         c:'#FFFFFF', d:'FFFFFF' },
   // Systems / tools / hardware
   { name:'Linux',        slug:'linux',           c:'#FCC624', d:'FCC624' },
   { name:'macOS',        slug:'apple',           c:'#FFFFFF', d:'FFFFFF' },
+  { name:'Windows',      slug:'windows11',       c:'#0078D4', d:'2EA7E0' },
   { name:'Git',          slug:'git',             c:'#F05032', d:'F05032' },
   { name:'VS Code',      slug:'visualstudiocode',c:'#007ACC', d:'2EA7E0' },
   { name:'Raspberry Pi', slug:'raspberrypi',     c:'#A22846', d:'CC4477' },
-  { name:'Arduino',      slug:'arduino',         c:'#00979D', d:'00979D' }
+  { name:'Arduino',      slug:'arduino',         c:'#00979D', d:'00979D' },
+  { name:'Espressif',    slug:'espressif',       c:'#E7352C', d:'E7352C' },
+  { name:'LEGO',         slug:'lego',            c:'#FFCF00', d:'FFCF00' }
 ];
 
 (function renderStack() {
