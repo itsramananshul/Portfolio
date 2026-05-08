@@ -135,37 +135,31 @@ button { font:inherit; border:none; background:none; cursor:pointer; color:inher
 .section-h b { font-weight:700; }
 .section-h em { font-style:italic; color:var(--orange); }
 
-.about-grid {
-  display:grid; grid-template-columns:1.2fr .9fr .9fr; gap:18px;
-  perspective:1400px;
-}
-.about-card {
-  background:#fff; border:1px solid var(--line); border-radius:16px;
-  padding:28px 30px; position:relative;
-  transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s;
-  transform-style:preserve-3d;
-}
-.about-card:hover { transform:translateY(-4px) rotateX(2deg) rotateY(-2deg); box-shadow:0 28px 60px -28px rgba(255,97,26,.35); border-color:var(--orange); }
-.about-card.span2 { grid-column:span 2; display:grid; grid-template-columns:1fr 1fr; gap:36px; }
-.about-card.tall { grid-row:span 2; background:linear-gradient(180deg, #fff 0%, #fafafa 100%); }
-.about-num {
-  font-family:var(--mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase;
-  color:var(--orange); margin-bottom:14px;
-}
-.about-heading {
+.about-h {
   font-family:var(--sans); font-weight:300;
-  font-size:clamp(24px, 2.6vw, 34px); line-height:1.05; letter-spacing:-.02em;
-  margin-bottom:14px;
+  font-size:clamp(40px, 6vw, 84px); line-height:.96; letter-spacing:-.035em;
+  margin-bottom:32px;
 }
-.about-heading em { font-style:italic; color:var(--orange); font-weight:600; }
-.about-body { font-size:14.5px; line-height:1.65; color:var(--ink-2); margin-bottom:14px; }
-.about-body strong { color:var(--ink); font-weight:600; }
-.pills { display:flex; flex-wrap:wrap; gap:6px; }
-.pill {
-  font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase;
-  background:var(--orange-soft); color:var(--orange); border:1px solid rgba(255,97,26,.2);
-  padding:5px 10px; border-radius:99px;
+.about-h b { font-weight:700; }
+.about-h em { font-style:italic; color:var(--orange); }
+
+.about-body {
+  font-family:var(--sans); font-size:clamp(18px, 2vw, 22px); line-height:1.6;
+  max-width:70ch; color:var(--ink-2);
 }
+.about-body p { margin-bottom:1.1em; }
+.about-body p strong { color:var(--ink); font-weight:600; }
+.about-body p .accent { color:var(--orange); font-weight:600; }
+.about-body p em { font-style:italic; color:var(--orange); }
+
+.about-pills { display:flex; flex-wrap:wrap; gap:8px; margin-top:36px; max-width:70ch; }
+.about-pill {
+  font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+  background:#fff; color:var(--ink-2); border:1px solid var(--line);
+  padding:7px 12px; border-radius:99px;
+  transition:background .2s, color .2s, border-color .2s, transform .2s;
+}
+.about-pill:hover { background:var(--orange); color:#fff; border-color:var(--orange); transform:translateY(-1px); }
 
 /* ───────── EXPERIENCE — terminal/log style ───────── */
 .exp-section { padding:120px 6vw; background:var(--bg-4); color:#fff; position:relative; overflow:hidden; }
@@ -527,10 +521,10 @@ footer {
 <nav class="tab-nav">
   <a href="#hero" class="active blink">HOME</a>
   <a href="#about">ABOUT</a>
-  <a href="#experience">EXP</a>
+  <a href="#experience">EXPERIENCE</a>
   <a href="#work">PROJECTS</a>
   <a href="#skills">SKILLS</a>
-  <a href="#education">EDU</a>
+  <a href="#education">EDUCATION</a>
   <a href="#contact">CONTACT</a>
 </nav>
 
@@ -561,54 +555,29 @@ footer {
 <!-- ════════ ABOUT ════════ -->
 <section class="section-pad" id="about">
   <div class="section-eyebrow"><span class="glyph">⌬</span> About</div>
-  <h2 class="section-h">Who I am <em>and why it matters.</em></h2>
+  <h2 class="about-h">A little <em>about</em> me</h2>
 
-  <div class="about-grid">
-    <div class="about-card span2 tall">
-      <div>
-        <div class="about-num">01 — Origin</div>
-        <h3 class="about-heading">A kid who broke <em>everything.</em></h3>
-        <p class="about-body">I grew up taking apart phones, routers, and toys &mdash; not because I hated them, but because <strong>I wanted to see how they failed.</strong> That same curiosity now drives my work across full-stack development, AI systems, cybersecurity, networking, and systems programming.</p>
-        <div class="pills">
-          <span class="pill">Security Mindset</span>
-          <span class="pill">Systems Thinking</span>
-          <span class="pill">Adversarial Thinking</span>
-        </div>
-      </div>
-      <div>
-        <div class="about-num">02 — Method</div>
-        <h3 class="about-heading">Build fast, <em>break it safely.</em></h3>
-        <p class="about-body">Short feedback loops: I prototype, break, and harden systems. At UC, I work on <strong>full-stack and AI projects</strong> alongside offensive security labs, hardware builds, and Python tools to understand where real systems crack &mdash; from Wi-Fi to phishing to local networks.</p>
-        <div class="pills">
-          <span class="pill">Red-team Labs</span>
-          <span class="pill">Python Automation</span>
-          <span class="pill">Hardware Experiments</span>
-        </div>
-      </div>
-    </div>
+  <div class="about-body">
+    <p>I grew up <strong>taking apart phones, routers, and toys</strong> — not because I hated them, but because I wanted to see <em>how they failed.</em> That same curiosity now runs through everything I build: full-stack platforms, AI systems, cybersecurity, networking, and the messy in-between.</p>
 
-    <div class="about-card">
-      <div class="about-num">03 — Campus Life</div>
-      <h3 class="about-heading">What keeps me <em>moving.</em></h3>
-      <p class="about-body"><strong>Clubs:</strong> Tennis Club · Bearcat Tech Innovators · IEEE · AAEO · UC Robotics · AI Society<br><br><strong>Sports:</strong> Tennis · Badminton · Cricket · Soccer · Volleyball</p>
-      <div class="pills">
-        <span class="pill">Tennis #1 District</span>
-        <span class="pill">Top 150 AITA</span>
-        <span class="pill">IEEE Member</span>
-      </div>
-    </div>
+    <p>I'm a <strong>sophomore at the University of Cincinnati</strong> studying Computer Science with a focus on full-stack development and AI systems &mdash; <span class="accent">Founding Engineer at OpenPrem.</span> Dean's List Fall 2025, GPA 3.68, open to summer roles and co-op starting Fall 2026.</p>
 
-    <div class="about-card">
-      <div class="about-num">04 — Right Now</div>
-      <h3 class="about-heading">Currently <em>at Cincinnati.</em></h3>
-      <p class="about-body">Sophomore at the University of Cincinnati studying Computer Science with a focus on full-stack development and AI systems &mdash; building production-ready web applications and user-focused software, with growing experience in cybersecurity through hands-on labs and systems exploration. Dean's List Fall 2025. <strong>Open to summer roles and co-op opportunities starting Fall 2026.</strong></p>
-      <div class="pills">
-        <span class="pill">Dean's List</span>
-        <span class="pill">3.68 GPA</span>
-        <span class="pill">Co-op Fall 2026</span>
-      </div>
-    </div>
+    <p>My method is short feedback loops: <strong>prototype, break, harden.</strong> Production-ready apps on one screen, offensive security labs and hardware builds on the other &mdash; from Wi-Fi auditing to phishing simulations to local networks. I want to understand where real systems crack so I can build ones that don't.</p>
 
+    <p>Outside the terminal I play tennis (<strong>#1 District U-19, Top 150 AITA</strong>), badminton, cricket, soccer, and volleyball. On campus I'm in Tennis Club, Bearcat Tech Innovators, IEEE, AAEO, UC Robotics, and the AI Society. Hackathon-tested. Production-tested. Most comfortable when something has to actually work, in front of real users, by morning.</p>
+  </div>
+
+  <div class="about-pills">
+    <span class="about-pill">Security Mindset</span>
+    <span class="about-pill">Systems Thinking</span>
+    <span class="about-pill">Adversarial Thinking</span>
+    <span class="about-pill">Red-team Labs</span>
+    <span class="about-pill">Python Automation</span>
+    <span class="about-pill">Hardware Experiments</span>
+    <span class="about-pill">Dean's List</span>
+    <span class="about-pill">Co-op Fall 2026</span>
+    <span class="about-pill">Tennis #1 District</span>
+    <span class="about-pill">IEEE Member</span>
   </div>
 </section>
 
@@ -828,7 +797,7 @@ footer {
   <h2>Let's <em>build</em> something real.</h2>
   <p class="lede">For internships, AI engineering work, hackathon teams, security collabs &mdash; or just to talk about the ideas. I read every email.</p>
   <div class="contact-btns">
-    <a class="btn-dark" href="mailto:ar.dev@anshulraman.com">✉ Email Me</a>
+    <a class="btn-dark" href="mailto:ramanal@mail.uc.edu">✉ Email Me</a>
     <a class="btn-outline" href="https://www.linkedin.com/in/anshulraman06" target="_blank" rel="noopener">LinkedIn</a>
     <a class="btn-outline" href="https://github.com/itsramananshul" target="_blank" rel="noopener">GitHub</a>
     <a class="btn-outline" href="resume.pdf" target="_blank" rel="noopener">↓ Resume</a>
