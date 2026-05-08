@@ -251,32 +251,49 @@ button { font:inherit; border:none; background:none; cursor:pointer; color:inher
 
 .compact { padding-top:32px; position:relative; }
 .compact-row {
-  display:grid; grid-template-columns:60px 1.6fr 1fr 100px 28px;
-  gap:18px; padding:16px 18px;
+  display:grid; grid-template-columns:48px 1.4fr 1.6fr 70px 24px;
+  gap:24px; padding:22px 6px 22px 22px;
   border-top:1px solid rgba(255,255,255,.08);
-  font-family:var(--sans); font-size:14px;
-  align-items:baseline; cursor:pointer; position:relative; isolation:isolate;
-  transition:color .25s ease, transform .25s ease;
-  border-radius:6px;
+  font-family:var(--sans);
+  align-items:center; cursor:pointer; position:relative;
+  transition:padding-left .35s cubic-bezier(.2,.8,.2,1), background .25s;
 }
 .compact-row::before {
-  content:''; position:absolute; inset:0; z-index:-1;
-  background:var(--orange);
-  transform-origin:left; transform:scaleX(0);
+  content:''; position:absolute; left:0; top:14%; bottom:14%;
+  width:3px; background:var(--orange);
+  transform:scaleY(0); transform-origin:center;
   transition:transform .35s cubic-bezier(.2,.8,.2,1);
-  border-radius:6px;
 }
-.compact-row:hover { color:#fff; transform:translateX(2px); }
-.compact-row:hover::before { transform:scaleX(1); }
-.compact-row:hover .n, .compact-row:hover .yr, .compact-row:hover .stack { color:#fff; opacity:.95; }
+.compact-row:hover { padding-left:34px; background:rgba(255,255,255,.025); }
+.compact-row:hover::before { transform:scaleY(1); }
+.compact-row:hover .ttl { color:var(--orange); }
 .compact-row:last-child { border-bottom:1px solid rgba(255,255,255,.08); }
-.compact-row .n, .compact-row .yr { font-family:var(--mono); font-size:11px; letter-spacing:.06em; opacity:.5; text-transform:uppercase; transition:color .25s, opacity .25s; }
-.compact-row .ttl { font-weight:600; }
-.compact-row .stack { font-family:var(--mono); font-size:11px; opacity:.6; transition:color .25s, opacity .25s; }
+
+.compact-row .n {
+  font-family:var(--mono); font-size:11px; letter-spacing:.18em;
+  color:rgba(255,255,255,.35); text-transform:uppercase;
+}
+.compact-row .ttl {
+  font-family:var(--sans); font-weight:700;
+  font-size:clamp(20px, 1.9vw, 26px); letter-spacing:-.018em;
+  color:#fff;
+  transition:color .25s;
+}
+.compact-row .stack {
+  font-family:var(--sans); font-size:14.5px; line-height:1.5;
+  font-style:italic; font-weight:300;
+  color:rgba(255,255,255,.62);
+}
+.compact-row .yr {
+  font-family:var(--sans); font-size:13px; font-weight:500;
+  color:rgba(255,255,255,.5); letter-spacing:.02em;
+  text-align:right;
+}
 .compact-row .arr {
-  font-family:var(--mono); font-size:14px; opacity:0;
-  transform:translateX(-6px);
-  transition:opacity .25s, transform .25s;
+  font-family:var(--mono); font-size:18px;
+  color:var(--orange); opacity:0;
+  transform:translateX(-8px);
+  transition:opacity .3s, transform .3s;
   text-align:right;
 }
 .compact-row:hover .arr { opacity:1; transform:translateX(0); }
@@ -527,9 +544,12 @@ footer {
   .track.featured { grid-column:auto; min-height:300px; padding:28px; }
   .track.featured .track-t { font-size:42px; }
   .rack { grid-template-columns:1fr; }
-  .compact-row { grid-template-columns:40px 1fr 24px; gap:6px 12px; padding:14px 10px; }
+  .compact-row { grid-template-columns:36px 1fr 22px; gap:4px 12px; padding:18px 10px; align-items:start; }
+  .compact-row:hover { padding-left:22px; }
+  .compact-row .ttl { font-size:18px; }
   .compact-row .stack, .compact-row .yr { grid-column:2; }
-  .compact-row .arr { grid-column:3; grid-row:1 / span 2; align-self:center; }
+  .compact-row .yr { text-align:left; margin-top:4px; font-size:11.5px; opacity:.55; }
+  .compact-row .arr { grid-column:3; grid-row:1 / span 3; align-self:center; }
   .exp-timeline { padding-left:36px; }
   .exp-timeline::before { left:8px; }
   .exp-card::before { left:-32px; width:14px; height:14px; }
@@ -589,7 +609,7 @@ footer {
 
     <p>My method is short feedback loops: <strong>prototype, break, harden.</strong> Production-ready apps on one screen, offensive security labs and hardware builds on the other &mdash; from Wi-Fi auditing to phishing simulations to local networks. I want to understand where real systems crack so I can build ones that don't.</p>
 
-    <p>Outside the terminal I play tennis (<strong>#1 District U-19, Top 150 AITA</strong>), badminton, cricket, soccer, and volleyball. On campus I'm in Tennis Club, Bearcat Tech Innovators, IEEE, AAEO, UC Robotics, and the AI Society. Hackathon-tested. Production-tested. Most comfortable when something has to actually work, in front of real users, by morning.</p>
+    <p>Outside the terminal, <strong>I used to play tennis at the national level back in India</strong> &mdash; still pick up a racquet whenever I can, and I'll happily lose to you at badminton, cricket, soccer, or volleyball. On campus I'm in Tennis Club, Bearcat Tech Innovators, IEEE, AAEO, UC Robotics, and the AI Society. Hackathon-tested. Production-tested. Most comfortable when something has to actually work, in front of real users, by morning.</p>
   </div>
 
   <div class="about-pills">
@@ -688,15 +708,15 @@ footer {
   </div>
 
   <div class="compact" id="compact-list">
-    <div class="compact-row" data-id="reachout"><span class="n">05</span><span class="ttl">ReachOut</span><span class="stack">Recruiter outreach engine · 6-pattern email finder · Gmail OAuth send</span><span class="yr">2026</span><span class="arr">→</span></div>
-    <div class="compact-row" data-id="phone"><span class="n">06</span><span class="ttl">AI Phone Agent</span><span class="stack">Calls answered by local LLaMA · zero cloud · $1/mo Twilio</span><span class="yr">2025</span><span class="arr">→</span></div>
-    <div class="compact-row" data-id="ev3"><span class="n">07</span><span class="ttl">EV3 Autonomous Robot</span><span class="stack">Single-loop state machine · 45 documented runs · zero human input</span><span class="yr">2025</span><span class="arr">→</span></div>
-    <div class="compact-row" data-id="atm"><span class="n">08</span><span class="ttl">Python ATM System</span><span class="stack">Console banking · 3-strike PIN lockout · file-backed accounts</span><span class="yr">2024</span><span class="arr">→</span></div>
-    <div class="compact-row" data-id="bus"><span class="n">09</span><span class="ttl">Bus Booking System</span><span class="stack">Reservation engine · auto-rebuild on cancel · collision-safe IDs</span><span class="yr">2024</span><span class="arr">→</span></div>
-    <div class="compact-row" data-id="med"><span class="n">10</span><span class="ttl">AI Medicine Dispenser</span><span class="stack">Face-verified dosing · caregiver alerts · emergency escalation</span><span class="yr">2024</span><span class="arr">→</span></div>
-    <div class="compact-row" data-id="rat"><span class="n">11</span><span class="ttl">RAT &amp; Pen-Test Lab</span><span class="stack">Cross-platform compromise research · ethical lab only · 12+ remote fns</span><span class="yr">2024</span><span class="arr">→</span></div>
-    <div class="compact-row" data-id="wifi"><span class="n">12</span><span class="ttl">Wi-Fi Pen-Test Device</span><span class="stack">Evil-twin AP · 50+ beacon flood · 802.11 deauth audit on ESP8266</span><span class="yr">2024</span><span class="arr">→</span></div>
-    <div class="compact-row" data-id="phish"><span class="n">13</span><span class="ttl">Phishing Simulation</span><span class="stack">SET workflows · credential harvesting in lab · MFA defense write-up</span><span class="yr">2024</span><span class="arr">→</span></div>
+    <div class="compact-row" data-id="reachout"><span class="n">05</span><span class="ttl">ReachOut</span><span class="stack">Cold outreach that actually lands a reply &mdash; built it because I was tired of begging recruiters.</span><span class="yr">2026</span><span class="arr">→</span></div>
+    <div class="compact-row" data-id="phone"><span class="n">06</span><span class="ttl">AI Phone Agent</span><span class="stack">An AI that answers your phone &mdash; locally, for a dollar a month.</span><span class="yr">2025</span><span class="arr">→</span></div>
+    <div class="compact-row" data-id="ev3"><span class="n">07</span><span class="ttl">EV3 Autonomous Robot</span><span class="stack">Built a robot that thinks for itself. From scratch. Zero hardware experience.</span><span class="yr">2025</span><span class="arr">→</span></div>
+    <div class="compact-row" data-id="atm"><span class="n">08</span><span class="ttl">Python ATM System</span><span class="stack">A bank in a terminal &mdash; PIN lockouts, persistent ledger, admin override.</span><span class="yr">2024</span><span class="arr">→</span></div>
+    <div class="compact-row" data-id="bus"><span class="n">09</span><span class="ttl">Bus Booking System</span><span class="stack">A reservation engine that survives a crash and remembers every seat.</span><span class="yr">2024</span><span class="arr">→</span></div>
+    <div class="compact-row" data-id="med"><span class="n">10</span><span class="ttl">AI Medicine Dispenser</span><span class="stack">It looks at you before it gives you a pill. Built for people who forget.</span><span class="yr">2024</span><span class="arr">→</span></div>
+    <div class="compact-row" data-id="rat"><span class="n">11</span><span class="ttl">RAT &amp; Pen-Test Lab</span><span class="stack">Built the trojan so I'd understand the ones built against everyone else.</span><span class="yr">2024</span><span class="arr">→</span></div>
+    <div class="compact-row" data-id="wifi"><span class="n">12</span><span class="ttl">Wi-Fi Pen-Test Device</span><span class="stack">A pocket-sized box that breaks Wi-Fi. Tested on networks I owned.</span><span class="yr">2024</span><span class="arr">→</span></div>
+    <div class="compact-row" data-id="phish"><span class="n">13</span><span class="ttl">Phishing Simulation</span><span class="stack">Phished myself first &mdash; the only way to learn how to stop the real ones.</span><span class="yr">2024</span><span class="arr">→</span></div>
   </div>
 </section>
 
