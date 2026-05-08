@@ -489,16 +489,23 @@ body.menu-open { overflow:hidden; }
 .ic-tile:hover::before { opacity:.18; }
 .ic-tile:hover::after { transform:translateX(110%); }
 
-.ic-tile img {
+.ic-tile .icon {
   width:30px; height:30px;
   position:relative; z-index:1;
-  filter:brightness(.9) contrast(.95);
-  opacity:.8;
-  transition:filter .35s, opacity .35s, transform .4s cubic-bezier(.2,.8,.2,1);
+  background:rgba(255,255,255,.82);
+  -webkit-mask-image:var(--icon-url);
+  mask-image:var(--icon-url);
+  -webkit-mask-size:contain;
+  mask-size:contain;
+  -webkit-mask-repeat:no-repeat;
+  mask-repeat:no-repeat;
+  -webkit-mask-position:center;
+  mask-position:center;
+  transition:background .35s, transform .4s cubic-bezier(.2,.8,.2,1), filter .35s;
 }
-.ic-tile:hover img {
-  opacity:1;
-  filter:brightness(1.1) drop-shadow(0 0 10px var(--c));
+.ic-tile:hover .icon {
+  background:var(--c);
+  filter:drop-shadow(0 0 10px var(--c));
   transform:scale(1.18) rotate(-4deg) translateZ(20px);
 }
 .ic-tile span {
@@ -743,7 +750,7 @@ footer {
   .skills-intro { font-size:15.5px; margin-bottom:24px; }
   .stack-grid { grid-template-columns:repeat(auto-fill, minmax(70px, 1fr)); gap:7px; }
   .ic-tile { padding:8px 5px; gap:6px; border-radius:12px; }
-  .ic-tile img { width:24px; height:24px; }
+  .ic-tile .icon { width:24px; height:24px; }
   .ic-tile span { font-size:8.5px; }
   .ic-tile:hover { transform:rotateX(0) rotateY(0) translateY(-2px) scale(1.04); }
 
@@ -1404,8 +1411,9 @@ const STACK = [
     tile.className = 'ic-tile';
     tile.style.setProperty('--c', s.c);
     tile.style.setProperty('--d', (i * 30) + 'ms');
+    const iconURL = `https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${s.slug}.svg`;
     tile.innerHTML = `
-      <img src="https://cdn.simpleicons.org/${s.slug}/FFFFFF" alt="${s.name}" loading="lazy" />
+      <div class="icon" style="--icon-url:url('${iconURL}')" role="img" aria-label="${s.name}"></div>
       <span>${s.name}</span>`;
     // 3D mouse-tracking tilt
     tile.addEventListener('mousemove', e => {
