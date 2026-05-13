@@ -9,11 +9,11 @@
 <meta property="og:title" content="Anshul Raman · Security-minded builder" />
 <meta property="og:description" content="CS student at UC. Founding Engineer at OpenPrem. Builds AI systems that run for months without anyone touching them." />
 <meta property="og:type" content="profile" />
-<meta property="og:image" content="favicon.PNG" />
+<meta property="og:image" content="favicon.jpeg" />
 <meta name="theme-color" content="#ff611a" />
-<link rel="icon" type="image/png" href="favicon.PNG" />
-<link rel="shortcut icon" href="favicon.PNG" />
-<link rel="apple-touch-icon" href="favicon.PNG" />
+<link rel="icon" type="image/jpeg" href="favicon.jpeg" />
+<link rel="shortcut icon" href="favicon.jpeg" />
+<link rel="apple-touch-icon" href="favicon.jpeg" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Doto:wght@400;700;900&family=Fragment+Mono&display=swap" rel="stylesheet">
@@ -186,9 +186,68 @@ body.menu-open { overflow:hidden; }
 /* ───────── HERO ───────── */
 .hero {
   min-height:100dvh; padding:140px 6vw 36px;
-  display:flex; flex-direction:column; justify-content:center;
+  display:grid;
+  grid-template-columns:minmax(0, 1fr) auto;
+  gap:clamp(24px, 4vw, 72px);
+  align-items:center;
 }
+.hero-text { display:flex; flex-direction:column; justify-content:center; min-width:0; }
 #about { padding-top:84px; }
+
+/* ───── hero photo · organic blob with cursor reveal ───── */
+.hero-photo {
+  --mx:50%; --my:50%; --r:80px;
+  position:relative;
+  width:clamp(287px, 30.7vw, 445px);
+  aspect-ratio:2 / 3;
+  border-radius:22px;
+  overflow:hidden;
+  isolation:isolate;
+  cursor:crosshair;
+  justify-self:end;
+  align-self:start;
+  margin-top:16px;
+  transition:transform .55s cubic-bezier(.2,.8,.2,1);
+  box-shadow:0 30px 60px -22px rgba(0,0,0,.3), 0 0 0 1px rgba(0,0,0,.06);
+}
+.hero-photo:hover { transform:translateY(-4px) rotate(-1deg); }
+.hero-photo .hp-glow {
+  position:absolute; inset:-12%;
+  background:radial-gradient(closest-side, rgba(255,97,26,.42), transparent 68%);
+  z-index:-1;
+  filter:blur(22px);
+  animation:blobPulse 4.5s ease-in-out infinite;
+  pointer-events:none;
+}
+.hero-photo .hp-layer {
+  position:absolute; inset:0;
+  background:url('favicon.jpeg') center / cover no-repeat;
+}
+.hero-photo .hp-canvas {
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  z-index:1;
+  pointer-events:none;
+  border-radius:inherit;
+}
+.hero-photo .hp-ring {
+  position:absolute; inset:0; pointer-events:none;
+  z-index:2;
+  background:radial-gradient(circle calc(var(--r) + 2px) at var(--mx) var(--my),
+    transparent 0%,
+    transparent calc(var(--r) - 8px),
+    rgba(255,97,26,.95) calc(var(--r) - 1px),
+    rgba(255,97,26,.45) calc(var(--r) + 4px),
+    transparent calc(var(--r) + 26px));
+  opacity:0;
+  mix-blend-mode:screen;
+  transition:opacity .3s;
+}
+.hero-photo:hover .hp-ring { opacity:1; }
+@keyframes blobPulse {
+  0%,100% { opacity:.4; transform:scale(1); }
+  50%     { opacity:.65; transform:scale(1.06); }
+}
 .hero-eyebrow {
   font-family:var(--mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase;
   color:var(--ink-3); margin-bottom:32px;
@@ -703,6 +762,12 @@ footer {
   .section-eyebrow { font-size:10.5px; margin-bottom:16px; letter-spacing:.14em; }
 
   /* hero */
+  .hero { grid-template-columns:1fr; gap:24px; }
+  .hero-text { order:2; }
+  .hero-photo {
+    order:1; justify-self:center;
+    width:min(62vw, 240px); cursor:default;
+  }
   .hero-eyebrow { font-size:10px; margin-bottom:22px; }
   .hero-h { font-size:clamp(40px, 11.5vw, 64px); margin-bottom:24px; line-height:1.05; letter-spacing:-.04em; }
   .hero-letterspaced { font-size:11.5px; line-height:2.0; letter-spacing:.3em; margin-top:22px; }
@@ -839,6 +904,9 @@ footer {
   /* touch devices: kill the heavy 3D mouse-tilt that requires a real cursor */
   .ic-tile { transform:none !important; }
   .track:hover { transform:translateY(-2px); }
+  .hero-photo .hp-canvas { display:none; }
+  .hero-photo:hover .hp-ring { opacity:0; }
+  .hero-photo:hover { transform:none; }
 }
 </style>
 </head>
@@ -884,22 +952,30 @@ footer {
 
 <!-- ════════ HERO ════════ -->
 <section class="hero" id="hero">
-  <div class="hero-eyebrow">CS · University of Cincinnati · Co-op Fall 2026</div>
-  <h1 class="hero-h">
-    <b>Anshul Raman</b><br>
-    writes software with<br>
-    an adversarial lens —<br>
-    <span class="accent">studying how systems break.</span>
-  </h1>
-  <p class="hero-letterspaced">From full-stack platforms to offensive labs &mdash; building things that are meant to last, with a deep interest in AI and a curiosity for how systems can be tested, broken, and rebuilt stronger.</p>
-  <div class="hero-stats">
-    <div class="stat"><div class="stat-val">3.68</div><div class="stat-label">GPA</div></div>
-    <div class="stat"><div class="stat-val">14<em>+</em></div><div class="stat-label">Projects</div></div>
-    <div class="stat"><div class="stat-val">2</div><div class="stat-label">Scholarships</div></div>
-    <div class="stat"><div class="stat-val">#1</div><div class="stat-label">District Tennis</div></div>
+  <div class="hero-text">
+    <div class="hero-eyebrow">CS · University of Cincinnati · Co-op Fall 2026</div>
+    <h1 class="hero-h">
+      <b>Anshul Raman</b><br>
+      writes software with<br>
+      an adversarial lens —<br>
+      <span class="accent">studying how systems break.</span>
+    </h1>
+    <p class="hero-letterspaced">From full-stack platforms to offensive labs &mdash; building things that are meant to last, with a deep interest in AI and a curiosity for how systems can be tested, broken, and rebuilt stronger.</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-val">3.68</div><div class="stat-label">GPA</div></div>
+      <div class="stat"><div class="stat-val">14<em>+</em></div><div class="stat-label">Projects</div></div>
+      <div class="stat"><div class="stat-val">2</div><div class="stat-label">Scholarships</div></div>
+      <div class="stat"><div class="stat-val">#1</div><div class="stat-label">District Tennis</div></div>
+    </div>
+    <div class="hero-bottom">
+      <a class="btn-orange" href="#work">Browse the projects ⌬</a>
+    </div>
   </div>
-  <div class="hero-bottom">
-    <a class="btn-orange" href="#work">Browse the projects ⌬</a>
+  <div class="hero-photo" id="heroPhoto" aria-hidden="true">
+    <div class="hp-glow"></div>
+    <div class="hp-layer"></div>
+    <canvas class="hp-canvas" id="heroPhotoCanvas"></canvas>
+    <div class="hp-ring"></div>
   </div>
 </section>
 
@@ -1562,6 +1638,122 @@ function setMenu(open) {
 if (navToggle) navToggle.addEventListener('click', () => setMenu(!document.body.classList.contains('menu-open')));
 drawerLinks.forEach(a => a.addEventListener('click', () => setMenu(false)));
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && document.body.classList.contains('menu-open')) setMenu(false); });
+
+// hero photo · color image always shown; cursor paints favicon_black.PNG where it goes, trail fades
+(function () {
+  const photo  = document.getElementById('heroPhoto');
+  const canvas = document.getElementById('heroPhotoCanvas');
+  if (!photo || !canvas) return;
+  if (matchMedia('(hover:none) and (pointer:coarse)').matches) return;
+
+  const ctx    = canvas.getContext('2d');
+  const off    = document.createElement('canvas');
+  const offCtx = off.getContext('2d');
+  const dpr    = Math.min(window.devicePixelRatio || 1, 2);
+
+  const img = new Image();
+  let imgReady = false;
+  img.onload = () => { imgReady = true; };
+  img.src = 'favicon_black.PNG';
+
+  function resize() {
+    const r = photo.getBoundingClientRect();
+    canvas.width  = off.width  = Math.max(1, Math.round(r.width  * dpr));
+    canvas.height = off.height = Math.max(1, Math.round(r.height * dpr));
+  }
+  resize();
+  new ResizeObserver(resize).observe(photo);
+
+  const brushR = () => Math.min(canvas.width, canvas.height) * 0.18;
+
+  // mimic CSS object-fit:cover — keeps source aspect ratio when drawing into canvas
+  function coverDraw(c, im, dw, dh) {
+    const sw = im.naturalWidth, sh = im.naturalHeight;
+    if (!sw || !sh) return;
+    const sr = sw / sh, dr = dw / dh;
+    let w, h, x, y;
+    if (sr > dr) { h = dh; w = dh * sr; x = (dw - w) / 2; y = 0; }
+    else         { w = dw; h = dw / sr; x = 0; y = (dh - h) / 2; }
+    c.drawImage(im, x, y, w, h);
+  }
+
+  // each stamp blooms outward over ~320ms (water-spread feel)
+  const stamps = [];          // active growing stamps
+  const STAMP_DUR = 320;      // ms to fully bloom
+
+  function drawStamp(s, now) {
+    const age  = now - s.t0;
+    const t    = Math.min(1, age / STAMP_DUR);
+    const ease = 1 - Math.pow(1 - t, 3);   // ease-out cubic
+    const r    = s.maxR * ease;
+    if (!imgReady || r < 1) return t < 1;
+
+    // subtle organic wobble while growing
+    const wob = 0.06 * Math.sin(now * 0.018 + s.seed);
+    const wx  = s.x + r * wob;
+    const wy  = s.y - r * wob * 0.6;
+
+    offCtx.globalCompositeOperation = 'source-over';
+    offCtx.clearRect(0, 0, off.width, off.height);
+    const g = offCtx.createRadialGradient(wx, wy, 0, wx, wy, r);
+    g.addColorStop(0,    'rgba(0,0,0,0.85)');
+    g.addColorStop(0.45, 'rgba(0,0,0,0.55)');
+    g.addColorStop(0.85, 'rgba(0,0,0,0.15)');
+    g.addColorStop(1,    'rgba(0,0,0,0)');
+    offCtx.fillStyle = g;
+    offCtx.fillRect(0, 0, off.width, off.height);
+    offCtx.globalCompositeOperation = 'source-in';
+    coverDraw(offCtx, img, off.width, off.height);
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.drawImage(off, 0, 0);
+
+    return t < 1;
+  }
+
+  const queue = [];
+  let lastPt = null;
+  let fadingOut = false;
+  photo.addEventListener('mouseenter', () => { fadingOut = false; });
+  photo.addEventListener('mousemove', e => {
+    const r  = photo.getBoundingClientRect();
+    const x  = (e.clientX - r.left) * dpr;
+    const y  = (e.clientY - r.top)  * dpr;
+    photo.style.setProperty('--mx', ((e.clientX - r.left) / r.width)  * 100 + '%');
+    photo.style.setProperty('--my', ((e.clientY - r.top)  / r.height) * 100 + '%');
+    if (lastPt) {
+      const dx = x - lastPt.x, dy = y - lastPt.y;
+      const d  = Math.hypot(dx, dy);
+      const n  = Math.max(1, Math.floor(d / (brushR() * 0.5)));
+      for (let i = 1; i <= n; i++) queue.push({ x: lastPt.x + dx*i/n, y: lastPt.y + dy*i/n });
+    } else {
+      queue.push({ x, y });
+    }
+    lastPt = { x, y };
+  });
+  photo.addEventListener('mouseleave', () => { lastPt = null; fadingOut = true; });
+
+  (function loop() {
+    if (fadingOut) {
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.fillStyle = 'rgba(0,0,0,0.08)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.globalCompositeOperation = 'source-over';
+    }
+
+    const now = performance.now();
+    // turn queued cursor positions into growing stamps
+    while (queue.length) {
+      const p = queue.shift();
+      stamps.push({ x: p.x, y: p.y, t0: now, maxR: brushR() * 1.45, seed: Math.random() * 6.28 });
+    }
+    // render every active stamp; remove finished ones
+    for (let i = stamps.length - 1; i >= 0; i--) {
+      if (!drawStamp(stamps[i], now)) stamps.splice(i, 1);
+    }
+
+    requestAnimationFrame(loop);
+  })();
+})();
 
 // nav hides on scroll-down, returns on scroll-up
 (function () {
