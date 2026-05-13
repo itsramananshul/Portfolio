@@ -763,10 +763,12 @@ footer {
 
   /* hero */
   .hero { grid-template-columns:1fr; gap:24px; }
-  .hero-text { order:2; }
+  .hero-text { order:1; }
   .hero-photo {
-    order:1; justify-self:center;
+    order:2; justify-self:center;
     width:min(62vw, 240px); cursor:default;
+    touch-action:none;
+    margin-top:8px;
   }
   .hero-eyebrow { font-size:10px; margin-bottom:22px; }
   .hero-h { font-size:clamp(40px, 11.5vw, 64px); margin-bottom:24px; line-height:1.05; letter-spacing:-.04em; }
@@ -904,8 +906,6 @@ footer {
   /* touch devices: kill the heavy 3D mouse-tilt that requires a real cursor */
   .ic-tile { transform:none !important; }
   .track:hover { transform:translateY(-2px); }
-  .hero-photo .hp-canvas { display:none; }
-  .hero-photo:hover .hp-ring { opacity:0; }
   .hero-photo:hover { transform:none; }
 }
 </style>
@@ -1639,12 +1639,11 @@ if (navToggle) navToggle.addEventListener('click', () => setMenu(!document.body.
 drawerLinks.forEach(a => a.addEventListener('click', () => setMenu(false)));
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && document.body.classList.contains('menu-open')) setMenu(false); });
 
-// hero photo · color image always shown; cursor paints favicon_black.PNG where it goes, trail fades
+// hero photo · color image always shown; mouse OR finger paints favicon_black.PNG, trail fades
 (function () {
   const photo  = document.getElementById('heroPhoto');
   const canvas = document.getElementById('heroPhotoCanvas');
   if (!photo || !canvas) return;
-  if (matchMedia('(hover:none) and (pointer:coarse)').matches) return;
 
   const ctx    = canvas.getContext('2d');
   const off    = document.createElement('canvas');
@@ -1713,11 +1712,24 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && document.b
   const queue = [];
   let lastPt = null;
   let fadingOut = false;
-  photo.addEventListener('mouseenter', () => { fadingOut = false; });
-  photo.addEventListener('mousemove', e => {
-    const r  = photo.getBoundingClientRect();
-    const x  = (e.clientX - r.left) * dpr;
-    const y  = (e.clientY - r.top)  * dpr;
+  let activeTouchId = null;
+
+  // unified pointer handlers — works for mouse hover AND finger drag on touch devices
+  photo.addEventListener('pointerdown', e => {
+    if (e.pointerType !== 'mouse') {
+      activeTouchId = e.pointerId;
+      try { photo.setPointerCapture(e.pointerId); } catch (_) {}
+    }
+    fadingOut = false;
+  });
+
+  photo.addEventListener('pointermove', e => {
+    // mouse: hovering counts (no click needed). touch/pen: only while finger is down.
+    if (e.pointerType !== 'mouse' && e.pointerId !== activeTouchId) return;
+
+    const r = photo.getBoundingClientRect();
+    const x = (e.clientX - r.left) * dpr;
+    const y = (e.clientY - r.top)  * dpr;
     photo.style.setProperty('--mx', ((e.clientX - r.left) / r.width)  * 100 + '%');
     photo.style.setProperty('--my', ((e.clientY - r.top)  / r.height) * 100 + '%');
     if (lastPt) {
@@ -1730,7 +1742,21 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && document.b
     }
     lastPt = { x, y };
   });
-  photo.addEventListener('mouseleave', () => { lastPt = null; fadingOut = true; });
+
+  photo.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') fadingOut = false; });
+  photo.addEventListener('pointerleave', e => {
+    if (e.pointerType === 'mouse') { lastPt = null; fadingOut = true; }
+  });
+
+  function endTouch(e) {
+    if (e.pointerType !== 'mouse' && e.pointerId === activeTouchId) {
+      activeTouchId = null;
+      lastPt = null;
+      fadingOut = true;
+    }
+  }
+  photo.addEventListener('pointerup', endTouch);
+  photo.addEventListener('pointercancel', endTouch);
 
   (function loop() {
     if (fadingOut) {
