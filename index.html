@@ -209,8 +209,14 @@ body.menu-open { overflow:hidden; }
   margin-top:16px;
   transition:transform .55s cubic-bezier(.2,.8,.2,1);
   box-shadow:0 30px 60px -22px rgba(0,0,0,.3), 0 0 0 1px rgba(0,0,0,.06);
+  /* bulletproof rounded clipping — works on mobile Safari/Chrome where overflow:hidden alone fails to clip canvas */
+  clip-path:inset(0 round 22px);
+  -webkit-clip-path:inset(0 round 22px);
+  transform:translate3d(0, 0, 0);
 }
-.hero-photo:hover { transform:translateY(-4px) rotate(-1deg); }
+.hero-photo:hover, .hero-photo.is-painting {
+  transform:translate3d(0, -6px, 0) rotate(-1.2deg);
+}
 .hero-photo .hp-glow {
   position:absolute; inset:-12%;
   background:radial-gradient(closest-side, rgba(255,97,26,.42), transparent 68%);
@@ -228,7 +234,7 @@ body.menu-open { overflow:hidden; }
   width:100%; height:100%;
   z-index:1;
   pointer-events:none;
-  border-radius:inherit;
+  border-radius:22px;
 }
 .hero-photo .hp-ring {
   position:absolute; inset:0; pointer-events:none;
@@ -906,7 +912,6 @@ footer {
   /* touch devices: kill the heavy 3D mouse-tilt that requires a real cursor */
   .ic-tile { transform:none !important; }
   .track:hover { transform:translateY(-2px); }
-  .hero-photo:hover { transform:none; }
 }
 </style>
 </head>
@@ -1648,7 +1653,9 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && document.b
   const ctx    = canvas.getContext('2d');
   const off    = document.createElement('canvas');
   const offCtx = off.getContext('2d');
-  const dpr    = Math.min(window.devicePixelRatio || 1, 2);
+  // lower DPR on touch devices — fewer pixels to push per frame = smoother bloom
+  const isTouch = matchMedia('(hover:none) and (pointer:coarse)').matches;
+  const dpr    = Math.min(window.devicePixelRatio || 1, isTouch ? 1.5 : 2);
 
   const img = new Image();
   let imgReady = false;
@@ -1663,7 +1670,8 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && document.b
   resize();
   new ResizeObserver(resize).observe(photo);
 
-  const brushR = () => Math.min(canvas.width, canvas.height) * 0.18;
+  // slightly larger brush on touch — fingers are blunter than cursors, fewer stamps cover the same path
+  const brushR = () => Math.min(canvas.width, canvas.height) * (isTouch ? 0.22 : 0.18);
 
   // mimic CSS object-fit:cover — keeps source aspect ratio when drawing into canvas
   function coverDraw(c, im, dw, dh) {
@@ -1676,9 +1684,9 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && document.b
     c.drawImage(im, x, y, w, h);
   }
 
-  // each stamp blooms outward over ~320ms (water-spread feel)
+  // each stamp blooms outward (water-spread feel) — slower on touch for smoother visual
   const stamps = [];          // active growing stamps
-  const STAMP_DUR = 320;      // ms to fully bloom
+  const STAMP_DUR = isTouch ? 420 : 320;
 
   function drawStamp(s, now) {
     const age  = now - s.t0;
@@ -1719,6 +1727,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && document.b
     if (e.pointerType !== 'mouse') {
       activeTouchId = e.pointerId;
       try { photo.setPointerCapture(e.pointerId); } catch (_) {}
+      photo.classList.add('is-painting');   // mirror the desktop hover tilt
     }
     fadingOut = false;
   });
@@ -1753,15 +1762,18 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && document.b
       activeTouchId = null;
       lastPt = null;
       fadingOut = true;
+      photo.classList.remove('is-painting');
     }
   }
   photo.addEventListener('pointerup', endTouch);
   photo.addEventListener('pointercancel', endTouch);
 
+  // gentler fade on touch for smoother color-back transition
+  const FADE_ALPHA = isTouch ? 0.05 : 0.08;
   (function loop() {
     if (fadingOut) {
       ctx.globalCompositeOperation = 'destination-out';
-      ctx.fillStyle = 'rgba(0,0,0,0.08)';
+      ctx.fillStyle = `rgba(0,0,0,${FADE_ALPHA})`;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.globalCompositeOperation = 'source-over';
     }
