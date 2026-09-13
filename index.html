@@ -385,6 +385,11 @@ body.menu-open { overflow:hidden; }
 }
 .exp-period::before { content:'▸'; }
 .exp-org { font-family:var(--mono); font-size:11px; letter-spacing:.06em; color:rgba(255,255,255,.5); }
+.exp-logo {
+  float:right; width:48px; height:48px; object-fit:contain;
+  padding:6px; margin:0 0 12px 16px; background:#fff; border-radius:10px;
+}
+.exp-logo ~ .exp-pts { clear:both; }
 .exp-role {
   font-family:var(--sans); font-weight:600;
   font-size:clamp(22px, 2.4vw, 30px); letter-spacing:-.015em; margin-bottom:14px;
@@ -1020,6 +1025,7 @@ footer {
 
   <div class="exp-timeline">
     <div class="exp-card live">
+      <img class="exp-logo" src="assets/openprem-logo.png" alt="OpenPrem logo" width="48" height="48" loading="lazy" />
       <div class="exp-head">
         <span class="exp-period">Aug 2026 → Now</span>
         <span class="exp-org">OpenPrem · Cincinnati, Ohio, USA</span>
@@ -1035,6 +1041,7 @@ footer {
     </div>
 
     <div class="exp-card">
+      <img class="exp-logo" src="assets/openprem-logo.png" alt="OpenPrem logo" width="48" height="48" loading="lazy" />
       <div class="exp-head">
         <span class="exp-period">Apr 2026 → Aug 2026</span>
         <span class="exp-org">OpenPrem · Cincinnati, Ohio, USA</span>
@@ -1049,6 +1056,7 @@ footer {
     </div>
 
     <div class="exp-card live">
+      <img class="exp-logo" src="assets/batch-logo.svg" alt="Batch logo" width="48" height="48" loading="lazy" />
       <div class="exp-head">
         <span class="exp-period">Jul 2026 → Now</span>
         <span class="exp-org">Batch · Cincinnati, Ohio, USA</span>
