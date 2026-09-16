@@ -43,7 +43,7 @@ Vanilla HTML · CSS · JavaScript — no frameworks, no build step, no dependenc
 
 ## 📬 Get In Touch
 
-Open to co-op opportunities starting  Fall 2026  and always happy to talk security, software, or interesting problems.
+Open to co-op opportunities starting  Summer 2027  and always happy to talk security, software, or interesting problems.
 
 📧 mailto:ramanal@mail.uc.edu
 🔗 https://linkedin.com/in/anshulraman06
