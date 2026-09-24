@@ -727,6 +727,7 @@ footer {
 .modal-body .stat-grid .num { font-family:var(--mono); font-size:24px; color:#fff; font-weight:600; text-align:right; line-height:1; letter-spacing:-.02em; }
 .modal-body .stat-grid .lab { font-size:13.5px; color:rgba(255,255,255,.65); line-height:1.5; }
 .modal-body .stack-line { font-family:var(--mono); font-size:12.5px; line-height:1.85; color:rgba(255,255,255,.65); }
+.modal-body .case-film { display:block; width:100%; max-height:min(45dvh, 360px); aspect-ratio:16/9; object-fit:contain; border-radius:12px; background:#15171d; margin:0 0 24px; }
 .modal-foot {
   padding:18px 40px 28px;
   border-top:1px solid rgba(255,255,255,.08);
@@ -1343,6 +1344,9 @@ const PROJECTS = {
     oneliner:`<b>Keep a coding task moving when an agent reaches its limit.</b> AllCode lets developers continue the same conversation through Claude Code, OpenCode, Codex, Hermes, or another installed agent.`,
     tags:['TypeScript','Node.js','Terminal UI','Open Source'],
     body:`
+      <video class="case-film" controls playsinline preload="metadata" poster="assets/allcode-launch-poster.jpg" aria-label="AllCode launch film">
+        <source src="assets/allcode-launch.mp4" type="video/mp4">
+      </video>
       <h4>What it solves</h4>
       <ul>
         <li>Built a terminal workspace where developers can start a fix in one coding agent and finish it in another without copying a transcript or restating the problem.</li>
@@ -1351,7 +1355,10 @@ const PROJECTS = {
         <li>Shipped an open-source Node.js CLI with update-safe integrations and automated checks on Windows, macOS, and Linux.</li>
       </ul>
       <p class="stack-line">TypeScript · Node.js · Terminal UI</p>`,
-    links:[{label:'GitHub ↗', url:'https://github.com/itsramananshul/allcode', primary:true}]
+    links:[
+      {label:'Watch film ↗', url:'assets/allcode-launch.mp4', primary:true},
+      {label:'GitHub ↗', url:'https://github.com/itsramananshul/allcode'}
+    ]
   },
   credix: {
     num:'— 06 / FINTECH', title:'Credix — Fintech-grade Budgeting MVP',
