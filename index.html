@@ -1126,9 +1126,9 @@ footer {
     </button>
     <button class="track" data-id="allcode">
       <div class="track-num">— TRACK 02 / DEVELOPER TOOL</div>
-      <div class="track-t">All Code</div>
+      <div class="track-t">AllCode</div>
       <div class="track-meta"><span>Open source</span><span>·</span><span>Terminal workspace</span></div>
-      <div class="track-d">One terminal conversation across Claude Code, OpenCode, Codex, Hermes, and other installed coding CLIs you add. Switch agents mid-task without copying prompts between windows.</div>
+      <div class="track-d">Keep working when a coding agent hits a limit or the task needs a different model. AllCode carries the conversation across Claude Code, OpenCode, Codex, Hermes, and other installed agents.</div>
       <div class="track-cta">Open case study →</div>
     </button>
     <button class="track" data-id="voxvitals">
@@ -1339,18 +1339,16 @@ const PROJECTS = {
     ]
   },
   allcode: {
-    num:'— TRACK 02 / OPEN SOURCE DEVELOPER TOOL', title:'All Code — One Workspace for Coding Agents',
-    oneliner:`<b>Move a coding task between agents without rebuilding the conversation.</b> All Code brings Claude Code, OpenCode, Codex, Hermes, and additional installed CLIs into one terminal interface.`,
+    num:'— TRACK 02 / OPEN SOURCE DEVELOPER TOOL', title:'AllCode — One Task, Any Coding Agent',
+    oneliner:`<b>Keep a coding task moving when an agent reaches its limit.</b> AllCode lets developers continue the same conversation through Claude Code, OpenCode, Codex, Hermes, or another installed agent.`,
     tags:['TypeScript','Node.js','Terminal UI','Open Source'],
     body:`
-      <h4>What I built</h4>
+      <h4>What it solves</h4>
       <ul>
-        <li>Built a shared conversation layer that hands unseen messages to the next agent when you switch, and resumes each agent's native session when its CLI supports one.</li>
-        <li>Added keyboard-driven agent and model pickers, with model and permission choices kept separately for each agent.</li>
-        <li>Designed local adapters so additional installed CLIs can be connected without changing the packaged app, with each integration limited to capabilities its CLI actually exposes.</li>
-        <li>Built an <code>/add agent</code> flow that can ask the active coding agent to inspect another installed CLI and draft its adapter; the user reviews the code before it is installed.</li>
-        <li>Kept custom adapters and agent registrations outside the npm package so an All Code update does not overwrite them.</li>
-        <li>Added <code>/add skill</code> to copy a reviewed skill into the compatible installed agents' skill directories without replacing an existing skill of the same name.</li>
+        <li>Built a terminal workspace where developers can start a fix in one coding agent and finish it in another without copying a transcript or restating the problem.</li>
+        <li>Carried conversation context and native sessions across switches, so a usage limit or a better-suited model does not force the task to restart.</li>
+        <li>Preserved each CLI's existing account, model access, and approval settings instead of routing everything through a new backend.</li>
+        <li>Shipped an open-source Node.js CLI with update-safe integrations and automated checks on Windows, macOS, and Linux.</li>
       </ul>
       <p class="stack-line">TypeScript · Node.js · Terminal UI</p>`,
     links:[{label:'GitHub ↗', url:'https://github.com/itsramananshul/allcode', primary:true}]
