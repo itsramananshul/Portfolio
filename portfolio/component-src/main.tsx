@@ -86,7 +86,7 @@ function ProjectFolder({ item, index, compact = false }: { item: any; index: num
       <p dangerouslySetInnerHTML={{ __html: item.description }} />
     </div>
     <button type="button" className="v2-case-link" data-id={item.id} aria-label={`Open ${item.title} case study`}>
-      {compact ? 'Case study' : 'Open full case study'} <span className="v2-project-arrow" aria-hidden="true">↗</span>
+      {compact ? 'Case study' : 'Open full case study'} <span className="v2-project-arrow" aria-hidden="true">{'\u2197\uFE0E'}</span>
     </button>
   </article>;
 }

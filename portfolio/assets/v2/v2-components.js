@@ -12964,7 +12964,7 @@ function ll({ item: e, index: t, compact: n = !1 }) {
 					/* @__PURE__ */ (0, x.jsx)("span", {
 						className: "v2-project-arrow",
 						"aria-hidden": "true",
-						children: "↗"
+						children: "↗︎"
 					})
 				]
 			})

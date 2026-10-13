@@ -74,7 +74,7 @@ function openModal(id, trigger) {
   $('#mTags').replaceChildren(...(project.tags || []).map(tag => node('span', '', tag)));
   $('#mBody').innerHTML = project.body;
   $('#mFoot').replaceChildren(...(project.links || []).map(link => {
-    const a = node('a', link.primary ? '' : 'alt', link.label);
+    const a = node('a', link.primary ? '' : 'alt', link.label.replace(/↗\uFE0F?/g, '\u2197\uFE0E'));
     a.href = link.url; a.target = '_blank'; a.rel = 'noopener';
     return a;
   }));
