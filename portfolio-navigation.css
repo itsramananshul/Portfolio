@@ -1,0 +1,8 @@
+/* A switches back to the original portfolio without changing this design. */
+.portfolio-return{position:absolute;z-index:12;top:94px;left:var(--gutter,4vw);display:grid;place-items:center;width:64px;height:64px;border-radius:50%;background:#ff611a;color:#fff;text-decoration:none;font:700 22px var(--font,Arial);box-shadow:0 4px 18px -4px #ff611a80;transition:transform .4s;touch-action:manipulation}
+.portfolio-return:hover{transform:rotate(45deg)}
+.portfolio-return:focus-visible{outline:3px solid #fff;outline-offset:5px}
+body.locked .portfolio-return{visibility:hidden}
+body:has(>.version-switcher) .portfolio-return{top:160px}
+@media(max-width:600px){.portfolio-return{top:80px;width:52px;height:52px}body:has(>.version-switcher) .portfolio-return{top:144px}}
+@media(prefers-reduced-motion:reduce){.portfolio-return{transition:none}}

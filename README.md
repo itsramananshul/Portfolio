@@ -1,54 +1,9 @@
-# 🖥️ anshulraman.com — Personal Portfolio
+# Anshul Raman — new portfolio
 
-> My corner of the internet. CS student, security builder, and occasional tennis champion.
+This storage branch contains only the current new portfolio design. It has no original website, saved V1 page, or 1 / 2 comparison controls. The A button returns to the original public website.
 
-🌐  https://anshulraman.com
+Open the root index.html through a static HTTP server. Compiled components and all runtime assets are included; no build is needed to view the site. Editable components are in component-src (npm install, then npm run build).
 
----
+The original/new A-button integration is kept locally at C:/Users/akans/Downloads/Portfolio-Original-Integration, served at http://localhost:4175/. Both comparison designs and 1 / 2 controls remain only in C:/Users/akans/Downloads/Portfolio-Elena-Preview, served at http://localhost:4174/v2.html.
 
-## What is this?
-
-My personal portfolio — a clean, minimal site that showcases who I am, what I've built, and what I'm looking for. No templates, no page builders. Written from scratch.
-
----
-
-## ✨ Design
-
--  Fixed sidebar  navigation with scroll-aware active state
--  Full-height sections  that feel like pages, not a wall of content
--  DM Serif Display + DM Sans  — editorial type pairing for a refined feel
-- Completely dark — `#111111` base with layered surface greys
-- Subtle reveal animations and skill bar transitions on load
-- Fully responsive — sidebar collapses gracefully on mobile
-
----
-
-## 📄 Sections
-
--  Hero  — name, one-liner, GPA, project count, scholarships, tennis ranking
--  About  — four cards: origin story, method, campus life, current status
--  Experience  — Science Club President · Event Coordinator
--  Projects  — 10 projects with expandable detail: Gradintel, ReachOut, AI Phone Agent, Wi-Fi pen testing device, RAT lab, and more
--  Skills  — Offensive security, programming, OS, and human skills with animated bars
--  Education  — UC Computer Science + honors and awards
--  Contact  — email, LinkedIn, GitHub, resume download
-
----
-
-## 🛠️ Built With
-
-Vanilla HTML · CSS · JavaScript — no frameworks, no build step, no dependencies.
-
----
-
-## 📬 Get In Touch
-
-Open to co-op opportunities starting  Summer 2027  and always happy to talk security, software, or interesting problems.
-
-📧 mailto:ramanal@mail.uc.edu
-🔗 https://linkedin.com/in/anshulraman06
-🐙 https://github.com/itsramananshul
-
----
-
-© 2026 Anshul Raman
+The public website stays on main. This branch is not merged. vercel.json disables automatic deployment for codex/portfolio-design-archive only.
