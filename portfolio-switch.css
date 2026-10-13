@@ -1,0 +1,31 @@
+/* Reserve the original navbar's space beside A and the Building indicator. */
+.disc{display:grid}
+.tab-nav{left:96px;right:110px}
+.tab-nav-inner{max-width:100%}
+@media(max-width:1100px){
+  .tab-links{display:none}
+  .nav-toggle{display:inline-flex}
+}
+@media(max-width:768px){
+  .disc{display:grid;z-index:170}
+  .tab-nav{left:96px;right:12px;top:28px;padding:0;justify-content:flex-end}
+  .tab-nav-inner{max-width:100%}
+}
+@media(max-width:420px){
+  .tab-brand span:not(.dot){display:none}
+  .tab-brand{padding:8px 10px}
+}
+/* Only play this entrance after the new portfolio's return A is activated. */
+html[data-portfolio-entry=original] .hero-photo{animation:portfolio-photo-enter .85s cubic-bezier(.22,1,.36,1) both}
+html[data-portfolio-entry=original] .hero-text{animation:portfolio-copy-enter .7s .12s cubic-bezier(.22,1,.36,1) both}
+html[data-portfolio-entry=original] .tab-nav,
+html[data-portfolio-entry=original] .disc{animation:portfolio-nav-enter .45s .05s ease-out both}
+@keyframes portfolio-photo-enter{from{opacity:0;transform:translateY(24px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes portfolio-copy-enter{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes portfolio-nav-enter{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){
+  html[data-portfolio-entry=original] .hero-photo,
+  html[data-portfolio-entry=original] .hero-text,
+  html[data-portfolio-entry=original] .tab-nav,
+  html[data-portfolio-entry=original] .disc{animation:none}
+}
