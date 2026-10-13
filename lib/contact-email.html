@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>{{title}}</title>
+  <style>
+    body{margin:0;background:#eaeaea;color:#1a1a1a;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;-webkit-text-size-adjust:100%}
+    table{border-collapse:collapse}
+    a:focus-visible{outline:3px solid #b53e00;outline-offset:5px}
+    .wrap{overflow-wrap:anywhere;word-break:break-word}
+    @media(max-width:640px){
+      .outer{padding:24px 12px 32px!important}
+      .pad{padding-left:26px!important;padding-right:26px!important}
+      .masthead{padding-top:26px!important}
+      .brand{font-size:21px!important;letter-spacing:-1.2px!important}
+      .masthead-label{font-size:9px!important;letter-spacing:1px!important}
+      .hero-title{padding-top:64px!important;padding-bottom:36px!important}
+      .title{font-size:50px!important;letter-spacing:-2.8px!important}
+      .body-start{padding-top:32px!important}
+      .sender{font-size:27px!important;letter-spacing:-.8px!important}
+      .body-message{font-size:16px!important;line-height:1.75!important}
+      .reply-pad{padding:16px 24px!important}
+      .signature{padding-top:24px!important;padding-bottom:24px!important}
+    }
+    @media(max-width:374px){
+      .pad{padding-left:20px!important;padding-right:20px!important}
+      .brand{font-size:19px!important}
+      .masthead-label{font-size:8px!important;letter-spacing:.4px!important}
+      .title{font-size:43px!important;letter-spacing:-2.4px!important}
+    }
+  </style>
+</head>
+<body>
+  <div lang="en" dir="ltr">
+    <div style="display:none;font-size:1px;line-height:1px;max-height:0;max-width:0;opacity:0;overflow:hidden;mso-hide:all">{{preheader}}</div>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+      <tr><td class="outer" align="center" style="padding:32px 20px 48px">
+        <table id="email-design" role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:680px;table-layout:fixed;background:#ffffff">
+          <tr><td bgcolor="#080808" style="background-color:#080808;background-image:linear-gradient(rgba(0,0,0,.26),rgba(0,0,0,.26)),url('https://www.anshulraman.com/portfolio/assets/footer-wave.png');background-position:center bottom;background-size:cover;background-repeat:no-repeat;color:#ffffff">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="table-layout:fixed">
+              <tr><td class="pad masthead" style="padding:36px 44px 0">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+                  <td class="brand" style="font-size:24px;line-height:1.2;letter-spacing:-1.5px;white-space:nowrap;color:#ffffff">ANSHUL<span style="color:#bcb9b5">RAMAN</span></td>
+                  <td class="masthead-label" align="right" style="padding-left:8px;font-family:'Courier New',monospace;font-size:10px;line-height:1.5;letter-spacing:1.6px;color:#ccc8c4;white-space:nowrap">CONTACT FORM</td>
+                </tr></table>
+              </td></tr>
+              <tr><td class="pad hero-title" style="padding:64px 44px 40px">
+                <h1 class="title" style="margin:0;font-size:76px;line-height:.98;font-weight:400;letter-spacing:-4.5px;color:#ffffff">A new<br>conversation.</h1>
+                <p style="margin:26px 0 0;font-size:14px;line-height:1.5;color:#ffffff">From your corner of the internet.</p>
+              </td></tr>
+            </table>
+          </td></tr>
+          <tr><td class="pad body-start" style="padding:36px 44px 0">
+            <p style="margin:0 0 10px;font-family:'Courier New',monospace;font-size:10px;line-height:1.5;letter-spacing:1.8px;color:#6c6c6c">A MESSAGE FROM</p>
+            <p class="sender wrap" style="margin:0 0 8px;font-size:32px;line-height:1.2;letter-spacing:-1.2px;color:#171717">{{name}}</p>
+            <p style="margin:0;font-size:14px;line-height:1.5"><a class="wrap" href="{{emailUrl}}" style="color:#9c3800;text-decoration:underline;text-underline-offset:3px">{{email}}</a></p>
+          </td></tr>
+          <tr><td class="pad" style="padding:28px 44px 0">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="table-layout:fixed"><tr><td style="border-top:1px solid #dedede;padding-top:24px">
+              <p style="margin:0 0 12px;font-family:'Courier New',monospace;font-size:10px;line-height:1.5;letter-spacing:1.8px;color:#6c6c6c">SUBJECT</p>
+              <h2 class="wrap" style="margin:0 0 24px;font-size:21px;line-height:1.4;letter-spacing:-.5px;font-weight:500;color:#171717">{{subject}}</h2>
+              <div class="body-message wrap" dir="auto" style="font-size:17px;line-height:1.8;color:#383838;overflow-wrap:anywhere;word-break:break-word">{{message}}</div>
+            </td></tr></table>
+          </td></tr>
+          <tr><td class="pad" style="padding:30px 44px 34px">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td bgcolor="#171717" style="border-radius:50px;background:#171717">
+              <a class="reply-pad" href="{{replyUrl}}" style="display:block;border-radius:50px;padding:18px 28px;color:#ffffff;font-size:15px;line-height:1.5;text-decoration:none;text-align:center"><span style="color:#ff8c4a">●</span>&nbsp;&nbsp; Reply to {{name}} &nbsp; →</a>
+            </td></tr></table>
+            <p style="margin:14px 0 0;font-size:11px;line-height:1.6;color:#6c6c6c;text-align:center">Or hit Reply in your inbox to continue the conversation.</p>
+          </td></tr>
+          <tr><td class="pad signature" style="padding:26px 44px;border-top:1px solid #dedede;background:#f7f7f7">
+            <p style="margin:0 0 10px;font-size:19px;line-height:1.2;letter-spacing:-1.1px;color:#171717">ANSHUL<span style="color:#737373">RAMAN</span></p>
+            <p style="margin:0;font-size:11px;line-height:1.8;color:#656565">A note through your <a href="https://www.anshulraman.com/portfolio/v2.html#contact" style="color:#353535;text-decoration:underline">portfolio contact form</a>.<br>Delivered to ramanal@mail.uc.edu.</p>
+          </td></tr>
+          <tr><td style="height:4px;background:#ff6412;font-size:0;line-height:0">&nbsp;</td></tr>
+        </table>
+      </td></tr>
+    </table>
+  </div>
+</body>
+</html>

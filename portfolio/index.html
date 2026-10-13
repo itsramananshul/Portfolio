@@ -30,12 +30,13 @@
 <link rel="stylesheet" href="portfolio-navigation.css?v=scroll-a">
 <link rel="stylesheet" href="v2-case-study.css">
 <link rel="stylesheet" href="v2-experience.css">
-<link rel="stylesheet" href="v2-ending.css?v=tablet-spacing">
+<link rel="stylesheet" href="v2-ending.css?v=6e9ee7fdcb3e">
 <link rel="stylesheet" href="v2-original-tools.css">
 <script src="v2-bridge.js" defer></script>
 <script src="v2-case-study.js" defer></script>
 <script src="v2-experience.js" defer></script>
 <script src="v2-original-tools.js" defer></script>
+<script src="v2-contact-form.js?v=825ad4797277" defer></script>
 <script type="module" src="assets/v2/v2-components.js?v=95b96d19d3d9"></script>
 <link rel="stylesheet" href="../portfolio-switch.css">
 <script src="../portfolio-switch.js"></script>
@@ -253,11 +254,21 @@
 </div>
 </div>
 </section>
-<div class="v2-ending">
-<section class="contact-section" id="contact"><div aria-hidden="true" class="contact-wordmark">ANSHUL<span>RAMAN</span></div>
-<h2>Let's build something real.</h2>
+</main>
+<footer class="v2-ending">
+<img class="v2-footer-wave" src="assets/footer-wave.png" width="1920" height="900" alt="" aria-hidden="true" loading="lazy"/>
+<section class="contact-section" id="contact">
+<div class="v2-contact-top">
+<div class="v2-contact-intro">
+<div aria-hidden="true" class="contact-wordmark">ANSHUL<span>RAMAN</span></div>
 <p class="lede">For internships, AI engineering work, hackathon teams, security collabs — or just to talk about the ideas. I read every email.</p>
-<a class="v2-contact-cta" href="mailto:ramanal@mail.uc.edu"><span aria-hidden="true" class="dot"></span>Email Me</a>
+</div>
+<div class="v2-contact-pitch">
+<h2>Let's build something real.</h2>
+<button class="v2-contact-cta" id="contactFormOpen" type="button" aria-haspopup="dialog" aria-controls="contactFormDialog"><span aria-hidden="true" class="dot"></span>Get in Touch</button>
+</div>
+</div>
+<div class="v2-contact-bottom">
 <div class="v2-reachout">
 <div class="tag">⌬ Let's make something</div>
 <a class="v2-contact-email" href="mailto:ramanal@mail.uc.edu">ramanal@mail.uc.edu</a>
@@ -268,14 +279,33 @@
 <a class="v2-social-link" href="https://github.com/itsramananshul" rel="noopener" target="_blank" aria-label="GitHub" title="GitHub"><img src="assets/icons/github.svg" width="22" height="22" alt=""/></a>
 <a class="v2-resume-button" href="resume.pdf" rel="noopener" target="_blank"><span aria-hidden="true" class="dot"></span>Resume</a>
 </div>
-</section>
 </div>
-</main>
-<footer class="v2-ending-footer">
+</section>
+<div class="v2-ending-footer">
 <span>© 2026 made by Anshul Raman</span>
 <span>CS @ University of Cincinnati</span>
 <span>Cincinnati · OH</span>
+</div>
 </footer>
+<dialog class="v2-contact-dialog" id="contactFormDialog" aria-labelledby="contactFormTitle" aria-describedby="contactFormDescription">
+<button class="v2-form-close" id="contactFormClose" type="button" aria-label="Close contact form">×</button>
+<div class="v2-form-layout">
+<div class="v2-form-intro"><h2 id="contactFormTitle">Get in Touch</h2><p id="contactFormDescription">Drop me a message.</p><a href="mailto:ramanal@mail.uc.edu">ramanal@mail.uc.edu</a></div>
+<form id="contactForm" action="/api/contact" method="post">
+<label for="contactName">Your name <span aria-hidden="true">*</span></label>
+<input id="contactName" name="name" autocomplete="name" required maxlength="100" placeholder="Your name"/>
+<label for="contactEmail">Email address <span aria-hidden="true">*</span></label>
+<input id="contactEmail" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="you@example.com"/>
+<label for="contactSubject">Subject</label>
+<input id="contactSubject" name="subject" maxlength="120" placeholder="What would you like to talk about?"/>
+<label for="contactMessage">Your message <span aria-hidden="true">*</span></label>
+<textarea id="contactMessage" name="message" rows="4" required maxlength="5000" placeholder="Tell me about it…"></textarea>
+<div class="v2-form-honey" aria-hidden="true"><label for="contactWebsite">Leave this field empty</label><input id="contactWebsite" name="website" tabindex="-1" autocomplete="off"/></div>
+<button class="v2-form-send" id="contactFormSend" type="submit"><span class="dot" aria-hidden="true"></span><span>Send message</span></button>
+<p id="contactFormStatus" class="v2-form-status" role="status" aria-live="polite" aria-atomic="true"></p>
+</form>
+</div>
+</dialog>
 <div class="hover-preview" id="hoverPreview" aria-hidden="true"><div id="hpEyebrow"></div><div id="hpTitle"></div><div id="hpDesc"></div><span>Click to open full case study ↗︎</span></div>
 <dialog class="case-study" id="projectDialog" aria-labelledby="mTitle" aria-describedby="mOneliner">
 <div class="modal-head"><div id="mNum" class="modal-num"></div><button id="mClose" class="modal-close" type="button" aria-label="Back to projects">← Back to projects</button><h2 id="mTitle"></h2><p id="mOneliner"></p><div id="mTags" class="modal-tags"></div></div>
