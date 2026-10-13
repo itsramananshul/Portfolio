@@ -5,5 +5,17 @@
 body.locked .portfolio-return{visibility:hidden}
 .version-two .site-header{padding-left:max(var(--gutter),102px)}
 .version-two .site-header.scrolled{padding-top:24px;padding-bottom:24px}
-@media(max-width:760px){.portfolio-return{top:14px;left:14px;width:44px;height:44px;font-size:18px}.version-two .site-header{padding-top:22px;padding-left:74px;flex-wrap:wrap;gap:14px}.version-two .site-header .header-actions{margin-left:-54px;width:calc(100% + 54px);justify-content:flex-end}}
+@media(max-width:760px){
+  .portfolio-return{top:14px;left:14px;width:44px;height:44px;font-size:18px}
+  .version-two .site-header,.version-two .site-header.scrolled{padding:14px 14px 14px 74px;flex-wrap:nowrap;gap:8px;min-height:72px}
+  .version-two .site-header .wordmark{font-size:clamp(14px,4.4vw,21px);letter-spacing:-.7px}
+  .version-two .site-header .header-actions{margin-left:0;width:auto;flex-shrink:0;gap:8px;justify-content:flex-end}
+  .version-two .site-header .contact-pill{padding:10px;font-size:12px;gap:6px;white-space:nowrap}
+  .version-two .site-header .menu-toggle{width:44px;min-height:44px}
+}
+@media(max-width:360px){
+  .version-two .site-header,.version-two .site-header.scrolled{padding-left:66px;padding-right:10px;gap:4px}
+  .version-two .site-header .header-actions{gap:4px}
+  .version-two .site-header .contact-pill{padding-inline:8px;font-size:11px}
+}
 @media(prefers-reduced-motion:reduce){.portfolio-return{transition:none}}
