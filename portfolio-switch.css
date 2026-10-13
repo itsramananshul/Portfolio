@@ -16,7 +16,6 @@
   .hero-kicker .hero-eyebrow::before{display:block}
   .tab-nav-inner>.disc-mobile{margin-right:6px;box-shadow:none}
   .tab-nav{left:0;right:0;top:max(12px, env(safe-area-inset-top));padding:0 12px;justify-content:center}
-  .tab-nav.nav-hidden{transform:none;opacity:1}
   .tab-nav-inner{max-width:100%}
 }
 /* Only play this entrance after the new portfolio's return A is activated. */
