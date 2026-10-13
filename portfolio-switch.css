@@ -1,4 +1,6 @@
 /* Reserve the original navbar's space beside A and the Building indicator. */
+@font-face{font-family:'Portfolio Text Arrows';src:url('portfolio/assets/fonts/original-tools/fragment-mono-400.ttf') format('truetype');font-style:normal;font-weight:400;font-display:block;unicode-range:U+2196-2199}
+body:not(.version-two) .modal-foot a{font-family:'Portfolio Text Arrows',var(--sans)}
 .disc{display:grid}
 .disc-mobile{display:none}
 .hero-kicker{display:contents}
@@ -8,7 +10,7 @@
   .tab-links{display:none}
   .nav-toggle{display:inline-flex}
 }
-@media(max-width:768px){
+@media(max-width:768px),(max-height:500px) and (hover:none) and (pointer:coarse){
   .disc{display:none}
   .disc-mobile{display:grid;place-items:center;flex:0 0 44px;width:44px;height:44px;border-radius:50%;background:var(--orange);color:#fff;font-family:var(--display);font-weight:900;font-size:18px;box-shadow:0 4px 18px -4px rgba(255,97,26,.5)}
   .hero-kicker{display:contents}
@@ -17,6 +19,7 @@
   .tab-nav-inner>.disc-mobile{margin-right:6px;box-shadow:none}
   .tab-nav{left:0;right:0;top:max(12px, env(safe-area-inset-top));padding:0 12px;justify-content:center}
   .tab-nav-inner{max-width:100%}
+  .tab-nav :is(.tab-brand,.tab-cta,.nav-toggle){min-height:44px}
 }
 /* Only play this entrance after the new portfolio's return A is activated. */
 html[data-portfolio-entry=original] .hero-photo{animation:portfolio-photo-enter .85s cubic-bezier(.22,1,.36,1) both}

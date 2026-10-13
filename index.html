@@ -933,7 +933,7 @@ footer {
   .track:hover { transform:translateY(-2px); }
 }
 </style>
-<link rel="stylesheet" href="portfolio-switch.css?v=phone-scroll-nav">
+<link rel="stylesheet" href="portfolio-switch.css?v=phone-audit">
 <script src="portfolio-switch.js"></script>
 </head>
 <body>
@@ -1546,7 +1546,7 @@ function openModal(id) {
   mOneliner.innerHTML = p.oneliner;
   mTags.innerHTML = (p.tags || []).map(t => `<span>${t}</span>`).join('');
   mBody.innerHTML = p.body;
-  mFoot.innerHTML = (p.links || []).map(l => `<a href="${l.url}" target="_blank" rel="noopener" class="${l.primary ? '' : 'alt'}">${l.label}</a>`).join('');
+  mFoot.innerHTML = (p.links || []).map(l => `<a href="${l.url}" target="_blank" rel="noopener" class="${l.primary ? '' : 'alt'}">${l.label.replace(/↗\uFE0F?/g, '\u2197\uFE0E')}</a>`).join('');
   mBody.scrollTop = 0;
   overlay.classList.add('open');
   overlay.setAttribute('aria-hidden','false');
@@ -1904,12 +1904,14 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && document.b
       if (document.body.classList.contains('menu-open')) { ticking = false; lastY = y; return; }
       if (y < TOP_GUARD) {
         nav.classList.remove('nav-hidden');
+        lastY = y;
       } else if (y > lastY + THRESHOLD) {
         nav.classList.add('nav-hidden');
+        lastY = y;
       } else if (y < lastY - THRESHOLD) {
         nav.classList.remove('nav-hidden');
+        lastY = y;
       }
-      lastY = y;
       ticking = false;
     });
   }

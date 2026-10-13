@@ -166,9 +166,12 @@ addEventListener('scroll', () => {
     const y = scrollY;
     const header = $('#siteHeader');
     header.classList.toggle('scrolled', y > 100);
-    if (Math.abs(y - lastY) > 4) header.classList.toggle('nav-hidden', y > 180 && y > lastY && !drawer.open);
+    if (Math.abs(y - lastY) > 4) {
+      header.classList.toggle('nav-hidden', y > 180 && y > lastY && !drawer.open);
+      lastY = y;
+    }
     if (!reducedMotion.matches && !motionPaused && y < innerHeight) $('.hero-portrait').style.transform = `translateY(${y * .08}px)`;
     else $('.hero-portrait').style.transform = '';
-    lastY = y; framePending = false;
+    framePending = false;
   });
 }, {passive:true});
