@@ -5,5 +5,5 @@
 body.locked .portfolio-return{visibility:hidden}
 .version-two .site-header{padding-left:max(var(--gutter),102px)}
 .version-two .site-header.scrolled{padding-top:24px;padding-bottom:24px}
-@media(max-width:760px){.version-two .site-header{padding-top:32px;flex-wrap:wrap;gap:14px}.version-two .site-header .header-actions{margin-left:-82px;width:calc(100% + 82px);justify-content:flex-end}}
+@media(max-width:760px){.portfolio-return{top:14px;left:14px;width:44px;height:44px;font-size:18px}.version-two .site-header{padding-top:22px;padding-left:74px;flex-wrap:wrap;gap:14px}.version-two .site-header .header-actions{margin-left:-54px;width:calc(100% + 54px);justify-content:flex-end}}
 @media(prefers-reduced-motion:reduce){.portfolio-return{transition:none}}

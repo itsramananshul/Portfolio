@@ -1,4 +1,4 @@
-// V2 only. Adapted layout ideas from 21st's Experience Timeline (28334),
+// V2: Timeline only. Adapted layout ideas from 21st's Experience Timeline (28334),
 // Impact Experience (18893), Vertical Tabs (10473), Accessible Accordion (34656),
 // Feature Bento (18898), and Scrollable Card Stack (25296). Content is moved intact.
 (() => {
@@ -68,7 +68,6 @@
   options.className = 'v2-exp-options';
   options.setAttribute('role', 'group');
   options.setAttribute('aria-label', 'Experience layout');
-  const modes = ['showcase', 'cards', 'accordion', 'stack', 'timeline', 'editorial', 'tabs'];
   const tablist = document.createElement('div');
   tablist.className = 'v2-exp-tabs';
   tablist.setAttribute('role', 'tablist');
@@ -205,16 +204,9 @@
     }
     measureShowcaseMotion();
   };
-  for (const layout of modes) {
-    const button = document.createElement('button');
-    button.type = 'button';button.dataset.layout = layout;
-    button.textContent = layout[0].toUpperCase() + layout.slice(1);
-    button.addEventListener('click', () => choose(layout, true));
-    options.append(button);
-  }
   const head = document.createElement('div');
   head.className = 'v2-exp-heading';
-  head.append(section.querySelector('.section-h'), options);
+  head.append(section.querySelector('.section-h'));
   timeline.before(head);
   const content = document.createElement('div');
   content.className = 'v2-exp-content';
@@ -243,6 +235,10 @@
   // Font/image layout settles after the initial DOM adapter has run.
   document.fonts.ready.then(measureShowcaseMotion);
   window.addEventListener('load', measureShowcaseMotion, {once:true});
-  const requested = new URLSearchParams(location.search).get('experienceLayout');
-  choose(modes.includes(requested) ? requested : 'timeline');
+  choose('timeline');
+  const url = new URL(location.href);
+  if (url.searchParams.has('experienceLayout')) {
+    url.searchParams.delete('experienceLayout');
+    history.replaceState(history.state, '', url);
+  }
 })();

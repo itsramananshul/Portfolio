@@ -39,9 +39,8 @@
 .v2-card-copy h3{font-size:32px;letter-spacing:-.04em;line-height:1.1;margin-bottom:18px}
 .v2-card-copy p{font-size:15px;line-height:1.65;color:#555b62}
 .v2-card-copy p em{color:#252525}
-.v2-case-link{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:auto;padding:18px 0 0;border-top:1px solid #dce0e5;min-height:52px;font-size:14px;text-align:left}
-.v2-case-link>span:last-child{color:#b84612;font-size:24px;transition:transform .2s}
-.v2-case-link:hover>span:last-child{transform:translate(3px,-3px)}
+.v2-case-link{display:flex;align-items:center;justify-content:flex-start;gap:6px;margin-top:auto;padding:18px 0 0;border-top:1px solid #dce0e5;min-height:52px;font-size:14px;text-align:left}
+.v2-case-link .v2-project-arrow{font-family:'V2 Original Manrope',var(--font);font-size:inherit;font-weight:600;color:inherit}
 .v2-featured-grid .gf-root{font-family:var(--font)}
 .v2-featured-grid .gf-root[data-tone=dark]{--gf-ink:#fff;--gf-muted:#c7c0ba}
 .v2-featured-grid .gf-back{background:#522b17}
@@ -172,8 +171,7 @@
 .v1-mini-project .v2-card-copy{margin:10px 0 0;text-align:center}
 .v1-mini-project .v2-card-copy h3{font-size:20px;margin-bottom:0;line-height:1.2}
 .v1-mini-project .v2-card-copy p{display:none}
-.v1-mini-project .v2-case-link{margin:4px auto 0;padding:0;min-height:44px;border:0;justify-content:center;gap:12px;font-size:12px}
-.v1-mini-project .v2-case-link>span:last-child{font-size:18px}
+.v1-mini-project .v2-case-link{margin:4px auto 0;padding:0;min-height:44px;border:0;justify-content:center;gap:6px;font-size:12px}
 @media(max-width:700px){.v2-featured-grid .v2-folder-stage{padding-top:60px}.v1-other-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.v1-other-grid .v1-mini-project{padding:0;max-width:190px}.v1-mini-project .v2-card-copy h3{font-size:17px}}
 
 /* Version 1 comparison: an edge-to-edge reading view. */

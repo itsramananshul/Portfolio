@@ -12958,10 +12958,15 @@ function ll({ item: e, index: t, compact: n = !1 }) {
 				className: "v2-case-link",
 				"data-id": e.id,
 				"aria-label": `Open ${e.title} case study`,
-				children: [/* @__PURE__ */ (0, x.jsx)("span", { children: n ? "Case study" : "Open full case study" }), /* @__PURE__ */ (0, x.jsx)("span", {
-					"aria-hidden": "true",
-					children: "↗"
-				})]
+				children: [
+					n ? "Case study" : "Open full case study",
+					" ",
+					/* @__PURE__ */ (0, x.jsx)("span", {
+						className: "v2-project-arrow",
+						"aria-hidden": "true",
+						children: "↗"
+					})
+				]
 			})
 		]
 	});
