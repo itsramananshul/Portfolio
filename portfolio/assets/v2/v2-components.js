@@ -11718,7 +11718,7 @@ function Pa({ reduced: e }) {
 					href: "#work",
 					children: ["Browse the projects ", /* @__PURE__ */ (0, x.jsx)("span", {
 						"aria-hidden": "true",
-						children: "↘"
+						children: "↘︎"
 					})]
 				}), /* @__PURE__ */ (0, x.jsx)("span", {
 					className: "hero-caption",

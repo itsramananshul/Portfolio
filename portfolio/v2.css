@@ -1,4 +1,7 @@
 /* Version 2 only. The original stylesheet and every case study stay intact. */
+/* Use the existing monochrome arrow glyphs instead of a phone's emoji font. */
+@font-face{font-family:'V2 Text Arrows';src:url('assets/fonts/original-tools/fragment-mono-400.ttf') format('truetype');font-style:normal;font-weight:400;font-display:block;unicode-range:U+2196-2199}
+.version-two :is(.hero-browse>span[aria-hidden=true],.contact-pill>span[aria-hidden=true],.panel-arrow,.panel-bottom>span:last-child,.hover-preview>span,.modal-foot a){font-family:'V2 Text Arrows',var(--font)}
 .version-two .reel-window{overflow:visible;transform:none;padding:0}
 .v2-curved{height:430px;position:relative;overflow:hidden;width:100%}
 .v2-curved .relative{position:relative}
@@ -40,7 +43,7 @@
 .v2-card-copy p{font-size:15px;line-height:1.65;color:#555b62}
 .v2-card-copy p em{color:#252525}
 .v2-case-link{display:flex;align-items:center;justify-content:flex-start;gap:6px;margin-top:auto;padding:18px 0 0;border-top:1px solid #dce0e5;min-height:52px;font-size:14px;text-align:left}
-.v2-case-link .v2-project-arrow{font-family:'V2 Original Manrope',var(--font);font-size:inherit;font-weight:600;color:inherit}
+.v2-case-link .v2-project-arrow{font-family:'V2 Text Arrows','V2 Original Manrope',var(--font);font-size:inherit;font-weight:600;color:inherit}
 .v2-featured-grid .gf-root{font-family:var(--font)}
 .v2-featured-grid .gf-root[data-tone=dark]{--gf-ink:#fff;--gf-muted:#c7c0ba}
 .v2-featured-grid .gf-back{background:#522b17}
