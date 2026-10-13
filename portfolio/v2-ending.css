@@ -37,4 +37,9 @@ footer.v2-ending-footer{background:#ff7208;color:#fff;padding:40px var(--gutter)
 .v2-copy-char,.v2-copy-line{will-change:transform}
 @media(prefers-reduced-motion:reduce){.v2-rolling-label>span{transition:none;transform:none!important}}
 @media(min-width:1800px){.version-two .v2-ending .contact-section{padding:56px;min-height:640px}}
+@media(min-width:761px) and (max-width:1400px){
+  .version-two .v2-ending .contact-section{min-height:0;padding:36px;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto auto auto;gap:32px 6vw}
+  .v2-ending .contact-section .lede,.v2-ending .v2-contact-cta{align-self:start}
+  .v2-ending .v2-reachout,.v2-ending .contact-btns{align-self:end}
+}
 @media(max-width:760px){.v2-ending{padding-top:70px}.version-two .v2-ending .contact-section{display:flex;flex-direction:column;align-items:flex-start;gap:28px;padding:30px 24px;min-height:0;border-radius:22px}.v2-ending .contact-wordmark{font-size:34px}.v2-ending .contact-section h2{font-size:40px;text-align:left;align-self:start;max-width:100%;margin:0}.v2-ending .contact-section .lede{font-size:15px;max-width:100%}.v2-contact-cta{align-self:flex-start;font-size:16px;min-height:52px;padding:14px 26px}.v2-reachout{align-self:start;margin-top:24px}.v2-ending .contact-btns{align-self:start;margin-top:0;justify-content:flex-start}.v2-ending .contact-section .tag{margin-bottom:12px}.v2-ending .contact-avail{font-size:12px}.v2-contact-email{font-size:19px}footer.v2-ending-footer{padding-top:28px;flex-direction:column;gap:8px;font-size:12px}}
