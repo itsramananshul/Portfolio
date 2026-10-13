@@ -1,8 +1,9 @@
-/* A switches back to the original portfolio without changing this design. */
-.portfolio-return{position:absolute;z-index:12;top:94px;left:var(--gutter,4vw);display:grid;place-items:center;width:64px;height:64px;border-radius:50%;background:#ff611a;color:#fff;text-decoration:none;font:700 22px var(--font,Arial);box-shadow:0 4px 18px -4px #ff611a80;transition:transform .4s;touch-action:manipulation}
+/* Match the original website's fixed Doto A button. */
+.portfolio-return{position:fixed;top:18px;left:18px;z-index:60;width:64px;height:64px;border-radius:50%;background:#ff611a;display:grid;place-items:center;font-family:'Doto',system-ui,sans-serif;font-weight:900;font-size:22px;color:#fff;box-shadow:0 4px 18px -4px rgba(255,97,26,.5);transition:transform .4s;touch-action:manipulation}
 .portfolio-return:hover{transform:rotate(45deg)}
 .portfolio-return:focus-visible{outline:3px solid #fff;outline-offset:5px}
 body.locked .portfolio-return{visibility:hidden}
-body:has(>.version-switcher) .portfolio-return{top:160px}
-@media(max-width:600px){.portfolio-return{top:80px;width:52px;height:52px}body:has(>.version-switcher) .portfolio-return{top:144px}}
+.version-two .site-header{padding-left:max(var(--gutter),102px)}
+.version-two .site-header.scrolled{padding-top:24px;padding-bottom:24px}
+@media(max-width:760px){.version-two .site-header{padding-top:32px;flex-wrap:wrap;gap:14px}.version-two .site-header .header-actions{margin-left:-82px;width:calc(100% + 82px);justify-content:flex-end}}
 @media(prefers-reduced-motion:reduce){.portfolio-return{transition:none}}

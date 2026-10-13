@@ -1,9 +1,7 @@
-# Anshul Raman — new portfolio
+# Anshul Raman — portfolio design comparison
 
-This storage branch contains only the current new portfolio design. It has no original website, saved V1 page, or 1 / 2 comparison controls. The A button returns to the original public website.
+This branch saves both new-design versions. index.html is saved design 1; v2.html is current design 2. The 1 / 2 controls switch between them. A returns to the original public website.
 
-Open the root index.html through a static HTTP server. Compiled components and all runtime assets are included; no build is needed to view the site. Editable components are in component-src (npm install, then npm run build).
+Compiled runtime assets and editable source for both versions are included. Viewing needs only a static HTTP server.
 
-The original/new A-button integration is kept locally at C:/Users/akans/Downloads/Portfolio-Original-Integration, served at http://localhost:4175/. Both comparison designs and 1 / 2 controls remain only in C:/Users/akans/Downloads/Portfolio-Elena-Preview, served at http://localhost:4174/v2.html.
-
-The public website stays on main. This branch is not merged. vercel.json disables automatic deployment for codex/portfolio-design-archive only.
+This comparison branch is not deployed. vercel.json disables automatic deployment for codex/portfolio-design-archive. The live original/new switch is published separately on main without 1 / 2 controls.
