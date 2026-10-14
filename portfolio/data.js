@@ -252,7 +252,7 @@ const PROJECTS = {
         <li>"Evil Twin" APs audited 20+ device connection attempts in a controlled environment.</li>
         <li>50+ simultaneous beacon signals to study wireless congestion thresholds.</li>
       </ul>`,
-    links:[{label:'View LinkedIn post ↗', url:'https://www.linkedin.com/posts/anshulraman06/hardware-embedded-systems-developerjourney-activity-7422510046862835712-nYUH', primary:true}]
+    links:[{label:'View LinkedIn post ↗', url:'https://www.linkedin.com/posts/anshulraman06_hardware-embeddedsystems-developerjourney-activity-7422510046862835712-nYUH', primary:true}]
   },
   phish: {
     num:'— 15 / SOCIAL ENGINEERING', title:'Phishing Website Simulation',

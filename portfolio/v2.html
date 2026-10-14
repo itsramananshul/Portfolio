@@ -454,6 +454,7 @@ body.menu-open { overflow:hidden; }
 .compact { padding-top:32px; position:relative; }
 .compact-row {
   display:grid; grid-template-columns:60px 1.6fr 1fr 100px 22px;
+  width:100%; text-align:left;
   gap:18px; padding:14px 18px;
   border-top:1px solid rgba(255,255,255,.08);
   font-family:var(--sans); font-size:14px;
@@ -499,6 +500,7 @@ body.menu-open { overflow:hidden; }
   text-align:right;
 }
 .compact-row:hover .arr { opacity:1; transform:translateX(0); }
+.compact-row:focus-visible { outline:2px solid var(--orange); outline-offset:3px; }
 
 .hover-preview {
   position:fixed; pointer-events:none; z-index:80;
@@ -1170,16 +1172,16 @@ footer {
   </div>
 
   <div class="compact" id="compact-list">
-    <div class="compact-row" data-id="credix"><span class="n">06</span><span class="ttl">Credix</span><span class="stack">Fintech-grade budgeting · Plaid bank sync · GPT-4o categorization</span><span class="yr">2026</span><span class="arr">→</span></div>
-    <div class="compact-row" data-id="reachout"><span class="n">07</span><span class="ttl">ReachOut</span><span class="stack">Cold-outreach engine · Gmail-OAuth send · 4 job boards</span><span class="yr">2026</span><span class="arr">→</span></div>
-    <div class="compact-row" data-id="phone"><span class="n">08</span><span class="ttl">AI Phone Agent</span><span class="stack">Local voice agent · Twilio + LLaMA + Whisper · $1/mo</span><span class="yr">2025</span><span class="arr">→</span></div>
-    <div class="compact-row" data-id="ev3"><span class="n">09</span><span class="ttl">EV3 Autonomous Robot</span><span class="stack">Autonomous robot · LabVIEW state machine · 45 test runs</span><span class="yr">2025</span><span class="arr">→</span></div>
-    <div class="compact-row" data-id="atm"><span class="n">10</span><span class="ttl">Python ATM System</span><span class="stack">Console banking · file-backed ledger · 3-strike PIN</span><span class="yr">2024</span><span class="arr">→</span></div>
-    <div class="compact-row" data-id="bus"><span class="n">11</span><span class="ttl">Bus Booking System</span><span class="stack">Reservation engine · seat tracking · crash-safe</span><span class="yr">2024</span><span class="arr">→</span></div>
-    <div class="compact-row" data-id="med"><span class="n">12</span><span class="ttl">AI Medicine Dispenser</span><span class="stack">Face-verified dosing · caregiver alerts · IoT</span><span class="yr">2024</span><span class="arr">→</span></div>
-    <div class="compact-row" data-id="rat"><span class="n">13</span><span class="ttl">RAT &amp; Pen-Test Lab</span><span class="stack">Cross-platform compromise · ethical lab · Metasploit</span><span class="yr">2024</span><span class="arr">→</span></div>
-    <div class="compact-row" data-id="wifi"><span class="n">14</span><span class="ttl">Wi-Fi Pen-Test Device</span><span class="stack">Wireless audit · evil-twin AP · ESP8266 + Aircrack-ng</span><span class="yr">2024</span><span class="arr">→</span></div>
-    <div class="compact-row" data-id="phish"><span class="n">15</span><span class="ttl">Phishing Simulation</span><span class="stack">Phishing workflows · credential harvesting · MFA defense</span><span class="yr">2024</span><span class="arr">→</span></div>
+    <button type="button" class="compact-row" data-id="credix"><span class="n">06</span><span class="ttl">Credix</span><span class="stack">Fintech-grade budgeting · Plaid bank sync · GPT-4o categorization</span><span class="yr">2026</span><span class="arr">→</span></button>
+    <button type="button" class="compact-row" data-id="reachout"><span class="n">07</span><span class="ttl">ReachOut</span><span class="stack">Cold-outreach engine · Gmail-OAuth send · 4 job boards</span><span class="yr">2026</span><span class="arr">→</span></button>
+    <button type="button" class="compact-row" data-id="phone"><span class="n">08</span><span class="ttl">AI Phone Agent</span><span class="stack">Local voice agent · Twilio + LLaMA + Whisper · $1/mo</span><span class="yr">2025</span><span class="arr">→</span></button>
+    <button type="button" class="compact-row" data-id="ev3"><span class="n">09</span><span class="ttl">EV3 Autonomous Robot</span><span class="stack">Autonomous robot · LabVIEW state machine · 45 test runs</span><span class="yr">2025</span><span class="arr">→</span></button>
+    <button type="button" class="compact-row" data-id="atm"><span class="n">10</span><span class="ttl">Python ATM System</span><span class="stack">Console banking · file-backed ledger · 3-strike PIN</span><span class="yr">2024</span><span class="arr">→</span></button>
+    <button type="button" class="compact-row" data-id="bus"><span class="n">11</span><span class="ttl">Bus Booking System</span><span class="stack">Reservation engine · seat tracking · crash-safe</span><span class="yr">2024</span><span class="arr">→</span></button>
+    <button type="button" class="compact-row" data-id="med"><span class="n">12</span><span class="ttl">AI Medicine Dispenser</span><span class="stack">Face-verified dosing · caregiver alerts · IoT</span><span class="yr">2024</span><span class="arr">→</span></button>
+    <button type="button" class="compact-row" data-id="rat"><span class="n">13</span><span class="ttl">RAT &amp; Pen-Test Lab</span><span class="stack">Cross-platform compromise · ethical lab · Metasploit</span><span class="yr">2024</span><span class="arr">→</span></button>
+    <button type="button" class="compact-row" data-id="wifi"><span class="n">14</span><span class="ttl">Wi-Fi Pen-Test Device</span><span class="stack">Wireless audit · evil-twin AP · ESP8266 + Aircrack-ng</span><span class="yr">2024</span><span class="arr">→</span></button>
+    <button type="button" class="compact-row" data-id="phish"><span class="n">15</span><span class="ttl">Phishing Simulation</span><span class="stack">Phishing workflows · credential harvesting · MFA defense</span><span class="yr">2024</span><span class="arr">→</span></button>
   </div>
 </section>
 
@@ -1514,7 +1516,7 @@ const PROJECTS = {
         <li>"Evil Twin" APs audited 20+ device connection attempts in a controlled environment.</li>
         <li>50+ simultaneous beacon signals to study wireless congestion thresholds.</li>
       </ul>`,
-    links:[{label:'View LinkedIn post ↗', url:'https://www.linkedin.com/posts/anshulraman06/hardware-embedded-systems-developerjourney-activity-7422510046862835712-nYUH', primary:true}]
+    links:[{label:'View LinkedIn post ↗', url:'https://www.linkedin.com/posts/anshulraman06_hardware-embeddedsystems-developerjourney-activity-7422510046862835712-nYUH', primary:true}]
   },
   phish: {
     num:'— 15 / SOCIAL ENGINEERING', title:'Phishing Website Simulation',
@@ -1539,9 +1541,11 @@ const mTags = document.getElementById('mTags');
 const mBody = document.getElementById('mBody');
 const mFoot = document.getElementById('mFoot');
 const mClose = document.getElementById('mClose');
+let modalTrigger = null;
 
 function openModal(id) {
   const p = PROJECTS[id]; if (!p) return;
+  modalTrigger = document.activeElement;
   mNum.textContent = p.num;
   mTitle.textContent = p.title;
   mOneliner.innerHTML = p.oneliner;
@@ -1552,11 +1556,13 @@ function openModal(id) {
   overlay.classList.add('open');
   overlay.setAttribute('aria-hidden','false');
   document.body.style.overflow = 'hidden';
+  mClose.focus({preventScroll:true});
 }
 function closeModal() {
   overlay.classList.remove('open');
   overlay.setAttribute('aria-hidden','true');
   document.body.style.overflow = '';
+  modalTrigger?.focus({preventScroll:true});
 }
 
 document.querySelectorAll('[data-id]').forEach(el => el.addEventListener('click', () => openModal(el.dataset.id)));
