@@ -115,7 +115,7 @@ module.exports = async function contact(req, res) {
       },
       body: JSON.stringify({
         from: 'Anshul Raman Portfolio <contact@resend.anshulraman.com>',
-        to: ['ramanal@mail.uc.edu'],
+        to: ['ramanal@mail.uc.edu', 'akanshul20062008@gmail.com'],
         reply_to: email,
         ...emailContent,
       }),
