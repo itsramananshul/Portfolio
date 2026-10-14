@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
+import { PortraitColourBrush } from './PortraitColourBrush';
 
 // Elena Voss public preview: diagonal image reveal first, character copy at 1s,
 // supporting lines at 1.5s. Keep the existing portrait pixels and normal scrolling.
@@ -51,8 +52,10 @@ export function CinematicLandingIntro({ reduced }: { reduced: boolean }) {
       <div className="cinematic-image-reveal" aria-hidden="true"><div className="hero-portrait">
         <img className="portrait-base" src="assets/portrait.webp" alt="" width="1254" height="1254" fetchPriority="high" />
         <img className="portrait-natural" src="assets/portrait.webp" alt="" width="1254" height="1254" fetchPriority="high" />
+        <PortraitColourBrush reduced={reduced} />
       </div></div>
       <div className="cinematic-photo-shade" aria-hidden="true" />
+      <div className="portrait-touch-surface" aria-hidden="true" />
       <div className="cinematic-card-copy">
         <h1 className="cinematic-name"><span className="cinematic-first">Anshul</span><span className="cinematic-last">Raman</span></h1>
         <p>writes software with an adversarial lens — studying how systems break.</p>
