@@ -11715,7 +11715,7 @@ function Pa({ reduced: e }) {
 				className: "hero-bottom",
 				children: [/* @__PURE__ */ (0, x.jsxs)("a", {
 					className: "hero-browse",
-					href: "#work",
+					href: window.location.pathname + window.location.search + "#work",
 					children: ["Browse the projects ", /* @__PURE__ */ (0, x.jsx)("span", {
 						"aria-hidden": "true",
 						children: "↘︎"

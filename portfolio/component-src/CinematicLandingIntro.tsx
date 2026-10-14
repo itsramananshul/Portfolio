@@ -58,6 +58,6 @@ export function CinematicLandingIntro({ reduced }: { reduced: boolean }) {
         <p>writes software with an adversarial lens — studying how systems break.</p>
       </div>
     </div>
-    <div className="hero-bottom"><a className="hero-browse" href="#work">Browse the projects <span aria-hidden="true">{'\u2198\uFE0E'}</span></a><span className="hero-caption">Cincinnati · OH</span></div>
+    <div className="hero-bottom"><a className="hero-browse" href={window.location.pathname + window.location.search + '#work'}>Browse the projects <span aria-hidden="true">{'\u2198\uFE0E'}</span></a><span className="hero-caption">Cincinnati · OH</span></div>
   </div>;
 }
