@@ -9490,7 +9490,7 @@ function le({ label: e = "My Files", meta: t, tone: n = "light", art: r = "auror
 									]
 								}) }), /* @__PURE__ */ (0, x.jsx)("path", {
 									d: oe,
-									stroke: "url(#gf-rim-" + C + ")"
+									stroke: 'url("' + window.location.pathname + window.location.search + '#gf-rim-' + C + '")'
 								})]
 							}),
 							/* @__PURE__ */ (0, x.jsx)("button", {

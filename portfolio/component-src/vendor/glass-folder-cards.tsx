@@ -754,7 +754,7 @@ export default function GlassFolder({
                   <stop offset="1" stopColor="#fff" stopOpacity="0.12" />
                 </linearGradient>
               </defs>
-              <path d={FRONT_PATH} stroke={"url(#gf-rim-" + uid + ")"} />
+              <path d={FRONT_PATH} stroke={'url("' + window.location.pathname + window.location.search + '#gf-rim-' + uid + '")'} />
             </svg>
             <button
               ref={hitRef}
